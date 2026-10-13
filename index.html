@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enlight Lab | Autonomous AI DevOps & Governance Platform</title>
+  <title>Enlight Lab | Enterprise AI Automation & Workflow Platform</title>
   <link rel="icon" type="image/png" href="https://ai-mvp.enlightlab.com/favicon.png" />
   
   <!-- Tailwind CSS CDN -->
@@ -44,7 +44,7 @@
 
   <!-- Google Fonts: Inter & DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
   <style>
@@ -58,10 +58,6 @@
       font-family: 'DM Sans', 'Inter', sans-serif;
       letter-spacing: -0.02em;
     }
-    .bg-grid {
-      background-image: radial-gradient(circle at 1px 1px, #0a0f1e0d 1px, #0000 0);
-      background-size: 24px 24px;
-    }
     .card-shadow {
       box-shadow: 0 1px 3px 0 rgba(10, 15, 30, 0.04), 0 8px 24px -4px rgba(10, 15, 30, 0.06);
     }
@@ -71,163 +67,237 @@
 
   <!-- Header -->
   <header class="border-b border-[#E8EAF0] bg-white sticky top-0 z-40">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <img src="https://ai-mvp.enlightlab.com/logo.png" alt="Enlight Lab" class="h-8 w-auto object-contain" onerror="this.src='logo.png'">
         <span class="text-xs uppercase tracking-widest text-[#0A0F1E]/50 font-semibold border-l border-[#E8EAF0] pl-3">
-          Automation Showcase
+          Enterprise Automation Showcase
         </span>
       </div>
-      <div class="flex items-center space-x-3">
-        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+
+      <div class="flex items-center space-x-2">
+        <a href="#devops-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">DevOps</a>
+        <a href="#healthcare-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">Healthcare</a>
+        <a href="#ecommerce-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">E-Commerce</a>
+        <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Live Demonstrator</span>
+          <span>Production Live</span>
         </span>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full">
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full space-y-12">
     
-    <div class="text-center mb-8">
+    <div class="text-center max-w-2xl mx-auto">
       <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0A0F1E] font-display">
-        Autonomous CI/CD &amp; AI Safety Engine
+        Enterprise Workflows Powered by Autonomous AI
       </h1>
-      <p class="mt-2.5 text-sm sm:text-base text-[#0A0F1E]/65 max-w-xl mx-auto">
-        Zero-touch deployment intelligence. See how incoming code is automatically inspected by AI, verified in the cloud, and safely deployed in seconds.
+      <p class="mt-2 text-sm sm:text-base text-[#0A0F1E]/65 leading-relaxed">
+        Zero-touch operational intelligence across cloud infrastructure, clinical healthcare, and high-volume retail commerce.
       </p>
     </div>
 
-    <!-- The Clean Single Interactive Demo Card -->
-    <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+    <!-- ======================================================= -->
+    <!-- MODULE 1: DEVOPS CI/CD & AI SAFETY (SIMPLE & CLEAN)      -->
+    <!-- ======================================================= -->
+    <section id="devops-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
       
-      <!-- Step 1: Select Scenario (Clean 2-Tab Switcher) -->
+      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#EEF4FF] border border-[#1A6BFF]/25 flex items-center justify-center text-[#1A6BFF]">
+            <i data-lucide="git-branch" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-[#0A0F1E] font-display">1. DevOps CI/CD &amp; AI Safety Engine</h2>
+            <p class="text-xs text-[#0A0F1E]/60">Automatically verifies code commits, assesses deployment risk, and halts destructive changes.</p>
+          </div>
+        </div>
+        <span class="text-[11px] font-mono text-[#0A0F1E]/50 hidden sm:inline">Repo: payment-service</span>
+      </div>
+
+      <!-- Commit Selection -->
       <div>
-        <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-3">
-          Step 1: Choose a Code Commit to Test
+        <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-2.5">
+          Select Incoming Commit Scenario:
         </label>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          
-          <!-- Scenario A Button -->
-          <button onclick="selectScenario('safe')" id="btn-scenario-safe" class="p-4 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative">
+          <button onclick="selectScenario('safe')" id="btn-scenario-safe" class="p-3.5 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative">
             <div class="flex items-center justify-between mb-1">
-              <span class="font-bold text-[#1A6BFF] text-sm">1. Safe Feature Commit</span>
-              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
-                Low Risk
-              </span>
+              <span class="font-bold text-[#1A6BFF] text-xs">Standard Feature Commit</span>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Low Risk</span>
             </div>
             <p class="text-xs text-[#0A0F1E]/75">Add Apple Pay &amp; Google Pay gateway integration</p>
-            <p class="text-[11px] text-emerald-700 font-medium mt-1">Expected: Auto-approved &amp; deployed</p>
           </button>
 
-          <!-- Scenario B Button -->
-          <button onclick="selectScenario('risky')" id="btn-scenario-risky" class="p-4 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative">
+          <button onclick="selectScenario('risky')" id="btn-scenario-risky" class="p-3.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative">
             <div class="flex items-center justify-between mb-1">
-              <span class="font-bold text-[#0A0F1E] text-sm" id="title-risky">2. Risky Database Commit</span>
-              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
-                High Risk
-              </span>
+              <span class="font-bold text-[#0A0F1E] text-xs" id="title-risky">Risky Database Commit</span>
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">High Risk</span>
             </div>
             <p class="text-xs text-[#0A0F1E]/75">Accidental DROP TABLE on users database</p>
-            <p class="text-[11px] text-amber-700 font-medium mt-1">Expected: Intercepted &amp; blocked by AI</p>
           </button>
-
         </div>
       </div>
 
-      <!-- Commit Context Row & Run Button -->
-      <div class="bg-[#F8F9FC] rounded-xl p-4 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="text-xs space-y-1 text-left w-full sm:w-auto">
-          <div class="text-[#0A0F1E]/60">Repository: <span class="font-mono font-bold text-[#0A0F1E]">enlightlab/payment-service</span></div>
+      <!-- Execution Bar -->
+      <div class="bg-[#F8F9FC] rounded-xl p-3.5 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="text-xs space-y-0.5 text-left w-full sm:w-auto">
           <div class="text-[#0A0F1E]/60">Committer: <span class="font-mono font-bold text-[#1A6BFF]">dhananjay</span></div>
+          <div class="text-[#0A0F1E]/60">Status: <span id="demo-status" class="font-mono font-medium text-[#0A0F1E]">Ready to execute</span></div>
         </div>
 
-        <button onclick="runSimpleDemo()" id="btn-run" class="w-full sm:w-auto px-7 py-3 rounded-xl font-bold text-xs bg-[#1A6BFF] hover:bg-[#0A4ECC] text-white shadow-md shadow-[#1A6BFF]/25 transition flex items-center justify-center space-x-2">
+        <button onclick="runSimpleDemo()" id="btn-run" class="w-full sm:w-auto px-6 py-2.5 rounded-xl font-bold text-xs bg-[#1A6BFF] hover:bg-[#0A4ECC] text-white shadow-md shadow-[#1A6BFF]/25 transition flex items-center justify-center space-x-2">
           <i data-lucide="play" class="w-4 h-4 fill-current"></i>
           <span>Run Automation Test</span>
         </button>
       </div>
 
-      <!-- Step 2: Live 3-Stage Progress Bar -->
-      <div class="pt-2">
-        <div class="flex items-center justify-between mb-2">
-          <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60">
-            Step 2: Autonomous Execution Flow
-          </label>
-          <span id="demo-status" class="text-xs font-mono font-semibold text-[#0A0F1E]/50">
-            Ready to test
-          </span>
+      <!-- 3-Stage Stepper -->
+      <div class="grid grid-cols-3 gap-2 text-center pt-1">
+        <div id="step-card-1" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+          <div class="text-xs font-bold text-[#0A0F1E]">1. Commit Ingested</div>
+          <div id="step-sub-1" class="text-[10px] text-[#0A0F1E]/50">Webhook verified</div>
+        </div>
+        <div id="step-card-2" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+          <div class="text-xs font-bold text-[#0A0F1E]">2. AI Risk Scan</div>
+          <div id="step-sub-2" class="text-[10px] text-[#0A0F1E]/50">Diff evaluation</div>
+        </div>
+        <div id="step-card-3" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+          <div class="text-xs font-bold text-[#0A0F1E]">3. Build &amp; Alert</div>
+          <div id="step-sub-3" class="text-[10px] text-[#0A0F1E]/50">Multi-channel sync</div>
+        </div>
+      </div>
+
+      <!-- Result Card -->
+      <div id="outcome-card" class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 transition space-y-2">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center space-x-2">
+            <span id="badge-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+              DEPLOYMENT APPROVED (SAFE)
+            </span>
+            <span id="badge-score" class="text-xs font-mono font-bold text-emerald-900">
+              Safety Score: 96 / 100
+            </span>
+          </div>
+          <span class="text-[10px] font-mono text-[#0A0F1E]/50">Execution: 6.7s</span>
+        </div>
+        <p id="outcome-text" class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+          Non-breaking payment enhancement adding Apple Pay &amp; Google Pay SDK integration. API contracts backward compatible. Recommended for automated production release.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- MODULE 2: HEALTHCARE EHR PATIENT NOTIFIER                -->
+    <!-- ======================================================= -->
+    <section id="healthcare-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
+      
+      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600">
+            <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-[#0A0F1E] font-display">2. Healthcare Clinical EHR WhatsApp Flow</h2>
+            <p class="text-xs text-[#0A0F1E]/60">Translates doctor notes into personalized preparation instructions and dispatches interactive patient WhatsApp cards.</p>
+          </div>
+        </div>
+        <span class="text-[11px] font-mono text-cyan-600 font-semibold hidden sm:inline">EHR Connected</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+        <!-- Controls -->
+        <div class="md:col-span-5 space-y-3">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-2">
+              Select Patient Procedure:
+            </label>
+            <select id="hc-select" onchange="updateHealthcareDemo()" class="w-full bg-[#F8F9FC] border border-[#E8EAF0] rounded-xl px-3 py-2.5 text-xs font-medium focus:outline-none focus:border-cyan-500">
+              <option value="cardio">Cardiology Stress Test (NPO Fasting Required)</option>
+              <option value="endo">Endoscopy &amp; Biopsy (Sedation + Escort Required)</option>
+              <option value="dental">Oral Surgery (Pre-Medication Prophylaxis)</option>
+            </select>
+          </div>
+          <div class="p-3 bg-[#F8F9FC] rounded-xl border border-[#E8EAF0] text-xs space-y-1 text-[#0A0F1E]/75">
+            <div>Patient: <strong>Rahul Sharma</strong> (Apollo EHR #98214)</div>
+            <div>AI Processing: <span class="text-cyan-700 font-medium">Automatic clinical note translation</span></div>
+            <div>Delivery: <span class="text-emerald-600 font-medium">WhatsApp Business API</span></div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-3 gap-3 text-center">
-          <div id="step-card-1" class="p-3 rounded-xl border border-[#E8EAF0] bg-white transition">
-            <div id="step-icon-1" class="text-[#0A0F1E]/30 mb-1"><i data-lucide="git-commit" class="w-4 h-4 mx-auto"></i></div>
-            <div class="text-xs font-bold text-[#0A0F1E]">1. Commit Ingested</div>
-            <div id="step-sub-1" class="text-[10px] text-[#0A0F1E]/50 mt-0.5">Webhook verified</div>
-          </div>
-
-          <div id="step-card-2" class="p-3 rounded-xl border border-[#E8EAF0] bg-white transition">
-            <div id="step-icon-2" class="text-[#0A0F1E]/30 mb-1"><i data-lucide="shield-check" class="w-4 h-4 mx-auto"></i></div>
-            <div class="text-xs font-bold text-[#0A0F1E]">2. AI Risk Scan</div>
-            <div id="step-sub-2" class="text-[10px] text-[#0A0F1E]/50 mt-0.5">Diff evaluation</div>
-          </div>
-
-          <div id="step-card-3" class="p-3 rounded-xl border border-[#E8EAF0] bg-white transition">
-            <div id="step-icon-3" class="text-[#0A0F1E]/30 mb-1"><i data-lucide="check-circle" class="w-4 h-4 mx-auto"></i></div>
-            <div class="text-xs font-bold text-[#0A0F1E]">3. Build &amp; Alert</div>
-            <div id="step-sub-3" class="text-[10px] text-[#0A0F1E]/50 mt-0.5">Multi-channel sync</div>
+        <!-- WhatsApp Preview Card -->
+        <div class="md:col-span-7 bg-[#EFEAE2] p-4 rounded-xl border border-[#E8EAF0] space-y-2">
+          <div class="text-[10px] font-bold uppercase tracking-wider text-[#0A0F1E]/50">Live WhatsApp Delivery Preview:</div>
+          <div class="bg-white rounded-xl p-3.5 shadow-sm space-y-2 border border-black/5 text-xs">
+            <div class="font-bold text-[#0A0F1E] flex items-center justify-between">
+              <span>Apollo Health Clinical Dispatch</span>
+              <span class="text-[10px] text-emerald-600 font-normal">Delivered</span>
+            </div>
+            <p id="hc-msg" class="text-[#0A0F1E]/80 leading-relaxed">
+              Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.
+            </p>
+            <div id="hc-prep" class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-amber-900 text-[11px]">
+              <strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Step 3: Clean Outcome Deliverables -->
-      <div id="result-box" class="pt-2">
-        <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-3">
-          Step 3: Verified Result &amp; Audit Outcome
-        </label>
+    </section>
 
-        <!-- Outcome Card (Safe vs Risky) -->
-        <div id="outcome-card" class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 transition space-y-3">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <div class="flex items-center space-x-2">
-              <span id="badge-status" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
-                DEPLOYMENT APPROVED (SAFE)
-              </span>
-              <span id="badge-score" class="text-xs font-mono font-bold text-emerald-900">
-                Safety Score: 96 / 100
-              </span>
-            </div>
-            <span class="text-[11px] font-mono text-[#0A0F1E]/50">Execution: 6.7s</span>
+    <!-- ======================================================= -->
+    <!-- MODULE 3: D2C E-COMMERCE CART RECOVERY                   -->
+    <!-- ======================================================= -->
+    <section id="ecommerce-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
+      
+      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600">
+            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
           </div>
-
-          <p id="outcome-text" class="text-xs sm:text-sm text-[#0A0F1E]/85 leading-relaxed">
-            Non-breaking payment enhancement adding Apple Pay &amp; Google Pay SDK integration. API contracts are backward compatible. Dependencies verified against known CVEs. Recommended for automated production release.
-          </p>
-
-          <!-- 2 Proof Checkmarks -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-[#E8EAF0]/60 text-xs">
-            <div class="flex items-center space-x-2 text-[#0A0F1E]/80">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
-              <span id="proof-build">Isolated cloud runner compiled container successfully.</span>
-            </div>
-            <div class="flex items-center space-x-2 text-[#0A0F1E]/80">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
-              <span id="proof-notify">SOC2 audit log created; team release notice dispatched.</span>
-            </div>
+          <div>
+            <h2 class="text-base font-bold text-[#0A0F1E] font-display">3. D2C E-Commerce Abandoned Checkout Agent</h2>
+            <p class="text-xs text-[#0A0F1E]/60">Calculates customer lifetime value, mints a single-use coupon, and pushes urgency-driven checkout recovery.</p>
           </div>
+        </div>
+        <span class="text-[11px] font-mono text-indigo-600 font-semibold hidden sm:inline">14.8% Recovery</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Abandoned Cart Value</div>
+          <div class="text-lg font-bold text-[#0A0F1E] font-mono mt-1">Rs. 4,890</div>
+          <div class="text-[11px] text-[#0A0F1E]/60 mt-0.5">Tier 1 Repeat Purchaser</div>
+        </div>
+
+        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Dynamic AI Token Minted</div>
+          <div class="text-lg font-bold text-indigo-600 font-mono mt-1">RECOVER15-8941</div>
+          <div class="text-[11px] text-[#0A0F1E]/60 mt-0.5">15% Single-Use • 4h Expiry</div>
+        </div>
+
+        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Autonomous Trigger</div>
+          <div class="text-lg font-bold text-emerald-600 font-mono mt-1">T+30 Mins</div>
+          <div class="text-[11px] text-[#0A0F1E]/60 mt-0.5">Zero manual intervention</div>
         </div>
       </div>
 
-    </div>
-
-    <!-- Value Statement at bottom -->
-    <div class="mt-8 text-center text-xs text-[#0A0F1E]/50">
-      Enlight Lab Autonomous Automation Core • Built for Enterprise Engineering Teams
-    </div>
+    </section>
 
   </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-[#E8EAF0] py-6 text-xs text-[#0A0F1E]/50 text-center bg-white mt-10">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <span>Enlight Lab • Enterprise AI Automation Core</span>
+      <span>Live Showcase</span>
+    </div>
+  </footer>
 
   <script>
     lucide.createIcons();
@@ -241,13 +311,13 @@
       const riskyTitle = document.getElementById('title-risky');
 
       if (mode === 'safe') {
-        safeBtn.className = "p-4 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative";
-        riskyBtn.className = "p-4 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative";
-        riskyTitle.className = "font-bold text-[#0A0F1E] text-sm";
+        safeBtn.className = "p-3.5 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative";
+        riskyBtn.className = "p-3.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative";
+        riskyTitle.className = "font-bold text-[#0A0F1E] text-xs";
       } else {
-        riskyBtn.className = "p-4 rounded-xl border-2 border-amber-500 bg-amber-50/60 text-left transition relative";
-        safeBtn.className = "p-4 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-[#1A6BFF]/40 relative";
-        riskyTitle.className = "font-bold text-amber-900 text-sm";
+        riskyBtn.className = "p-3.5 rounded-xl border-2 border-amber-500 bg-amber-50/60 text-left transition relative";
+        safeBtn.className = "p-3.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-[#1A6BFF]/40 relative";
+        riskyTitle.className = "font-bold text-amber-900 text-xs";
       }
     }
 
@@ -257,13 +327,13 @@
 
       btn.disabled = true;
       btn.innerHTML = `<span class="inline-block animate-spin mr-1.5"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Testing...</span>`;
-      statusText.innerText = "Processing automation...";
-      statusText.className = "text-xs font-mono font-semibold text-[#1A6BFF]";
+      statusText.innerText = "Executing automation...";
+      statusText.className = "font-mono font-medium text-[#1A6BFF]";
       lucide.createIcons();
 
       // Reset step cards
       for (let i = 1; i <= 3; i++) {
-        document.getElementById(`step-card-${i}`).className = "p-3 rounded-xl border border-[#E8EAF0] bg-white transition";
+        document.getElementById(`step-card-${i}`).className = "p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition";
       }
 
       const commitSha = Math.random().toString(16).substring(2, 9);
@@ -285,56 +355,67 @@
 
       // Stage 1
       setTimeout(() => {
-        document.getElementById('step-card-1').className = "p-3 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
+        document.getElementById('step-card-1').className = "p-2.5 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
         document.getElementById('step-sub-1').innerText = "Verified in 0.4s";
-      }, 600);
+      }, 500);
 
       // Stage 2
       setTimeout(() => {
-        document.getElementById('step-card-2').className = "p-3 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
+        document.getElementById('step-card-2').className = "p-2.5 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
         document.getElementById('step-sub-2').innerText = currentMode === 'safe' ? "Safe (96/100)" : "Risk Detected (38/100)";
-      }, 1600);
+      }, 1400);
 
       // Stage 3
       setTimeout(() => {
-        document.getElementById('step-card-3').className = "p-3 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
+        document.getElementById('step-card-3').className = "p-2.5 rounded-xl border border-emerald-300 bg-emerald-50/50 transition";
         document.getElementById('step-sub-3').innerText = currentMode === 'safe' ? "Build passed" : "Deployment halted";
 
-        // Update Outcome
+        // Update Outcome Card
         const card = document.getElementById('outcome-card');
         const badgeStatus = document.getElementById('badge-status');
         const badgeScore = document.getElementById('badge-score');
         const outcomeText = document.getElementById('outcome-text');
-        const proofBuild = document.getElementById('proof-build');
-        const proofNotify = document.getElementById('proof-notify');
 
         if (currentMode === 'safe') {
-          card.className = "rounded-xl border border-emerald-200 bg-emerald-50/50 p-5 transition space-y-3";
-          badgeStatus.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+          card.className = "rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 transition space-y-2";
+          badgeStatus.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
           badgeStatus.innerText = "DEPLOYMENT APPROVED (SAFE)";
           badgeScore.className = "text-xs font-mono font-bold text-emerald-900";
           badgeScore.innerText = "Safety Score: 96 / 100";
-          outcomeText.innerText = "Non-breaking payment enhancement adding Apple Pay & Google Pay SDK integration. API contracts are backward compatible. Dependencies verified against known CVEs. Recommended for automated production release.";
-          proofBuild.innerText = "Isolated cloud runner compiled container successfully.";
-          proofNotify.innerText = "SOC2 audit log created; team release notice dispatched.";
+          outcomeText.innerText = "Non-breaking payment enhancement adding Apple Pay & Google Pay SDK integration. API contracts backward compatible. Recommended for automated production release.";
         } else {
-          card.className = "rounded-xl border border-amber-300 bg-amber-50/60 p-5 transition space-y-3";
-          badgeStatus.className = "px-3 py-1 rounded-full text-xs font-bold bg-amber-200 text-amber-900 border border-amber-400";
+          card.className = "rounded-xl border border-amber-300 bg-amber-50/60 p-4 transition space-y-2";
+          badgeStatus.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-200 text-amber-900 border border-amber-400";
           badgeStatus.innerText = "DEPLOYMENT HALTED (HIGH RISK)";
           badgeScore.className = "text-xs font-mono font-bold text-amber-950";
           badgeScore.innerText = "Safety Score: 38 / 100";
           outcomeText.innerText = "Destructive database migration detected. Execution of DROP TABLE on legacy user records risks irreversible data loss. Automated deployment halted. Awaiting engineering lead manual review.";
-          proofBuild.innerText = "Deployment pipeline safely halted before touching production database.";
-          proofNotify.innerText = "Security alert dispatched to engineering lead on call.";
         }
 
         statusText.innerText = "Test Complete";
-        statusText.className = "text-xs font-mono font-semibold text-emerald-600";
+        statusText.className = "font-mono font-semibold text-emerald-600";
 
         btn.disabled = false;
         btn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current"></i> <span>Run Automation Test</span>`;
         lucide.createIcons();
-      }, 2600);
+      }, 2400);
+    }
+
+    function updateHealthcareDemo() {
+      const val = document.getElementById('hc-select').value;
+      const msg = document.getElementById('hc-msg');
+      const prep = document.getElementById('hc-prep');
+
+      if (val === 'cardio') {
+        msg.innerText = "Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.";
+        prep.innerHTML = "<strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.";
+      } else if (val === 'endo') {
+        msg.innerText = "Dear Priya Mehta, your Upper Endoscopy procedure is confirmed for Tomorrow at 11:00 AM.";
+        prep.innerHTML = "<strong>Preparation:</strong> Strict fasting from midnight. An adult escort must accompany you home.";
+      } else {
+        msg.innerText = "Dear Amit Patel, your Dental Surgical extraction is scheduled for Tomorrow at 02:00 PM.";
+        prep.innerHTML = "<strong>Preparation:</strong> Take prescribed prophylactic antibiotic 1 hour prior with water.";
+      }
     }
   </script>
 </body>
