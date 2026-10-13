@@ -61,6 +61,37 @@
     .card-shadow {
       box-shadow: 0 1px 3px 0 rgba(10, 15, 30, 0.04), 0 8px 24px -4px rgba(10, 15, 30, 0.06);
     }
+    @keyframes textShimmerFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    @keyframes glowAura {
+      0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.96);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.04);
+      }
+    }
+    .ai-gradient-text {
+      background: linear-gradient(120deg, #1A6BFF 0%, #00B4D8 25%, #6366F1 50%, #00B4D8 75%, #1A6BFF 100%);
+      background-size: 250% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmerFlow 4s linear infinite;
+    }
+    .ai-glow-aura {
+      animation: glowAura 3.5s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="bg-white text-[#0A0F1E] antialiased min-h-screen flex flex-col selection:bg-[#1A6BFF] selection:text-white">
@@ -95,14 +126,20 @@
     
     <!-- Hero Section -->
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FF] text-[#1A6BFF] border border-[#1A6BFF]/20">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#EEF4FF] text-[#1A6BFF] border border-[#1A6BFF]/30 shadow-sm">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#1A6BFF] animate-pulse"></i>
         <span>Autonomous Enterprise AI Systems</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0A0F1E] font-display">
-        Enterprise Workflows Powered by Autonomous AI
+      <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-black tracking-tight text-[#0A0F1E] font-display leading-[1.18]">
+        <span class="text-[#0A0F1E]">Enterprise Workflows</span>
+        <br class="hidden sm:inline" />
+        <span class="font-extrabold text-[#0A0F1E]/80">Powered by </span>
+        <span class="relative inline-block">
+          <span class="ai-gradient-text font-black">Autonomous AI</span>
+          <span class="absolute -inset-x-3 -inset-y-1 bg-gradient-to-r from-[#1A6BFF]/25 via-cyan-400/25 to-[#1A6BFF]/25 blur-xl -z-10 rounded-full ai-glow-aura"></span>
+        </span>
       </h1>
-      <p class="text-sm sm:text-base text-[#0A0F1E]/65 leading-relaxed">
+      <p class="text-sm sm:text-base text-[#0A0F1E]/65 leading-relaxed max-w-2xl mx-auto">
         Zero-touch operational intelligence across cloud infrastructure, clinical healthcare, and high-volume retail commerce.
       </p>
 
