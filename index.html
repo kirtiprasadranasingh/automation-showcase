@@ -460,49 +460,282 @@
         <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
           <div class="flex items-center justify-between">
             <div>
-              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive EHR Dispatch Simulation</h2>
-              <p class="text-xs text-[#0A0F1E]/60">Select an appointment procedure to simulate real-time clinical translation and dispatch.</p>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Clinical EHR &amp; Patient Preparation Console</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select an appointment procedure or ask pre-op clinical questions to simulate vector RAG synthesis and automated patient care delivery.</p>
             </div>
-            <span class="text-[11px] font-mono text-cyan-700 font-semibold hidden sm:inline">EHR Connected</span>
+            <span class="text-[11px] font-mono text-cyan-700 font-semibold hidden sm:inline">HL7/FHIR EHR Gateway • Active</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-            <!-- Controls -->
-            <div class="md:col-span-5 space-y-3">
-              <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-2">
-                  Select Patient Procedure:
-                </label>
-                <select id="hc-select" onchange="updateHealthcareDemo()" class="w-full bg-[#F8F9FC] border border-[#E8EAF0] rounded-xl px-3 py-2.5 text-xs font-medium focus:outline-none focus:border-cyan-500">
-                  <option value="cardio">Cardiology Stress Test (Fasting Required)</option>
-                  <option value="endo">Endoscopy &amp; Biopsy (Sedation + Escort)</option>
-                  <option value="dental">Oral Surgery (Pre-Medication Prophylaxis)</option>
-                </select>
+          <!-- Quick Scenario Selector Pills -->
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-[11px] font-semibold text-[#0A0F1E]/60">Quick Scenarios:</span>
+            <button onclick="setHCScenario('cardio')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
+              <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+              <span>Cardiology Stress Test (Rahul Sharma)</span>
+            </button>
+            <button onclick="setHCScenario('endo')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
+              <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i>
+              <span>Upper Endoscopy &amp; Biopsy (Priya Mehta)</span>
+            </button>
+            <button onclick="setHCScenario('dental')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>Oral Surgery (Amit Patel)</span>
+            </button>
+            <button onclick="setHCPatientQuestion('Can I drink water before the procedure?')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition flex items-center space-x-1.5">
+              <i data-lucide="droplet" class="w-3.5 h-3.5"></i>
+              <span>Q: &quot;Can I drink water?&quot;</span>
+            </button>
+            <button onclick="setHCPatientQuestion('Can I take my blood pressure medicine tomorrow morning?')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition flex items-center space-x-1.5">
+              <i data-lucide="pill" class="w-3.5 h-3.5"></i>
+              <span>Q: &quot;Take BP meds?&quot;</span>
+            </button>
+            <button onclick="setHCPatientQuestion('Can I drive home alone after sedation?')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
+              <i data-lucide="car" class="w-3.5 h-3.5"></i>
+              <span>Q: &quot;Drive home alone?&quot;</span>
+            </button>
+            <button onclick="setHCPatientQuestion('URGENT: I forgot to fast and just ate breakfast!')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>Alert: &quot;Ate breakfast / forgot to fast&quot;</span>
+            </button>
+            <button onclick="setHCPatientQuestion('I need to reschedule my appointment to next week.')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 transition flex items-center space-x-1.5">
+              <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+              <span>Reschedule Request</span>
+            </button>
+          </div>
+
+          <!-- Live Clinical Operations Terminal & Dual Console -->
+          <div class="rounded-xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC]">
+            
+            <!-- Console Topbar -->
+            <div class="bg-[#EEF1F8] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
+                <span class="text-[#0A0F1E]/40">•</span>
+                <span class="text-[#0A0F1E]/60">Target: Hospital EHR Gateway + WhatsApp Business API</span>
               </div>
-              <button onclick="triggerHealthcareDispatch()" id="btn-hc-dispatch" class="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
-                <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                <span>Send WhatsApp Alert</span>
-              </button>
+              <div id="hc-active-agent-badge" class="font-mono text-[11px] font-semibold text-cyan-700">
+                Agent: Clinical RAG Specialist (Active)
+              </div>
             </div>
 
-            <!-- WhatsApp Preview Card -->
-            <div class="md:col-span-7 bg-[#EFEAE2] p-4 rounded-xl border border-[#E8EAF0] space-y-2">
-              <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#0A0F1E]/50">
-                <span>WhatsApp Delivery Preview:</span>
-                <span id="hc-status-badge" class="text-emerald-600 font-semibold lowercase bg-emerald-100/70 px-2 py-0.5 rounded">active</span>
-              </div>
-              <div class="bg-white rounded-xl p-3.5 shadow-sm space-y-2 border border-black/5 text-xs">
-                <div class="font-bold text-[#0A0F1E] flex items-center justify-between">
-                  <span>Apollo Health Clinical Dispatch</span>
-                  <span id="hc-time-badge" class="text-[10px] text-emerald-600 font-normal">Delivered Just Now</span>
+            <!-- Pipeline Status Bar (when running) -->
+            <div id="hc-pipeline-bar" class="hidden bg-white px-4 py-2 border-b border-[#E8EAF0] text-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="inline-block animate-spin text-cyan-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
+                  <span id="hc-step-text" class="font-mono font-medium text-cyan-700">Ingesting patient record &amp; EHR notes...</span>
                 </div>
-                <p id="hc-msg" class="text-[#0A0F1E]/80 leading-relaxed">
-                  Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.
-                </p>
-                <div id="hc-prep" class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-amber-900 text-[11px]">
-                  <strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.
-                </div>
+                <span id="hc-step-count" class="font-mono text-[11px] text-[#0A0F1E]/50">Step 1/3</span>
               </div>
+              <!-- Progress Bar Track -->
+              <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1.5">
+                <div id="hc-progress-fill" class="bg-cyan-600 h-full w-1/3 transition-all duration-500"></div>
+              </div>
+            </div>
+
+            <!-- Split Workstation: Left EHR System + Right WhatsApp Mobile Preview -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 bg-white">
+              
+              <!-- Left Column: Hospital EHR Clinical Record (5 cols on lg) -->
+              <div class="lg:col-span-5 p-4 sm:p-5 border-b lg:border-b-0 lg:border-r border-[#E8EAF0] space-y-4 bg-slate-50/60">
+                
+                <!-- Hospital Header & Patient Identification -->
+                <div class="flex items-center justify-between pb-3 border-b border-[#E8EAF0]">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold">
+                      <i data-lucide="cross" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <div class="font-bold text-[#0A0F1E] text-xs">Apollo Clinical EHR System</div>
+                      <div class="text-[10px] text-[#0A0F1E]/50 font-mono">Department of Clinical Diagnostics</div>
+                    </div>
+                  </div>
+                  <span id="hc-ehr-mrn" class="font-mono text-[11px] px-2 py-0.5 rounded bg-cyan-100/70 text-cyan-800 border border-cyan-200 font-semibold">
+                    MRN: #EHR-99214
+                  </span>
+                </div>
+
+                <!-- Patient & Procedure Card -->
+                <div class="bg-white rounded-xl p-3 border border-[#E8EAF0] space-y-2 text-xs shadow-2xs">
+                  <div class="grid grid-cols-2 gap-2 text-[11px]">
+                    <div>
+                      <span class="text-[#0A0F1E]/50 block">Patient Name:</span>
+                      <strong id="hc-patient-name" class="text-[#0A0F1E] font-semibold text-xs">Rahul Sharma (48M)</strong>
+                    </div>
+                    <div>
+                      <span class="text-[#0A0F1E]/50 block">Appointment Slot:</span>
+                      <strong id="hc-patient-slot" class="text-[#0A0F1E] font-semibold text-xs">Tomorrow at 09:30 AM</strong>
+                    </div>
+                    <div>
+                      <span class="text-[#0A0F1E]/50 block">Attending Physician:</span>
+                      <span id="hc-doctor-name" class="text-[#0A0F1E] font-medium">Dr. A. K. Singhal, MD</span>
+                    </div>
+                    <div>
+                      <span class="text-[#0A0F1E]/50 block">Clinic Suite:</span>
+                      <span id="hc-clinic-room" class="text-[#0A0F1E] font-medium">Cardiology Suite 3B</span>
+                    </div>
+                  </div>
+                  <div class="pt-2 border-t border-slate-100">
+                    <span class="text-[#0A0F1E]/50 text-[10px] uppercase font-bold block mb-0.5">Scheduled Procedure:</span>
+                    <div id="hc-procedure-title" class="font-bold text-cyan-900 text-xs flex items-center space-x-1.5">
+                      <i data-lucide="activity" class="w-3.5 h-3.5 text-cyan-600 flex-shrink-0"></i>
+                      <span>Cardiology Treadmill Stress Test (Bruce Protocol)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Raw Physician Clinical Note Box -->
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between text-[11px]">
+                    <span class="font-bold uppercase tracking-wider text-[#0A0F1E]/70 flex items-center space-x-1">
+                      <i data-lucide="file-text" class="w-3.5 h-3.5 text-cyan-600"></i>
+                      <span>Physician Orders &amp; Clinical Notes:</span>
+                    </span>
+                    <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">HL7 Ingested</span>
+                  </div>
+                  <div id="hc-raw-notes" class="bg-white p-3 rounded-xl border border-[#E8EAF0] text-[11px] font-mono text-[#0A0F1E]/85 leading-relaxed shadow-2xs">
+                    Pt referred for exertional chest tightness. Schedule standard Bruce Protocol exercise stress test. NPO 4 hrs prior to test. No caffeine or theophylline products for 24h prior. May take morning beta-blocker/hypertension meds with sip of water. Patient instructed to bring comfortable running shoes and loose workout clothing.
+                  </div>
+                </div>
+
+                <!-- Clinical RAG & Protocol Specs -->
+                <div class="p-3 bg-cyan-50/70 border border-cyan-200/80 rounded-xl space-y-2 text-[11px]">
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-cyan-950 flex items-center space-x-1">
+                      <i data-lucide="database" class="w-3.5 h-3.5 text-cyan-700"></i>
+                      <span>Vector Protocol Store</span>
+                    </span>
+                    <span class="font-mono text-[10px] text-cyan-800 font-bold bg-white px-2 py-0.5 rounded border border-cyan-200">cosine: 0.94</span>
+                  </div>
+                  <p class="text-cyan-900/80 text-[11px] leading-tight">
+                    RAG agent matches physician notes against pre-operative clinical safety ontology and generates patient-friendly WhatsApp preparation directives.
+                  </p>
+                </div>
+
+                <!-- Action Button -->
+                <div>
+                  <button onclick="triggerHealthcareDispatch()" id="btn-hc-dispatch" class="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    <span>Re-Index EHR &amp; Dispatch Protocol</span>
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Right Column: Interactive WhatsApp Mobile Preview (7 cols on lg) -->
+              <div class="lg:col-span-7 flex flex-col justify-between bg-[#F0F2F5] min-h-[460px]">
+                
+                <!-- WhatsApp Mobile Header -->
+                <div class="bg-[#075E54] text-white px-4 py-3 flex items-center justify-between shadow-xs">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-white text-[#075E54] flex items-center justify-center font-bold flex-shrink-0">
+                      <i data-lucide="heart-pulse" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <div class="font-bold text-xs flex items-center space-x-1.5">
+                        <span>Apollo Clinical Care</span>
+                        <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-emerald-400 text-[#075E54]">
+                          <i data-lucide="check" class="w-2.5 h-2.5 stroke-[3]"></i>
+                        </span>
+                      </div>
+                      <div class="text-[10px] text-emerald-100/90 font-mono">Official Hospital Care Desk • Online</div>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3 text-white/80">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                    <i data-lucide="video" class="w-3.5 h-3.5"></i>
+                    <i data-lucide="more-vertical" class="w-3.5 h-3.5"></i>
+                  </div>
+                </div>
+
+                <!-- Chat History / Messages Stream Area -->
+                <div id="hc-chat-history" class="p-4 space-y-3.5 flex-1 overflow-y-auto max-h-[380px] bg-[#EFEAE2]">
+                  
+                  <!-- Date Separator -->
+                  <div class="flex justify-center">
+                    <span class="text-[10px] font-semibold bg-white/80 text-[#0A0F1E]/60 px-2.5 py-0.5 rounded-full shadow-2xs">Today</span>
+                  </div>
+
+                  <!-- Initial WhatsApp Automated Delivery Bubble -->
+                  <div class="flex flex-col items-start max-w-[92%] sm:max-w-[85%] space-y-1">
+                    <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-black/5 text-xs text-[#0A0F1E] space-y-2.5">
+                      <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                        <span class="font-bold text-cyan-900 flex items-center space-x-1">
+                          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-600"></i>
+                          <span>Appointment Confirmation</span>
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono">10:15 AM</span>
+                      </div>
+
+                      <p id="hc-msg" class="text-[#0A0F1E]/85 leading-relaxed">
+                        Dear Rahul Sharma, your <strong>Cardiology Treadmill Stress Test</strong> is scheduled for Tomorrow at 09:30 AM at Apollo Super Specialty Hospital.
+                      </p>
+
+                      <!-- Structured Preparation Card -->
+                      <div id="hc-prep-card" class="bg-amber-50/90 p-3 rounded-xl border border-amber-200/90 text-amber-950 space-y-1.5 text-[11px]">
+                        <div class="font-bold flex items-center space-x-1.5 text-amber-900">
+                          <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-700 flex-shrink-0"></i>
+                          <span>Mandatory Pre-Procedure Instructions:</span>
+                        </div>
+                        <ul id="hc-prep-list" class="list-disc pl-4 space-y-1 leading-normal text-amber-900/90">
+                          <li><strong>Fasting:</strong> Fast for 4 hours prior. Small sips of plain water are permitted.</li>
+                          <li><strong>Caffeine:</strong> Strictly avoid coffee, tea, chocolate, or colas for 24h prior (blocks adenosine receptors).</li>
+                          <li><strong>Attire:</strong> Wear comfortable athletic walking/running sneakers and loose clothing.</li>
+                          <li><strong>Arrival:</strong> Report to Cardiology Lab 3B by 09:00 AM (30 mins early).</li>
+                        </ul>
+                      </div>
+
+                      <!-- Quick Action Buttons Inside Chat -->
+                      <div class="pt-1.5 space-y-1.5 border-t border-slate-100">
+                        <div class="text-[10px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Tap to respond or ask a question:</div>
+                        <div class="flex flex-wrap gap-1.5">
+                          <button onclick="setHCPatientQuestion('I confirm my fasting and will arrive at 09:00 AM.')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition">
+                            Confirm Arrival &amp; Fasting
+                          </button>
+                          <button onclick="setHCPatientQuestion('Can I drink water before the procedure?')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition">
+                            Can I drink water?
+                          </button>
+                          <button onclick="setHCPatientQuestion('Can I take my blood pressure medicine tomorrow morning?')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 transition">
+                            Take BP medication?
+                          </button>
+                          <button onclick="setHCPatientQuestion('Can I drive home alone after sedation?')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition">
+                            Can I drive home?
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Patient Mobile Chat Input Bar -->
+                <div class="p-2.5 bg-[#F0F2F5] border-t border-[#E8EAF0] flex items-center space-x-2">
+                  <div class="relative flex-1">
+                    <input id="hc-user-input" type="text" placeholder="Ask a prep question (e.g. Can I drink water?)..." class="w-full text-xs px-3.5 py-2.5 rounded-full border border-slate-200 bg-white focus:outline-none focus:border-cyan-500 font-medium text-[#0A0F1E] shadow-2xs" onkeydown="if(event.key==='Enter') sendHCPatientMessage()">
+                  </div>
+                  <button onclick="sendHCPatientMessage()" id="btn-hc-send" class="w-9 h-9 rounded-full bg-[#075E54] hover:bg-[#128C7E] text-white flex items-center justify-center shadow-xs transition flex-shrink-0">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Live Endpoint Integration Note -->
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="network" class="w-4 h-4 text-cyan-700 flex-shrink-0"></i>
+              <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
+              <code class="font-mono text-[11px] bg-white px-2 py-0.5 rounded border border-[#E8EAF0] text-cyan-800">/webhook/appointment-whatsapp-notify</code>
+            </div>
+            <div class="flex items-center space-x-2 text-[11px] text-[#0A0F1E]/60">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>RAG Engine: <strong>Vector Protocol Index + Hospital EHR Audit</strong></span>
             </div>
           </div>
 
@@ -928,47 +1161,513 @@
       }, 6200);
     }
 
-    function updateHealthcareDemo() {
-      const val = document.getElementById('hc-select').value;
-      const msg = document.getElementById('hc-msg');
-      const prep = document.getElementById('hc-prep');
-      const patient = document.getElementById('hc-patient');
-
-      if (val === 'cardio') {
-        patient.innerText = "Rahul Sharma";
-        msg.innerText = "Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.";
-        prep.innerHTML = "<strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.";
-      } else if (val === 'endo') {
-        patient.innerText = "Priya Mehta";
-        msg.innerText = "Dear Priya Mehta, your Upper Endoscopy procedure is confirmed for Tomorrow at 11:00 AM.";
-        prep.innerHTML = "<strong>Preparation:</strong> Strict fasting from midnight. An adult escort must accompany you home.";
-      } else {
-        patient.innerText = "Amit Patel";
-        msg.innerText = "Dear Amit Patel, your Dental Surgical extraction is scheduled for Tomorrow at 02:00 PM.";
-        prep.innerHTML = "<strong>Preparation:</strong> Take prescribed prophylactic antibiotic 1 hour prior with water.";
+    // ==========================================
+    // HEALTHCARE CLINICAL EHR & PATIENT AGENT
+    // ==========================================
+    const hcProcedures = {
+      cardio: {
+        id: 'cardio',
+        patient: 'Rahul Sharma (48M)',
+        patientShort: 'Rahul Sharma',
+        mrn: '#EHR-99214',
+        slot: 'Tomorrow at 09:30 AM',
+        reportTime: '09:00 AM (30 mins prior)',
+        doctor: 'Dr. A. K. Singhal, MD',
+        specialty: 'Cardiovascular Sciences',
+        room: 'Cardiology Lab 3B',
+        title: 'Cardiology Treadmill Stress Test (Bruce Protocol)',
+        rawNotes: 'Pt referred for exertional chest tightness. Schedule standard Bruce Protocol exercise stress test. NPO 4 hrs prior to test. No caffeine or theophylline products for 24h prior. May take morning beta-blocker/hypertension meds with sip of water. Patient instructed to bring comfortable running shoes and loose workout clothing.',
+        whMsg: 'Dear Rahul Sharma, your <strong>Cardiology Treadmill Stress Test</strong> is scheduled for Tomorrow at 09:30 AM at Apollo Super Specialty Hospital.',
+        prepList: [
+          '<strong>Fasting:</strong> Fast for 4 hours prior. Small sips of plain water are permitted.',
+          '<strong>Caffeine:</strong> Strictly avoid coffee, tea, chocolate, or colas for 24h prior (blocks adenosine receptors).',
+          '<strong>Attire:</strong> Wear comfortable athletic walking/running sneakers and loose clothing.',
+          '<strong>Arrival:</strong> Report to Cardiology Lab 3B by 09:00 AM (30 mins early).'
+        ],
+        chips: [
+          { text: 'I confirm my fasting and will arrive at 09:00 AM.', label: 'Confirm Arrival & Fasting' },
+          { text: 'Can I drink water before the procedure?', label: 'Can I drink water?' },
+          { text: 'Can I take my blood pressure medicine tomorrow morning?', label: 'Take BP medication?' },
+          { text: 'What shoes or clothes should I wear?', label: 'What to wear?' }
+        ]
+      },
+      endo: {
+        id: 'endo',
+        patient: 'Priya Mehta (42F)',
+        patientShort: 'Priya Mehta',
+        mrn: '#EHR-88419',
+        slot: 'Tomorrow at 11:00 AM',
+        reportTime: '10:15 AM (45 mins prior)',
+        doctor: 'Dr. Neha Kapoor, MD, DM',
+        specialty: 'Gastroenterology & Hepatology',
+        room: 'Endoscopy Suite 2',
+        title: 'Upper GI Endoscopy & Mucosal Biopsy',
+        rawNotes: 'Evaluated for persistent dyspepsia & reflux. Schedule esophagogastroduodenoscopy (EGD) with possible mucosal biopsy under conscious IV sedation (Propofol Class II). Strict NPO midnight onward (no solid foods or clear liquids). Hold oral anticoagulants 48h per pre-op clearance. Mandatory accompanied discharge: designated adult escort must be present in waiting area. No unescorted rideshare or self-driving permitted.',
+        whMsg: 'Dear Priya Mehta, your <strong>Upper GI Endoscopy & Biopsy</strong> procedure is scheduled for Tomorrow at 11:00 AM at Apollo Super Specialty Hospital.',
+        prepList: [
+          '<strong>Strict Fasting (NPO):</strong> Zero food or liquids from midnight prior. Stomach must be completely empty.',
+          '<strong>Sedation & Escort:</strong> Monitored IV sedation administered. A designated adult escort MUST accompany you home.',
+          '<strong>Medications:</strong> Hold diabetic medications morning of procedure. Essential heart meds permitted at 6 AM with single sip of water.',
+          '<strong>Arrival:</strong> Report to Endoscopy Suite 2 by 10:15 AM with photo ID and insurance.'
+        ],
+        chips: [
+          { text: 'I confirm fasting from midnight and have an adult escort.', label: 'Confirm NPO & Escort' },
+          { text: 'Can I drink water before the endoscopy?', label: 'Can I drink water?' },
+          { text: 'Can I drive home alone after sedation?', label: 'Can I drive home?' },
+          { text: 'Can I take my morning medicines?', label: 'Take morning meds?' }
+        ]
+      },
+      dental: {
+        id: 'dental',
+        patient: 'Amit Patel (35M)',
+        patientShort: 'Amit Patel',
+        mrn: '#EHR-77103',
+        slot: 'Tomorrow at 02:00 PM',
+        reportTime: '01:30 PM (30 mins prior)',
+        doctor: 'Dr. R. Verma, BDS, MDS',
+        specialty: 'Oral & Maxillofacial Surgery',
+        room: 'Dental OR 1',
+        title: 'Oral Maxillofacial Surgical Extraction & Impaction',
+        rawNotes: 'Impacted mandibular third molars (#38, #48) with recurrent pericoronitis. Prescribed Amoxicillin 2g prophylactic dose to be taken exactly 1 hour prior to procedure with a small sip of water. Light soft meal permitted 3 hours prior. Ice pack and soft diet arranged for post-op recovery. Advised to arrange transport.',
+        whMsg: 'Dear Amit Patel, your <strong>Oral Maxillofacial Surgical Extraction</strong> is scheduled for Tomorrow at 02:00 PM at Apollo Super Specialty Hospital.',
+        prepList: [
+          '<strong>Prophylaxis Antibiotic:</strong> Take prescribed Amoxicillin 2g exactly 1 hour prior (01:00 PM) with a small sip of water.',
+          '<strong>Fasting:</strong> Light soft meal permitted up to 11:00 AM. No heavy meals or dairy afterward.',
+          '<strong>Post-Op Kit:</strong> Arrange soft cold foods (yogurt, smoothies) and ice pack at home.',
+          '<strong>Arrival:</strong> Report to Dental OR 1 by 01:30 PM.'
+        ],
+        chips: [
+          { text: 'I confirm the antibiotic dosage and will arrive at 01:30 PM.', label: 'Confirm Antibiotic & Arrival' },
+          { text: 'When should I take my antibiotic?', label: 'When to take antibiotic?' },
+          { text: 'Can I eat anything before surgery?', label: 'Can I eat lunch?' },
+          { text: 'Will I be under local or general anesthesia?', label: 'Anesthesia type?' }
+        ]
       }
+    };
+
+    let currentHCProcedure = 'cardio';
+
+    function setHCScenario(key) {
+      if (!hcProcedures[key]) return;
+      currentHCProcedure = key;
+      const proc = hcProcedures[key];
+
+      const mrnEl = document.getElementById('hc-ehr-mrn');
+      if (mrnEl) mrnEl.innerText = `MRN: ${proc.mrn}`;
+      const nameEl = document.getElementById('hc-patient-name');
+      if (nameEl) nameEl.innerText = proc.patient;
+      const slotEl = document.getElementById('hc-patient-slot');
+      if (slotEl) slotEl.innerText = proc.slot;
+      const docEl = document.getElementById('hc-doctor-name');
+      if (docEl) docEl.innerText = proc.doctor;
+      const roomEl = document.getElementById('hc-clinic-room');
+      if (roomEl) roomEl.innerText = proc.room;
+      const titleEl = document.getElementById('hc-procedure-title');
+      if (titleEl) {
+        titleEl.innerHTML = `<i data-lucide="activity" class="w-3.5 h-3.5 text-cyan-600 flex-shrink-0"></i> <span>${proc.title}</span>`;
+      }
+      const rawEl = document.getElementById('hc-raw-notes');
+      if (rawEl) rawEl.innerText = proc.rawNotes;
+
+      renderHCInitialMessage(proc);
+      lucide.createIcons();
+    }
+
+    function renderHCInitialMessage(proc) {
+      const chatHistory = document.getElementById('hc-chat-history');
+      if (!chatHistory) return;
+
+      const chipsHtml = proc.chips.map(chip => `
+        <button onclick="setHCPatientQuestion('${chip.text.replace(/'/g, "\\'")}')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition">
+          ${chip.label}
+        </button>
+      `).join('');
+
+      const listHtml = proc.prepList.map(item => `<li>${item}</li>`).join('');
+
+      chatHistory.innerHTML = `
+        <div class="flex justify-center">
+          <span class="text-[10px] font-semibold bg-white/80 text-[#0A0F1E]/60 px-2.5 py-0.5 rounded-full shadow-2xs">Today</span>
+        </div>
+
+        <div class="flex flex-col items-start max-w-[92%] sm:max-w-[85%] space-y-1">
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-black/5 text-xs text-[#0A0F1E] space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+              <span class="font-bold text-cyan-900 flex items-center space-x-1">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-600"></i>
+                <span>Appointment Confirmation</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">10:15 AM</span>
+            </div>
+
+            <p id="hc-msg" class="text-[#0A0F1E]/85 leading-relaxed">
+              ${proc.whMsg}
+            </p>
+
+            <div id="hc-prep-card" class="bg-amber-50/90 p-3 rounded-xl border border-amber-200/90 text-amber-950 space-y-1.5 text-[11px]">
+              <div class="font-bold flex items-center space-x-1.5 text-amber-900">
+                <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-700 flex-shrink-0"></i>
+                <span>Mandatory Pre-Procedure Instructions:</span>
+              </div>
+              <ul id="hc-prep-list" class="list-disc pl-4 space-y-1 leading-normal text-amber-900/90">
+                ${listHtml}
+              </ul>
+            </div>
+
+            <div class="pt-1.5 space-y-1.5 border-t border-slate-100">
+              <div class="text-[10px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Tap to respond or ask a question:</div>
+              <div class="flex flex-wrap gap-1.5">
+                ${chipsHtml}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      `;
     }
 
     function triggerHealthcareDispatch() {
       const btn = document.getElementById('btn-hc-dispatch');
-      const timeBadge = document.getElementById('hc-time-badge');
-      const statusBadge = document.getElementById('hc-status-badge');
+      const pipelineBar = document.getElementById('hc-pipeline-bar');
+      const stepText = document.getElementById('hc-step-text');
+      const stepCount = document.getElementById('hc-step-count');
+      const progressFill = document.getElementById('hc-progress-fill');
+      const agentBadge = document.getElementById('hc-active-agent-badge');
+      const proc = hcProcedures[currentHCProcedure] || hcProcedures.cardio;
+
+      if (!btn) return;
 
       btn.disabled = true;
-      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Processing EHR...</span>`;
-      statusBadge.innerText = "translating notes...";
-      statusBadge.className = "text-cyan-700 font-semibold lowercase bg-cyan-100/70 px-2 py-0.5 rounded animate-pulse";
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Synthesizing EHR...</span>`;
+      if (pipelineBar) pipelineBar.classList.remove('hidden');
+      if (agentBadge) {
+        agentBadge.innerText = "Agent: Synthesizing Protocol (RAG)";
+        agentBadge.className = "font-mono text-[11px] font-semibold text-cyan-600 animate-pulse";
+      }
       lucide.createIcons();
 
-      setTimeout(() => {
-        timeBadge.innerText = "Delivered (Just Now)";
-        statusBadge.innerText = "dispatched via api";
-        statusBadge.className = "text-emerald-700 font-semibold lowercase bg-emerald-100/80 px-2 py-0.5 rounded";
+      if (stepText) stepText.innerText = "Step 1/3: Ingesting patient record & EHR physician notes...";
+      if (stepCount) stepCount.innerText = "Step 1/3";
+      if (progressFill) progressFill.style.width = "30%";
 
+      setTimeout(() => {
+        if (stepText) stepText.innerText = "Step 2/3: RAG Clinical Agent • Vector knowledge retrieval & prep protocol synthesis...";
+        if (stepCount) stepCount.innerText = "Step 2/3";
+        if (progressFill) progressFill.style.width = "70%";
+      }, 1200);
+
+      setTimeout(() => {
+        if (stepText) stepText.innerText = "Step 3/3: Delivering verified WhatsApp checklist & logging to clinical audit stream...";
+        if (stepCount) stepCount.innerText = "Step 3/3";
+        if (progressFill) progressFill.style.width = "100%";
+      }, 2500);
+
+      setTimeout(() => {
+        if (pipelineBar) pipelineBar.classList.add('hidden');
+        if (agentBadge) {
+          agentBadge.innerText = "Agent: Clinical Protocol Dispatched";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-emerald-600";
+        }
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="send" class="w-3.5 h-3.5"></i> <span>Simulate Live Dispatch</span>`;
+        btn.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> <span>Re-Index EHR &amp; Dispatch Protocol</span>`;
+
+        renderHCInitialMessage(proc);
         lucide.createIcons();
-      }, 1000);
+
+        try {
+          fetch("https://enlightlab-n8n.duckdns.org/webhook/appointment-whatsapp-notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              patient: proc.patient,
+              mrn: proc.mrn,
+              procedure: proc.title,
+              doctor: proc.doctor,
+              slot: proc.slot,
+              operator: "dhananjay",
+              action: "dispatch_protocol",
+              timestamp: new Date().toISOString()
+            })
+          }).catch(err => console.log("[Clinical Gateway] Safe fallback:", err));
+        } catch (e) {}
+
+      }, 3800);
+    }
+
+    function setHCPatientQuestion(question) {
+      const input = document.getElementById('hc-user-input');
+      if (input) input.value = question;
+      sendHCPatientMessage();
+    }
+
+    function sendHCPatientMessage() {
+      const input = document.getElementById('hc-user-input');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      const chatHistory = document.getElementById('hc-chat-history');
+      if (!chatHistory) return;
+
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      // Append Patient Bubble
+      const patientBubble = document.createElement('div');
+      patientBubble.className = "flex flex-col items-end max-w-[90%] sm:max-w-[80%] ml-auto space-y-1";
+      patientBubble.innerHTML = `
+        <div class="bg-[#E7FFDB] p-3 rounded-2xl rounded-tr-none shadow-xs border border-emerald-900/5 text-xs text-[#0A0F1E] space-y-1">
+          <p class="leading-relaxed font-medium">${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+          <div class="flex items-center justify-end space-x-1 text-[10px] text-emerald-800/60 font-mono">
+            <span>${timeStr}</span>
+            <i data-lucide="check-check" class="w-3 h-3 text-sky-500"></i>
+          </div>
+        </div>
+      `;
+      chatHistory.appendChild(patientBubble);
+
+      // Typing indicator
+      const typingId = `hc-typing-${Date.now()}`;
+      const typingBubble = document.createElement('div');
+      typingBubble.id = typingId;
+      typingBubble.className = "flex flex-col items-start max-w-[85%] space-y-1";
+      typingBubble.innerHTML = `
+        <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-none shadow-xs border border-black/5 text-xs text-cyan-800 flex items-center space-x-2 font-mono">
+          <span class="inline-block animate-spin text-cyan-600"><i data-lucide="loader" class="w-3 h-3"></i></span>
+          <span class="text-[11px]">Clinical RAG Agent evaluating EHR notes...</span>
+        </div>
+      `;
+      chatHistory.appendChild(typingBubble);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      lucide.createIcons();
+
+      // Clinical Intent Engine
+      const proc = hcProcedures[currentHCProcedure] || hcProcedures.cardio;
+      const t = text.toLowerCase();
+      let responseHtml = '';
+      let intentKey = 'general';
+
+      if (t.includes('forgot to fast') || t.includes('ate breakfast') || t.includes('just ate') || t.includes('already ate') || t.includes('had food') || t.includes('drank milk')) {
+        intentKey = 'alert_ate';
+        responseHtml = `
+          <div class="space-y-2">
+            <div class="bg-rose-50 border border-rose-200 p-2.5 rounded-lg text-rose-900 space-y-1">
+              <div class="font-bold flex items-center space-x-1.5 text-xs text-rose-700">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                <span>CRITICAL CLINICAL ALERT: Fasting Protocol Broken</span>
+              </div>
+              <p class="text-[11px] leading-relaxed">
+                Consuming food creates a high risk of <strong>pulmonary aspiration under sedation</strong> or hemodynamic distortion during stress testing.
+              </p>
+            </div>
+            <p class="leading-relaxed">
+              <strong>Immediate Actions:</strong><br>
+              1. <strong>Do NOT eat or drink anything further</strong> from this moment.<br>
+              2. Report directly to the nurse triage desk at ${proc.room} upon arrival and inform them immediately.<br>
+              3. The clinical desk will reschedule your procedure to this afternoon or tomorrow for patient safety without penalties.
+            </p>
+          </div>
+        `;
+      } else if (t.includes('water') || t.includes('drink') || t.includes('liquid') || t.includes('tea') || t.includes('coffee') || t.includes('juice') || t.includes('hydrate') || t.includes('thirsty') || t.includes('sip')) {
+        intentKey = 'water';
+        if (proc.id === 'endo') {
+          responseHtml = `
+            <div class="space-y-1.5">
+              <p class="leading-relaxed">
+                <strong>Strict NPO Protocol for Endoscopy:</strong><br>
+                For your Upper Endoscopy, your stomach must be completely empty. <strong>Do NOT drink water, coffee, tea, or juice</strong> within 6 hours of your appointment to prevent pulmonary aspiration during conscious sedation.
+              </p>
+              <div class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-amber-900 text-[11px]">
+                <strong>Exception:</strong> If taking prescribed blood pressure medication at 6:00 AM, a single small sip (1-2 tablespoons) of plain water is permitted.
+              </div>
+            </div>
+          `;
+        } else if (proc.id === 'cardio') {
+          responseHtml = `
+            <div class="space-y-1.5">
+              <p class="leading-relaxed">
+                <strong>Hydration Guidance for Stress Test:</strong><br>
+                Plain water in moderate amounts is <strong>permitted up to 2 hours prior</strong> to your treadmill test. Staying lightly hydrated is fine.
+              </p>
+              <div class="bg-rose-50 p-2 rounded-lg border border-rose-200 text-rose-900 text-[11px]">
+                <strong>Strict Prohibition:</strong> Zero caffeine (no coffee, tea, cola, energy drinks, or chocolate) for 24 hours prior. Caffeine blocks adenosine receptors and invalidates your test results!
+              </div>
+            </div>
+          `;
+        } else {
+          responseHtml = `
+            <p class="leading-relaxed">
+              <strong>Water Guidance for Oral Surgery:</strong><br>
+              Small sips of plain water are permitted up to 1 hour before surgery only to swallow your prescribed prophylactic antibiotic (Amoxicillin 2g). Avoid large amounts of water or milk to keep your stomach comfortable.
+            </p>
+          `;
+        }
+      } else if (t.includes('medicine') || t.includes('medication') || t.includes('pill') || t.includes('bp') || t.includes('blood pressure') || t.includes('diabet') || t.includes('insulin') || t.includes('metformin') || t.includes('aspirin') || t.includes('antibiotic')) {
+        intentKey = 'medication';
+        responseHtml = `
+          <div class="space-y-2">
+            <p class="leading-relaxed">
+              <strong>Physician Medication Directives (${proc.doctor}):</strong>
+            </p>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#0A0F1E]/85">
+              <li><strong>Blood Pressure / Heart Meds:</strong> Take your regular blood pressure medications early in the morning (by 06:00 AM) with a tiny sip of water.</li>
+              <li><strong>Diabetic Medications:</strong> Do NOT take morning insulin or oral diabetic pills (such as Metformin) while fasting; bring them with you to take AFTER the procedure.</li>
+              ${proc.id === 'dental' ? '<li><strong>Antibiotic Prophylaxis:</strong> Take Amoxicillin 2g exactly 1 hour prior (01:00 PM) with a sip of water as ordered.</li>' : ''}
+              <li><strong>Blood Thinners:</strong> If on Aspirin or Warfarin, verify pre-op clearance was logged in EHR.</li>
+            </ul>
+          </div>
+        `;
+      } else if (t.includes('drive') || t.includes('driving') || t.includes('escort') || t.includes('alone') || t.includes('uber') || t.includes('cab') || t.includes('taxi') || t.includes('car') || t.includes('ride')) {
+        intentKey = 'transport';
+        if (proc.id === 'endo' || proc.id === 'dental') {
+          responseHtml = `
+            <div class="space-y-1.5">
+              <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200 text-amber-900 space-y-1 text-[11px]">
+                <div class="font-bold flex items-center space-x-1 text-amber-950">
+                  <i data-lucide="shield-alert" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                  <span>Mandatory Escort Policy (Hospital Protocol):</span>
+                </div>
+                <p>
+                  Because conscious sedation (Propofol) is administered, your cognitive reflexes are impaired for 12-24 hours. A responsible adult companion <strong>must accompany you home</strong>.
+                </p>
+              </div>
+              <p class="leading-relaxed text-[11px]">
+                Hospital discharge policy strictly prohibits patients from driving, cycling, or taking unaccompanied rideshare (Uber/Ola) alone after sedation.
+              </p>
+            </div>
+          `;
+        } else {
+          responseHtml = `
+            <p class="leading-relaxed">
+              <strong>Transportation Guidance:</strong><br>
+              The treadmill stress test does not use sedation, so driving is permitted. However, strenuous physical exertion may cause temporary leg fatigue or dizziness. If you feel tired after the test, resting in our recovery lounge or having someone drive you is recommended.
+            </p>
+          `;
+        }
+      } else if (t.includes('wear') || t.includes('clothes') || t.includes('clothing') || t.includes('shoe') || t.includes('sneaker') || t.includes('attire') || t.includes('dress')) {
+        intentKey = 'clothing';
+        if (proc.id === 'cardio') {
+          responseHtml = `
+            <div class="space-y-1.5">
+              <p class="leading-relaxed">
+                <strong>Attire for Treadmill Test:</strong><br>
+                Please wear a comfortable two-piece athletic outfit (loose T-shirt and track pants/shorts) and <strong>supportive athletic running sneakers</strong> with rubber tread.
+              </p>
+              <div class="bg-slate-50 p-2 rounded-lg border border-slate-200 text-[11px] text-[#0A0F1E]/80">
+                Please avoid dresses, open sandals, high heels, jewelry, or restrictive clothing, as chest ECG electrodes will be placed during the test.
+              </div>
+            </div>
+          `;
+        } else {
+          responseHtml = `
+            <p class="leading-relaxed">
+              <strong>Attire Guidance:</strong><br>
+              Wear loose, comfortable clothing with short or roll-up sleeves to allow easy placement of IV lines and blood pressure cuffs. Please leave valuables and jewelry at home.
+            </p>
+          `;
+        }
+      } else if (t.includes('reschedule') || t.includes('change date') || t.includes('change time') || t.includes('cancel') || t.includes('postpone') || t.includes('next week')) {
+        intentKey = 'reschedule';
+        responseHtml = `
+          <div class="space-y-1.5">
+            <div class="bg-sky-50 border border-sky-200 p-2.5 rounded-lg text-sky-900 space-y-1 text-[11px]">
+              <div class="font-bold flex items-center space-x-1 text-sky-950">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                <span>Reschedule Request Acknowledged</span>
+              </div>
+              <p>
+                Slot hold initialized in Hospital EHR. Next available openings with ${proc.doctor}:
+              </p>
+              <ul class="list-disc pl-4 space-y-0.5 font-medium">
+                <li>Tomorrow at 02:30 PM (${proc.room})</li>
+                <li>Day after Tomorrow at 10:00 AM (${proc.room})</li>
+              </ul>
+            </div>
+            <p class="leading-relaxed text-[11px]">
+              Nurse coordinator Priya at the Hospital Operations Desk has been alerted. She will call you shortly to confirm your preferred slot with zero cancellation fees.
+            </p>
+          </div>
+        `;
+      } else if (t.includes('confirm') || t.includes('will arrive') || t.includes('will be there')) {
+        intentKey = 'confirm_compliance';
+        responseHtml = `
+          <div class="space-y-1.5">
+            <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-lg text-emerald-900 space-y-1 text-[11px]">
+              <div class="font-bold flex items-center space-x-1 text-emerald-950">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                <span>Pre-Op Compliance Recorded</span>
+              </div>
+              <p>
+                Patient compliance logged in EHR record <strong>${proc.mrn}</strong>. Thank you for confirming!
+              </p>
+            </div>
+            <p class="leading-relaxed text-[11px]">
+              Please check in at <strong>${proc.room}</strong> at <strong>${proc.reportTime}</strong>. Remember to bring a valid photo ID and your insurance card. We look forward to seeing you.
+            </p>
+          </div>
+        `;
+      } else if (t.includes('pain') || t.includes('hurt') || t.includes('sedation') || t.includes('anesthesia') || t.includes('sleep') || t.includes('numb')) {
+        intentKey = 'pain_comfort';
+        responseHtml = `
+          <div class="space-y-1.5">
+            <p class="leading-relaxed">
+              <strong>Patient Comfort Protocol:</strong><br>
+              ${proc.id === 'endo' ? 'You will receive monitored IV conscious sedation (Propofol) administered by our anesthesia team. You will sleep peacefully during the 15-minute examination and will feel zero pain or gagging.' : proc.id === 'dental' ? 'Local anesthesia with profound numbing will be administered prior to extraction. You will only feel light pressure, not sharp pain. Post-op pain prescriptions will be provided.' : 'The treadmill test is non-invasive and painless. Speed and incline increase gradually under continuous 12-lead ECG and blood pressure monitoring. The test stops immediately if you request or reach target heart rate.'}
+            </p>
+          </div>
+        `;
+      } else {
+        intentKey = 'general_triage';
+        responseHtml = `
+          <p class="leading-relaxed">
+            Thank you for your inquiry, ${proc.patientShort}. Your question has been reviewed against clinical preparation guidelines for your <strong>${proc.title}</strong>.<br><br>
+            Please follow your mandatory pre-procedure instructions: arrive by ${proc.reportTime} at ${proc.room}. If you have any urgent medical concerns, our Clinical Care Desk is available 24/7 at <strong>+91 11 2692 5858</strong>.
+          </p>
+        `;
+      }
+
+      setTimeout(() => {
+        const el = document.getElementById(typingId);
+        if (el) el.remove();
+
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex flex-col items-start max-w-[92%] sm:max-w-[85%] space-y-1";
+        botBubble.innerHTML = `
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-black/5 text-xs text-[#0A0F1E] space-y-2">
+            <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+              <span class="font-bold text-cyan-900 flex items-center space-x-1">
+                <i data-lucide="bot" class="w-3.5 h-3.5 text-cyan-600"></i>
+                <span>Clinical Care AI</span>
+              </span>
+              <span class="text-[10px] text-slate-400 font-mono">${timeStr}</span>
+            </div>
+            <div class="text-[#0A0F1E]/85">
+              ${responseHtml}
+            </div>
+          </div>
+        `;
+        chatHistory.appendChild(botBubble);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+        lucide.createIcons();
+
+        try {
+          fetch("https://enlightlab-n8n.duckdns.org/webhook/appointment-whatsapp-notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              patient: proc.patient,
+              mrn: proc.mrn,
+              procedure: proc.title,
+              query: text,
+              intent: intentKey,
+              operator: "dhananjay",
+              timestamp: new Date().toISOString()
+            })
+          }).catch(err => console.log("[Clinical Gateway Webhook] Safe fallback:", err));
+        } catch (e) {}
+
+      }, 1100);
     }
 
     function setB2CScenario(scenario) {
