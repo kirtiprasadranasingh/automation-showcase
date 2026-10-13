@@ -265,7 +265,7 @@
             </div>
             <div>
               <span class="text-[#0A0F1E]/50 block text-[10px] font-medium uppercase tracking-wider">Committer / Author</span>
-              <span class="font-mono text-[#0A0F1E] font-semibold text-xs">kirtiprasadranasingh</span>
+              <span class="font-mono text-[#0A0F1E] font-semibold text-xs">dhananjay</span>
             </div>
           </div>
           
@@ -412,7 +412,7 @@
                 
                 <div class="font-mono text-[11px] text-[#0A0F1E]/75 space-y-1">
                   <div><strong>Service:</strong> <code class="bg-[#F8F9FC] px-1.5 py-0.5 rounded border border-[#E8EAF0]">devops-payment-api</code> (main)</div>
-                  <div><strong>Commit:</strong> <span id="dispatch-sha-preview" class="text-[#1A6BFF] font-semibold">40a5d94</span> • by kirtiprasad</div>
+                  <div><strong>Commit:</strong> <span id="dispatch-sha-preview" class="text-[#1A6BFF] font-semibold">40a5d94</span> • by dhananjay</div>
                   <div id="dispatch-msg-preview" class="text-[#0A0F1E]/90 truncate">"feat(payment): add Apple Pay &amp; Google Pay integration"</div>
                 </div>
 
@@ -460,28 +460,28 @@
                       <tr id="live-ledger-row" class="bg-emerald-50/60 font-semibold">
                         <td id="ledger-time" class="p-2.5 text-[#0A0F1E]">Today, 17:51:17</td>
                         <td id="ledger-sha" class="p-2.5 text-[#1A6BFF]">a1b2c3d</td>
-                        <td class="p-2.5 text-[#0A0F1E]">kirtiprasad</td>
+                        <td class="p-2.5 text-[#0A0F1E]">dhananjay</td>
                         <td id="ledger-risk" class="p-2.5 text-emerald-700">LOW</td>
                         <td class="p-2.5 text-emerald-700">COMMITTED (6.7s)</td>
                       </tr>
                       <tr class="text-[#0A0F1E]/70">
                         <td class="p-2.5">Today, 17:42:15</td>
                         <td class="p-2.5 text-[#1A6BFF]">40a5d94</td>
-                        <td class="p-2.5">kirtiprasad</td>
+                        <td class="p-2.5">dhananjay</td>
                         <td class="p-2.5 text-emerald-600">LOW</td>
                         <td class="p-2.5 text-emerald-600">COMMITTED (6.7s)</td>
                       </tr>
                       <tr class="text-[#0A0F1E]/70">
                         <td class="p-2.5">Today, 17:28:40</td>
                         <td class="p-2.5 text-[#1A6BFF]">e4d9012</td>
-                        <td class="p-2.5">kirtiprasad</td>
+                        <td class="p-2.5">dhananjay</td>
                         <td class="p-2.5 text-emerald-600">LOW</td>
                         <td class="p-2.5 text-emerald-600">COMMITTED (6.8s)</td>
                       </tr>
                       <tr class="text-[#0A0F1E]/70">
                         <td class="p-2.5">Today, 16:15:02</td>
                         <td class="p-2.5 text-[#1A6BFF]">c8712bf</td>
-                        <td class="p-2.5">kirtiprasad</td>
+                        <td class="p-2.5">dhananjay</td>
                         <td class="p-2.5 text-emerald-600">LOW</td>
                         <td class="p-2.5 text-emerald-600">COMMITTED (6.5s)</td>
                       </tr>
@@ -923,7 +923,7 @@
       const payload = {
         ref: "refs/heads/main",
         repository: { full_name: "enlightlab/devops-payment-api" },
-        pusher: { name: "kirtiprasadranasingh" },
+        pusher: { name: "dhananjay" },
         head_commit: { id: commitSha, message: commitMsg }
       };
 
@@ -973,7 +973,7 @@
         newRow.innerHTML = `
           <td class="p-2.5 text-[#0A0F1E]">${nowStr}</td>
           <td class="p-2.5 text-[#1A6BFF]">${commitSha}</td>
-          <td class="p-2.5 text-[#0A0F1E]">kirtiprasad</td>
+          <td class="p-2.5 text-[#0A0F1E]">dhananjay</td>
           <td class="p-2.5 ${currentScenario === 'low' ? 'text-emerald-700' : 'text-amber-700'}">${currentScenario === 'low' ? 'LOW' : 'HIGH'}</td>
           <td class="p-2.5 ${currentScenario === 'low' ? 'text-emerald-700' : 'text-amber-700'}">${currentScenario === 'low' ? 'COMMITTED (6.7s)' : 'HALTED (POLICY)'}</td>
         `;
