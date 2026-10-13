@@ -101,240 +101,547 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
       
       <!-- Logo with Subtitle Positioned Underneath -->
-      <a href="#" class="flex flex-col items-start group">
+      <a href="javascript:void(0)" onclick="openView('hub')" class="flex flex-col items-start group">
         <img src="https://ai-mvp.enlightlab.com/logo.png" alt="Enlight Lab" class="h-7 w-auto object-contain" onerror="this.src='logo.png'">
-        <span class="text-[9px] uppercase tracking-wider text-[#0A0F1E]/55 font-bold mt-1">
+        <span class="text-[9px] uppercase tracking-wider text-[#0A0F1E]/55 font-bold mt-1 group-hover:text-[#1A6BFF] transition">
           Enterprise Automation Showcase
         </span>
       </a>
 
       <!-- Navigation & Status -->
-      <div class="flex items-center space-x-2">
-        <a href="#devops-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">DevOps</a>
-        <a href="#healthcare-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">Healthcare</a>
-        <a href="#ecommerce-section" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">E-Commerce</a>
+      <div class="flex items-center space-x-1 sm:space-x-2">
+        <button onclick="openView('hub')" id="nav-hub" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition">All Industries</button>
+        <button onclick="openView('devops')" id="nav-devops" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">DevOps</button>
+        <button onclick="openView('healthcare')" id="nav-healthcare" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">Healthcare</button>
+        <button onclick="openView('ecommerce')" id="nav-ecommerce" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">E-Commerce</button>
         <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Production Live</span>
+          <span>Live Core</span>
         </span>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full space-y-12">
-    
-    <!-- Hero Section -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 pb-2">
-      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FF] text-[#1A6BFF] border border-[#1A6BFF]/25 shadow-sm">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#1A6BFF] animate-pulse"></i>
-        <span>Autonomous Enterprise AI</span>
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-[#0A0F1E] font-display leading-tight">
-        Enterprise Workflows <br class="hidden sm:inline" />
-        <span class="font-extrabold text-[#0A0F1E]/80">Powered by </span>
-        <span class="ai-gradient-text font-black">Autonomous AI</span>
-      </h1>
-      <p class="text-xs sm:text-sm text-[#0A0F1E]/60 max-w-lg mx-auto">
-        Live automated workflows across cloud DevOps, clinical healthcare, and high-volume commerce.
-      </p>
-    </div>
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-5xl mx-auto px-4 sm:px-6 py-8 w-full">
 
     <!-- ======================================================= -->
-    <!-- MODULE 1: DEVOPS CI/CD & AI SAFETY (MINIMAL & CLEAN)     -->
+    <!-- VIEW 1: INDUSTRIES & USE CASES HUB                      -->
     <!-- ======================================================= -->
-    <section id="devops-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
+    <div id="view-hub" class="space-y-10">
       
-      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-9 h-9 rounded-xl bg-[#EEF4FF] border border-[#1A6BFF]/25 flex items-center justify-center text-[#1A6BFF]">
-            <i data-lucide="git-branch" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h2 class="text-base font-bold text-[#0A0F1E] font-display">1. DevOps CI/CD AI Safety Engine</h2>
-            <p class="text-xs text-[#0A0F1E]/60">Evaluates code diffs in real time and halts high-risk deployments before cloud release.</p>
-          </div>
+      <!-- Hero Section -->
+      <div class="text-center max-w-2xl mx-auto space-y-3 pb-2">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#EEF4FF] text-[#1A6BFF] border border-[#1A6BFF]/25 shadow-sm">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#1A6BFF] animate-pulse"></i>
+          <span>Autonomous Enterprise AI Systems</span>
         </div>
-        <span class="text-[11px] font-mono text-[#0A0F1E]/50 hidden sm:inline">payment-service</span>
-      </div>
-
-      <!-- Commit Selection -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <button onclick="selectScenario('safe')" id="btn-scenario-safe" class="p-3.5 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-bold text-[#1A6BFF] text-xs">Standard Feature Commit</span>
-            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Safe</span>
-          </div>
-          <p class="text-xs text-[#0A0F1E]/70">Add Apple Pay &amp; Google Pay gateway integration</p>
-        </button>
-
-        <button onclick="selectScenario('risky')" id="btn-scenario-risky" class="p-3.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative">
-          <div class="flex items-center justify-between mb-1">
-            <span class="font-bold text-[#0A0F1E] text-xs" id="title-risky">Risky Database Commit</span>
-            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">High Risk</span>
-          </div>
-          <p class="text-xs text-[#0A0F1E]/70">Accidental DROP TABLE on users database</p>
-        </button>
-      </div>
-
-      <!-- Execution Bar -->
-      <div class="bg-[#F8F9FC] rounded-xl p-3 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="text-xs space-y-0.5 text-left w-full sm:w-auto">
-          <div class="text-[#0A0F1E]/60">Author: <span class="font-mono font-bold text-[#1A6BFF]">dhananjay</span></div>
-          <div class="text-[#0A0F1E]/60">Status: <span id="demo-status" class="font-mono font-medium text-[#0A0F1E]">Ready</span></div>
-        </div>
-
-        <button onclick="runSimpleDemo()" id="btn-run" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-[#1A6BFF] hover:bg-[#0A4ECC] text-white shadow-sm transition flex items-center justify-center space-x-2">
-          <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-          <span>Run Automation Test</span>
-        </button>
-      </div>
-
-      <!-- 3-Stage Stepper -->
-      <div class="grid grid-cols-3 gap-2 text-center pt-1">
-        <div id="step-card-1" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
-          <div class="text-xs font-bold text-[#0A0F1E]">1. Ingest Commit</div>
-          <div id="step-sub-1" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
-        </div>
-        <div id="step-card-2" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
-          <div class="text-xs font-bold text-[#0A0F1E]">2. AI Risk Scan</div>
-          <div id="step-sub-2" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
-        </div>
-        <div id="step-card-3" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
-          <div class="text-xs font-bold text-[#0A0F1E]">3. Release Gate</div>
-          <div id="step-sub-3" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
-        </div>
-      </div>
-
-      <!-- Result Card -->
-      <div id="outcome-card" class="rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] p-4 transition space-y-2">
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center space-x-2">
-            <span id="badge-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]">
-              STANDBY • AWAITING TRIGGER
-            </span>
-            <span id="badge-score" class="text-xs font-mono font-bold text-[#0A0F1E]/50">
-              Safety Score: -- / 100
-            </span>
-          </div>
-          <span id="outcome-time" class="text-[10px] font-mono text-[#0A0F1E]/40">Latency: --</span>
-        </div>
-        <p id="outcome-text" class="text-xs text-[#0A0F1E]/60 leading-relaxed">
-          Select a commit scenario above and click "Run Automation Test" to evaluate code safety in real-time.
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-[#0A0F1E] font-display leading-tight">
+          Enterprise Workflows <br class="hidden sm:inline" />
+          <span class="font-extrabold text-[#0A0F1E]/80">Powered by </span>
+          <span class="ai-gradient-text font-black">Autonomous AI</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-[#0A0F1E]/60 max-w-lg mx-auto">
+          Select an industry solution below to inspect the architecture and run live operational simulations.
         </p>
       </div>
 
-    </section>
-
-    <!-- ======================================================= -->
-    <!-- MODULE 2: HEALTHCARE EHR PATIENT NOTIFIER (MINIMAL)      -->
-    <!-- ======================================================= -->
-    <section id="healthcare-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
-      
-      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-9 h-9 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600">
-            <i data-lucide="heart-pulse" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h2 class="text-base font-bold text-[#0A0F1E] font-display">2. Healthcare Clinical EHR WhatsApp Flow</h2>
-            <p class="text-xs text-[#0A0F1E]/60">Translates doctor notes into preparation checklists sent via WhatsApp.</p>
-          </div>
-        </div>
-        <span class="text-[11px] font-mono text-cyan-600 font-semibold hidden sm:inline">EHR Connected</span>
+      <!-- Section Title -->
+      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60">Select Industry Solution</span>
+        <span class="text-xs text-[#0A0F1E]/40 font-mono">3 Live Deployments</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-        <!-- Controls -->
-        <div class="md:col-span-5 space-y-3">
-          <div>
-            <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-2">
-              Select Patient Procedure:
-            </label>
-            <select id="hc-select" onchange="updateHealthcareDemo()" class="w-full bg-[#F8F9FC] border border-[#E8EAF0] rounded-xl px-3 py-2.5 text-xs font-medium focus:outline-none focus:border-cyan-500">
-              <option value="cardio">Cardiology Stress Test (Fasting Required)</option>
-              <option value="endo">Endoscopy &amp; Biopsy (Sedation + Escort)</option>
-              <option value="dental">Oral Surgery (Pre-Medication)</option>
-            </select>
+      <!-- 3 Industry Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Industry 1: DevOps -->
+        <div onclick="openView('devops')" class="group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-xl bg-[#EEF4FF] border border-[#1A6BFF]/25 flex items-center justify-center text-[#1A6BFF] group-hover:scale-110 transition">
+                <i data-lucide="git-branch" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1A6BFF] border border-blue-200">
+                DevOps
+              </span>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Cloud Infrastructure</div>
+              <h2 class="text-base font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition mt-0.5">
+                CI/CD AI Safety Engine &amp; Release Gate
+              </h2>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/65 leading-relaxed">
+              Autonomous diff inspection that detects breaking changes and catastrophic database commands before cloud deployment.
+            </p>
           </div>
-          <button onclick="triggerHealthcareDispatch()" id="btn-hc-dispatch" class="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
-            <i data-lucide="send" class="w-3.5 h-3.5"></i>
-            <span>Send WhatsApp Alert</span>
+          <div class="pt-3 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-semibold text-[#1A6BFF]">
+            <span>Explore Use Case &amp; Demo</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Industry 2: Healthcare -->
+        <div onclick="openView('healthcare')" class="group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-cyan-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-cyan-600 group-hover:scale-110 transition">
+                <i data-lucide="heart-pulse" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200">
+                Healthcare
+              </span>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Hospital Systems</div>
+              <h2 class="text-base font-bold text-[#0A0F1E] font-display group-hover:text-cyan-700 transition mt-0.5">
+                Clinical EHR WhatsApp Patient Preparation
+              </h2>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/65 leading-relaxed">
+              Translates physician diagnostic notes into personalized multi-lingual WhatsApp checklists delivered 24h prior.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-semibold text-cyan-700">
+            <span>Explore Use Case &amp; Demo</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Industry 3: D2C E-Commerce -->
+        <div onclick="openView('ecommerce')" class="group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-indigo-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 group-hover:scale-110 transition">
+                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                E-Commerce
+              </span>
+            </div>
+            <div>
+              <div class="text-[11px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Retail &amp; D2C</div>
+              <h2 class="text-base font-bold text-[#0A0F1E] font-display group-hover:text-indigo-700 transition mt-0.5">
+                Autonomous Abandoned Checkout Recovery
+              </h2>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/65 leading-relaxed">
+              Calculates customer lifetime value, mints dynamic single-use discount tokens, and drives automated recovery at T+30m.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-semibold text-indigo-700">
+            <span>Explore Use Case &amp; Demo</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- VIEW 2: DEVOPS FULL PAGE EXPLANATION + LIVE DEMO         -->
+    <!-- ======================================================= -->
+    <div id="view-devops" class="hidden space-y-6">
+      
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="flex items-center justify-between">
+        <button onclick="openView('hub')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#1A6BFF] hover:text-[#0A4ECC] bg-[#EEF4FF] px-3 py-1.5 rounded-lg border border-[#1A6BFF]/20 transition">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Back to All Industries</span>
+        </button>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 1 of 3</span>
+      </div>
+
+      <!-- Full Page Explanation Card -->
+      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-blue-50 text-[#1A6BFF] border border-blue-200">
+            Industry: Cloud &amp; DevOps Engineering
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
+            CI/CD AI Safety Engine &amp; Automated Release Governance
+          </h1>
+          <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
+            Eliminates production outages by placing an autonomous AI security gate in front of your deployment pipeline.
+          </p>
+        </div>
+
+        <!-- 3-Column Business Architecture Breakdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>The Problem</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Accidental destructive SQL migrations (like DROP TABLE) or broken API contracts deployed to production cause $100k+/hr downtime and catastrophic data loss.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-[#1A6BFF] flex items-center space-x-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+              <span>How AI Solves It</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              When code is pushed, the AI engine scans the semantic diff, evaluates safety scores (0-100), and autonomously halts releases that violate schema policy.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+              <span>Business ROI</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              100% outage prevention, zero human bottleneck on code reviews, and automated multi-channel Slack/email incident alerts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Mission Control Sub-section -->
+        <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Live Mission Control</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select a commit scenario below and trigger the live pipeline test.</p>
+            </div>
+            <span class="text-[11px] font-mono text-[#0A0F1E]/50 hidden sm:inline">Repo: payment-service</span>
+          </div>
+
+          <!-- Commit Selection -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button onclick="selectScenario('safe')" id="btn-scenario-safe" class="p-3.5 rounded-xl border-2 border-[#1A6BFF] bg-[#EEF4FF]/60 text-left transition relative">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-[#1A6BFF] text-xs">Scenario A: Non-Breaking Feature</span>
+                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Safe</span>
+              </div>
+              <p class="text-xs text-[#0A0F1E]/70">Add Apple Pay &amp; Google Pay gateway integration</p>
+            </button>
+
+            <button onclick="selectScenario('risky')" id="btn-scenario-risky" class="p-3.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] text-left transition hover:border-amber-400 relative">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-[#0A0F1E] text-xs" id="title-risky">Scenario B: Destructive Migration</span>
+                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">High Risk</span>
+              </div>
+              <p class="text-xs text-[#0A0F1E]/70">Accidental DROP TABLE on users database</p>
+            </button>
+          </div>
+
+          <!-- Execution Bar -->
+          <div class="bg-[#F8F9FC] rounded-xl p-3.5 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs space-y-0.5 text-left w-full sm:w-auto">
+              <div class="text-[#0A0F1E]/60">Author: <span class="font-mono font-bold text-[#1A6BFF]">dhananjay</span></div>
+              <div class="text-[#0A0F1E]/60">Status: <span id="demo-status" class="font-mono font-medium text-[#0A0F1E]">Ready</span></div>
+            </div>
+
+            <button onclick="runSimpleDemo()" id="btn-run" class="w-full sm:w-auto px-6 py-2.5 rounded-xl font-bold text-xs bg-[#1A6BFF] hover:bg-[#0A4ECC] text-white shadow-md shadow-[#1A6BFF]/25 transition flex items-center justify-center space-x-2">
+              <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+              <span>Run Automation Test</span>
+            </button>
+          </div>
+
+          <!-- 3-Stage Stepper -->
+          <div class="grid grid-cols-3 gap-2 text-center pt-1">
+            <div id="step-card-1" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+              <div class="text-xs font-bold text-[#0A0F1E]">1. Ingest Commit</div>
+              <div id="step-sub-1" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
+            </div>
+            <div id="step-card-2" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+              <div class="text-xs font-bold text-[#0A0F1E]">2. AI Risk Scan</div>
+              <div id="step-sub-2" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
+            </div>
+            <div id="step-card-3" class="p-2.5 rounded-xl border border-[#E8EAF0] bg-white transition">
+              <div class="text-xs font-bold text-[#0A0F1E]">3. Release Gate</div>
+              <div id="step-sub-3" class="text-[10px] text-[#0A0F1E]/50">Standby</div>
+            </div>
+          </div>
+
+          <!-- Result Card -->
+          <div id="outcome-card" class="rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] p-4 transition space-y-2">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center space-x-2">
+                <span id="badge-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]">
+                  STANDBY • AWAITING TRIGGER
+                </span>
+                <span id="badge-score" class="text-xs font-mono font-bold text-[#0A0F1E]/50">
+                  Safety Score: -- / 100
+                </span>
+              </div>
+              <span id="outcome-time" class="text-[10px] font-mono text-[#0A0F1E]/40">Latency: --</span>
+            </div>
+            <p id="outcome-text" class="text-xs text-[#0A0F1E]/60 leading-relaxed">
+              Select a commit scenario above and click "Run Automation Test" to evaluate code safety in real-time.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Next Navigation -->
+        <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
+          <button onclick="openView('hub')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>All Industries</span>
+          </button>
+          <button onclick="openView('healthcare')" class="text-xs font-bold text-[#1A6BFF] hover:underline flex items-center space-x-1">
+            <span>Next: Healthcare EHR Flow</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
 
-        <!-- WhatsApp Preview Card -->
-        <div class="md:col-span-7 bg-[#EFEAE2] p-4 rounded-xl border border-[#E8EAF0] space-y-2">
-          <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#0A0F1E]/50">
-            <span>WhatsApp Delivery Preview:</span>
-            <span id="hc-status-badge" class="text-emerald-600 font-semibold lowercase bg-emerald-100/70 px-2 py-0.5 rounded">active</span>
-          </div>
-          <div class="bg-white rounded-xl p-3.5 shadow-sm space-y-2 border border-black/5 text-xs">
-            <div class="font-bold text-[#0A0F1E] flex items-center justify-between">
-              <span>Apollo Health Clinical Dispatch</span>
-              <span id="hc-time-badge" class="text-[10px] text-emerald-600 font-normal">Delivered Just Now</span>
-            </div>
-            <p id="hc-msg" class="text-[#0A0F1E]/80 leading-relaxed">
-              Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.
-            </p>
-            <div id="hc-prep" class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-amber-900 text-[11px]">
-              <strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.
-            </div>
-          </div>
-        </div>
       </div>
 
-    </section>
+    </div>
 
     <!-- ======================================================= -->
-    <!-- MODULE 3: D2C E-COMMERCE CART RECOVERY (MINIMAL)         -->
+    <!-- VIEW 3: HEALTHCARE FULL PAGE EXPLANATION + LIVE DEMO     -->
     <!-- ======================================================= -->
-    <section id="ecommerce-section" class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-7 space-y-5">
+    <div id="view-healthcare" class="hidden space-y-6">
       
-      <div class="flex items-center justify-between border-b border-[#E8EAF0] pb-4">
-        <div class="flex items-center space-x-3">
-          <div class="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600">
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h2 class="text-base font-bold text-[#0A0F1E] font-display">3. D2C E-Commerce Cart Recovery Agent</h2>
-            <p class="text-xs text-[#0A0F1E]/60">Mints dynamic single-use incentives to recover lost checkout revenue.</p>
-          </div>
-        </div>
-        <span class="text-[11px] font-mono text-indigo-600 font-semibold hidden sm:inline">14.8% Recovery</span>
-      </div>
-
-      <!-- 3 Simple Stat Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Abandoned Cart Value</div>
-          <div class="text-lg font-bold text-[#0A0F1E] font-mono mt-1">Rs. 4,890</div>
-        </div>
-
-        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Dynamic AI Token Minted</div>
-          <div id="cart-token" class="text-lg font-bold text-indigo-600 font-mono mt-1">RECOVER15-8941</div>
-        </div>
-
-        <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-          <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Automated Recovery Rate</div>
-          <div class="text-lg font-bold text-emerald-600 font-mono mt-1">+14.8%</div>
-        </div>
-      </div>
-
-      <!-- Action Row -->
-      <div class="bg-[#F8F9FC] rounded-xl p-3 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="text-xs text-[#0A0F1E]/60 text-left w-full sm:w-auto">
-          Status: <span id="cart-status" class="font-mono font-medium text-[#0A0F1E]">Standby • Ready to mint token</span>
-        </div>
-
-        <button onclick="runCartRecoveryDemo()" id="btn-cart-run" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
-          <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
-          <span>Mint Dynamic Token</span>
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="flex items-center justify-between">
+        <button onclick="openView('hub')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-cyan-700 hover:text-cyan-800 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-200 transition">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Back to All Industries</span>
         </button>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 2 of 3</span>
       </div>
 
-    </section>
+      <!-- Full Page Explanation Card -->
+      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-cyan-50 text-cyan-700 border border-cyan-200">
+            Industry: Healthcare &amp; Clinical Operations
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
+            Clinical EHR WhatsApp Patient Preparation Flow
+          </h1>
+          <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
+            Eliminates morning procedure cancellations by extracting clinical prep guidelines from doctor EHR notes and delivering them to patients via WhatsApp.
+          </p>
+        </div>
+
+        <!-- 3-Column Business Architecture Breakdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>The Problem</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              18% of hospital diagnostic procedures are cancelled on arrival because patients forgot strict fasting rules (NPO) or companion escort requirements.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-cyan-700 flex items-center space-x-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+              <span>How AI Solves It</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              AI automatically parses complex physician doctor notes inside the hospital EHR, generates tailored patient instructions, and sends interactive cards 24h prior.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+              <span>Business ROI</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              42% reduction in cancelled morning slots, saving clinics $45,000+ monthly in lost scanner utilization with zero manual nursing calls.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Mission Control Sub-section -->
+        <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive EHR Dispatch Simulation</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select an appointment procedure to simulate real-time clinical translation and dispatch.</p>
+            </div>
+            <span class="text-[11px] font-mono text-cyan-700 font-semibold hidden sm:inline">EHR Connected</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+            <!-- Controls -->
+            <div class="md:col-span-5 space-y-3">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-[#0A0F1E]/60 mb-2">
+                  Select Patient Procedure:
+                </label>
+                <select id="hc-select" onchange="updateHealthcareDemo()" class="w-full bg-[#F8F9FC] border border-[#E8EAF0] rounded-xl px-3 py-2.5 text-xs font-medium focus:outline-none focus:border-cyan-500">
+                  <option value="cardio">Cardiology Stress Test (Fasting Required)</option>
+                  <option value="endo">Endoscopy &amp; Biopsy (Sedation + Escort)</option>
+                  <option value="dental">Oral Surgery (Pre-Medication Prophylaxis)</option>
+                </select>
+              </div>
+              <button onclick="triggerHealthcareDispatch()" id="btn-hc-dispatch" class="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span>Send WhatsApp Alert</span>
+              </button>
+            </div>
+
+            <!-- WhatsApp Preview Card -->
+            <div class="md:col-span-7 bg-[#EFEAE2] p-4 rounded-xl border border-[#E8EAF0] space-y-2">
+              <div class="flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#0A0F1E]/50">
+                <span>WhatsApp Delivery Preview:</span>
+                <span id="hc-status-badge" class="text-emerald-600 font-semibold lowercase bg-emerald-100/70 px-2 py-0.5 rounded">active</span>
+              </div>
+              <div class="bg-white rounded-xl p-3.5 shadow-sm space-y-2 border border-black/5 text-xs">
+                <div class="font-bold text-[#0A0F1E] flex items-center justify-between">
+                  <span>Apollo Health Clinical Dispatch</span>
+                  <span id="hc-time-badge" class="text-[10px] text-emerald-600 font-normal">Delivered Just Now</span>
+                </div>
+                <p id="hc-msg" class="text-[#0A0F1E]/80 leading-relaxed">
+                  Dear Rahul Sharma, your Cardiology Stress Test is confirmed for Tomorrow at 09:30 AM.
+                </p>
+                <div id="hc-prep" class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-amber-900 text-[11px]">
+                  <strong>Preparation:</strong> Please fast for 4 hours prior. Wear comfortable running shoes.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Next Navigation -->
+        <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
+          <button onclick="openView('devops')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Previous: DevOps Safety</span>
+          </button>
+          <button onclick="openView('ecommerce')" class="text-xs font-bold text-indigo-600 hover:underline flex items-center space-x-1">
+            <span>Next: D2C Cart Recovery</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- VIEW 4: E-COMMERCE FULL PAGE EXPLANATION + LIVE DEMO     -->
+    <!-- ======================================================= -->
+    <div id="view-ecommerce" class="hidden space-y-6">
+      
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="flex items-center justify-between">
+        <button onclick="openView('hub')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-200 transition">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Back to All Industries</span>
+        </button>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 3 of 3</span>
+      </div>
+
+      <!-- Full Page Explanation Card -->
+      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+            Industry: Retail &amp; D2C E-Commerce
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
+            Autonomous Abandoned Checkout Recovery Agent
+          </h1>
+          <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
+            Recovers high-value lost cart revenue by minting customer-specific single-use discount tokens and triggering automated recovery at T+30 minutes.
+          </p>
+        </div>
+
+        <!-- 3-Column Business Architecture Breakdown -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>The Problem</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Nearly 70% of online shopping carts are abandoned; generic email blasts convert under 2% and static discounts erode merchant margins.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-indigo-700 flex items-center space-x-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+              <span>How AI Solves It</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              AI calculates customer LTV in real time, generates an ephemeral single-use 15% discount token with a 4-hour countdown, and dispatches a personalized recovery push.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+              <span>Business ROI</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Recaptures 14.8% of abandoned GMV with zero coupon leakage and zero manual intervention from marketing teams.
+            </p>
+          </div>
+        </div>
+
+        <!-- Interactive Mission Control Sub-section -->
+        <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Recovery Token Simulation</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Click below to simulate autonomous token minting and multichannel dispatch.</p>
+            </div>
+            <span class="text-[11px] font-mono text-indigo-600 font-semibold hidden sm:inline">14.8% Recovery</span>
+          </div>
+
+          <!-- 3 Simple Stat Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Abandoned Cart Value</div>
+              <div class="text-lg font-bold text-[#0A0F1E] font-mono mt-1">Rs. 4,890</div>
+            </div>
+
+            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Dynamic AI Token Minted</div>
+              <div id="cart-token" class="text-lg font-bold text-indigo-600 font-mono mt-1">RECOVER15-8941</div>
+            </div>
+
+            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
+              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Automated Recovery Rate</div>
+              <div class="text-lg font-bold text-emerald-600 font-mono mt-1">+14.8%</div>
+            </div>
+          </div>
+
+          <!-- Action Row -->
+          <div class="bg-[#F8F9FC] rounded-xl p-3.5 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-xs text-[#0A0F1E]/60 text-left w-full sm:w-auto">
+              Status: <span id="cart-status" class="font-mono font-medium text-[#0A0F1E]">Standby • Ready to mint token</span>
+            </div>
+
+            <button onclick="runCartRecoveryDemo()" id="btn-cart-run" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
+              <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
+              <span>Mint Dynamic Token</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Next Navigation -->
+        <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
+          <button onclick="openView('healthcare')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Previous: Healthcare Flow</span>
+          </button>
+          <button onclick="openView('hub')" class="text-xs font-bold text-[#1A6BFF] hover:underline flex items-center space-x-1">
+            <span>Back to All Industries</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
 
   </main>
 
@@ -350,6 +657,43 @@
     lucide.createIcons();
 
     let currentMode = 'safe';
+
+    function openView(viewName) {
+      const views = ['hub', 'devops', 'healthcare', 'ecommerce'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.add('hidden');
+        const navBtn = document.getElementById(`nav-${v}`);
+        if (navBtn) {
+          navBtn.className = "text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition" + (v === 'hub' ? '' : ' hidden sm:inline');
+        }
+      });
+
+      const activeNav = document.getElementById(`nav-${viewName}`);
+      if (activeNav) {
+        activeNav.className = "text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition" + (viewName === 'hub' ? '' : ' hidden sm:inline');
+      }
+
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) {
+        target.classList.remove('hidden');
+        window.location.hash = viewName === 'hub' ? 'industries' : viewName;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      lucide.createIcons();
+    }
+
+    function handleHashRoute() {
+      const hash = window.location.hash.replace('#', '');
+      if (['devops', 'healthcare', 'ecommerce'].includes(hash)) {
+        openView(hash);
+      } else {
+        openView('hub');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', handleHashRoute);
+    window.addEventListener('hashchange', handleHashRoute);
 
     function selectScenario(mode) {
       currentMode = mode;
