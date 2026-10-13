@@ -606,9 +606,13 @@
               <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
               <span>Scenario 2: Best sellers products</span>
             </button>
+            <button onclick="setB2CScenario('complaint')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>Scenario 3: Negative/Damaged Issue</span>
+            </button>
             <button onclick="setB2CScenario('escalate')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
               <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
-              <span>Scenario 3: Escalate to Slack Support</span>
+              <span>Scenario 4: Escalate to Slack Support</span>
             </button>
           </div>
 
@@ -965,10 +969,308 @@
         input.value = "Where is my order?";
       } else if (scenario === 'products') {
         input.value = "What are best sellers products";
+      } else if (scenario === 'complaint') {
+        input.value = "My order arrived damaged and the shoe is torn! I want an immediate solution.";
       } else if (scenario === 'escalate') {
         input.value = "I need to speak with human support";
       }
       sendB2CMessage();
+    }
+
+    function classifyB2CIntent(text) {
+      const t = text.toLowerCase();
+
+      // 1. Negative sentiment, damaged items, anger, complaints
+      const negativeWords = ['bad', 'worst', 'terrible', 'horrible', 'awful', 'poor', 'hate', 'angry', 'sucks', 'useless', 'pathetic', 'scam', 'cheat', 'fraud', 'fake', 'broken', 'damaged', 'torn', 'ripped', 'defect', 'faulty', 'wrong', 'missing', 'stolen', 'lost', 'never arrived', 'unacceptable', 'complaint', 'sue', 'legal', 'disappointed', 'upset', 'not happy', 'waste', 'pathetic', 'furious'];
+      if (negativeWords.some(w => t.includes(w))) {
+        return {
+          intent: 'complaint',
+          agent: 'Urgent Support Escalation (Slack)',
+          agentType: 'escalate',
+          badgeClass: 'text-rose-600',
+          step1: 'Detecting negative sentiment & service severity...',
+          step2: 'Initiating high-priority override • Packaging customer context...',
+          step3: 'Dispatching critical alert to Slack #customer-support...'
+        };
+      }
+
+      // 2. Direct human / live agent request
+      const humanWords = ['human', 'person', 'real person', 'live agent', 'representative', 'speak with', 'talk to someone', 'manager', 'call me', 'phone', 'support team', 'escalate'];
+      if (humanWords.some(w => t.includes(w))) {
+        return {
+          intent: 'human',
+          agent: 'Support Escalation (Slack)',
+          agentType: 'escalate',
+          badgeClass: 'text-rose-600',
+          step1: 'Analyzing escalation request & intent...',
+          step2: 'Routing to live agent dispatch channel...',
+          step3: 'Alerting support team in Slack #customer-support...'
+        };
+      }
+
+      // 3. Returns, refunds, money back & exchanges
+      const returnWords = ['refund', 'return', 'exchange', 'replace', 'money back', 'send back', 'swap', 'return label', 'how to return'];
+      if (returnWords.some(w => t.includes(w))) {
+        return {
+          intent: 'returns',
+          agent: 'Returns & Exchanges Agent',
+          agentType: 'returns',
+          badgeClass: 'text-indigo-600',
+          step1: 'Querying Shopify return policy & order history...',
+          step2: 'Verifying 30-day eligibility for order #ORD-77998...',
+          step3: 'Generating pre-paid return options...'
+        };
+      }
+
+      // 4. Cancellations & order modifications / address changes
+      const cancelWords = ['cancel', 'cancellation', 'change address', 'wrong address', 'update address', 'modify', 'stop shipment', 'change size'];
+      if (cancelWords.some(w => t.includes(w))) {
+        return {
+          intent: 'cancellation',
+          agent: 'Order Management Agent',
+          agentType: 'cancellation',
+          badgeClass: 'text-amber-600',
+          step1: 'Checking warehouse fulfillment state for #ORD-77998...',
+          step2: 'Verifying courier dispatch lock status...',
+          step3: 'Preparing parcel intercept options...'
+        };
+      }
+
+      // 5. Products, inventory, catalog, sizes & recommendations
+      const productWords = ['product', 'products', 'best seller', 'shoe', 'shoes', 'sneaker', 'sneakers', 'catalog', 'recommend', 'price', 'pricing', 'cost', 'size', 'sizes', 'stock', 'available', 'discount', 'coupon', 'offer', 'inventory', 'buy', 'shop', 'collection'];
+      if (productWords.some(w => t.includes(w))) {
+        return {
+          intent: 'products',
+          agent: 'Products Agent',
+          agentType: 'products',
+          badgeClass: 'text-indigo-600',
+          step1: 'Querying live Shopify catalog API...',
+          step2: 'Syncing real-time variant stock & available sizes...',
+          step3: 'Formatting product recommendations...'
+        };
+      }
+
+      // 6. Shipping & delivery policies / coverage
+      const shippingWords = ['how long', 'shipping time', 'delivery time', 'deliver to', 'international', 'shipping cost', 'shipping fee', 'express', 'courier', 'how fast'];
+      if (shippingWords.some(w => t.includes(w))) {
+        return {
+          intent: 'shipping',
+          agent: 'Store Policy Concierge',
+          agentType: 'shipping',
+          badgeClass: 'text-indigo-600',
+          step1: 'Accessing fulfillment logistics table...',
+          step2: 'Calculating carrier transit timelines...',
+          step3: 'Formatting shipping policy details...'
+        };
+      }
+
+      // 7. Order tracking, delivery status & courier ETA
+      const orderWords = ['where is my order', 'track', 'status', 'shipped', 'in transit', 'package', 'parcel', 'delivery', 'eta', 'delayed', 'arrive', 'when will', 'order', 'orders'];
+      if (orderWords.some(w => t.includes(w))) {
+        return {
+          intent: 'orders',
+          agent: 'Orders Agent',
+          agentType: 'orders',
+          badgeClass: 'text-indigo-600',
+          step1: 'Fetching customer profile & active orders from Shopify...',
+          step2: 'Querying carrier fulfillment API for tracking data...',
+          step3: 'Formatting live order transit card...'
+        };
+      }
+
+      // 8. Greetings & small talk
+      const greetingWords = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'greetings', 'sup', 'yo', 'who are you', 'what can you do', 'help', 'start'];
+      if (greetingWords.some(w => t.includes(w))) {
+        return {
+          intent: 'greetings',
+          agent: 'Shopify Concierge AI',
+          agentType: 'concierge',
+          badgeClass: 'text-indigo-600',
+          step1: 'Initializing conversation session...',
+          step2: 'Loading store capabilities & customer profile...',
+          step3: 'Welcoming customer...'
+        };
+      }
+
+      // 9. Fallback / general clarification
+      return {
+        intent: 'fallback',
+        agent: 'Shopify Concierge AI',
+        agentType: 'concierge',
+        badgeClass: 'text-indigo-600',
+        step1: 'Analyzing customer query context...',
+        step2: 'Cross-referencing Shopify store knowledge base...',
+        step3: 'Formulating assistive guidance...'
+      };
+    }
+
+    function getB2CResponseHtml(intent) {
+      if (intent === 'complaint') {
+        return `
+          <div class="space-y-2">
+            <div class="font-semibold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600"></i>
+              <span>Urgent Escalation Triggered • High Priority Alert</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              I am sincerely sorry for the issue with your item. We take product quality and delivery standards very seriously.
+            </p>
+            <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-[#0A0F1E]/85 space-y-1">
+              <div class="text-[11px] font-medium">Dispatched immediate critical incident to internal Slack:</div>
+              <div class="font-mono text-xs font-bold text-rose-900 bg-white px-2 py-1 rounded border border-rose-200 inline-block">
+                #customer-support
+              </div>
+              <div class="text-[10px] text-[#0A0F1E]/60 pt-1">
+                Ticket: <strong>#ESC-CRIT-9104</strong> • Priority: <strong>CRITICAL</strong> • SLA: <strong>&lt; 15 mins</strong>
+              </div>
+            </div>
+            <p class="text-[11px] text-[#0A0F1E]/70">
+              A senior support specialist has received your report and order details (#ORD-77998) and is reaching out right now to issue an instant replacement or full refund.
+            </p>
+          </div>
+        `;
+      } else if (intent === 'human') {
+        return `
+          <div class="space-y-2">
+            <div class="font-semibold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="message-square" class="w-4 h-4 text-rose-600"></i>
+              <span>Transferred to Live Human Support</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-[#0A0F1E]/85 space-y-1">
+              <div class="text-[11px] font-medium">Dispatched customer inquiry &amp; history to Slack channel:</div>
+              <div class="font-mono text-xs font-bold text-rose-900 bg-white px-2 py-1 rounded border border-rose-200 inline-block">
+                #customer-support
+              </div>
+              <div class="text-[10px] text-[#0A0F1E]/60 pt-1">Ticket ID: #ESC-8941 • Priority: High • Assigned Operator: dhananjay</div>
+            </div>
+            <p class="text-[11px] text-[#0A0F1E]/70">
+              A support representative has received your full transcript and Shopify profile and will assist you shortly.
+            </p>
+          </div>
+        `;
+      } else if (intent === 'returns') {
+        return `
+          <div class="space-y-2">
+            <div>Our store offers a <strong>30-day 100% hassle-free return and exchange policy</strong>.</div>
+            <div class="p-2.5 rounded-lg bg-white border border-[#E8EAF0] space-y-1 text-[11px]">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-[#0A0F1E]">Order: #ORD-77998</span>
+                <span class="text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Return Eligible</span>
+              </div>
+              <div class="text-[#0A0F1E]/60">Items: Nike Air Max &amp; Running Apparel • 21 days remaining in return window.</div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/75">
+              Would you like me to email a pre-paid printable return shipping label, or initiate an instant size exchange?
+            </div>
+          </div>
+        `;
+      } else if (intent === 'cancellation') {
+        return `
+          <div class="space-y-2">
+            <div>I checked active order <strong>#ORD-77998</strong> in our fulfillment system:</div>
+            <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] space-y-1">
+              <div class="font-bold text-amber-900 flex items-center space-x-1">
+                <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                <span>Parcel Dispatched • In Transit with Courier</span>
+              </div>
+              <div class="text-[#0A0F1E]/70">Because the package is already on the courier delivery truck, automated in-flight cancellation is locked.</div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/75">
+              I have notified our logistics desk to place a courier intercept request, or you can refuse delivery for an instant automatic refund upon return.
+            </div>
+          </div>
+        `;
+      } else if (intent === 'products') {
+        return `
+          <div class="space-y-2">
+            <div>Here are our latest in-stock available pieces from the Shopify catalog:</div>
+            <div class="space-y-1.5 font-mono text-[11px] bg-white p-2.5 rounded-lg border border-[#E8EAF0]">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-[#0A0F1E]">• NIKE CHRYSAOR (Best Seller)</span>
+                <span class="text-emerald-600 font-semibold">XXXS (1), XXS (4), XS (2)</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0A0F1E]/50">
+                <span>• NIKE GOD OF LOVE (Best Seller)</span>
+                <span class="text-rose-500 font-semibold">All sizes out of stock</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-[#0A0F1E]">• NIKE SOARING HIGH (Best Seller)</span>
+                <span class="text-emerald-600 font-semibold">S (10), M (58), L (7), XL (12)</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/70">All pieces qualify for complimentary express delivery. Which size can I reserve for you?</div>
+          </div>
+        `;
+      } else if (intent === 'shipping') {
+        return `
+          <div class="space-y-2">
+            <div>Here are our standard shipping timelines &amp; delivery policies:</div>
+            <div class="space-y-1 text-[11px] bg-white p-2.5 rounded-lg border border-[#E8EAF0]">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-[#0A0F1E]">Standard Ground (3–5 Business Days)</span>
+                <span class="text-emerald-600 font-bold">Free over Rs. 2,000</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-[#0A0F1E]">Express Priority Air (1–2 Business Days)</span>
+                <span class="text-[#0A0F1E]/70">Rs. 250</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-[#0A0F1E]">International Express (50+ Countries)</span>
+                <span class="text-[#0A0F1E]/70">7–10 Days</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/70">All packages feature end-to-end GPS carrier tracking links.</div>
+          </div>
+        `;
+      } else if (intent === 'orders') {
+        return `
+          <div class="space-y-2">
+            <div>Hi John Doe, I've checked your order <strong>#ORD-77998</strong> and it is currently <strong>in transit</strong>.</div>
+            <div class="p-2.5 rounded-lg bg-white border border-[#E8EAF0] flex items-center justify-between">
+              <div class="space-y-0.5">
+                <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Carrier Tracking (BlueDart)</div>
+                <a href="https://odrtrk.live/trk/77998495886" target="_blank" class="font-mono text-indigo-600 font-semibold hover:underline flex items-center space-x-1">
+                  <span>trk/77998495886</span>
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">In Transit</span>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/70">Estimated delivery: Tomorrow by 4:00 PM. Thank you for your patience!</div>
+          </div>
+        `;
+      } else if (intent === 'greetings') {
+        return `
+          <div class="space-y-2">
+            <div>Hello! I am your automated shopping concierge for our Shopify store.</div>
+            <div class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              I can assist you with:
+              <ul class="list-disc list-inside mt-1 space-y-0.5 text-[11px] text-[#0A0F1E]/70">
+                <li><strong>Live Order Tracking</strong>: Real-time courier tracking for #ORD-77998</li>
+                <li><strong>Catalog &amp; Sizing</strong>: Stock availability, best sellers, and recommendations</li>
+                <li><strong>Returns &amp; Exchanges</strong>: Hassle-free 30-day return policy and label generation</li>
+                <li><strong>Human Support</strong>: Instant routing to our team on Slack #customer-support</li>
+              </ul>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/75">How can I help you today?</div>
+          </div>
+        `;
+      } else {
+        return `
+          <div class="space-y-2">
+            <div>I want to make sure you get the exact assistance you need!</div>
+            <div class="p-2.5 rounded-lg bg-white border border-[#E8EAF0] text-[11px] space-y-1.5">
+              <div class="text-[#0A0F1E]/70">Could you clarify if your inquiry is regarding:</div>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <button onclick="setB2CScenario('order')" class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-medium text-[10px] border border-indigo-200">Track Order #ORD-77998</button>
+                <button onclick="setB2CScenario('products')" class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-medium text-[10px] border border-indigo-200">Browse Catalog &amp; Sizes</button>
+                <button onclick="setB2CScenario('escalate')" class="px-2 py-1 rounded bg-rose-50 text-rose-700 hover:bg-rose-100 font-medium text-[10px] border border-rose-200">Talk to Human Support</button>
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/60">You can also type your question with more details above.</div>
+          </div>
+        `;
+      }
     }
 
     async function sendB2CMessage() {
@@ -1010,23 +1312,15 @@
       chatHistory.scrollTop = chatHistory.scrollHeight;
       lucide.createIcons();
 
+      // Classify Intent accurately
+      const intentInfo = classifyB2CIntent(text);
+
       // Show Pipeline Progression
       pipelineBar.classList.remove('hidden');
-
-      // Determine intent
-      const lower = text.toLowerCase();
-      let intent = 'orders';
-      if (lower.includes('product') || lower.includes('best seller') || lower.includes('buy') || lower.includes('size')) {
-        intent = 'products';
-      } else if (lower.includes('human') || lower.includes('support') || lower.includes('agent') || lower.includes('help') || lower.includes('speak') || lower.includes('refund') || lower.includes('complaint')) {
-        intent = 'escalate';
-      }
-
-      // Step 1: Customer Profile Sync
       stepCount.innerText = "Step 1/3";
-      stepText.innerText = "Syncing customer profile from Shopify API...";
-      agentBadge.innerText = "Agent: Customer Ingestion";
-      agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
+      stepText.innerText = intentInfo.step1;
+      agentBadge.innerText = `Agent: ${intentInfo.agent}`;
+      agentBadge.className = `font-mono text-[11px] font-semibold ${intentInfo.badgeClass}`;
 
       // Fire real webhook in background
       try {
@@ -1039,6 +1333,7 @@
             customer_email: "johndoe@example.com",
             customer_phone: "+1-555-0199",
             operator: "dhananjay",
+            intent: intentInfo.intent,
             timestamp: new Date().toISOString()
           })
         }).catch(() => {});
@@ -1047,96 +1342,29 @@
       // Step 2 progression after 1100ms
       setTimeout(() => {
         stepCount.innerText = "Step 2/3";
-        if (intent === 'orders') {
-          stepText.innerText = "Routing to Orders Agent • Querying Shopify fulfillment API...";
-          agentBadge.innerText = "Agent: Orders Agent";
-          agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
-        } else if (intent === 'products') {
-          stepText.innerText = "Routing to Products Agent • Querying live inventory & sizes...";
-          agentBadge.innerText = "Agent: Products Agent";
-          agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
-        } else {
-          stepText.innerText = "Detecting escalation intent • Dispatching alert to Slack #customer-support...";
-          agentBadge.innerText = "Agent: Support Escalation (Slack)";
-          agentBadge.className = "font-mono text-[11px] font-semibold text-rose-600";
-        }
+        stepText.innerText = intentInfo.step2;
 
         // Step 3 output after 1200ms more (2300ms total realistic pipeline execution)
         setTimeout(() => {
           stepCount.innerText = "Step 3/3";
-          stepText.innerText = "Finalizing dispatch & message formatting...";
+          stepText.innerText = intentInfo.step3;
 
           // Append AI Bot Message Bubble
           const botBubble = document.createElement('div');
           botBubble.className = "flex items-start space-x-3 text-xs";
 
-          let botContent = '';
-          if (intent === 'orders') {
-            botContent = `
-              <div class="space-y-2">
-                <div>Hi John Doe, I've checked your order and it is currently <strong>in transit</strong>.</div>
-                <div class="p-2.5 rounded-lg bg-white border border-[#E8EAF0] flex items-center justify-between">
-                  <div class="space-y-0.5">
-                    <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Carrier Tracking</div>
-                    <a href="https://odrtrk.live/trk/77998495886" target="_blank" class="font-mono text-indigo-600 font-semibold hover:underline flex items-center space-x-1">
-                      <span>trk/77998495886</span>
-                      <i data-lucide="external-link" class="w-3 h-3"></i>
-                    </a>
-                  </div>
-                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">In Transit</span>
-                </div>
-                <div class="text-[11px] text-[#0A0F1E]/70">Thank you for your patience — your package is on the way!</div>
-              </div>
-            `;
-          } else if (intent === 'products') {
-            botContent = `
-              <div class="space-y-2">
-                <div>Here are our latest in-stock available pieces from the catalog:</div>
-                <div class="space-y-1.5 font-mono text-[11px] bg-white p-2.5 rounded-lg border border-[#E8EAF0]">
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-[#0A0F1E]">• NIKE CHRYSAOR (Best Seller)</span>
-                    <span class="text-emerald-600 font-semibold">XXXS (1), XXS (4), XS (2)</span>
-                  </div>
-                  <div class="flex items-center justify-between text-[#0A0F1E]/50">
-                    <span>• NIKE GOD OF LOVE (Best Seller)</span>
-                    <span class="text-rose-500 font-semibold">All sizes out of stock</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="font-bold text-[#0A0F1E]">• NIKE SOARING HIGH (Best Seller)</span>
-                    <span class="text-emerald-600 font-semibold">S (10), M (58), L (7), XL (12)</span>
-                  </div>
-                </div>
-                <div class="text-[11px] text-[#0A0F1E]/70">Would you like me to reserve a size for you?</div>
-              </div>
-            `;
-          } else {
-            botContent = `
-              <div class="space-y-2">
-                <div class="font-semibold text-rose-700 flex items-center space-x-1.5">
-                  <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600"></i>
-                  <span>Escalation Transferred to Live Support</span>
-                </div>
-                <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-[#0A0F1E]/80 space-y-1">
-                  <div class="text-[11px] font-medium">Dispatched customer inquiry &amp; order history to Slack channel:</div>
-                  <div class="font-mono text-xs font-bold text-rose-900 bg-white px-2 py-1 rounded border border-rose-200 inline-block">
-                    #customer-support
-                  </div>
-                  <div class="text-[10px] text-[#0A0F1E]/60 pt-1">Ticket ID: #ESC-8941 • Priority: High • Assigned Operator: dhananjay</div>
-                </div>
-                <div class="text-[11px] text-[#0A0F1E]/70">A live support specialist has received your complete profile and will follow up immediately.</div>
-              </div>
-            `;
-          }
+          const botContent = getB2CResponseHtml(intentInfo.intent);
+          const isEscalate = (intentInfo.agentType === 'escalate');
 
           botBubble.innerHTML = `
-            <div class="w-7 h-7 rounded-lg ${intent === 'escalate' ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-indigo-100 text-indigo-700 border border-indigo-200'} flex items-center justify-center flex-shrink-0 mt-0.5">
-              <i data-lucide="${intent === 'escalate' ? 'message-square' : 'bot'}" class="w-4 h-4"></i>
+            <div class="w-7 h-7 rounded-lg ${isEscalate ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-indigo-100 text-indigo-700 border border-indigo-200'} flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i data-lucide="${isEscalate ? 'message-square' : 'bot'}" class="w-4 h-4"></i>
             </div>
             <div class="space-y-1 max-w-[85%]">
               <div class="flex items-center space-x-2">
-                <span class="font-bold text-[#0A0F1E]">${intent === 'escalate' ? 'Slack Escalation Agent' : (intent === 'products' ? 'Products Agent' : 'Orders Agent')}</span>
+                <span class="font-bold text-[#0A0F1E]">${escapeHtml(intentInfo.agent)}</span>
                 <span class="text-[10px] text-[#0A0F1E]/40 font-mono">Just Now</span>
-                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold ${intent === 'escalate' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}">Verified</span>
+                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold ${isEscalate ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}">Verified</span>
               </div>
               <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3 rounded-xl rounded-tl-none text-[#0A0F1E]/85 leading-relaxed">
                 ${botContent}
