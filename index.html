@@ -600,19 +600,27 @@
             <span class="text-[11px] font-semibold text-[#0A0F1E]/60">Quick Scenarios:</span>
             <button onclick="setB2CScenario('order')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
               <i data-lucide="package" class="w-3.5 h-3.5"></i>
-              <span>Scenario 1: Where is my order?</span>
+              <span>Where is my order?</span>
+            </button>
+            <button onclick="setB2CScenario('order_cost')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
+              <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
+              <span>Cost of my order?</span>
             </button>
             <button onclick="setB2CScenario('products')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
               <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-              <span>Scenario 2: Best sellers products</span>
+              <span>Best sellers products</span>
+            </button>
+            <button onclick="setB2CScenario('buy_soaring')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition flex items-center space-x-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+              <span>Buy Nike Soaring High</span>
             </button>
             <button onclick="setB2CScenario('complaint')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
               <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
-              <span>Scenario 3: Negative/Damaged Issue</span>
+              <span>Negative/Damaged Item</span>
             </button>
             <button onclick="setB2CScenario('escalate')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
               <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
-              <span>Scenario 4: Escalate to Slack Support</span>
+              <span>Escalate to Slack Support</span>
             </button>
           </div>
 
@@ -967,8 +975,18 @@
       const input = document.getElementById('b2c-user-input');
       if (scenario === 'order') {
         input.value = "Where is my order?";
+      } else if (scenario === 'order_cost') {
+        input.value = "What is the cost of my order?";
       } else if (scenario === 'products') {
         input.value = "What are best sellers products";
+      } else if (scenario === 'buy_soaring') {
+        input.value = "I want to buy NIKE SOARING HIGH (Best Seller)";
+      } else if (scenario === 'checkout_soaring') {
+        input.value = "I want to buy NIKE SOARING HIGH (Size: L)";
+      } else if (scenario === 'checkout_chrysaor') {
+        input.value = "I want to buy NIKE CHRYSAOR (Size: XS)";
+      } else if (scenario === 'product_soaring') {
+        input.value = "Tell me about NIKE SOARING HIGH";
       } else if (scenario === 'complaint') {
         input.value = "My order arrived damaged and the shoe is torn! I want an immediate solution.";
       } else if (scenario === 'escalate') {
@@ -981,7 +999,7 @@
       const t = text.toLowerCase();
 
       // 1. Negative sentiment, damaged items, anger, complaints
-      const negativeWords = ['bad', 'worst', 'terrible', 'horrible', 'awful', 'poor', 'hate', 'angry', 'sucks', 'useless', 'pathetic', 'scam', 'cheat', 'fraud', 'fake', 'broken', 'damaged', 'torn', 'ripped', 'defect', 'faulty', 'wrong', 'missing', 'stolen', 'lost', 'never arrived', 'unacceptable', 'complaint', 'sue', 'legal', 'disappointed', 'upset', 'not happy', 'waste', 'pathetic', 'furious'];
+      const negativeWords = ['bad', 'worst', 'terrible', 'horrible', 'awful', 'poor', 'hate', 'angry', 'sucks', 'useless', 'pathetic', 'scam', 'cheat', 'fraud', 'fake', 'broken', 'damaged', 'torn', 'ripped', 'defect', 'faulty', 'wrong item', 'missing', 'stolen', 'lost', 'never arrived', 'unacceptable', 'complaint', 'sue', 'legal', 'disappointed', 'upset', 'not happy', 'waste', 'furious'];
       if (negativeWords.some(w => t.includes(w))) {
         return {
           intent: 'complaint',
@@ -1008,7 +1026,88 @@
         };
       }
 
-      // 3. Returns, refunds, money back & exchanges
+      // 3. Order Cost / Total / Price / Invoice / Billing of existing order
+      // E.g. "cost of my order", "how much was my order", "order total", "invoice", "receipt", "bill", "how much did i pay"
+      if ((t.includes('order') || t.includes('my purchase') || t.includes('bought')) &&
+          (t.includes('cost') || t.includes('price') || t.includes('total') || t.includes('how much') || t.includes('bill') || t.includes('invoice') || t.includes('receipt') || t.includes('paid') || t.includes('pay') || t.includes('amount') || t.includes('charge'))) {
+        return {
+          intent: 'order_cost',
+          agent: 'Billing & Invoice Concierge',
+          agentType: 'billing',
+          badgeClass: 'text-indigo-600',
+          step1: 'Accessing Shopify customer billing profile...',
+          step2: 'Retrieving invoice breakdown for order #ORD-77998...',
+          step3: 'Formatting payment & receipt card...'
+        };
+      }
+
+      // 4. Order Items / "What did I order?" / "What is in my order?"
+      if ((t.includes('order') || t.includes('package') || t.includes('box')) &&
+          (t.includes('what did') || t.includes('items') || t.includes('contain') || t.includes('which product') || t.includes('contents') || t.includes('what is in'))) {
+        return {
+          intent: 'order_items',
+          agent: 'Orders Agent',
+          agentType: 'orders',
+          badgeClass: 'text-indigo-600',
+          step1: 'Fetching line items from order #ORD-77998...',
+          step2: 'Syncing product SKU and fulfillment details...',
+          step3: 'Formatting order contents summary...'
+        };
+      }
+
+      // 5. Specific Product: "NIKE SOARING HIGH" (or buying it)
+      if (t.includes('soaring high') || t.includes('soaring')) {
+        return {
+          intent: 'product_soaring_high',
+          agent: 'Products Agent',
+          agentType: 'products',
+          badgeClass: 'text-indigo-600',
+          step1: 'Querying Shopify SKU for NIKE SOARING HIGH...',
+          step2: 'Checking live warehouse inventory & sizes...',
+          step3: 'Generating instant checkout & sizing card...'
+        };
+      }
+
+      // 6. Specific Product: "NIKE CHRYSAOR" (or buying it)
+      if (t.includes('chrysaor')) {
+        return {
+          intent: 'product_chrysaor',
+          agent: 'Products Agent',
+          agentType: 'products',
+          badgeClass: 'text-indigo-600',
+          step1: 'Querying Shopify SKU for NIKE CHRYSAOR...',
+          step2: 'Verifying available sizes XXXS, XXS, XS...',
+          step3: 'Generating checkout recommendation...'
+        };
+      }
+
+      // 7. Specific Product: "NIKE GOD OF LOVE" (or buying it)
+      if (t.includes('god of love')) {
+        return {
+          intent: 'product_god_of_love',
+          agent: 'Products Agent',
+          agentType: 'products',
+          badgeClass: 'text-indigo-600',
+          step1: 'Checking stock for NIKE GOD OF LOVE...',
+          step2: 'Detecting zero inventory across all variants...',
+          step3: 'Fetching restock ETA & alternative recommendations...'
+        };
+      }
+
+      // 8. General Buy / Checkout intent (e.g. "I want to buy", "add to cart", "purchase", "how to buy")
+      if (t.includes('want to buy') || t.includes('buy') || t.includes('purchase') || t.includes('add to cart') || t.includes('checkout') || t.includes('order one')) {
+        return {
+          intent: 'checkout_flow',
+          agent: 'Sales & Checkout Concierge',
+          agentType: 'sales',
+          badgeClass: 'text-emerald-600',
+          step1: 'Initializing shopping cart concierge...',
+          step2: 'Preparing 1-click Shopify checkout flow...',
+          step3: 'Generating size and reservation options...'
+        };
+      }
+
+      // 9. Returns, refunds, money back & exchanges
       const returnWords = ['refund', 'return', 'exchange', 'replace', 'money back', 'send back', 'swap', 'return label', 'how to return'];
       if (returnWords.some(w => t.includes(w))) {
         return {
@@ -1022,8 +1121,8 @@
         };
       }
 
-      // 4. Cancellations & order modifications / address changes
-      const cancelWords = ['cancel', 'cancellation', 'change address', 'wrong address', 'update address', 'modify', 'stop shipment', 'change size'];
+      // 10. Cancellations & order modifications / address changes
+      const cancelWords = ['cancel', 'cancellation', 'change address', 'wrong address', 'update address', 'modify', 'stop shipment'];
       if (cancelWords.some(w => t.includes(w))) {
         return {
           intent: 'cancellation',
@@ -1036,8 +1135,22 @@
         };
       }
 
-      // 5. Products, inventory, catalog, sizes & recommendations
-      const productWords = ['product', 'products', 'best seller', 'shoe', 'shoes', 'sneaker', 'sneakers', 'catalog', 'recommend', 'price', 'pricing', 'cost', 'size', 'sizes', 'stock', 'available', 'discount', 'coupon', 'offer', 'inventory', 'buy', 'shop', 'collection'];
+      // 11. Discounts, coupons & promo codes
+      const discountWords = ['discount', 'coupon', 'promo', 'code', 'offer', 'voucher', 'deal'];
+      if (discountWords.some(w => t.includes(w))) {
+        return {
+          intent: 'promotions',
+          agent: 'Promotions & Loyalty Concierge',
+          agentType: 'promotions',
+          badgeClass: 'text-indigo-600',
+          step1: 'Checking active Shopify discount rules...',
+          step2: 'Minting personalized welcome token...',
+          step3: 'Applying promotion to session...'
+        };
+      }
+
+      // 12. General Products & Best Sellers Catalog
+      const productWords = ['product', 'products', 'best seller', 'best sellers', 'shoe', 'shoes', 'sneaker', 'sneakers', 'catalog', 'recommend', 'collection', 'inventory', 'what do you sell'];
       if (productWords.some(w => t.includes(w))) {
         return {
           intent: 'products',
@@ -1050,8 +1163,8 @@
         };
       }
 
-      // 6. Shipping & delivery policies / coverage
-      const shippingWords = ['how long', 'shipping time', 'delivery time', 'deliver to', 'international', 'shipping cost', 'shipping fee', 'express', 'courier', 'how fast'];
+      // 13. Shipping & delivery policies / coverage
+      const shippingWords = ['shipping time', 'delivery time', 'deliver to', 'international shipping', 'shipping cost', 'shipping fee', 'express shipping', 'courier'];
       if (shippingWords.some(w => t.includes(w))) {
         return {
           intent: 'shipping',
@@ -1064,8 +1177,8 @@
         };
       }
 
-      // 7. Order tracking, delivery status & courier ETA
-      const orderWords = ['where is my order', 'track', 'status', 'shipped', 'in transit', 'package', 'parcel', 'delivery', 'eta', 'delayed', 'arrive', 'when will', 'order', 'orders'];
+      // 14. Order tracking, delivery status & courier ETA
+      const orderWords = ['where is my order', 'track', 'status', 'shipped', 'in transit', 'delivery', 'eta', 'delayed', 'arrive', 'when will my order', 'order', 'orders'];
       if (orderWords.some(w => t.includes(w))) {
         return {
           intent: 'orders',
@@ -1078,7 +1191,7 @@
         };
       }
 
-      // 8. Greetings & small talk
+      // 15. Greetings & small talk
       const greetingWords = ['hi', 'hello', 'hey', 'good morning', 'good afternoon', 'good evening', 'greetings', 'sup', 'yo', 'who are you', 'what can you do', 'help', 'start'];
       if (greetingWords.some(w => t.includes(w))) {
         return {
@@ -1092,7 +1205,7 @@
         };
       }
 
-      // 9. Fallback / general clarification
+      // 16. Fallback
       return {
         intent: 'fallback',
         agent: 'Shopify Concierge AI',
@@ -1105,7 +1218,206 @@
     }
 
     function getB2CResponseHtml(intent) {
-      if (intent === 'complaint') {
+      if (intent === 'order_cost') {
+        return `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#0A0F1E]">Invoice Breakdown: Order #ORD-77998</span>
+              <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Paid in Full</span>
+            </div>
+            <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] text-xs space-y-1.5 font-mono">
+              <div class="flex items-center justify-between text-[#0A0F1E]/80">
+                <span>1x NIKE SOARING HIGH (Size: L)</span>
+                <span>Rs. 11,290</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0A0F1E]/60 text-[11px]">
+                <span>Express Air Shipping</span>
+                <span class="text-emerald-600 font-bold">FREE</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0A0F1E]/60 text-[11px]">
+                <span>GST (18% Included)</span>
+                <span>Rs. 1,722</span>
+              </div>
+              <div class="pt-2 border-t border-[#E8EAF0] flex items-center justify-between font-bold text-sm text-[#0A0F1E]">
+                <span>Total Paid:</span>
+                <span class="text-indigo-600">Rs. 11,290</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/70 flex items-center justify-between pt-0.5">
+              <span>Payment Method: Visa ending in <strong>4242</strong></span>
+              <a href="#" onclick="alert('Downloading Official Tax Invoice #INV-77998.pdf'); return false;" class="text-indigo-600 hover:underline font-medium text-[11px] flex items-center space-x-1">
+                <i data-lucide="download" class="w-3 h-3"></i>
+                <span>Tax Invoice PDF</span>
+              </a>
+            </div>
+          </div>
+        `;
+      } else if (intent === 'order_items') {
+        return `
+          <div class="space-y-2">
+            <div class="font-bold text-[#0A0F1E]">Items in Order #ORD-77998:</div>
+            <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] text-xs space-y-2">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 font-bold flex-shrink-0">
+                  <i data-lucide="package" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1 space-y-0.5">
+                  <div class="font-bold text-[#0A0F1E]">NIKE SOARING HIGH (Best Seller)</div>
+                  <div class="text-[11px] text-[#0A0F1E]/60">Qty: 1 • Size: L (UK 9 / US 10) • Color: Phantom White</div>
+                </div>
+                <div class="font-mono font-bold text-indigo-600">Rs. 11,290</div>
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/70">
+              Carrier: <strong>BlueDart Express</strong> • Status: <strong>In Transit</strong> (Delivery Tomorrow by 4:00 PM).
+            </div>
+          </div>
+        `;
+      } else if (intent === 'product_soaring_high') {
+        return `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#0A0F1E]">NIKE SOARING HIGH (Best Seller)</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">In Stock</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              Engineered with responsive Zoom Air cushioning and ultra-breathable Flyknit mesh. One of our top-rated sneakers this season.
+            </p>
+            <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] space-y-2 text-xs">
+              <div class="flex items-center justify-between font-mono">
+                <span class="text-[#0A0F1E]/60 text-[11px]">Price:</span>
+                <span class="text-base font-bold text-[#0A0F1E]">Rs. 11,290</span>
+              </div>
+              <div class="space-y-1">
+                <div class="text-[11px] text-[#0A0F1E]/60 font-semibold">Available Sizes (Live Warehouse Stock):</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-1 rounded bg-[#F8F9FC] border border-[#E8EAF0] font-mono font-bold text-[11px] text-[#0A0F1E]">S (10 left)</span>
+                  <span class="px-2 py-1 rounded bg-[#F8F9FC] border border-[#E8EAF0] font-mono font-bold text-[11px] text-[#0A0F1E]">M (58 left)</span>
+                  <span class="px-2 py-1 rounded bg-indigo-50 border border-indigo-200 font-mono font-bold text-[11px] text-indigo-700">L (7 left - Recommended)</span>
+                  <span class="px-2 py-1 rounded bg-[#F8F9FC] border border-[#E8EAF0] font-mono font-bold text-[11px] text-[#0A0F1E]">XL (12 left)</span>
+                </div>
+              </div>
+            </div>
+            <div class="pt-1 flex flex-col sm:flex-row items-center gap-2">
+              <button onclick="setB2CScenario('checkout_soaring')" class="w-full sm:w-auto px-4 py-2 rounded-lg font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5 fill-current"></i>
+                <span>1-Click Checkout (Rs. 11,290)</span>
+              </button>
+              <span class="text-[10px] text-[#0A0F1E]/50">Includes Free Express Delivery &amp; 30-Day Returns</span>
+            </div>
+          </div>
+        `;
+      } else if (intent === 'product_chrysaor') {
+        return `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#0A0F1E]">NIKE CHRYSAOR (Best Seller)</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">Limited Stock</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              Lightweight daily trainer featuring sculpted dual-density foam and durable waffle rubber traction.
+            </p>
+            <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] space-y-2 text-xs">
+              <div class="flex items-center justify-between font-mono">
+                <span class="text-[#0A0F1E]/60 text-[11px]">Price:</span>
+                <span class="text-base font-bold text-[#0A0F1E]">Rs. 8,490</span>
+              </div>
+              <div class="space-y-1">
+                <div class="text-[11px] text-[#0A0F1E]/60 font-semibold">Available Sizes:</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-1 rounded bg-amber-50 border border-amber-200 font-mono font-bold text-[11px] text-amber-800">XXXS (1 left)</span>
+                  <span class="px-2 py-1 rounded bg-[#F8F9FC] border border-[#E8EAF0] font-mono font-bold text-[11px] text-[#0A0F1E]">XXS (4 left)</span>
+                  <span class="px-2 py-1 rounded bg-[#F8F9FC] border border-[#E8EAF0] font-mono font-bold text-[11px] text-[#0A0F1E]">XS (2 left)</span>
+                </div>
+              </div>
+            </div>
+            <div class="pt-1 flex items-center space-x-2">
+              <button onclick="setB2CScenario('checkout_chrysaor')" class="px-4 py-2 rounded-lg font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+                <span>Order Size XS (Rs. 8,490)</span>
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (intent === 'product_god_of_love') {
+        return `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#0A0F1E]">NIKE GOD OF LOVE (Limited Edition)</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">Sold Out</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              Due to high seasonal demand, <strong>NIKE GOD OF LOVE</strong> is currently out of stock across all sizes.
+            </p>
+            <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] space-y-1.5 text-xs">
+              <div class="text-[11px] text-[#0A0F1E]/70">
+                • Next Restock Scheduled: <strong>Friday, 10:00 AM IST</strong>
+              </div>
+              <div class="text-[11px] text-[#0A0F1E]/70">
+                • Similar in-stock alternative: <strong>NIKE SOARING HIGH</strong> (In stock in sizes S, M, L, XL at Rs. 11,290).
+              </div>
+            </div>
+            <div class="pt-1 flex items-center space-x-2">
+              <button onclick="setB2CScenario('product_soaring');" class="px-3.5 py-1.5 rounded-lg font-bold text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition">
+                View NIKE SOARING HIGH
+              </button>
+              <button onclick="alert('You are subscribed! We will alert you on WhatsApp as soon as NIKE GOD OF LOVE is restocked.');" class="px-3.5 py-1.5 rounded-lg font-semibold text-xs text-[#0A0F1E]/70 hover:text-[#0A0F1E] border border-[#E8EAF0] transition">
+                Notify Me on Restock
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (intent === 'checkout_flow') {
+        return `
+          <div class="space-y-2">
+            <div class="font-bold text-[#0A0F1E]">Instant Checkout Concierge:</div>
+            <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
+              I can generate a pre-filled 1-click checkout cart with your customer profile and complimentary express delivery applied. Which piece would you like?
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div class="p-3 bg-white rounded-xl border border-[#E8EAF0] space-y-1.5">
+                <div class="font-bold text-[#0A0F1E]">NIKE SOARING HIGH</div>
+                <div class="font-mono text-indigo-600 font-bold text-xs">Rs. 11,290</div>
+                <div class="text-[10px] text-[#0A0F1E]/60">Sizes S, M, L, XL in stock</div>
+                <button onclick="setB2CScenario('checkout_soaring')" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[11px] transition">
+                  Checkout Soaring High
+                </button>
+              </div>
+              <div class="p-3 bg-white rounded-xl border border-[#E8EAF0] space-y-1.5">
+                <div class="font-bold text-[#0A0F1E]">NIKE CHRYSAOR</div>
+                <div class="font-mono text-indigo-600 font-bold text-xs">Rs. 8,490</div>
+                <div class="text-[10px] text-[#0A0F1E]/60">Sizes XXXS, XXS, XS in stock</div>
+                <button onclick="setB2CScenario('checkout_chrysaor')" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-[11px] border border-indigo-200 transition">
+                  Checkout Chrysaor
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (intent === 'promotions') {
+        return `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[#0A0F1E]">Exclusive Member Offer</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">Active Coupon</span>
+            </div>
+            <div class="bg-indigo-50/50 p-3 rounded-xl border border-indigo-200 space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-mono font-extrabold text-sm text-indigo-700 bg-white px-2.5 py-1 rounded border border-indigo-200 tracking-wider">
+                  ENLIGHT10
+                </span>
+                <span class="text-xs font-bold text-emerald-700">10% Off Entire Store</span>
+              </div>
+              <div class="text-[11px] text-[#0A0F1E]/70">
+                Valid on all in-stock sneakers and apparel. Automatically applied at checkout!
+              </div>
+            </div>
+            <div class="text-[11px] text-[#0A0F1E]/60">
+              Example: <strong>NIKE SOARING HIGH</strong> drops from Rs. 11,290 to <strong>Rs. 10,161</strong> with code ENLIGHT10.
+            </div>
+          </div>
+        `;
+      } else if (intent === 'complaint') {
         return `
           <div class="space-y-2">
             <div class="font-semibold text-rose-700 flex items-center space-x-1.5">
@@ -1184,21 +1496,32 @@
         return `
           <div class="space-y-2">
             <div>Here are our latest in-stock available pieces from the Shopify catalog:</div>
-            <div class="space-y-1.5 font-mono text-[11px] bg-white p-2.5 rounded-lg border border-[#E8EAF0]">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-[#0A0F1E]">• NIKE CHRYSAOR (Best Seller)</span>
-                <span class="text-emerald-600 font-semibold">XXXS (1), XXS (4), XS (2)</span>
+            <div class="space-y-2 bg-white p-3 rounded-xl border border-[#E8EAF0] text-xs">
+              <div class="p-2 rounded-lg bg-[#F8F9FC] border border-[#E8EAF0] flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-[#0A0F1E]">• NIKE CHRYSAOR (Best Seller)</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">Sizes: XXXS (1), XXS (4), XS (2)</div>
+                </div>
+                <div class="font-mono font-bold text-[#0A0F1E] text-xs">Rs. 8,490</div>
               </div>
-              <div class="flex items-center justify-between text-[#0A0F1E]/50">
-                <span>• NIKE GOD OF LOVE (Best Seller)</span>
-                <span class="text-rose-500 font-semibold">All sizes out of stock</span>
+              <div class="p-2 rounded-lg bg-[#F8F9FC] border border-[#E8EAF0] flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-[#0A0F1E]">• NIKE SOARING HIGH (Best Seller)</div>
+                  <div class="text-[11px] text-emerald-600 font-semibold mt-0.5">Sizes: S (10), M (58), L (7), XL (12)</div>
+                </div>
+                <div class="font-mono font-bold text-[#0A0F1E] text-xs">Rs. 11,290</div>
               </div>
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-[#0A0F1E]">• NIKE SOARING HIGH (Best Seller)</span>
-                <span class="text-emerald-600 font-semibold">S (10), M (58), L (7), XL (12)</span>
+              <div class="p-2 rounded-lg bg-[#F8F9FC] border border-[#E8EAF0] flex items-center justify-between opacity-60">
+                <div>
+                  <div class="font-bold text-[#0A0F1E]">• NIKE GOD OF LOVE (Best Seller)</div>
+                  <div class="text-[11px] text-rose-500 font-semibold mt-0.5">All sizes currently out of stock</div>
+                </div>
+                <div class="font-mono font-bold text-[#0A0F1E]/50 text-xs">Sold Out</div>
               </div>
             </div>
-            <div class="text-[11px] text-[#0A0F1E]/70">All pieces qualify for complimentary express delivery. Which size can I reserve for you?</div>
+            <div class="text-[11px] text-[#0A0F1E]/70">
+              All pieces qualify for complimentary express delivery. You can type <em>"I want to buy Nike Soaring High"</em> to place an order.
+            </div>
           </div>
         `;
       } else if (intent === 'shipping') {
@@ -1247,8 +1570,9 @@
               I can assist you with:
               <ul class="list-disc list-inside mt-1 space-y-0.5 text-[11px] text-[#0A0F1E]/70">
                 <li><strong>Live Order Tracking</strong>: Real-time courier tracking for #ORD-77998</li>
-                <li><strong>Catalog &amp; Sizing</strong>: Stock availability, best sellers, and recommendations</li>
-                <li><strong>Returns &amp; Exchanges</strong>: Hassle-free 30-day return policy and label generation</li>
+                <li><strong>Order Invoice &amp; Cost</strong>: Itemized totals and tax receipts</li>
+                <li><strong>Catalog &amp; Sizing</strong>: Stock availability, best sellers, and 1-click checkout</li>
+                <li><strong>Returns &amp; Exchanges</strong>: Hassle-free 30-day return policy</li>
                 <li><strong>Human Support</strong>: Instant routing to our team on Slack #customer-support</li>
               </ul>
             </div>
@@ -1263,6 +1587,7 @@
               <div class="text-[#0A0F1E]/70">Could you clarify if your inquiry is regarding:</div>
               <div class="flex flex-wrap gap-1.5 pt-1">
                 <button onclick="setB2CScenario('order')" class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-medium text-[10px] border border-indigo-200">Track Order #ORD-77998</button>
+                <button onclick="setB2CScenario('order_cost')" class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-medium text-[10px] border border-indigo-200">Cost of Order #ORD-77998</button>
                 <button onclick="setB2CScenario('products')" class="px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-medium text-[10px] border border-indigo-200">Browse Catalog &amp; Sizes</button>
                 <button onclick="setB2CScenario('escalate')" class="px-2 py-1 rounded bg-rose-50 text-rose-700 hover:bg-rose-100 font-medium text-[10px] border border-rose-200">Talk to Human Support</button>
               </div>
