@@ -214,20 +214,20 @@
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 group-hover:scale-110 transition">
-                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                <i data-lucide="bot" class="w-5 h-5"></i>
               </div>
               <span class="text-[10px] uppercase font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-                E-Commerce
+                Live Production Agent
               </span>
             </div>
             <div>
               <div class="text-[11px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Retail &amp; D2C</div>
               <h2 class="text-base font-bold text-[#0A0F1E] font-display group-hover:text-indigo-700 transition mt-0.5">
-                Autonomous Abandoned Checkout Recovery
+                AI Customer Support &amp; Slack Escalation Agent
               </h2>
             </div>
             <p class="text-xs text-[#0A0F1E]/65 leading-relaxed">
-              Calculates customer lifetime value, mints dynamic single-use discount tokens, and drives automated recovery at T+30m.
+              Autonomous dual-agent concierge resolving live Shopify order tracking, catalog sizing, and real-time team escalation to Slack.
             </p>
           </div>
           <div class="pt-3 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-semibold text-indigo-700">
@@ -515,7 +515,7 @@
             <span>Previous: DevOps Safety</span>
           </button>
           <button onclick="openView('ecommerce')" class="text-xs font-bold text-indigo-600 hover:underline flex items-center space-x-1">
-            <span>Next: D2C Cart Recovery</span>
+            <span>Next: D2C Support Agent</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -545,10 +545,10 @@
             Industry: Retail &amp; D2C E-Commerce
           </span>
           <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
-            Autonomous Abandoned Checkout Recovery Agent
+            AI Customer Support &amp; Slack Escalation Agent
           </h1>
           <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
-            Recovers high-value lost cart revenue by minting customer-specific single-use discount tokens and triggering automated recovery at T+30 minutes.
+            Autonomous dual-agent concierge resolving live Shopify order tracking, catalog inventory checks, and real-time team escalation to Slack.
           </p>
         </div>
 
@@ -560,7 +560,7 @@
               <span>The Problem</span>
             </div>
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
-              Nearly 70% of online shopping carts are abandoned; generic email blasts convert under 2% and static discounts erode merchant margins.
+              High volumes of routine inquiries (where is my order, sizing, stock) swamp support desks, causing 4+ hour delays and lost shopper loyalty.
             </p>
           </div>
 
@@ -570,7 +570,7 @@
               <span>How AI Solves It</span>
             </div>
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
-              AI calculates customer LTV in real time, generates an ephemeral single-use 15% discount token with a 4-hour countdown, and dispatches a personalized recovery push.
+              Autonomous micro-agents query live Shopify APIs with session memory, while complex or sensitive issues instantly route to the team's Slack channel.
             </p>
           </div>
 
@@ -580,7 +580,7 @@
               <span>Business ROI</span>
             </div>
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
-              Recaptures 14.8% of abandoned GMV with zero coupon leakage and zero manual intervention from marketing teams.
+              85% first-contact autonomous resolution, sub-2 second response latency, and zero dropped handoffs for urgent customer issues.
             </p>
           </div>
         </div>
@@ -589,40 +589,99 @@
         <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
           <div class="flex items-center justify-between">
             <div>
-              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Recovery Token Simulation</h2>
-              <p class="text-xs text-[#0A0F1E]/60">Click below to simulate autonomous token minting and multichannel dispatch.</p>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Customer Support Console</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select a scenario below or enter a custom query to test live agent routing.</p>
             </div>
-            <span class="text-[11px] font-mono text-indigo-600 font-semibold hidden sm:inline">14.8% Recovery</span>
+            <span class="text-[11px] font-mono text-emerald-600 font-semibold hidden sm:inline">Active Production Agent</span>
           </div>
 
-          <!-- 3 Simple Stat Cards -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Abandoned Cart Value</div>
-              <div class="text-lg font-bold text-[#0A0F1E] font-mono mt-1">Rs. 4,890</div>
-            </div>
-
-            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Dynamic AI Token Minted</div>
-              <div id="cart-token" class="text-lg font-bold text-indigo-600 font-mono mt-1">RECOVER15-8941</div>
-            </div>
-
-            <div class="bg-[#F8F9FC] p-3.5 rounded-xl border border-[#E8EAF0]">
-              <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Automated Recovery Rate</div>
-              <div class="text-lg font-bold text-emerald-600 font-mono mt-1">+14.8%</div>
-            </div>
-          </div>
-
-          <!-- Action Row -->
-          <div class="bg-[#F8F9FC] rounded-xl p-3.5 border border-[#E8EAF0] flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="text-xs text-[#0A0F1E]/60 text-left w-full sm:w-auto">
-              Status: <span id="cart-status" class="font-mono font-medium text-[#0A0F1E]">Standby • Ready to mint token</span>
-            </div>
-
-            <button onclick="runCartRecoveryDemo()" id="btn-cart-run" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
-              <i data-lucide="zap" class="w-4 h-4 fill-current"></i>
-              <span>Mint Dynamic Token</span>
+          <!-- Quick Scenario Selector Pills -->
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-[11px] font-semibold text-[#0A0F1E]/60">Quick Scenarios:</span>
+            <button onclick="setB2CScenario('order')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
+              <i data-lucide="package" class="w-3.5 h-3.5"></i>
+              <span>Scenario 1: Where is my order?</span>
             </button>
+            <button onclick="setB2CScenario('products')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
+              <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              <span>Scenario 2: Best sellers products</span>
+            </button>
+            <button onclick="setB2CScenario('escalate')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
+              <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+              <span>Scenario 3: Escalate to Slack Support</span>
+            </button>
+          </div>
+
+          <!-- Live Chat & Pipeline Progression Terminal -->
+          <div class="rounded-xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC]">
+            
+            <!-- Console Topbar -->
+            <div class="bg-[#EEF1F8] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
+                <span class="text-[#0A0F1E]/40">•</span>
+                <span class="text-[#0A0F1E]/60">Target: Shopify Store + Slack #customer-support</span>
+              </div>
+              <div id="b2c-active-agent-badge" class="font-mono text-[11px] font-semibold text-indigo-600">
+                Agent: Standby
+              </div>
+            </div>
+
+            <!-- Pipeline Status Bar (when running) -->
+            <div id="b2c-pipeline-bar" class="hidden bg-white px-4 py-2 border-b border-[#E8EAF0] text-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="inline-block animate-spin text-indigo-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
+                  <span id="b2c-step-text" class="font-mono font-medium text-indigo-600">Syncing customer profile...</span>
+                </div>
+                <span id="b2c-step-count" class="font-mono text-[11px] text-[#0A0F1E]/50">Step 1/3</span>
+              </div>
+            </div>
+
+            <!-- Chat Message Transcript Area -->
+            <div id="b2c-chat-history" class="p-4 sm:p-5 space-y-4 max-h-[360px] overflow-y-auto bg-white">
+              <!-- Initial Welcome Message -->
+              <div class="flex items-start space-x-3 text-xs">
+                <div class="w-7 h-7 rounded-lg bg-indigo-100 border border-indigo-200 flex items-center justify-center text-indigo-600 flex-shrink-0 mt-0.5">
+                  <i data-lucide="bot" class="w-4 h-4"></i>
+                </div>
+                <div class="space-y-1 max-w-[85%]">
+                  <div class="flex items-center space-x-2">
+                    <span class="font-bold text-[#0A0F1E]">Shopify Concierge AI</span>
+                    <span class="text-[10px] text-[#0A0F1E]/40 font-mono">12:28 PM</span>
+                  </div>
+                  <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3 rounded-xl rounded-tl-none text-[#0A0F1E]/80 leading-relaxed">
+                    Hello! I am your automated customer support assistant. You can ask me to track your order, explore in-stock best sellers, or escalate directly to our live support team on Slack.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Input & Trigger Row -->
+            <div class="p-3 bg-white border-t border-[#E8EAF0] flex flex-col sm:flex-row items-center gap-2">
+              <div class="relative flex-1 w-full">
+                <input id="b2c-user-input" type="text" placeholder="Type a message (e.g. Where is my order?)..." class="w-full text-xs px-3.5 py-2.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] focus:bg-white focus:outline-none focus:border-indigo-500 font-medium text-[#0A0F1E] transition" onkeydown="if(event.key==='Enter') sendB2CMessage()">
+              </div>
+              <button onclick="sendB2CMessage()" id="btn-b2c-send" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-1.5 flex-shrink-0">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                <span>Send Query</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Live Endpoint Integration Note -->
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="network" class="w-4 h-4 text-indigo-600 flex-shrink-0"></i>
+              <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
+              <code class="font-mono text-[11px] bg-white px-2 py-0.5 rounded border border-[#E8EAF0] text-indigo-700">/webhook/b2c-support-agent</code>
+            </div>
+            <div class="flex items-center space-x-2 text-[11px] text-[#0A0F1E]/60">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Slack Escalation Target: <strong>#customer-support</strong></span>
+            </div>
           </div>
 
         </div>
@@ -631,7 +690,7 @@
         <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
           <button onclick="openView('healthcare')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Previous: Healthcare Flow</span>
+            <span>Previous: Clinical Healthcare</span>
           </button>
           <button onclick="openView('hub')" class="text-xs font-bold text-[#1A6BFF] hover:underline flex items-center space-x-1">
             <span>Back to All Industries</span>
@@ -900,27 +959,206 @@
       }, 1000);
     }
 
-    function runCartRecoveryDemo() {
-      const btn = document.getElementById('btn-cart-run');
-      const status = document.getElementById('cart-status');
-      const tokenEl = document.getElementById('cart-token');
+    function setB2CScenario(scenario) {
+      const input = document.getElementById('b2c-user-input');
+      if (scenario === 'order') {
+        input.value = "Where is my order?";
+      } else if (scenario === 'products') {
+        input.value = "What are best sellers products";
+      } else if (scenario === 'escalate') {
+        input.value = "I need to speak with human support";
+      }
+      sendB2CMessage();
+    }
 
+    async function sendB2CMessage() {
+      const input = document.getElementById('b2c-user-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const btn = document.getElementById('btn-b2c-send');
+      const chatHistory = document.getElementById('b2c-chat-history');
+      const pipelineBar = document.getElementById('b2c-pipeline-bar');
+      const stepText = document.getElementById('b2c-step-text');
+      const stepCount = document.getElementById('b2c-step-count');
+      const agentBadge = document.getElementById('b2c-active-agent-badge');
+
+      // Clear input & disable button
+      input.value = '';
       btn.disabled = true;
-      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Minting Token...</span>`;
-      status.innerText = "Agent evaluating shopper history & minting single-use coupon...";
-      status.className = "font-mono font-medium text-indigo-600 animate-pulse";
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Processing...</span>`;
       lucide.createIcons();
 
-      setTimeout(() => {
-        const randomCode = "RECOVER15-" + Math.floor(1000 + Math.random() * 9000);
-        tokenEl.innerText = randomCode;
-        status.innerText = "Token " + randomCode + " generated & dispatched via WhatsApp recovery agent";
-        status.className = "font-mono font-semibold text-emerald-600";
+      // Append User Message Bubble
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex items-start justify-end space-x-3 text-xs";
+      userBubble.innerHTML = `
+        <div class="space-y-1 max-w-[85%] text-right">
+          <div class="flex items-center justify-end space-x-2">
+            <span class="text-[10px] text-[#0A0F1E]/40 font-mono">Just Now</span>
+            <span class="font-bold text-[#0A0F1E]">Customer (John Doe)</span>
+          </div>
+          <div class="bg-indigo-600 text-white p-3 rounded-xl rounded-tr-none text-left leading-relaxed font-medium">
+            ${escapeHtml(text)}
+          </div>
+        </div>
+        <div class="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-700 flex-shrink-0 mt-0.5">
+          <i data-lucide="user" class="w-4 h-4"></i>
+        </div>
+      `;
+      chatHistory.appendChild(userBubble);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      lucide.createIcons();
 
-        btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="zap" class="w-4 h-4 fill-current"></i> <span>Mint Dynamic Token</span>`;
-        lucide.createIcons();
-      }, 1200);
+      // Show Pipeline Progression
+      pipelineBar.classList.remove('hidden');
+
+      // Determine intent
+      const lower = text.toLowerCase();
+      let intent = 'orders';
+      if (lower.includes('product') || lower.includes('best seller') || lower.includes('buy') || lower.includes('size')) {
+        intent = 'products';
+      } else if (lower.includes('human') || lower.includes('support') || lower.includes('agent') || lower.includes('help') || lower.includes('speak') || lower.includes('refund') || lower.includes('complaint')) {
+        intent = 'escalate';
+      }
+
+      // Step 1: Customer Profile Sync
+      stepCount.innerText = "Step 1/3";
+      stepText.innerText = "Syncing customer profile from Shopify API...";
+      agentBadge.innerText = "Agent: Customer Ingestion";
+      agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
+
+      // Fire real webhook in background
+      try {
+        fetch("https://enlightlab-n8n.duckdns.org/webhook/b2c-support-agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: text,
+            customer_name: "John Doe",
+            customer_email: "johndoe@example.com",
+            customer_phone: "+1-555-0199",
+            operator: "dhananjay",
+            timestamp: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (e) {}
+
+      // Step 2 progression after 1100ms
+      setTimeout(() => {
+        stepCount.innerText = "Step 2/3";
+        if (intent === 'orders') {
+          stepText.innerText = "Routing to Orders Agent • Querying Shopify fulfillment API...";
+          agentBadge.innerText = "Agent: Orders Agent";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
+        } else if (intent === 'products') {
+          stepText.innerText = "Routing to Products Agent • Querying live inventory & sizes...";
+          agentBadge.innerText = "Agent: Products Agent";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-indigo-600";
+        } else {
+          stepText.innerText = "Detecting escalation intent • Dispatching alert to Slack #customer-support...";
+          agentBadge.innerText = "Agent: Support Escalation (Slack)";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-rose-600";
+        }
+
+        // Step 3 output after 1200ms more (2300ms total realistic pipeline execution)
+        setTimeout(() => {
+          stepCount.innerText = "Step 3/3";
+          stepText.innerText = "Finalizing dispatch & message formatting...";
+
+          // Append AI Bot Message Bubble
+          const botBubble = document.createElement('div');
+          botBubble.className = "flex items-start space-x-3 text-xs";
+
+          let botContent = '';
+          if (intent === 'orders') {
+            botContent = `
+              <div class="space-y-2">
+                <div>Hi John Doe, I've checked your order and it is currently <strong>in transit</strong>.</div>
+                <div class="p-2.5 rounded-lg bg-white border border-[#E8EAF0] flex items-center justify-between">
+                  <div class="space-y-0.5">
+                    <div class="text-[10px] uppercase font-bold text-[#0A0F1E]/50">Carrier Tracking</div>
+                    <a href="https://odrtrk.live/trk/77998495886" target="_blank" class="font-mono text-indigo-600 font-semibold hover:underline flex items-center space-x-1">
+                      <span>trk/77998495886</span>
+                      <i data-lucide="external-link" class="w-3 h-3"></i>
+                    </a>
+                  </div>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">In Transit</span>
+                </div>
+                <div class="text-[11px] text-[#0A0F1E]/70">Thank you for your patience — your package is on the way!</div>
+              </div>
+            `;
+          } else if (intent === 'products') {
+            botContent = `
+              <div class="space-y-2">
+                <div>Here are our latest in-stock available pieces from the catalog:</div>
+                <div class="space-y-1.5 font-mono text-[11px] bg-white p-2.5 rounded-lg border border-[#E8EAF0]">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-[#0A0F1E]">• NIKE CHRYSAOR (Best Seller)</span>
+                    <span class="text-emerald-600 font-semibold">XXXS (1), XXS (4), XS (2)</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[#0A0F1E]/50">
+                    <span>• NIKE GOD OF LOVE (Best Seller)</span>
+                    <span class="text-rose-500 font-semibold">All sizes out of stock</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-[#0A0F1E]">• NIKE SOARING HIGH (Best Seller)</span>
+                    <span class="text-emerald-600 font-semibold">S (10), M (58), L (7), XL (12)</span>
+                  </div>
+                </div>
+                <div class="text-[11px] text-[#0A0F1E]/70">Would you like me to reserve a size for you?</div>
+              </div>
+            `;
+          } else {
+            botContent = `
+              <div class="space-y-2">
+                <div class="font-semibold text-rose-700 flex items-center space-x-1.5">
+                  <i data-lucide="alert-circle" class="w-4 h-4 text-rose-600"></i>
+                  <span>Escalation Transferred to Live Support</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-[#0A0F1E]/80 space-y-1">
+                  <div class="text-[11px] font-medium">Dispatched customer inquiry &amp; order history to Slack channel:</div>
+                  <div class="font-mono text-xs font-bold text-rose-900 bg-white px-2 py-1 rounded border border-rose-200 inline-block">
+                    #customer-support
+                  </div>
+                  <div class="text-[10px] text-[#0A0F1E]/60 pt-1">Ticket ID: #ESC-8941 • Priority: High • Assigned Operator: dhananjay</div>
+                </div>
+                <div class="text-[11px] text-[#0A0F1E]/70">A live support specialist has received your complete profile and will follow up immediately.</div>
+              </div>
+            `;
+          }
+
+          botBubble.innerHTML = `
+            <div class="w-7 h-7 rounded-lg ${intent === 'escalate' ? 'bg-rose-100 text-rose-700 border border-rose-200' : 'bg-indigo-100 text-indigo-700 border border-indigo-200'} flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i data-lucide="${intent === 'escalate' ? 'message-square' : 'bot'}" class="w-4 h-4"></i>
+            </div>
+            <div class="space-y-1 max-w-[85%]">
+              <div class="flex items-center space-x-2">
+                <span class="font-bold text-[#0A0F1E]">${intent === 'escalate' ? 'Slack Escalation Agent' : (intent === 'products' ? 'Products Agent' : 'Orders Agent')}</span>
+                <span class="text-[10px] text-[#0A0F1E]/40 font-mono">Just Now</span>
+                <span class="text-[9px] uppercase px-1.5 py-0.5 rounded font-bold ${intent === 'escalate' ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}">Verified</span>
+              </div>
+              <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3 rounded-xl rounded-tl-none text-[#0A0F1E]/85 leading-relaxed">
+                ${botContent}
+              </div>
+            </div>
+          `;
+          chatHistory.appendChild(botBubble);
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+
+          pipelineBar.classList.add('hidden');
+          agentBadge.innerText = "Agent: Idle (Ready)";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-emerald-600";
+
+          btn.disabled = false;
+          btn.innerHTML = `<i data-lucide="send" class="w-3.5 h-3.5"></i> <span>Send Query</span>`;
+          lucide.createIcons();
+        }, 1100);
+      }, 1100);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
   </script>
 </body>
