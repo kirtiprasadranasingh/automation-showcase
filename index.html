@@ -291,6 +291,22 @@
       outline-offset: 2px !important;
     }
 
+    /* DevOps Video Walkthrough Scanning Animation */
+    @keyframes devopsScanBeam {
+      0% { top: 0%; opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { top: 100%; opacity: 0.2; }
+    }
+    .devops-scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), #60A5FA, transparent);
+      box-shadow: 0 0 12px var(--accent);
+      animation: devopsScanBeam 2s ease-in-out infinite;
+    }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
@@ -519,9 +535,13 @@
               </div>
 
               <!-- Action buttons with in-page smooth scrolling (fixed hash routing) -->
-              <div class="pt-2 flex flex-wrap items-center gap-4">
+              <div class="pt-2 flex flex-wrap items-center gap-3">
                 <button type="button" onclick="scrollToSection('devops-demo')" class="btn-primary">
                   <span>Try the demo</span>
+                </button>
+                <button type="button" onclick="playDevopsVideoAndScroll()" class="btn-secondary flex items-center space-x-2">
+                  <i data-lucide="play-circle" class="w-4 h-4 text-[var(--accent)]"></i>
+                  <span>Watch 12s video</span>
                 </button>
                 <button type="button" onclick="scrollToSection('devops-how-it-works')" class="btn-secondary">
                   <span>See how it works</span>
@@ -551,8 +571,14 @@
                   </div>
                 </div>
                 <div class="pt-2 border-t border-neutral-800 text-[12px] text-neutral-400 flex items-center justify-between">
-                  <span>Slack notification dispatched</span>
-                  <span class="text-emerald-400 font-semibold font-mono">Status: Halted</span>
+                  <span class="flex items-center space-x-1.5 text-neutral-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Slack alert dispatched</span>
+                  </span>
+                  <button type="button" onclick="playDevopsVideoAndScroll()" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1 font-sans">
+                    <span>Watch video replay</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -662,8 +688,189 @@
         </div>
       </section>
 
-      <!-- SECTION 4: WHAT YOUR TEAM SEES (Soft Background) -->
-      <section class="section-soft section-sp border-b border-[var(--border)]">
+      <!-- SECTION 4: INTERACTIVE VIDEO WALKTHROUGH (Soft Background) -->
+      <section id="devops-video-walkthrough" class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div class="space-y-3 max-w-[65ch]">
+              <span class="caption-label">Interactive Video Walkthrough</span>
+              <h2 class="section-heading">
+                Watch the 12-second automated check in action
+              </h2>
+              <p class="body-text">
+                See how a risky line of code is caught, stopped, and reported before it ever touches production. Play the walkthrough or scrub through each step.
+              </p>
+            </div>
+
+            <!-- Scenario & Video Mode Pills -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="caption-label font-medium text-neutral-500">Scenario:</span>
+              <div class="inline-flex rounded-lg border border-[var(--border)] bg-white p-1 text-xs">
+                <button type="button" id="v-tab-risky" onclick="setDevopsVideoScenario('risky')" class="px-2.5 py-1 rounded font-semibold text-[var(--danger)] bg-[#FEF3F2] transition">
+                  Risky change
+                </button>
+                <button type="button" id="v-tab-safe" onclick="setDevopsVideoScenario('safe')" class="px-2.5 py-1 rounded font-medium text-neutral-600 hover:text-[var(--text)] transition">
+                  Safe change
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Player Window Surface -->
+          <div class="surface-card p-0 overflow-hidden shadow-sm bg-neutral-950 border-neutral-800 text-neutral-100">
+            
+            <!-- Window Title Bar -->
+            <div class="bg-neutral-900/90 px-4 py-2.5 border-b border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                <span class="font-mono text-neutral-400 text-[11px] ml-2 hidden sm:inline">
+                  Enlight Lab Automation Player &bull; Pre-Release Guard Walkthrough (PR #142)
+                </span>
+                <span class="font-mono text-neutral-400 text-[11px] ml-2 sm:hidden">
+                  PR #142 Walkthrough
+                </span>
+              </div>
+              
+              <div class="flex items-center space-x-2">
+                <span id="v-badge-live" class="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span id="v-badge-status-text">INTERACTIVE SIMULATION</span>
+                </span>
+                <button type="button" onclick="toggleCustomVideoDrawer()" class="text-[11px] text-neutral-400 hover:text-neutral-200 transition px-2 py-0.5 rounded border border-neutral-700 hover:border-neutral-500 flex items-center space-x-1">
+                  <i data-lucide="video" class="w-3 h-3"></i>
+                  <span>Custom MP4</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Custom Video Drawer (Optional direct MP4 / YouTube URL) -->
+            <div id="v-custom-video-drawer" class="hidden bg-neutral-900 border-b border-neutral-800 px-4 py-3 text-xs space-y-2">
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <label for="v-custom-url-input" class="text-neutral-300 font-medium whitespace-nowrap">MP4 or YouTube URL:</label>
+                <input id="v-custom-url-input" type="url" placeholder="https://example.com/demo.mp4 or https://youtube.com/embed/..." class="flex-1 bg-neutral-950 border border-neutral-700 rounded px-3 py-1.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-[var(--accent)]">
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="applyCustomVideoUrl()" class="btn-primary !h-8 !px-3 !text-xs">
+                    Load video
+                  </button>
+                  <button type="button" onclick="resetToInteractiveSimulation()" class="btn-secondary !h-8 !px-3 !text-xs !bg-neutral-800 !text-neutral-300 !border-neutral-700">
+                    Reset
+                  </button>
+                </div>
+              </div>
+              <p class="text-[11px] text-neutral-400">
+                You can paste an MP4 video or YouTube embed link to showcase your own screencast, or enjoy the built-in interactive animated walkthrough.
+              </p>
+            </div>
+
+            <!-- Custom Video Container (hidden by default) -->
+            <div id="v-custom-video-container" class="hidden aspect-video w-full bg-black flex items-center justify-center">
+              <!-- Dynamically populated with <video> or <iframe> -->
+            </div>
+
+            <!-- Interactive Video Canvas Stage -->
+            <div id="v-canvas-stage" class="relative min-h-[380px] sm:min-h-[420px] p-6 sm:p-8 flex flex-col justify-between overflow-hidden bg-[#0D1117]">
+              
+              <!-- Scanning Ray Animation (active during scan scene) -->
+              <div id="v-scan-beam" class="devops-scan-line hidden pointer-events-none"></div>
+
+              <!-- Top Scene Header Bar -->
+              <div class="flex items-center justify-between pb-3 border-b border-neutral-800/80 text-xs">
+                <div class="flex items-center space-x-2">
+                  <span id="v-scene-num-badge" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                    Step 1 of 4
+                  </span>
+                  <span id="v-scene-title" class="font-semibold text-neutral-200">
+                    Developer pushes branch &amp; creates PR #142
+                  </span>
+                </div>
+                <span id="v-scene-timestamp" class="font-mono text-neutral-400 text-xs">
+                  00:00 / 00:12
+                </span>
+              </div>
+
+              <!-- Central Stage Content (Swapped per scene) -->
+              <div id="v-stage-content" class="my-auto py-4">
+                <!-- Dynamically rendered scene HTML -->
+              </div>
+
+              <!-- Big Play / Replay Overlay (when paused or ended) -->
+              <div id="v-play-overlay" class="absolute inset-0 bg-neutral-950/80 backdrop-blur-[2px] flex flex-col items-center justify-center space-y-3 z-10 transition-opacity duration-200">
+                <button type="button" onclick="playDevopsVideo()" class="w-16 h-16 rounded-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white flex items-center justify-center shadow-lg hover:scale-105 transition">
+                  <i id="v-overlay-icon" data-lucide="play" class="w-7 h-7 ml-1"></i>
+                </button>
+                <div class="text-center space-y-1">
+                  <div id="v-overlay-title" class="text-sm font-semibold text-white">Watch 12-Second Automated Walkthrough</div>
+                  <div class="text-xs text-neutral-400">Click to start or use the chapter buttons below</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Media Player Controls Bar -->
+            <div class="bg-neutral-900 border-t border-neutral-800 p-4 space-y-3">
+              
+              <!-- Timeline Scrubber Track -->
+              <div class="space-y-1">
+                <div id="v-scrubber-track" onclick="handleScrubberClick(event)" class="relative w-full h-2 rounded-full bg-neutral-800 hover:h-2.5 cursor-pointer transition-all">
+                  <div id="v-scrubber-fill" class="h-full rounded-full bg-[var(--accent)] w-0 transition-all duration-100"></div>
+                  <!-- 4 Step Chapter Dots on Scrubber -->
+                  <div class="absolute top-1/2 left-[0%] -translate-y-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/60 pointer-events-none"></div>
+                  <div class="absolute top-1/2 left-[25%] -translate-y-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/60 pointer-events-none"></div>
+                  <div class="absolute top-1/2 left-[50%] -translate-y-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/60 pointer-events-none"></div>
+                  <div class="absolute top-1/2 left-[75%] -translate-y-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-white/60 pointer-events-none"></div>
+                </div>
+              </div>
+
+              <!-- Controls row -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <!-- Play/Pause, Replay & Time -->
+                <div class="flex items-center space-x-3">
+                  <button type="button" id="v-btn-play" onclick="toggleDevopsVideoPlay()" class="p-2 rounded-md bg-neutral-800 hover:bg-neutral-700 text-white transition flex items-center justify-center">
+                    <i id="v-icon-play" data-lucide="play" class="w-4 h-4"></i>
+                  </button>
+                  <button type="button" onclick="restartDevopsVideo()" title="Restart" class="p-2 rounded-md text-neutral-400 hover:text-white hover:bg-neutral-800 transition">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                  </button>
+                  <span id="v-time-display" class="font-mono text-neutral-300">00:00 / 00:12</span>
+                </div>
+
+                <!-- 4 Chapter Step Buttons (Direct Investigation) -->
+                <div class="flex items-center space-x-1.5 overflow-x-auto py-1 scrollbar-none">
+                  <button type="button" id="v-chap-1" onclick="seekDevopsVideo(0)" class="px-2.5 py-1 rounded text-[11px] font-medium bg-neutral-800 text-white hover:bg-neutral-700 transition">
+                    1. Push
+                  </button>
+                  <button type="button" id="v-chap-2" onclick="seekDevopsVideo(3)" class="px-2.5 py-1 rounded text-[11px] font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition">
+                    2. Scan
+                  </button>
+                  <button type="button" id="v-chap-3" onclick="seekDevopsVideo(6)" class="px-2.5 py-1 rounded text-[11px] font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition">
+                    3. Risk
+                  </button>
+                  <button type="button" id="v-chap-4" onclick="seekDevopsVideo(9)" class="px-2.5 py-1 rounded text-[11px] font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition">
+                    4. Slack Alert
+                  </button>
+                </div>
+
+                <!-- Speed selector -->
+                <div class="flex items-center space-x-1 text-[11px]">
+                  <span class="text-neutral-500 hidden sm:inline">Speed:</span>
+                  <button type="button" id="v-speed-btn" onclick="cycleDevopsVideoSpeed()" class="px-2 py-1 rounded bg-neutral-800 text-neutral-300 hover:text-white font-mono">
+                    1x
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: WHAT YOUR TEAM SEES (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
         <div class="container-notion space-y-8">
           <div class="space-y-3 max-w-[65ch]">
             <span class="caption-label">What Your Team Sees</span>
@@ -770,8 +977,8 @@
         </div>
       </section>
 
-      <!-- SECTION 5: TRY IT YOURSELF (Interactive Demo - Balanced 5:7 Ratio) -->
-      <section id="devops-demo" class="section-white section-sp border-b border-[var(--border)]">
+      <!-- SECTION 6: TRY IT YOURSELF (Interactive Demo - Balanced 5:7 Ratio) -->
+      <section id="devops-demo" class="section-soft section-sp border-b border-[var(--border)]">
         <div class="container-notion space-y-8">
           <div class="space-y-3 max-w-[65ch]">
             <span class="caption-label">Interactive Demo</span>
@@ -924,8 +1131,8 @@
         </div>
       </section>
 
-      <!-- SECTION 6: WHAT YOU GET (Soft Background) -->
-      <section class="section-soft section-sp border-b border-[var(--border)]">
+      <!-- SECTION 7: WHAT YOU GET (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
         <div class="container-notion space-y-8">
           <div class="space-y-3 max-w-[65ch]">
             <span class="caption-label">What You Get</span>
@@ -964,8 +1171,8 @@
         </div>
       </section>
 
-      <!-- SECTION 7: NEXT-STEP NAVIGATION (White Background) -->
-      <section class="section-white py-12">
+      <!-- SECTION 8: NEXT-STEP NAVIGATION (Soft Background) -->
+      <section class="section-soft py-12">
         <div class="container-notion flex flex-col sm:flex-row items-center justify-between gap-4">
           <a href="#hub" onclick="openView('hub')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
@@ -1643,6 +1850,549 @@
 
     
     // =========================================================
+    // DEVOPS INTERACTIVE VIDEO / ANIMATED WALKTHROUGH PLAYER
+    // =========================================================
+    const devopsVideoState = {
+      isPlaying: false,
+      currentTime: 0,
+      duration: 12,
+      speed: 1,
+      timer: null,
+      scenario: 'risky',
+      currentScene: -1
+    };
+
+    const devopsVideoScenes = {
+      risky: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Developer pushes branch & creates PR #142",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center space-x-2">
+                <span class="text-emerald-400 font-bold">$</span>
+                <span class="text-white">git push origin feature/auth-token-query</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-400 text-[11px] leading-relaxed">
+                <div>Enumerating objects: 4, done.</div>
+                <div>Compressing objects: 100% (3/3), done.</div>
+                <div>Writing objects: 100% (4/4), 482 bytes | 482.00 KiB/s, done.</div>
+                <div class="text-neutral-200">To github.com:enlightlab/payment-service.git</div>
+                <div class="text-blue-400 font-semibold">* [new branch] feature/auth-token-query -> feature/auth-token-query</div>
+                <div class="text-emerald-400 pt-1 flex items-center space-x-1.5">
+                  <i data-lucide="git-pull-request" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                  <span>GitHub Pull Request #142 created: "Update auth token verification query"</span>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                <span>Webhook event received by Enlight Lab CI Guard &bull; Ingesting diff...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "Automated scanner inspects changed files",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 pb-1">
+                <span class="text-neutral-200 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="file-code" class="w-4 h-4 text-blue-400"></i>
+                  <span>authController.ts</span>
+                </span>
+                <span class="text-blue-400 font-mono text-[11px] flex items-center space-x-1.5">
+                  <i data-lucide="loader" class="w-3 h-3 animate-spin"></i>
+                  <span>Scanning AST &amp; SQL Queries...</span>
+                </span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px] relative overflow-hidden leading-relaxed">
+                <div class="text-neutral-500">@@ -45,6 +45,6 @@ async function verifyUserToken(req, res) {</div>
+                <div class="text-neutral-400">    const token = req.headers['x-auth'];</div>
+                <div class="text-neutral-400">    if (!token) return res.status(401).send();</div>
+                <div class="text-yellow-300 bg-yellow-950/50 p-1.5 rounded font-semibold border border-yellow-800/40">
+                  >   const sql = \`SELECT * FROM users WHERE token = '\${token}'\`;
+                </div>
+                <div class="text-neutral-400">    return db.query(sql);</div>
+                <div class="text-neutral-500">}</div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-sans">
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-emerald-400 flex items-center space-x-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Syntax valid</span>
+                </div>
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-emerald-400 flex items-center space-x-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Contracts intact</span>
+                </div>
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-amber-300 flex items-center space-x-1.5">
+                  <i data-lucide="search" class="w-3.5 h-3.5"></i>
+                  <span>Query rule analysis</span>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "Direct string query risk detected & safe fix prepared",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between pb-1">
+                <span class="text-rose-400 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="alert-octagon" class="w-4 h-4 text-rose-500"></i>
+                  <span>Security Vulnerability Flagged: Line 48</span>
+                </span>
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-rose-950 text-rose-300 border border-rose-800">
+                  Action: Block Release
+                </span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2.5">
+                <div class="text-rose-200 bg-rose-950/80 p-2.5 rounded border border-rose-800 text-[11px]">
+                  - const sql = &#96;SELECT * FROM users WHERE token = '    // =========================================================
+    // DEVOPS INTERACTIVE DEMO (ENHANCED LIVE DIFF & PIPELINE)
+    // =========================================================#123;token&#125;'&#96;;
+                  <div class="text-rose-300 font-sans text-[11px] mt-1">
+                    Problem: Raw token variable concatenated directly into database query string.
+                  </div>
+                </div>
+                <div class="text-emerald-200 bg-emerald-950/80 p-2.5 rounded border border-emerald-800 text-[11px]">
+                  + db.query('SELECT * FROM users WHERE token = $1', [token]);
+                  <div class="text-emerald-300 font-sans text-[11px] mt-1">
+                    Suggested safe solution: Parameterized query placeholder with bound variables.
+                  </div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-[11px] font-sans flex items-center justify-between">
+                <span>Rule: CWE-89 SQL Injection Guard</span>
+                <span class="text-neutral-300 font-medium">Automatic fix snippet prepared</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "Release blocked & Slack alert delivered",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 text-xs max-w-2xl mx-auto">
+              <div class="bg-rose-950/70 border border-rose-800 p-3.5 rounded-lg flex items-center justify-between">
+                <div class="flex items-center space-x-2.5 text-rose-200">
+                  <i data-lucide="shield-alert" class="w-5 h-5 text-rose-400 flex-shrink-0"></i>
+                  <div>
+                    <div class="font-bold text-sm">GitHub Branch Protection: MERGE BLOCKED</div>
+                    <div class="text-[11px] text-rose-300">Live production deployment halted automatically</div>
+                  </div>
+                </div>
+                <span class="text-[11px] text-rose-300 font-mono font-semibold bg-rose-900/60 px-2 py-1 rounded">
+                  Zero Downtime
+                </span>
+              </div>
+              <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 space-y-2.5 font-sans shadow-sm">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded bg-[var(--accent)] text-white flex items-center justify-center font-bold text-[10px]">
+                    EL
+                  </div>
+                  <span class="font-semibold text-neutral-200 text-xs">Enlight Lab Bot</span>
+                  <span class="text-neutral-500 text-[11px]">in #devops-alerts &bull; Just now</span>
+                </div>
+                <div class="border-l-3 border-[var(--danger)] pl-3.5 py-1 space-y-1 bg-neutral-950/60 p-2.5 rounded-r">
+                  <div class="font-semibold text-rose-400 text-xs">
+                    Release blocked: unsafe database query found in PR #142
+                  </div>
+                  <p class="text-neutral-300 text-[11px] leading-relaxed">
+                    A safer version is suggested on line 49. Push the fix to run the check again.
+                  </p>
+                </div>
+                <div class="text-[11px] text-neutral-400 flex items-center justify-between pt-1">
+                  <span>Repository: payment-service &bull; branch: main</span>
+                  <span class="text-emerald-400 font-semibold font-mono">1 Check Failed (Protected)</span>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ],
+      safe: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Developer pushes clean parameterized change in PR #142",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center space-x-2">
+                <span class="text-emerald-400 font-bold">$</span>
+                <span class="text-white">git push origin fix/safe-parameterized-query</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-400 text-[11px] leading-relaxed">
+                <div>Enumerating objects: 4, done.</div>
+                <div>Compressing objects: 100% (3/3), done.</div>
+                <div>Writing objects: 100% (4/4), 412 bytes, done.</div>
+                <div class="text-neutral-200">To github.com:enlightlab/payment-service.git</div>
+                <div class="text-blue-400 font-semibold">* [new branch] fix/safe-parameterized-query -> main</div>
+                <div class="text-emerald-400 pt-1 flex items-center space-x-1.5">
+                  <i data-lucide="git-pull-request" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                  <span>GitHub Pull Request #142 created: "Use parameterized query variables"</span>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                <span>Enlight Lab Guard triggered &bull; Ingesting commit payload...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "Automated scan inspects parameterized change",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 pb-1">
+                <span class="text-neutral-200 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="file-code" class="w-4 h-4 text-emerald-400"></i>
+                  <span>authController.ts</span>
+                </span>
+                <span class="text-emerald-400 font-mono text-[11px] flex items-center space-x-1.5">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                  <span>Parameterized Binding Verified</span>
+                </span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px] relative overflow-hidden leading-relaxed">
+                <div class="text-neutral-500">@@ -46,4 +46,4 @@ verifyUserToken()</div>
+                <div class="text-emerald-300 bg-emerald-950/50 p-1.5 rounded font-semibold border border-emerald-800/40">
+                  + const sql = 'SELECT * FROM users WHERE token = $1';
+                </div>
+                <div class="text-neutral-400">  const params = [userId];</div>
+                <div class="text-emerald-300 bg-emerald-950/50 p-1.5 rounded font-semibold border border-emerald-800/40">
+                  + return db.query(sql, params);
+                </div>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-sans">
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-emerald-400 flex items-center space-x-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Syntax valid</span>
+                </div>
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-emerald-400 flex items-center space-x-1.5">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Contracts intact</span>
+                </div>
+                <div class="bg-neutral-900 border border-neutral-800 p-2 rounded text-emerald-400 flex items-center space-x-1.5">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                  <span>0 Vulnerabilities</span>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "All safety gates passed successfully",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between pb-1">
+                <span class="text-emerald-400 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+                  <span>Safe Release Check Passed</span>
+                </span>
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                  Action: Approve
+                </span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2">
+                <div class="text-emerald-200 bg-emerald-950/60 p-3 rounded border border-emerald-800/60 text-[11px] space-y-1">
+                  <div class="font-bold">Security &amp; Stability Verification Complete</div>
+                  <div class="text-emerald-300 text-[11px]">
+                    No unescaped SQL strings detected. Parameterized query syntax adheres to all production security policies.
+                  </div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-[11px] font-sans flex items-center justify-between">
+                <span>Checks completed in 1.4s</span>
+                <span class="text-emerald-400 font-medium">Ready for deployment</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "Release approved & live deployment starts",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 text-xs max-w-2xl mx-auto">
+              <div class="bg-emerald-950/70 border border-emerald-800 p-3.5 rounded-lg flex items-center justify-between">
+                <div class="flex items-center space-x-2.5 text-emerald-200">
+                  <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400 flex-shrink-0"></i>
+                  <div>
+                    <div class="font-bold text-sm">GitHub Branch Protection: MERGE APPROVED</div>
+                    <div class="text-[11px] text-emerald-300">Continuous deployment pipeline triggered</div>
+                  </div>
+                </div>
+                <span class="text-[11px] text-emerald-300 font-mono font-semibold bg-emerald-900/60 px-2 py-1 rounded">
+                  All Gates Green
+                </span>
+              </div>
+              <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 space-y-2.5 font-sans shadow-sm">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded bg-[var(--accent)] text-white flex items-center justify-center font-bold text-[10px]">
+                    EL
+                  </div>
+                  <span class="font-semibold text-neutral-200 text-xs">Enlight Lab Bot</span>
+                  <span class="text-neutral-500 text-[11px]">in #devops-alerts &bull; Just now</span>
+                </div>
+                <div class="border-l-3 border-[var(--ok)] pl-3.5 py-1 space-y-1 bg-neutral-950/60 p-2.5 rounded-r">
+                  <div class="font-semibold text-emerald-400 text-xs">
+                    Release approved: PR #142 passed all safety checks
+                  </div>
+                  <p class="text-neutral-300 text-[11px] leading-relaxed">
+                    Zero issues found. Automated release to production authorized and running.
+                  </p>
+                </div>
+                <div class="text-[11px] text-neutral-400 flex items-center justify-between pt-1">
+                  <span>Repository: payment-service &bull; branch: main</span>
+                  <span class="text-emerald-400 font-semibold font-mono">3 Checks Passed (Green)</span>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    function renderDevopsVideoScene(force) {
+      const scenes = devopsVideoScenes[devopsVideoState.scenario];
+      if (!scenes) return;
+      const t = devopsVideoState.currentTime;
+      let sceneIdx = scenes.findIndex(s => t >= s.start && t < s.end);
+      if (sceneIdx === -1 && t >= 12) sceneIdx = 3;
+      if (sceneIdx === -1) sceneIdx = 0;
+
+      if (force || devopsVideoState.currentScene !== sceneIdx) {
+        devopsVideoState.currentScene = sceneIdx;
+        const scene = scenes[sceneIdx];
+        
+        const numBadge = document.getElementById('v-scene-num-badge');
+        const titleEl = document.getElementById('v-scene-title');
+        const stageContent = document.getElementById('v-stage-content');
+        const scanBeam = document.getElementById('v-scan-beam');
+
+        if (numBadge) numBadge.innerText = scene.num;
+        if (titleEl) titleEl.innerText = scene.title;
+        if (stageContent) stageContent.innerHTML = scene.html;
+        if (scanBeam) {
+          if (scene.scanBeam) scanBeam.classList.remove('hidden');
+          else scanBeam.classList.add('hidden');
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const chapBtn = document.getElementById('v-chap-' + i);
+        if (chapBtn) {
+          if (i === (sceneIdx + 1)) {
+            chapBtn.className = "px-2.5 py-1 rounded text-[11px] font-semibold bg-[var(--accent)] text-white shadow-xs transition";
+          } else {
+            chapBtn.className = "px-2.5 py-1 rounded text-[11px] font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition";
+          }
+        }
+      }
+    }
+
+    function updateDevopsVideoUI() {
+      const t = Math.min(devopsVideoState.currentTime, devopsVideoState.duration);
+      const pct = (t / devopsVideoState.duration) * 100;
+
+      const scrubberFill = document.getElementById('v-scrubber-fill');
+      if (scrubberFill) scrubberFill.style.width = pct + '%';
+
+      const sec = Math.floor(t);
+      const timeStr = '00:' + (sec < 10 ? '0' + sec : sec) + ' / 00:12';
+      const timeDisp = document.getElementById('v-time-display');
+      if (timeDisp) timeDisp.innerText = timeStr;
+      const sceneTime = document.getElementById('v-scene-timestamp');
+      if (sceneTime) sceneTime.innerText = timeStr;
+
+      renderDevopsVideoScene(false);
+    }
+
+    function toggleDevopsVideoPlay() {
+      if (devopsVideoState.isPlaying) {
+        pauseDevopsVideo();
+      } else {
+        playDevopsVideo();
+      }
+    }
+
+    function playDevopsVideo() {
+      if (devopsVideoState.currentTime >= devopsVideoState.duration) {
+        devopsVideoState.currentTime = 0;
+      }
+      devopsVideoState.isPlaying = true;
+
+      const overlay = document.getElementById('v-play-overlay');
+      if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+
+      const playIcon = document.getElementById('v-icon-play');
+      if (playIcon) playIcon.setAttribute('data-lucide', 'pause');
+      if (window.lucide) lucide.createIcons();
+
+      if (devopsVideoState.timer) clearInterval(devopsVideoState.timer);
+      devopsVideoState.timer = setInterval(() => {
+        devopsVideoState.currentTime += 0.1 * devopsVideoState.speed;
+        if (devopsVideoState.currentTime >= devopsVideoState.duration) {
+          devopsVideoState.currentTime = devopsVideoState.duration;
+          pauseDevopsVideo();
+          showVideoEndedOverlay();
+        }
+        updateDevopsVideoUI();
+      }, 100);
+    }
+
+    function pauseDevopsVideo() {
+      devopsVideoState.isPlaying = false;
+      if (devopsVideoState.timer) {
+        clearInterval(devopsVideoState.timer);
+        devopsVideoState.timer = null;
+      }
+      const playIcon = document.getElementById('v-icon-play');
+      if (playIcon) playIcon.setAttribute('data-lucide', 'play');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function restartDevopsVideo() {
+      devopsVideoState.currentTime = 0;
+      devopsVideoState.currentScene = -1;
+      updateDevopsVideoUI();
+      renderDevopsVideoScene(true);
+      playDevopsVideo();
+    }
+
+    function seekDevopsVideo(targetSeconds) {
+      devopsVideoState.currentTime = Math.max(0, Math.min(targetSeconds, devopsVideoState.duration));
+      devopsVideoState.currentScene = -1;
+      updateDevopsVideoUI();
+      renderDevopsVideoScene(true);
+      const overlay = document.getElementById('v-play-overlay');
+      if (overlay) overlay.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function handleScrubberClick(e) {
+      const track = document.getElementById('v-scrubber-track');
+      if (!track) return;
+      const rect = track.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+      seekDevopsVideo(fraction * devopsVideoState.duration);
+    }
+
+    function cycleDevopsVideoSpeed() {
+      const speeds = [1, 1.5, 2];
+      const curIdx = speeds.indexOf(devopsVideoState.speed);
+      const nextIdx = (curIdx + 1) % speeds.length;
+      devopsVideoState.speed = speeds[nextIdx];
+      const btn = document.getElementById('v-speed-btn');
+      if (btn) btn.innerText = devopsVideoState.speed + 'x';
+    }
+
+    function setDevopsVideoScenario(scenario) {
+      devopsVideoState.scenario = scenario;
+      const tabRisky = document.getElementById('v-tab-risky');
+      const tabSafe = document.getElementById('v-tab-safe');
+      if (scenario === 'risky') {
+        if (tabRisky) tabRisky.className = "px-2.5 py-1 rounded font-semibold text-[var(--danger)] bg-[#FEF3F2] transition";
+        if (tabSafe) tabSafe.className = "px-2.5 py-1 rounded font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      } else {
+        if (tabSafe) tabSafe.className = "px-2.5 py-1 rounded font-semibold text-[var(--ok)] bg-[#ECFDF3] transition";
+        if (tabRisky) tabRisky.className = "px-2.5 py-1 rounded font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      }
+      restartDevopsVideo();
+    }
+
+    function showVideoEndedOverlay() {
+      const overlay = document.getElementById('v-play-overlay');
+      const overlayTitle = document.getElementById('v-overlay-title');
+      const overlayIcon = document.getElementById('v-overlay-icon');
+      if (overlay) overlay.classList.remove('opacity-0', 'pointer-events-none');
+      if (overlayTitle) overlayTitle.innerText = "Replay Automated Walkthrough";
+      if (overlayIcon) overlayIcon.setAttribute('data-lucide', 'rotate-ccw');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function playDevopsVideoAndScroll() {
+      scrollToSection('devops-video-walkthrough');
+      setTimeout(() => {
+        restartDevopsVideo();
+      }, 350);
+    }
+
+    function toggleCustomVideoDrawer() {
+      const drawer = document.getElementById('v-custom-video-drawer');
+      if (drawer) drawer.classList.toggle('hidden');
+    }
+
+    function applyCustomVideoUrl() {
+      const input = document.getElementById('v-custom-url-input');
+      if (!input || !input.value.trim()) return;
+      const url = input.value.trim();
+      const canvasStage = document.getElementById('v-canvas-stage');
+      const customContainer = document.getElementById('v-custom-video-container');
+      const statusText = document.getElementById('v-badge-status-text');
+
+      if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        let embedUrl = url;
+        if (url.includes('watch?v=')) {
+          embedUrl = url.replace('watch?v=', 'embed/');
+        } else if (url.includes('youtu.be/')) {
+          embedUrl = url.replace('youtu.be/', 'youtube.com/embed/');
+        }
+        customContainer.innerHTML = '<iframe src="' + embedUrl + '" class="w-full h-full min-h-[380px]" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      } else {
+        customContainer.innerHTML = '<video controls autoplay class="w-full h-full max-h-[460px] object-contain"><source src="' + url + '" type="video/mp4">Your browser does not support video.</video>';
+      }
+
+      if (canvasStage) canvasStage.classList.add('hidden');
+      if (customContainer) customContainer.classList.remove('hidden');
+      if (statusText) statusText.innerText = "CUSTOM VIDEO ACTIVE";
+      pauseDevopsVideo();
+    }
+
+    function resetToInteractiveSimulation() {
+      const input = document.getElementById('v-custom-url-input');
+      if (input) input.value = '';
+      const canvasStage = document.getElementById('v-canvas-stage');
+      const customContainer = document.getElementById('v-custom-video-container');
+      const statusText = document.getElementById('v-badge-status-text');
+
+      if (customContainer) {
+        customContainer.innerHTML = '';
+        customContainer.classList.add('hidden');
+      }
+      if (canvasStage) canvasStage.classList.remove('hidden');
+      if (statusText) statusText.innerText = "INTERACTIVE SIMULATION";
+      restartDevopsVideo();
+    }
+
+    // =========================================================
     // DEVOPS INTERACTIVE DEMO (ENHANCED LIVE DIFF & PIPELINE)
     // =========================================================
     let devopsCurrentScenario = 'safe'; // 'safe' or 'risky'
@@ -1882,6 +2632,10 @@
         
       if (viewName === 'devops') {
         document.title = "DevOps Code Safety Check | Enlight Lab";
+        setTimeout(() => {
+          renderDevopsVideoScene(true);
+          updateDevopsVideoUI();
+        }, 50);
         const descEl = document.querySelector('meta[name="description"]');
         if (descEl) descEl.setAttribute('content', "Catch risky code changes before they reach your live system with automated pull request inspection.");
       } else if (viewName === 'healthcare') {
