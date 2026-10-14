@@ -102,6 +102,205 @@
     .scrollbar-none::-webkit-scrollbar {
       display: none;
     }
+
+    /* ======================================================= */
+    /* REUSABLE NOTION-STYLE DESIGN SYSTEM                     */
+    /* ======================================================= */
+    :root {
+      --bg: #FFFFFF;
+      --bg-soft: #F7F8FA;
+      --text: #111827;
+      --text-muted: #4B5563;
+      --border: #E5E7EB;
+      --accent: #1A6BFF;
+      --accent-hover: #0E55DB;
+      --accent-soft: #EEF4FF;
+      --ok: #15803D;
+      --ok-soft: #ECFDF3;
+      --danger: #B42318;
+      --danger-soft: #FEF3F2;
+      
+      --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+    }
+
+    /* Container token */
+    .container-notion {
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    /* Sections */
+    .section-sp {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+    @media (min-width: 768px) {
+      .section-sp {
+        padding-top: 96px;
+        padding-bottom: 96px;
+      }
+    }
+    .section-white {
+      background-color: var(--bg);
+    }
+    .section-soft {
+      background-color: var(--bg-soft);
+    }
+
+    /* Typography tokens */
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .section-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+    .card-title {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .body-lead {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 65ch;
+    }
+    .body-text {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 65ch;
+    }
+    .caption-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+    .tag-label {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    /* Surfaces */
+    .surface-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .surface-card-interactive {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .surface-card-interactive:hover {
+      border-color: #CBD5E1;
+    }
+    .surface-card-interactive.selected {
+      border-color: var(--accent);
+      background-color: var(--accent-soft);
+    }
+    .demo-surface {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 20px;
+      background-color: var(--accent);
+      color: #FFFFFF;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease, opacity 0.15s ease;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--accent-hover);
+    }
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 20px;
+      background-color: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-secondary:hover {
+      background-color: var(--bg-soft);
+      border-color: #CBD5E1;
+    }
+
+    /* Focus visible */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--accent) !important;
+      outline-offset: 2px !important;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-[#FAFBFC] text-[#0A0F1E] antialiased min-h-screen flex flex-col selection:bg-[#1A6BFF] selection:text-white">
@@ -119,7 +318,12 @@
       </a>
 
       <!-- Navigation & Status -->
+      
       <div class="flex items-center space-x-1 sm:space-x-2">
+        <button id="mobile-menu-btn" type="button" aria-label="Toggle mobile menu" aria-expanded="false" class="sm:hidden p-2 rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+  
         <button onclick="openView('hub')" id="nav-hub" class="text-xs font-semibold px-3 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition">
           All Industries
         </button>
@@ -137,6 +341,14 @@
           <span>Live Core</span>
         </span>
       </div>
+    </div>
+  
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden sm:hidden border-t border-[var(--border)] bg-white px-4 py-3 space-y-1">
+      <button onclick="openView('hub'); toggleMobileMenu(false);" class="w-full text-left text-sm font-medium px-3 py-2 rounded-md text-neutral-900 hover:bg-neutral-50">All Industries</button>
+      <button onclick="openView('devops'); toggleMobileMenu(false);" class="w-full text-left text-sm font-medium px-3 py-2 rounded-md text-neutral-600 hover:bg-neutral-50">DevOps</button>
+      <button onclick="openView('healthcare'); toggleMobileMenu(false);" class="w-full text-left text-sm font-medium px-3 py-2 rounded-md text-neutral-600 hover:bg-neutral-50">Healthcare</button>
+      <button onclick="openView('ecommerce'); toggleMobileMenu(false);" class="w-full text-left text-sm font-medium px-3 py-2 rounded-md text-neutral-600 hover:bg-neutral-50">E-Commerce</button>
     </div>
   </header>
 
@@ -276,313 +488,365 @@
     <!-- ======================================================= -->
     <!-- VIEW 2: DEVOPS SAFETY ENGINE                           -->
     <!-- ======================================================= -->
-    <div id="view-devops" class="hidden space-y-6">
-      
-      <!-- Top Navigation -->
-      <div class="flex items-center justify-between">
-        <button onclick="openView('hub')" class="inline-flex items-center space-x-2 text-xs font-bold text-[#1A6BFF] hover:text-[#0A4ECC] bg-[#EEF4FF] px-4 py-2 rounded-xl border border-[#1A6BFF]/25 shadow-2xs transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Back to All Industries</span>
-        </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 1 of 3 &bull; DevOps &amp; Cloud</span>
-      </div>
+    <!-- ======================================================= -->
+    <!-- VIEW 2: DEVOPS CASE PAGE (NOTION-STYLE DESIGN SYSTEM)   -->
+    <!-- ======================================================= -->
+    <div id="view-devops" class="hidden w-full font-sans">
 
-      <!-- Clean Header Block -->
-      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-2">
-        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1A6BFF] border border-blue-200 inline-block">
-          DevOps &amp; Cloud Engineering
-        </span>
-        <h1 class="text-2xl sm:text-4xl font-extrabold text-[#0A0F1E] font-display">
-          CI/CD AI Safety Engine &amp; Automated Release Gate
-        </h1>
-        <p class="text-sm text-[#0A0F1E]/70 leading-relaxed max-w-3xl">
-          Automates pre-release safety checks to prevent destructive database migrations, unescaped SQL injections, and broken API contracts from reaching production.
-        </p>
-      </div>
+      <!-- SECTION 1: HERO (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <!-- Breadcrumb navigation -->
+          <nav aria-label="Breadcrumb" class="mb-6 flex items-center space-x-2 caption-label">
+            <a href="#hub" onclick="openView('hub')" class="hover:text-[var(--text)] transition">All Industries</a>
+            <span class="text-neutral-400">/</span>
+            <span class="text-[var(--text)] font-semibold">DevOps</span>
+          </nav>
 
-      <!-- Down-by-Down Story: Problem / Solution / Result in 3 Clean Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
-            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-            <span>The Problem</span>
+          <div class="space-y-4 max-w-[65ch]">
+            <span class="tag-label">DevOps</span>
+            <h1 class="hero-title">
+              Catch risky code changes before they reach your live system
+            </h1>
+            <p class="body-lead">
+              Every change your developers make is checked automatically. Unsafe ones are stopped, and the developer is told how to fix them.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            One accidental database drop or unescaped SQL query deployed by mistake causes hours of costly production downtime and customer disruption.
-          </p>
+
+          <!-- Action buttons -->
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#devops-demo" class="btn-primary">Try the demo</a>
+            <a href="#devops-how-it-works" class="btn-secondary">See how it works</a>
+          </div>
         </div>
+      </section>
 
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-[#1A6BFF] flex items-center space-x-1.5">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>The Solution</span>
+      <!-- SECTION 2: THE PROBLEM (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <div class="space-y-4 max-w-[65ch]">
+            <span class="caption-label">The Problem</span>
+            <h2 class="section-heading">
+              One small mistake can take your service down
+            </h2>
+            <p class="body-text">
+              A single unsafe database query, or a table deleted by accident, can mean hours of downtime and unhappy customers. Teams usually catch these by reading code by hand. That is slow, and things get missed.
+            </p>
           </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            Our automated gatekeeper inspects code diffs on every pull request, scans for destructive changes, and halts bad releases before code can touch production.
-          </p>
         </div>
+      </section>
 
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
-            <i data-lucide="zap" class="w-4 h-4"></i>
-            <span>The Result</span>
+      <!-- SECTION 3: HOW IT WORKS (White Background) -->
+      <section id="devops-how-it-works" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">How It Works</span>
+            <h2 class="section-heading">
+              Three automatic steps before every release
+            </h2>
           </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            Zero unexpected downtime, automated Friday releases with complete confidence, and instant Slack alerts with the exact code fix suggested.
-          </p>
-        </div>
-      </div>
 
-      <!-- High-Fidelity UI Screenshot Window -->
-      <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden window-shadow bg-white">
-        <div class="bg-[#F8F9FC] px-5 py-3 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-          <div class="flex items-center space-x-2.5">
-            <div class="flex items-center space-x-1.5">
-              <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
-            </div>
-            <span class="text-[#0A0F1E]/30 font-mono">|</span>
-            <span class="font-mono text-xs text-[#0A0F1E]/70 flex items-center space-x-1.5">
-              <i data-lucide="lock" class="w-3.5 h-3.5 text-[#1A6BFF]"></i>
-              <span>github.com/enlightlab/payment-service/pull/142 &bull; Automated AI Safety Gate</span>
-            </span>
-          </div>
-          <span class="text-xs font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200 font-semibold">Live Production Guardrail</span>
-        </div>
-        
-        <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#FBFBFC]">
-          <!-- Code Diff Panel -->
-          <div class="lg:col-span-7 bg-[#0A0F1E] rounded-xl p-5 text-xs font-mono text-slate-300 space-y-3 border border-slate-800">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-[11px] text-slate-400">
-              <span class="flex items-center space-x-1.5">
-                <i data-lucide="file-code" class="w-4 h-4 text-blue-400"></i>
-                <span class="text-slate-200 font-semibold">controllers/authController.ts</span>
-              </span>
-              <span class="text-rose-400 font-bold bg-rose-950/90 px-2 py-0.5 rounded border border-rose-800">Critical: Line 48 Blocked</span>
-            </div>
-            <div class="space-y-1.5 pt-1 text-xs">
-              <div class="text-slate-500">46 &nbsp; async function verifyUserToken(req, res) {</div>
-              <div class="text-slate-500">47 &nbsp; &nbsp; const token = req.headers['x-auth'];</div>
-              <div class="bg-rose-950/90 text-rose-200 px-3 py-2 rounded-lg border border-rose-800/80 flex items-center justify-between">
-                <span>48 - &nbsp; const sql = `SELECT * FROM users WHERE token = '${token}'`;</span>
-                <span class="text-[10px] bg-rose-900 text-rose-100 px-1.5 py-0.5 rounded uppercase font-bold font-mono">SQL Injection CVE-2026</span>
+          <!-- 3-step visual diagram with fork -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Step 1 -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <div class="caption-label text-neutral-400">Step 1</div>
+                <h3 class="card-title">A developer submits a change</h3>
+                <p class="caption-label leading-relaxed">
+                  The code goes up for review as usual in your Git repository.
+                </p>
               </div>
-              <div class="bg-emerald-950/80 text-emerald-200 px-3 py-2 rounded-lg border border-emerald-800/80 flex items-center justify-between">
-                <span>49 + &nbsp; const sql = `SELECT * FROM users WHERE token = $1`; [token]</span>
-                <span class="text-[10px] bg-emerald-900 text-emerald-100 px-1.5 py-0.5 rounded uppercase font-bold font-mono">Parameterized Safe</span>
+              <div class="flex items-center text-xs text-neutral-400 font-mono pt-4 border-t border-[var(--border)]">
+                <span>git push origin feature</span>
               </div>
-              <div class="text-slate-500">50 &nbsp; &nbsp; return db.query(sql);</div>
-              <div class="text-slate-500">51 &nbsp; }</div>
             </div>
-          </div>
-          
-          <!-- SonarQube Verdict & Slack Notification -->
-          <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
-            <div class="bg-white p-4 rounded-xl border border-[#E8EAF0] space-y-2 text-xs shadow-2xs">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-[#0A0F1E] flex items-center space-x-1.5 text-xs">
-                  <i data-lucide="shield-alert" class="w-4 h-4 text-rose-600"></i>
-                  <span>SonarQube AST Verdict</span>
-                </span>
-                <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">Score: 38/100 (Failed)</span>
+
+            <!-- Step 2 -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <div class="caption-label text-neutral-400">Step 2</div>
+                <h3 class="card-title">The check runs automatically</h3>
+                <p class="caption-label leading-relaxed">
+                  It looks for unsafe database queries, deleted data, and changes that would break other systems.
+                </p>
               </div>
-              <p class="text-xs text-[#0A0F1E]/70 leading-relaxed">
-                Critical vulnerability detected in pull request diff. Release automatically locked before touching the production cluster.
-              </p>
+              <div class="flex items-center text-xs text-[var(--accent)] font-medium pt-4 border-t border-[var(--border)]">
+                <i data-lucide="shield-check" class="w-4 h-4 mr-1.5"></i>
+                <span>Automated rule inspection</span>
+              </div>
             </div>
-            <div class="bg-white p-4 rounded-xl border border-[#E8EAF0] space-y-2 text-xs shadow-2xs">
-              <div class="flex items-center space-x-2 text-xs font-bold text-slate-500 pb-1 border-b border-slate-100">
-                <i data-lucide="message-square" class="w-4 h-4 text-indigo-600"></i>
-                <span class="text-[#0A0F1E]">Slack #devops-alerts</span>
-                <span class="text-slate-400 font-normal ml-auto text-[10px]">Just now</span>
+
+            <!-- Step 3: Fork with Approved / Blocked -->
+            <div class="lg:col-span-4 flex flex-col gap-4 justify-between">
+              <!-- Approved Path -->
+              <div class="surface-card flex-1 flex flex-col justify-center space-y-1 bg-[#ECFDF3] border-[#A6F4C5]">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-[var(--ok)]"></i>
+                  <h4 class="text-sm font-semibold text-[var(--ok)]">Safe changes: Approved</h4>
+                </div>
+                <p class="caption-label text-emerald-900 leading-normal">
+                  No issues found. Code merges directly to production.
+                </p>
               </div>
-              <div class="border-l-4 border-rose-500 pl-3 text-xs text-[#0A0F1E] space-y-1">
-                <strong class="text-rose-700 block font-semibold">Deploy Blocked: SQL Injection Alert</strong>
-                <span class="text-[#0A0F1E]/75 block text-xs leading-relaxed">PR #142 halted. Parameterized SQL fix suggested on Line 49. Zero manual intervention required.</span>
+
+              <!-- Blocked Path -->
+              <div class="surface-card flex-1 flex flex-col justify-center space-y-1 bg-[#FEF3F2] border-[#FECDCA]">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="alert-octagon" class="w-4 h-4 text-[var(--danger)]"></i>
+                  <h4 class="text-sm font-semibold text-[var(--danger)]">Risky changes: Blocked + fix suggested</h4>
+                </div>
+                <p class="caption-label text-rose-950 leading-normal">
+                  Release halted. Developer gets a Slack alert with the exact code line to fix.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Interactive Working Prototype Console -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h2 class="text-base font-bold text-[#0A0F1E]">Interactive DevOps Working Prototype</h2>
-          <span class="text-xs font-mono text-[#1A6BFF] font-semibold">Live Simulation</span>
-        </div>
-
-        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC] card-shadow">
-          <!-- Topbar -->
-          <div class="bg-[#EEF1F8] px-5 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-            <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
-              <span class="text-[#0A0F1E]/40">&bull;</span>
-              <span class="text-[#0A0F1E]/60">Target Service: payment-service</span>
-            </div>
-            <div id="active-agent-badge" class="font-mono text-xs font-semibold text-[#1A6BFF]">
-              Gatekeeper: DevOps Release Specialist (Active)
-            </div>
+      <!-- SECTION 4: WHAT YOUR TEAM SEES (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What Your Team Sees</span>
+            <h2 class="section-heading">
+              Real outputs: the code diff and the Slack alert
+            </h2>
+            <p class="body-text">
+              Developers see the exact problem on their code review, and the team gets notified in Slack.
+            </p>
           </div>
 
-          <!-- Progress Bar (when running) -->
-          <div id="pipeline-status-bar" class="hidden bg-white px-5 py-2.5 border-b border-[#E8EAF0] text-xs">
-            <div class="flex items-center justify-between mb-1.5">
-              <span id="step-desc" class="font-mono font-medium text-[#1A6BFF] flex items-center space-x-2">
-                <span class="inline-block animate-spin"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
-                <span id="step-text">Initiating Static Code AST Analysis...</span>
-              </span>
-              <span id="step-count" class="font-mono text-xs text-[#0A0F1E]/50">Step 1/3</span>
-            </div>
-            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-              <div id="progress-fill" class="bg-[#1A6BFF] h-full w-1/3 transition-all duration-500"></div>
-            </div>
-          </div>
-
-          <!-- Split Console Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 bg-white">
-            <!-- Left Controls (5 cols) -->
-            <div class="lg:col-span-5 p-5 border-b lg:border-b-0 lg:border-r border-[#E8EAF0] space-y-4 bg-slate-50/60">
-              <div>
-                <label class="block text-xs font-bold text-[#0A0F1E] uppercase tracking-wider mb-2">
-                  Select Pull Request Scenario:
-                </label>
-                <div class="grid grid-cols-2 gap-3">
-                  <button onclick="setMode('safe')" id="btn-mode-safe" class="px-3.5 py-2.5 rounded-xl border text-xs font-bold text-left transition flex items-center space-x-2 border-emerald-500 bg-emerald-50/80 text-emerald-900 shadow-2xs">
-                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
-                    <div>
-                      <div class="font-bold">Safe Release</div>
-                      <div class="text-[10px] text-emerald-700/80 font-normal">Passed contract test</div>
-                    </div>
-                  </button>
-                  <button onclick="setMode('danger')" id="btn-mode-danger" class="px-3.5 py-2.5 rounded-xl border text-xs font-bold text-left transition flex items-center space-x-2 border-[#E8EAF0] bg-white text-[#0A0F1E]/70 hover:border-rose-300">
-                    <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-500 flex-shrink-0"></i>
-                    <div>
-                      <div class="font-bold">Dangerous SQL</div>
-                      <div class="text-[10px] text-rose-600/80 font-normal">SQL injection diff</div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              <!-- PR Details -->
-              <div class="bg-white p-3.5 rounded-xl border border-[#E8EAF0] space-y-1.5 text-xs">
-                <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                  <span class="text-[#0A0F1E]/50 font-mono text-[11px]">Pull Request:</span>
-                  <span id="pr-num" class="font-mono font-bold text-[#1A6BFF]">#PR-8821</span>
-                </div>
-                <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                  <span class="text-[#0A0F1E]/50 font-mono text-[11px]">Author:</span>
-                  <span id="pr-author" class="font-medium text-[#0A0F1E]">@alex-dev</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-[#0A0F1E]/50 font-mono text-[11px]">Target Branch:</span>
-                  <span class="font-mono text-emerald-600 font-semibold">main (production)</span>
-                </div>
-              </div>
-
-              <!-- Diff Preview -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-bold text-[#0A0F1E]/70">
-                  <span>Intercepted Diff:</span>
-                  <span class="font-mono text-[10px] text-slate-400 font-normal">authController.ts</span>
-                </div>
-                <div id="commit-diff-box" class="bg-[#0A0F1E] text-slate-300 p-3.5 rounded-xl text-xs font-mono space-y-1 border border-slate-800">
-                  <div class="text-slate-500">@@ -45,4 +45,4 @@ verifyUserToken()</div>
-                  <div class="text-emerald-400 font-semibold">+ const query = 'SELECT * FROM users WHERE id = $1';</div>
-                  <div class="text-slate-400">  const params = [userId];</div>
-                  <div class="text-emerald-400 font-semibold">+ return db.query(query, params);</div>
-                </div>
-              </div>
-
-              <!-- Button -->
-              <div>
-                <button onclick="triggerSafetyScan()" id="btn-scan" class="w-full py-3 rounded-xl font-bold text-xs bg-[#1A6BFF] hover:bg-[#0A4ECC] text-white shadow-sm transition flex items-center justify-center space-x-2">
-                  <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                  <span>Trigger Gatekeeper Safety Scan</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Right Output (7 cols) -->
-            <div class="lg:col-span-7 p-5 flex flex-col justify-between space-y-4 bg-white">
-              <div class="space-y-3">
-                <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
-                  <span class="text-xs font-bold text-[#0A0F1E] uppercase tracking-wider">Gatekeeper Output:</span>
-                  <span id="scan-latency" class="text-xs font-mono text-[#0A0F1E]/50">Latency: 0ms</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <!-- Left: Code Card -->
+            <div class="surface-card space-y-4 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between pb-2 border-b border-[var(--border)]">
+                  <span class="card-title">Code change</span>
+                  <span class="caption-label font-mono">authController.ts (PR #142)</span>
                 </div>
 
-                <!-- Verdict Card -->
-                <div id="verdict-card" class="rounded-xl border border-[#E8EAF0] p-4 space-y-2 bg-[#F8F9FC] transition">
-                  <div class="flex items-center justify-between flex-wrap gap-2">
-                    <span id="verdict-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]">
-                      STANDBY &bull; AWAITING SCAN
-                    </span>
-                    <span id="verdict-score" class="text-xs font-mono font-bold text-[#0A0F1E]/50">
-                      Safety Score: -- / 100
-                    </span>
+                <!-- Unsafe line -->
+                <div class="space-y-1 pt-2">
+                  <div class="font-mono text-xs bg-neutral-900 text-rose-300 p-3 rounded-lg overflow-x-auto">
+                    <code>- const sql = &#96;SELECT * FROM users WHERE token = '$&#123;token&#125;'&#96;;</code>
                   </div>
-                  <p id="verdict-desc" class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed font-sans">
-                    Select a pull request scenario on the left and click 'Trigger Gatekeeper Safety Scan' to test the real-time AST analyzer and release gatekeeper.
+                  <div class="caption-label text-[var(--danger)] bg-[#FEF3F2] px-3 py-1.5 rounded-md font-medium">
+                    Unsafe: user input goes straight into the database query
+                  </div>
+                </div>
+
+                <!-- Safe line -->
+                <div class="space-y-1 pt-2">
+                  <div class="font-mono text-xs bg-neutral-900 text-emerald-300 p-3 rounded-lg overflow-x-auto">
+                    <code>+ db.query('SELECT * FROM users WHERE token = $1', [token]);</code>
+                  </div>
+                  <div class="caption-label text-[var(--ok)] bg-[#ECFDF3] px-3 py-1.5 rounded-md font-medium">
+                    Safe: the input is handled separately
+                  </div>
+                </div>
+              </div>
+
+              <div class="caption-label text-neutral-400 pt-2 border-t border-[var(--border)]">
+                Sample code from PR #142. Names and repositories are fictional.
+              </div>
+            </div>
+
+            <!-- Right: Slack Alert Card -->
+            <div class="surface-card space-y-4 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center space-x-2 pb-2 border-b border-[var(--border)]">
+                  <i data-lucide="message-square" class="w-4 h-4 text-neutral-600"></i>
+                  <span class="card-title">#devops-alerts</span>
+                  <span class="caption-label ml-auto">Slack Notification</span>
+                </div>
+
+                <div class="border-l-4 border-[var(--danger)] pl-4 py-2 space-y-2 bg-[#F7F8FA] rounded-r-lg">
+                  <div class="font-semibold text-sm text-[var(--text)]">
+                    Release blocked: unsafe database query found in PR #142
+                  </div>
+                  <p class="caption-label leading-relaxed text-neutral-700">
+                    A safer version is suggested on line 49. Push the fix to run the check again.
                   </p>
                 </div>
 
-                <!-- Slack Notification Box -->
-                <div id="slack-box" class="hidden rounded-xl border border-slate-200 bg-white p-3.5 space-y-1.5 text-xs">
-                  <div class="flex items-center space-x-2 text-xs font-bold text-slate-500 pb-1 border-b border-slate-100">
-                    <i data-lucide="message-square" class="w-3.5 h-3.5 text-indigo-600"></i>
-                    <span>Slack #devops-alerts</span>
-                    <span class="text-slate-400 font-normal ml-auto text-[10px]">Just now</span>
-                  </div>
-                  <div id="slack-content" class="text-xs text-[#0A0F1E] pl-2 border-l-2 border-emerald-500">
-                    PR #PR-8821 approved for merge. Zero security or schema vulnerabilities detected.
-                  </div>
+                <div class="caption-label text-neutral-500 space-y-1 pt-1">
+                  <div><strong>Repository:</strong> payment-service</div>
+                  <div><strong>Target branch:</strong> main</div>
+                  <div><strong>Outcome:</strong> Release locked until fix is committed</div>
                 </div>
               </div>
 
-              <!-- Telemetry -->
-              <div class="space-y-1 pt-2 border-t border-[#E8EAF0]">
-                <div class="text-[11px] font-bold text-[#0A0F1E]/60 uppercase tracking-wider">Execution Telemetry:</div>
-                <div id="telemetry-box" class="bg-[#0A0F1E] text-slate-300 p-3 rounded-xl text-xs font-mono h-24 overflow-y-auto space-y-1 leading-relaxed border border-slate-800">
-                  <div class="text-slate-500">[SYSTEM] Gatekeeper initialized. Listening on Webhook /webhook/github-commit-jenkins.</div>
-                  <div class="text-slate-500">[STANDBY] Ready for pull request execution payload...</div>
-                </div>
+              <div class="caption-label text-neutral-400 pt-2 border-t border-[var(--border)]">
+                Delivered in under 2 seconds to the release engineering channel.
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Webhook bar -->
-        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="network" class="w-4 h-4 text-[#1A6BFF] flex-shrink-0"></i>
-            <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
-            <code class="font-mono text-xs bg-white px-2.5 py-0.5 rounded border border-[#E8EAF0] text-[#1A6BFF]">/webhook/github-commit-jenkins</code>
+      <!-- SECTION 5: TRY IT YOURSELF (White Background) -->
+      <section id="devops-demo" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">Interactive Demo</span>
+            <h2 class="section-heading">Try it yourself</h2>
+            <p class="body-text">Pick a change, then run the check.</p>
           </div>
-          <div class="flex items-center space-x-2 text-xs text-[#0A0F1E]/60">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Security Engine: <strong>SonarQube AST + Neural Code Inspector</strong></span>
+
+          <!-- Demo Surface Panel -->
+          <div class="demo-surface space-y-6">
+            <!-- Scenario selector cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" role="radiogroup" aria-label="Select code change scenario">
+              <!-- Safe Option -->
+              <div id="devops-card-safe" onclick="selectDevOpsDemoScenario('safe')" tabindex="0" role="radio" aria-checked="true" class="surface-card-interactive selected">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="card-title">A safe change</h3>
+                  <i data-lucide="check-circle" class="w-5 h-5 text-[var(--ok)]"></i>
+                </div>
+                <p class="caption-label leading-relaxed">
+                  The query uses parameterized values for user input. It passes all safety rules.
+                </p>
+              </div>
+
+              <!-- Risky Option -->
+              <div id="devops-card-risky" onclick="selectDevOpsDemoScenario('risky')" tabindex="0" role="radio" aria-checked="false" class="surface-card-interactive">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="card-title">A risky change</h3>
+                  <i data-lucide="alert-triangle" class="w-5 h-5 text-[var(--danger)]"></i>
+                </div>
+                <p class="caption-label leading-relaxed">
+                  Raw user input is pasted directly into SQL. It puts live data at risk.
+                </p>
+              </div>
+            </div>
+
+            <!-- Run Button -->
+            <div>
+              <button id="btn-run-devops-check" onclick="executeDevOpsCheck()" class="btn-primary w-full md:w-auto">
+                <span>Run the check</span>
+              </button>
+            </div>
+
+            <!-- 3 Simple Progress Steps with Ticks -->
+            <div id="devops-progress-steps" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[var(--border)]">
+              <div id="step-devops-1" class="flex items-center space-x-2.5 caption-label text-neutral-400">
+                <span id="step-icon-1" class="w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-xs">1</span>
+                <span id="step-label-1">Reading the change</span>
+              </div>
+              <div id="step-devops-2" class="flex items-center space-x-2.5 caption-label text-neutral-400">
+                <span id="step-icon-2" class="w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-xs">2</span>
+                <span id="step-label-2">Checking for problems</span>
+              </div>
+              <div id="step-devops-3" class="flex items-center space-x-2.5 caption-label text-neutral-400">
+                <span id="step-icon-3" class="w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-xs">3</span>
+                <span id="step-label-3">Deciding</span>
+              </div>
+            </div>
+
+            <!-- Result Card -->
+            <div id="devops-result-container" class="hidden surface-card transition space-y-4">
+              <div id="devops-result-box" class="p-4 rounded-lg space-y-2">
+                <div class="flex items-center space-x-2">
+                  <i id="devops-result-icon" data-lucide="check" class="w-5 h-5"></i>
+                  <h4 id="devops-result-title" class="card-title"></h4>
+                </div>
+                <p id="devops-result-text" class="body-text"></p>
+                <div id="devops-result-fix" class="hidden font-mono text-xs p-3 rounded bg-neutral-900 text-emerald-300 overflow-x-auto">
+                  <code>db.query('SELECT * FROM users WHERE token = $1', [token]);</code>
+                </div>
+              </div>
+
+              <!-- Slack Alert (shown on risky outcome) -->
+              <div id="devops-result-slack" class="hidden border-l-4 border-[var(--danger)] pl-4 py-3 bg-[#FEF3F2] rounded-r-lg space-y-1">
+                <div class="flex items-center space-x-2 caption-label font-semibold text-[var(--danger)]">
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                  <span>Slack Alert Dispatched to #devops-alerts</span>
+                </div>
+                <p class="caption-label text-rose-950">
+                  Release blocked: unsafe database query found in PR #142. A safer version is suggested on line 49. Push the fix to run the check again.
+                </p>
+              </div>
+            </div>
+
+            <!-- Demo Mode Note (shown if webhook fails) -->
+            <div id="devops-demo-mode-note" class="hidden caption-label text-neutral-500">
+              Demo mode: webhook endpoint offline, using local simulation.
+            </div>
+
+            <!-- Collapsed Technical Details -->
+            <details class="mt-6 pt-4 border-t border-[var(--border)]">
+              <summary class="cursor-pointer caption-label font-semibold text-neutral-700 hover:text-[var(--text)] flex items-center justify-between">
+                <span>Technical details (for engineers)</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-neutral-400"></i>
+              </summary>
+              <div class="mt-3 p-4 bg-neutral-900 text-neutral-200 rounded-lg font-mono text-xs overflow-x-auto space-y-1.5" id="devops-tech-log">
+                <div class="text-neutral-500">[System ready] Listening on webhook endpoint /webhook/github-commit-jenkins</div>
+                <div class="text-neutral-500">[AST Engine] AST parser rules initialized (SQL injection, contract breakage, schema validation)</div>
+                <div class="text-neutral-400">[Target] payment-service branch main</div>
+              </div>
+            </details>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Bottom Navigation -->
-      <div class="border-t border-[#E8EAF0] pt-5 flex items-center justify-between">
-        <button onclick="openView('hub')" class="inline-flex items-center space-x-2 text-xs font-bold text-[#0A0F1E]/70 hover:text-[#0A0F1E] transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Back to All Industries</span>
-        </button>
-        <button onclick="openView('healthcare')" class="inline-flex items-center space-x-2 text-xs font-bold text-cyan-700 hover:text-cyan-900 transition">
-          <span>Next: Clinical Healthcare</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
+      <!-- SECTION 6: WHAT YOU GET (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What You Get</span>
+            <h2 class="section-heading">Three clear benefits for your team</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Benefit 1 -->
+            <div class="surface-card space-y-2">
+              <h3 class="card-title">Fewer outages</h3>
+              <p class="body-text">
+                Risky changes never reach your live system.
+              </p>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="surface-card space-y-2">
+              <h3 class="card-title">Safer Friday releases</h3>
+              <p class="body-text">
+                Your team can ship without worrying about the weekend.
+              </p>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="surface-card space-y-2">
+              <h3 class="card-title">Fixes, not just warnings</h3>
+              <p class="body-text">
+                Developers are told exactly what to change.
+              </p>
+            </div>
+          </div>
+
+          <div class="text-center pt-4 caption-label text-neutral-500">
+            Works with GitHub, Jenkins and Slack.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: NEXT-STEP NAVIGATION (White Background) -->
+      <section class="section-white py-12">
+        <div class="container-notion flex flex-col sm:flex-row items-center justify-between gap-4">
+          <a href="#hub" onclick="openView('hub')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Back to all industries</span>
+          </a>
+          <a href="#healthcare" onclick="openView('healthcare')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <span>Next: Healthcare</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </section>
 
     </div>
 
-    <!-- ======================================================= -->
     <!-- VIEW 3: HEALTHCARE (CLINICAL EHR & WHATSAPP FLOW)        -->
     <!-- ======================================================= -->
     <div id="view-healthcare" class="hidden space-y-6">
@@ -1244,6 +1508,173 @@
 
     let currentMode = 'safe';
 
+    
+    // =========================================================
+    // DEVOPS INTERACTIVE DEMO (SIMPLIFIED & CALM NOTION-STYLE)
+    // =========================================================
+    let devopsCurrentScenario = 'safe'; // 'safe' or 'risky'
+
+    function selectDevOpsDemoScenario(scenario) {
+      devopsCurrentScenario = scenario;
+      const safeCard = document.getElementById('devops-card-safe');
+      const riskyCard = document.getElementById('devops-card-risky');
+      const resultContainer = document.getElementById('devops-result-container');
+
+      if (safeCard && riskyCard) {
+        if (scenario === 'safe') {
+          safeCard.classList.add('selected');
+          safeCard.setAttribute('aria-checked', 'true');
+          riskyCard.classList.remove('selected');
+          riskyCard.setAttribute('aria-checked', 'false');
+        } else {
+          riskyCard.classList.add('selected');
+          riskyCard.setAttribute('aria-checked', 'true');
+          safeCard.classList.remove('selected');
+          safeCard.setAttribute('aria-checked', 'false');
+        }
+      }
+
+      // Hide previous result when switching scenario
+      if (resultContainer) resultContainer.classList.add('hidden');
+      resetDevOpsStepIndicators();
+      appendDevOpsTechLog(`Scenario switched to: ${scenario === 'safe' ? 'Safe Change (Parameterized)' : 'Risky Change (SQL Injection)'}`);
+    }
+
+    function resetDevOpsStepIndicators() {
+      for (let i = 1; i <= 3; i++) {
+        const stepEl = document.getElementById('step-devops-' + i);
+        const iconEl = document.getElementById('step-icon-' + i);
+        if (stepEl && iconEl) {
+          stepEl.className = "flex items-center space-x-2.5 caption-label text-neutral-400";
+          iconEl.className = "w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-xs";
+          iconEl.innerText = i.toString();
+        }
+      }
+    }
+
+    function setStepDevOpsCompleted(stepNum) {
+      const stepEl = document.getElementById('step-devops-' + stepNum);
+      const iconEl = document.getElementById('step-icon-' + stepNum);
+      if (stepEl && iconEl) {
+        stepEl.className = "flex items-center space-x-2.5 caption-label text-[var(--ok)] font-medium";
+        iconEl.className = "w-5 h-5 rounded-full bg-[var(--ok)] text-white flex items-center justify-center text-xs";
+        iconEl.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i>';
+        lucide.createIcons();
+      }
+    }
+
+    function appendDevOpsTechLog(msg) {
+      const log = document.getElementById('devops-tech-log');
+      if (log) {
+        const time = new Date().toLocaleTimeString();
+        const line = document.createElement('div');
+        line.innerText = `[${time}] ${msg}`;
+        log.appendChild(line);
+        log.scrollTop = log.scrollHeight;
+      }
+    }
+
+    function executeDevOpsCheck() {
+      const btn = document.getElementById('btn-run-devops-check');
+      const resultContainer = document.getElementById('devops-result-container');
+      const resultBox = document.getElementById('devops-result-box');
+      const resultTitle = document.getElementById('devops-result-title');
+      const resultText = document.getElementById('devops-result-text');
+      const resultIcon = document.getElementById('devops-result-icon');
+      const resultFix = document.getElementById('devops-result-fix');
+      const resultSlack = document.getElementById('devops-result-slack');
+      const demoNote = document.getElementById('devops-demo-mode-note');
+
+      if (!btn) return;
+      btn.disabled = true;
+      btn.innerText = "Running the check...";
+      if (resultContainer) resultContainer.classList.add('hidden');
+      resetDevOpsStepIndicators();
+
+      appendDevOpsTechLog(`Initiating automated check for PR #142 (branch: main)...`);
+
+      // Step 1: Reading change (~700ms)
+      setTimeout(() => {
+        setStepDevOpsCompleted(1);
+        appendDevOpsTechLog(`Step 1 complete: Code diff parsed from authController.ts`);
+
+        // Step 2: Checking problems (~700ms)
+        setTimeout(() => {
+          setStepDevOpsCompleted(2);
+          appendDevOpsTechLog(`Step 2 complete: SQL safety and schema validation rules evaluated`);
+
+          // Step 3: Deciding (~700ms)
+          setTimeout(() => {
+            setStepDevOpsCompleted(3);
+            appendDevOpsTechLog(`Step 3 complete: Verdict reached for PR #142`);
+
+            btn.disabled = false;
+            btn.innerText = "Run the check";
+
+            if (resultContainer) resultContainer.classList.remove('hidden');
+
+            if (devopsCurrentScenario === 'safe') {
+              resultBox.className = "p-4 rounded-lg space-y-2 bg-[#ECFDF3] border border-[#A6F4C5]";
+              resultTitle.className = "card-title text-[var(--ok)]";
+              resultTitle.innerText = "Approved";
+              resultText.innerText = "No problems found. This change can go live.";
+              resultIcon.setAttribute('data-lucide', 'check-circle');
+              resultIcon.className = "w-5 h-5 text-[var(--ok)]";
+              if (resultFix) resultFix.classList.add('hidden');
+              if (resultSlack) resultSlack.classList.add('hidden');
+              appendDevOpsTechLog(`Outcome: PR #142 approved for merge.`);
+            } else {
+              resultBox.className = "p-4 rounded-lg space-y-2 bg-[#FEF3F2] border border-[#FECDCA]";
+              resultTitle.className = "card-title text-[var(--danger)]";
+              resultTitle.innerText = "Blocked";
+              resultText.innerText = "This change puts user input directly into a database query, which could let an attacker read or change your data. Suggested fix:";
+              resultIcon.setAttribute('data-lucide', 'alert-octagon');
+              resultIcon.className = "w-5 h-5 text-[var(--danger)]";
+              if (resultFix) resultFix.classList.remove('hidden');
+              if (resultSlack) resultSlack.classList.remove('hidden');
+              appendDevOpsTechLog(`Outcome: PR #142 BLOCKED. Alert sent to Slack.`);
+            }
+            lucide.createIcons();
+
+            // Webhook call with demo mode fallback
+            try {
+              fetch("https://enlightlab-n8n.duckdns.org/webhook/github-commit-jenkins", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  repository: "payment-service",
+                  pull_request: 142,
+                  scenario: devopsCurrentScenario,
+                  timestamp: new Date().toISOString()
+                })
+              }).then(res => {
+                if (!res.ok && demoNote) demoNote.classList.remove('hidden');
+              }).catch(() => {
+                if (demoNote) demoNote.classList.remove('hidden');
+              });
+            } catch (e) {
+              if (demoNote) demoNote.classList.remove('hidden');
+            }
+
+          }, 700);
+        }, 700);
+      }, 700);
+    }
+
+    function toggleMobileMenu(forceState) {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      if (!mobileMenu) return;
+      const willOpen = typeof forceState === 'boolean' ? forceState : mobileMenu.classList.contains('hidden');
+      if (willOpen) {
+        mobileMenu.classList.remove('hidden');
+        if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileMenu.classList.add('hidden');
+        if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
     function openView(viewName) {
       const views = ['hub', 'devops', 'healthcare', 'ecommerce'];
       views.forEach(v => {
@@ -1264,7 +1695,19 @@
       if (target) {
         target.classList.remove('hidden');
         window.location.hash = viewName === 'hub' ? 'industries' : viewName;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+      if (viewName === 'devops') {
+        document.title = "DevOps Code Safety Check | Enlight Lab";
+        const descEl = document.querySelector('meta[name="description"]');
+        if (descEl) descEl.setAttribute('content', "Catch risky code changes before they reach your live system with automated pull request inspection.");
+      } else if (viewName === 'healthcare') {
+        document.title = "Healthcare Patient Preparation | Enlight Lab";
+      } else if (viewName === 'ecommerce') {
+        document.title = "E-Commerce Customer Support | Enlight Lab";
+      } else {
+        document.title = "Enlight Lab | Enterprise AI Automation & Workflow Platform";
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       lucide.createIcons();
     }
@@ -1277,6 +1720,17 @@
         openView('hub');
       }
     }
+
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.target && e.target.id === 'devops-card-safe' && (e.key === ' ' || e.key === 'Enter')) {
+        e.preventDefault();
+        selectDevOpsDemoScenario('safe');
+      } else if (e.target && e.target.id === 'devops-card-risky' && (e.key === ' ' || e.key === 'Enter')) {
+        e.preventDefault();
+        selectDevOpsDemoScenario('risky');
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', handleHashRoute);
     window.addEventListener('hashchange', handleHashRoute);
