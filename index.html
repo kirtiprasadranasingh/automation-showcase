@@ -1162,650 +1162,1221 @@
 
     <!-- VIEW 3: HEALTHCARE (CLINICAL EHR & WHATSAPP FLOW)        -->
     <!-- ======================================================= -->
-    <div id="view-healthcare" class="hidden space-y-6">
-      
-      <!-- Top Navigation -->
-      <div class="flex items-center justify-between">
-        <button onclick="openView('hub')" class="inline-flex items-center space-x-2 text-xs font-bold text-cyan-700 hover:text-cyan-800 bg-cyan-50 px-4 py-2 rounded-xl border border-cyan-200 shadow-2xs transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Back to All Industries</span>
-        </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 2 of 3 &bull; Healthcare</span>
-      </div>
+    <div id="view-healthcare" class="hidden w-full font-sans">
 
-      <!-- Clean Header Block -->
-      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-2">
-        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-200 inline-block">
-          Clinical &amp; Healthcare Operations
-        </span>
-        <h1 class="text-2xl sm:text-4xl font-extrabold text-[#0A0F1E] font-display">
-          Clinical EHR WhatsApp Patient Preparation Flow
-        </h1>
-        <p class="text-sm text-[#0A0F1E]/70 leading-relaxed max-w-3xl">
-          Extracts physician preparation directives from clinical doctor notes and delivers simple, personalized checklists to patients via WhatsApp to prevent costly morning procedure cancellations.
-        </p>
-      </div>
+      <!-- SECTION 1: HERO (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <!-- Left Hero Text (7 cols) -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Breadcrumb navigation -->
+              <nav aria-label="Breadcrumb" class="flex items-center space-x-2 caption-label">
+                <a href="#hub" onclick="openView('hub')" class="hover:text-[var(--text)] transition">All Industries</a>
+                <span class="text-neutral-400">/</span>
+                <span class="text-[var(--text)] font-semibold">Healthcare</span>
+              </nav>
 
-      <!-- Down-by-Down Story: Problem / Solution / Result in 3 Clean Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
-            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-            <span>The Problem</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            Patients show up having eaten breakfast before a morning endoscopy or without a driver for sedation. The appointment is cancelled on the spot, and the scanner sits empty.
-          </p>
-        </div>
+              <div class="space-y-4">
+                <span class="tag-label">Clinical &amp; Healthcare Operations</span>
+                <h1 class="hero-title">
+                  Help patients prepare for procedures so appointments are never cancelled
+                </h1>
+                <p class="body-lead">
+                  Patients often forget simple preparation rules like fasting or arranging a driver. Automated WhatsApp reminders send clear, personalized instructions directly from doctor notes.
+                </p>
+              </div>
 
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-cyan-700 flex items-center space-x-1.5">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>The Solution</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            The system reads the doctor's clinical notes, turns them into a simple, personalized WhatsApp checklist, and delivers it directly to the patient 24 hours prior.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
-            <i data-lucide="zap" class="w-4 h-4"></i>
-            <span>The Result</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            Morning cancellations drop drastically. Clinics protect thousands in daily scan revenue, while nurses spend zero time making repetitive reminder calls.
-          </p>
-        </div>
-      </div>
-
-      <!-- High-Fidelity UI Screenshot Window -->
-      <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden window-shadow bg-white">
-        <div class="bg-[#F8F9FC] px-5 py-3 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-          <div class="flex items-center space-x-2.5">
-            <div class="flex items-center space-x-1.5">
-              <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              <!-- Action buttons with in-page smooth scrolling -->
+              <div class="pt-2 flex flex-wrap items-center gap-3">
+                <button type="button" onclick="scrollToSection('hc-demo')" class="btn-primary">
+                  <span>Try the demo</span>
+                </button>
+                <button type="button" onclick="scrollToSection('hc-video-walkthrough')" class="btn-secondary flex items-center space-x-2">
+                  <i data-lucide="play" class="w-4 h-4 text-[var(--accent)]"></i>
+                  <span>Watch Video</span>
+                </button>
+                <button type="button" onclick="scrollToSection('hc-how-it-works')" class="btn-secondary">
+                  <span>See how it works</span>
+                </button>
+              </div>
             </div>
-            <span class="text-[#0A0F1E]/30 font-mono">|</span>
-            <span class="font-mono text-xs text-[#0A0F1E]/70 flex items-center space-x-1.5">
-              <i data-lucide="cross" class="w-3.5 h-3.5 text-cyan-600"></i>
-              <span>apollo-clinical-ehr.internal / patient-dispatch / Rahul Sharma (#EHR-99214)</span>
-            </span>
-          </div>
-          <span class="text-xs font-mono text-cyan-700 bg-cyan-50 px-2.5 py-0.5 rounded-md border border-cyan-200 font-semibold">Automated WhatsApp Bridge Active</span>
-        </div>
-        
-        <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 bg-[#FBFBFC]">
-          <!-- EHR Clinical Order -->
-          <div class="md:col-span-6 bg-white rounded-xl p-5 text-xs space-y-3 border border-[#E8EAF0]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-              <span class="font-bold text-[#0A0F1E] text-sm">Doctor's Raw Clinical Order</span>
-              <span class="text-[10px] font-mono text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded font-semibold border border-cyan-200">Dr. A. K. Singhal, MD</span>
+
+            <!-- Right Hero Preview Card (5 cols) -->
+            <div class="lg:col-span-5">
+              <div class="surface-card bg-neutral-900 text-neutral-100 p-5 space-y-3 shadow-sm border-neutral-800">
+                <div class="flex items-center justify-between pb-2 border-b border-neutral-800 text-xs">
+                  <div class="flex items-center space-x-2 font-mono text-neutral-300 text-[11px]">
+                    <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-rose-400"></i>
+                    <span>MRN: #EHR-99214 &bull; Clinical Prep Gate</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">WhatsApp Delivered</span>
+                </div>
+                <div class="space-y-1.5 font-mono text-xs">
+                  <div class="text-neutral-500">Dr. Singhal &bull; Bruce Protocol Stress Test</div>
+                  <div class="bg-black/60 text-neutral-200 p-2.5 rounded border border-neutral-800 text-[11px] leading-relaxed">
+                    1. Fast for 4 hours prior (water permitted)<br/>
+                    2. Strictly zero caffeine for 24 hours<br/>
+                    3. Take morning blood pressure pills with sip of water
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-neutral-800 text-[12px] text-neutral-400 flex items-center justify-between font-sans">
+                  <span class="flex items-center space-x-1.5 text-neutral-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Patient confirmed via WhatsApp</span>
+                  </span>
+                  <button type="button" onclick="scrollToSection('hc-video-walkthrough')" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1">
+                    <span>Watch video</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <p class="font-mono text-xs text-[#0A0F1E]/80 bg-slate-50 p-3.5 rounded-xl border border-slate-200 leading-relaxed">
-              &quot;Pt referred for exertional chest tightness. Schedule Bruce Protocol stress test. NPO 4h prior. Zero caffeine 24h. Take morning BP meds with water. Bring sneakers.&quot;
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: THE PROBLEM (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <div class="space-y-4 max-w-[65ch]">
+            <span class="caption-label">The Problem</span>
+            <h2 class="section-heading">
+              When patients arrive unprepared, appointments get cancelled on the spot
+            </h2>
+            <p class="body-text">
+              Before procedures like cardiac stress tests or endoscopies, patients must follow strict preparation rules. When instructions get forgotten, hospitals must cancel the scan, leaving expensive suites empty and frustrating clinical staff.
             </p>
-            <div class="text-[11px] text-[#0A0F1E]/60 flex items-center justify-between pt-1">
-              <span>Vector Protocol Store: Cosine Match 0.94</span>
-              <span class="text-emerald-600 font-mono font-semibold">HL7 / FHIR Synced</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: HOW IT WORKS (White Background) -->
+      <section id="hc-how-it-works" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">How It Works</span>
+            <h2 class="section-heading">
+              Three simple steps from doctor notes to patient phone
+            </h2>
+            <p class="body-text">
+              The automated workflow runs seamlessly 24 hours before every scheduled appointment:
+            </p>
+          </div>
+
+          <!-- 3-Step Visual Diagram -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Step 1 Card -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <div class="caption-label text-neutral-400">Step 1</div>
+                <h3 class="card-title">Doctor logs clinical order</h3>
+                <p class="caption-label leading-relaxed">
+                  The physician writes clinical prep orders in the hospital EHR system as part of standard booking.
+                </p>
+              </div>
+              <div class="bg-neutral-50 border border-[var(--border)] p-3 rounded-lg space-y-1.5 font-mono text-xs text-neutral-700">
+                <div class="flex items-center space-x-1.5 text-neutral-500 text-[11px]">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                  <span>Apollo EHR Order #99214</span>
+                </div>
+                <div class="font-semibold text-[var(--text)]">Cardiology Stress Test</div>
+                <div class="text-[11px] text-neutral-400">NPO 4h &bull; No caffeine 24h &bull; BP meds ok</div>
+              </div>
+            </div>
+
+            <!-- Step 2 Card -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <div class="caption-label text-neutral-400">Step 2</div>
+                <h3 class="card-title">AI converts notes to plain checklist</h3>
+                <p class="caption-label leading-relaxed">
+                  Medical jargon is transformed into 3 simple, patient-friendly instructions in everyday language.
+                </p>
+              </div>
+              <div class="bg-neutral-50 border border-[var(--border)] p-3 rounded-lg space-y-1 text-xs text-neutral-700">
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Fasting rules simplified</span>
+                </div>
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Medication instructions confirmed</span>
+                </div>
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Interactive confirmation button added</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 Card -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4 bg-[#ECFDF3] border-[#A6F4C5]">
+              <div class="space-y-3">
+                <div class="caption-label text-emerald-800">Step 3</div>
+                <h3 class="card-title text-[var(--ok)]">Delivered on WhatsApp</h3>
+                <p class="caption-label text-emerald-950 leading-relaxed">
+                  Delivered 24 hours prior. Patient taps "Confirm Prep" and the clinic dashboard updates instantly.
+                </p>
+              </div>
+              <div class="bg-white/90 border border-emerald-200 p-3 rounded-lg space-y-1.5 text-xs text-emerald-900">
+                <div class="flex items-center space-x-1.5 text-emerald-700 text-[11px] font-semibold">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                  <span>WhatsApp Business API</span>
+                </div>
+                <div class="font-medium">98% Open Rate within 15 Minutes</div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ANIMATED VIDEO WALKTHROUGH (Soft Background) -->
+      <section id="hc-video-walkthrough" class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
           
-          <!-- Delivered Patient WhatsApp -->
-          <div class="md:col-span-6 bg-[#EFEAE2] p-5 rounded-xl border border-[#E8EAF0] space-y-3 text-xs">
-            <div class="flex items-center justify-between text-xs font-bold text-slate-600 pb-2 border-b border-black/5">
-              <span class="flex items-center space-x-1.5">
-                <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Patient WhatsApp (Delivered 24h Prior)</span>
-              </span>
-              <span class="text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded text-[11px]">Delivered</span>
-            </div>
-            <div class="bg-white p-3.5 rounded-xl shadow-xs space-y-2 border border-black/5">
-              <strong class="text-cyan-950 block text-xs">Apollo Care: Appointment Tomorrow at 09:30 AM</strong>
-              <p class="text-xs text-[#0A0F1E]/80 leading-relaxed">
-                Fast for 4 hours prior. Zero coffee or tea for 24h. Wear running sneakers. Tap below to confirm arrival.
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div class="space-y-3 max-w-[65ch]">
+              <span class="caption-label">Automated Pipeline Animation</span>
+              <h2 class="section-heading">
+                Watch the patient preparation flow in action
+              </h2>
+              <p class="body-text">
+                See how a physician order is extracted, transformed into a WhatsApp message, and confirmed by the patient.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Interactive Working Prototype Console -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Clinical EHR &amp; WhatsApp Working Prototype</h2>
-          <span class="text-xs font-mono text-cyan-700 font-semibold">HL7/FHIR EHR Gateway Active</span>
-        </div>
-
-        <!-- Quick Scenarios -->
-        <div class="flex flex-wrap gap-2 items-center">
-          <span class="text-xs font-semibold text-[#0A0F1E]/60 mr-1">Quick Scenarios:</span>
-          <button onclick="setHCScenario('cardio')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
-            <i data-lucide="activity" class="w-3.5 h-3.5"></i>
-            <span>Cardiology Stress Test</span>
-          </button>
-          <button onclick="setHCScenario('endo')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
-            <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i>
-            <span>Upper Endoscopy</span>
-          </button>
-          <button onclick="setHCScenario('dental')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 transition flex items-center space-x-1.5">
-            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-            <span>Oral Surgery</span>
-          </button>
-          <button onclick="setHCPatientQuestion('Can I drink water before the procedure?')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition">
-            Q: &quot;Can I drink water?&quot;
-          </button>
-          <button onclick="setHCPatientQuestion('Can I take my blood pressure medicine tomorrow morning?')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition">
-            Q: &quot;Take BP meds?&quot;
-          </button>
-          <button onclick="setHCPatientQuestion('URGENT: I forgot to fast and just ate breakfast!')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition">
-            Alert: &quot;Ate breakfast&quot;
-          </button>
-        </div>
-
-        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC] card-shadow">
-          <!-- Topbar -->
-          <div class="bg-[#EEF1F8] px-5 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-            <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
-              <span class="text-[#0A0F1E]/40">&bull;</span>
-              <span class="text-[#0A0F1E]/60">Target: Hospital EHR Gateway + WhatsApp API</span>
-            </div>
-            <div id="hc-active-agent-badge" class="font-mono text-xs font-semibold text-cyan-700">
-              Agent: Clinical RAG Specialist (Active)
-            </div>
-          </div>
-
-          <!-- Progress -->
-          <div id="hc-pipeline-bar" class="hidden bg-white px-5 py-2 border-b border-[#E8EAF0] text-xs">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="inline-block animate-spin text-cyan-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
-                <span id="hc-step-text" class="font-mono font-medium text-cyan-700">Ingesting patient record &amp; EHR notes...</span>
-              </div>
-              <span id="hc-step-count" class="font-mono text-xs text-[#0A0F1E]/50">Step 1/3</span>
-            </div>
-            <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1.5">
-              <div id="hc-progress-fill" class="bg-cyan-600 h-full w-1/3 transition-all duration-500"></div>
-            </div>
-          </div>
-
-          <!-- Split Console Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 bg-white">
-            <!-- Left EHR System (5 cols) -->
-            <div class="lg:col-span-5 p-5 border-b lg:border-b-0 lg:border-r border-[#E8EAF0] space-y-4 bg-slate-50/60">
-              <div class="flex items-center justify-between pb-2 border-b border-[#E8EAF0]">
-                <div class="font-bold text-[#0A0F1E] text-xs">Apollo Clinical EHR System</div>
-                <span id="hc-ehr-mrn" class="font-mono text-xs px-2 py-0.5 rounded bg-cyan-100/70 text-cyan-800 border border-cyan-200 font-semibold">
-                  MRN: #EHR-99214
-                </span>
-              </div>
-
-              <!-- Patient Card -->
-              <div class="bg-white rounded-xl p-3.5 border border-[#E8EAF0] space-y-2 text-xs">
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                  <div>
-                    <span class="text-[#0A0F1E]/50 block text-[11px]">Patient Name:</span>
-                    <strong id="hc-patient-name" class="text-[#0A0F1E] font-semibold text-xs">Rahul Sharma (48M)</strong>
-                  </div>
-                  <div>
-                    <span class="text-[#0A0F1E]/50 block text-[11px]">Appointment Slot:</span>
-                    <strong id="hc-patient-slot" class="text-[#0A0F1E] font-semibold text-xs">Tomorrow at 09:30 AM</strong>
-                  </div>
-                  <div>
-                    <span class="text-[#0A0F1E]/50 block text-[11px]">Attending Physician:</span>
-                    <span id="hc-doctor-name" class="text-[#0A0F1E] font-medium">Dr. A. K. Singhal, MD</span>
-                  </div>
-                  <div>
-                    <span class="text-[#0A0F1E]/50 block text-[11px]">Clinic Suite:</span>
-                    <span id="hc-clinic-room" class="text-[#0A0F1E] font-medium">Cardiology Suite 3B</span>
-                  </div>
-                </div>
-                <div class="pt-2 border-t border-slate-100">
-                  <span class="text-[#0A0F1E]/50 text-[10px] uppercase font-bold block mb-0.5">Scheduled Procedure:</span>
-                  <div id="hc-procedure-title" class="font-bold text-cyan-900 text-xs flex items-center space-x-1.5">
-                    <i data-lucide="activity" class="w-3.5 h-3.5 text-cyan-600 flex-shrink-0"></i>
-                    <span>Cardiology Treadmill Stress Test (Bruce Protocol)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Raw Notes -->
-              <div class="space-y-1">
-                <div class="flex items-center justify-between text-xs font-bold text-[#0A0F1E]/70">
-                  <span>Physician Orders &amp; Notes:</span>
-                  <span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">HL7 Ingested</span>
-                </div>
-                <div id="hc-raw-notes" class="bg-white p-3 rounded-xl border border-[#E8EAF0] text-xs font-mono text-[#0A0F1E]/85 leading-relaxed">
-                  Pt referred for exertional chest tightness. Schedule standard Bruce Protocol exercise stress test. NPO 4 hrs prior to test. No caffeine or theophylline products for 24h prior. May take morning beta-blocker/hypertension meds with sip of water. Patient instructed to bring comfortable running shoes and loose workout clothing.
-                </div>
-              </div>
-
-              <!-- Button -->
-              <div>
-                <button onclick="triggerHealthcareDispatch()" id="btn-hc-dispatch" class="w-full py-2.5 rounded-xl font-bold text-xs bg-cyan-600 hover:bg-cyan-700 text-white shadow-sm transition flex items-center justify-center space-x-2">
-                  <i data-lucide="send" class="w-4 h-4"></i>
-                  <span>Re-Index EHR &amp; Dispatch Protocol</span>
+            <!-- Scenario Pills (Cardiology vs Endoscopy) -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="caption-label font-medium text-neutral-500">Procedure:</span>
+              <div class="inline-flex rounded-lg border border-[var(--border)] bg-white p-1 text-xs shadow-2xs">
+                <button type="button" id="hc-v-tab-cardio" onclick="setHCVideoScenario('cardio')" class="px-3 py-1.5 rounded-md font-semibold text-[var(--accent)] bg-[var(--accent-soft)] transition">
+                  Cardiology Stress Test
+                </button>
+                <button type="button" id="hc-v-tab-endo" onclick="setHCVideoScenario('endo')" class="px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition">
+                  Endoscopy with Sedation
                 </button>
               </div>
             </div>
+          </div>
 
-            <!-- Right WhatsApp Preview (7 cols) -->
-            <div class="lg:col-span-7 flex flex-col justify-between bg-[#F0F2F5] min-h-[500px]">
-              <!-- Phone Header -->
-              <div class="bg-[#075E54] text-white px-4 py-3 flex items-center justify-between shadow-xs">
+          <!-- Video Animation Frame (Theme-matched surface-card) -->
+          <div class="surface-card p-4 sm:p-6 space-y-4 bg-white border-[var(--border)] shadow-sm">
+            
+            <!-- Video Animation Stage Canvas -->
+            <div id="hc-v-canvas-stage" class="relative min-h-[360px] sm:min-h-[400px] p-6 sm:p-8 rounded-xl flex flex-col justify-between overflow-hidden bg-neutral-900 border border-neutral-800 text-neutral-100">
+              
+              <!-- Scanning Ray Animation -->
+              <div id="hc-v-scan-beam" class="devops-scan-line hidden pointer-events-none"></div>
+
+              <!-- Top Scene Header Bar -->
+              <div class="flex items-center justify-between pb-3 border-b border-neutral-800 text-xs">
                 <div class="flex items-center space-x-2.5">
-                  <div class="w-8 h-8 rounded-full bg-white text-[#075E54] flex items-center justify-center font-bold flex-shrink-0">
-                    <i data-lucide="heart-pulse" class="w-4 h-4"></i>
-                  </div>
-                  <div>
-                    <div class="font-bold text-xs flex items-center space-x-1.5">
-                      <span>Apollo Clinical Care</span>
-                      <span class="inline-flex items-center justify-center w-3 h-3 rounded-full bg-emerald-400 text-[#075E54]">
-                        <i data-lucide="check" class="w-2 h-2 stroke-[3]"></i>
-                      </span>
-                    </div>
-                    <div class="text-[10px] text-emerald-100/90 font-mono">Official Hospital Care Desk &bull; Online</div>
-                  </div>
+                  <span id="hc-v-scene-num-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                    Step 1 of 4
+                  </span>
+                  <span id="hc-v-scene-title" class="font-semibold text-neutral-200">
+                    Doctor schedules procedure &amp; enters raw clinical directives
+                  </span>
                 </div>
-                <div class="flex items-center space-x-3 text-white/80">
-                  <i data-lucide="phone" class="w-4 h-4"></i>
-                  <i data-lucide="more-vertical" class="w-4 h-4"></i>
+                <div class="flex items-center space-x-1.5 text-xs text-neutral-400 font-sans">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Continuous live flow</span>
                 </div>
               </div>
 
-              <!-- Chat History -->
-              <div id="hc-chat-history" class="p-4 space-y-3.5 flex-1 overflow-y-auto max-h-[380px] bg-[#EFEAE2]">
-                <div class="flex justify-center">
-                  <span class="text-[10px] font-semibold bg-white/80 text-[#0A0F1E]/60 px-2.5 py-0.5 rounded-full shadow-2xs">Today</span>
-                </div>
-
-                <div class="flex flex-col items-start max-w-[92%] sm:max-w-[85%] space-y-1">
-                  <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs border border-black/5 text-xs text-[#0A0F1E] space-y-2.5">
-                    <div class="flex items-center justify-between pb-1 border-b border-slate-100">
-                      <span class="font-bold text-cyan-900 flex items-center space-x-1">
-                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-600"></i>
-                        <span>Appointment Confirmation</span>
-                      </span>
-                      <span class="text-[10px] text-slate-400 font-mono">10:15 AM</span>
-                    </div>
-
-                    <p id="hc-msg" class="text-[#0A0F1E]/85 leading-relaxed">
-                      Dear Rahul Sharma, your <strong>Cardiology Treadmill Stress Test</strong> is scheduled for Tomorrow at 09:30 AM at Apollo Super Specialty Hospital.
-                    </p>
-
-                    <div id="hc-prep-card" class="bg-amber-50/90 p-3 rounded-xl border border-amber-200/90 text-amber-950 space-y-1.5 text-xs">
-                      <div class="font-bold flex items-center space-x-1.5 text-amber-900">
-                        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-700 flex-shrink-0"></i>
-                        <span>Mandatory Pre-Procedure Instructions:</span>
-                      </div>
-                      <ul id="hc-prep-list" class="list-disc pl-4 space-y-1 leading-relaxed text-amber-900/90">
-                        <li><strong>Fasting:</strong> Fast for 4 hours prior. Small sips of plain water are permitted.</li>
-                        <li><strong>Caffeine:</strong> Strictly avoid coffee, tea, chocolate, or colas for 24h prior (blocks adenosine receptors).</li>
-                        <li><strong>Attire:</strong> Wear comfortable athletic walking/running sneakers and loose clothing.</li>
-                        <li><strong>Arrival:</strong> Report to Cardiology Lab 3B by 09:00 AM (30 mins early).</li>
-                      </ul>
-                    </div>
-
-                    <div class="pt-1.5 space-y-1.5 border-t border-slate-100">
-                      <div class="text-[10px] font-semibold text-[#0A0F1E]/50 uppercase tracking-wider">Quick questions:</div>
-                      <div class="flex flex-wrap gap-1.5">
-                        <button onclick="setHCPatientQuestion('I confirm my fasting and will arrive at 09:00 AM.')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition">
-                          Confirm Arrival &amp; Fasting
-                        </button>
-                        <button onclick="setHCPatientQuestion('Can I drink water before the procedure?')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 transition">
-                          Can I drink water?
-                        </button>
-                        <button onclick="setHCPatientQuestion('Can I take my blood pressure medicine tomorrow morning?')" class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 transition">
-                          Take BP medication?
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <!-- Central Stage Content -->
+              <div id="hc-v-stage-content" class="my-auto py-4">
+                <!-- Dynamically rendered scene HTML -->
               </div>
 
-              <!-- Input bar -->
-              <div class="p-2.5 bg-[#F0F2F5] border-t border-[#E8EAF0] flex items-center space-x-2">
-                <input id="hc-user-input" type="text" placeholder="Ask a prep question (e.g. Can I drink water?)..." class="flex-1 text-xs px-3.5 py-2.5 rounded-full border border-slate-200 bg-white focus:outline-none focus:border-cyan-500 font-medium text-[#0A0F1E]" onkeydown="if(event.key==='Enter') sendHCPatientMessage()">
-                <button onclick="sendHCPatientMessage()" id="btn-hc-send" class="w-9 h-9 rounded-full bg-[#075E54] hover:bg-[#128C7E] text-white flex items-center justify-center flex-shrink-0">
-                  <i data-lucide="send" class="w-4 h-4"></i>
+            </div>
+
+            <!-- Under that: 4 Step Indicator Pills -->
+            <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[var(--border)]">
+              <span class="caption-label text-neutral-500 text-xs hidden sm:inline">
+                Pipeline stages:
+              </span>
+              <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-end w-full sm:w-auto">
+                <button type="button" id="hc-v-chap-1" onclick="seekHCVideo(0)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition">
+                  1. EHR Order
                 </button>
+                <button type="button" id="hc-v-chap-2" onclick="seekHCVideo(3)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  2. AI Extraction
+                </button>
+                <button type="button" id="hc-v-chap-3" onclick="seekHCVideo(6)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  3. WhatsApp Dispatch
+                </button>
+                <button type="button" id="hc-v-chap-4" onclick="seekHCVideo(9)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  4. Prep Confirmed
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 5: WHAT YOUR TEAM SEES (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What Your Team Sees</span>
+            <h2 class="section-heading">
+              Real outputs: the EHR clinical note and the patient WhatsApp checklist
+            </h2>
+            <p class="body-text">
+              Clinicians see the ingested record in their EHR system, while patients receive clean, actionable guidance on WhatsApp.
+            </p>
+          </div>
+
+          <!-- Side-by-side Dual Visuals -->
+          <div class="surface-card p-0 overflow-hidden shadow-sm bg-white border-[var(--border)]">
+            <div class="bg-neutral-50 px-5 py-3 border-b border-[var(--border)] flex items-center justify-between text-xs text-neutral-600">
+              <div class="flex items-center space-x-2 font-mono text-neutral-700">
+                <i data-lucide="activity" class="w-4 h-4 text-rose-500"></i>
+                <span class="font-semibold text-[var(--text)]">Apollo Clinical EHR</span>
+                <span class="text-neutral-400">/</span>
+                <span class="text-neutral-600">Patient Rahul Sharma (#EHR-99214)</span>
+                <span class="ml-2 px-2 py-0.5 rounded text-[11px] font-sans font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Scheduled Tomorrow</span>
+              </div>
+              <span class="caption-label text-neutral-500 font-sans hidden sm:inline">Automated Patient Dispatch Bridge</span>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white">
+              <!-- Left: EHR Note Card -->
+              <div class="lg:col-span-6 space-y-3">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <span class="font-semibold text-[var(--text)]">Doctor's Raw Clinical Order</span>
+                  <span class="font-mono text-neutral-500 text-[11px]">Dr. A. K. Singhal, MD</span>
+                </div>
+                <div class="bg-neutral-900 text-neutral-100 p-4 rounded-lg font-mono text-xs space-y-2 leading-relaxed">
+                  <div class="text-neutral-500">-- Patient Encounter: Cardiology Suite 3B --</div>
+                  <div class="text-neutral-300">Pt scheduled for Bruce Protocol exercise stress test.</div>
+                  <div class="text-amber-300 bg-amber-950/60 p-2 rounded border border-amber-800/60">
+                    NPO 4h prior. Strict no caffeine 24h. Take morning BP meds with water. Bring sneakers.
+                  </div>
+                </div>
+                <div class="caption-label text-neutral-500 text-xs">
+                  Ingested automatically via hospital HL7 / FHIR scheduling feed.
+                </div>
+              </div>
+
+              <!-- Right: WhatsApp Message Bubble Card -->
+              <div class="lg:col-span-6 space-y-3">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <span class="font-semibold text-[var(--text)]">Delivered Patient WhatsApp Message</span>
+                  <span class="font-mono text-emerald-600 text-[11px] font-medium">WhatsApp Business API</span>
+                </div>
+                <div class="bg-[#ECE5DD] p-4 rounded-xl border border-[var(--border)] space-y-3 font-sans">
+                  <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs space-y-2 text-xs text-neutral-800 border border-black/5">
+                    <div class="font-semibold text-emerald-800 flex items-center space-x-1.5 pb-1 border-b border-slate-100">
+                      <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                      <span>Apollo Hospital &bull; Procedure Preparation</span>
+                    </div>
+                    <p class="leading-relaxed">
+                      Dear Rahul, your <strong>Cardiology Stress Test</strong> is scheduled for Tomorrow at 09:30 AM.
+                    </p>
+                    <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-200 text-amber-950 space-y-1 text-[11px]">
+                      <div class="font-bold">Important Instructions:</div>
+                      <div>&bull; Fast for 4 hours prior (water permitted)</div>
+                      <div>&bull; No coffee, tea, or chocolate for 24 hours</div>
+                      <div>&bull; Take morning blood pressure pills with a sip of water</div>
+                      <div>&bull; Wear comfortable running shoes and loose workout clothing</div>
+                    </div>
+                    <div class="pt-1 flex gap-2">
+                      <span class="px-3 py-1 rounded-md bg-emerald-600 text-white font-medium text-[11px]">I Confirm</span>
+                      <span class="px-3 py-1 rounded-md bg-neutral-100 text-neutral-700 font-medium text-[11px]">Ask Question</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="caption-label text-neutral-500 text-xs">
+                  Patients can tap to confirm or reply directly with questions.
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Webhook bar -->
-        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="network" class="w-4 h-4 text-cyan-700 flex-shrink-0"></i>
-            <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
-            <code class="font-mono text-xs bg-white px-2.5 py-0.5 rounded border border-[#E8EAF0] text-cyan-800">/webhook/appointment-whatsapp-notify</code>
+      <!-- SECTION 6: INTERACTIVE DEMO (White Background) -->
+      <section id="hc-demo" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">Interactive Demo</span>
+            <h2 class="section-heading">Try it yourself</h2>
+            <p class="body-text">Select a clinical case below, dispatch the protocol, and simulate patient interaction on WhatsApp.</p>
           </div>
-          <div class="flex items-center space-x-2 text-xs text-[#0A0F1E]/60">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>RAG Engine: <strong>Vector Protocol Index + Hospital EHR Audit</strong></span>
+
+          <!-- Demo Surface Panel -->
+          <div class="demo-surface p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              <!-- Left Column: Controls & EHR Record (5 cols) -->
+              <div class="lg:col-span-5 space-y-5">
+                <div class="space-y-2">
+                  <label class="caption-label font-semibold text-[var(--text)] block">
+                    1. Select a scheduled patient procedure:
+                  </label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup">
+                    <div id="hc-card-cardio" onclick="setHCScenario('cardio')" class="surface-card-interactive selected">
+                      <div class="flex items-center justify-between mb-1.5">
+                        <h3 class="card-title text-sm">Cardiology Stress Test</h3>
+                        <i data-lucide="activity" class="w-4 h-4 text-rose-500"></i>
+                      </div>
+                      <p class="caption-label text-xs leading-normal">Rahul Sharma (48M) &bull; Bruce Protocol</p>
+                    </div>
+                    <div id="hc-card-endo" onclick="setHCScenario('endo')" class="surface-card-interactive">
+                      <div class="flex items-center justify-between mb-1.5">
+                        <h3 class="card-title text-sm">Upper Endoscopy</h3>
+                        <i data-lucide="stethoscope" class="w-4 h-4 text-blue-500"></i>
+                      </div>
+                      <p class="caption-label text-xs leading-normal">Sunita Rao (52F) &bull; Sedation &amp; Escort</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Patient EHR Metadata Card -->
+                <div class="bg-neutral-50 border border-[var(--border)] p-4 rounded-xl space-y-3 text-xs">
+                  <div class="flex items-center justify-between pb-2 border-b border-[var(--border)]">
+                    <span class="font-semibold text-[var(--text)]">Hospital EHR Record</span>
+                    <span id="hc-ehr-mrn" class="font-mono text-neutral-500 text-[11px]">MRN: #EHR-99214</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div><span class="text-neutral-500 block text-[11px]">Patient:</span><strong id="hc-patient-name" class="text-[var(--text)]">Rahul Sharma (48M)</strong></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Appointment Slot:</span><strong id="hc-patient-slot" class="text-[var(--text)]">Tomorrow at 09:30 AM</strong></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Attending Physician:</span><span id="hc-doctor-name" class="text-neutral-700">Dr. A. K. Singhal, MD</span></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Clinic Suite:</span><span id="hc-clinic-room" class="text-neutral-700">Cardiology Suite 3B</span></div>
+                  </div>
+                  <div class="pt-2 border-t border-[var(--border)] space-y-1">
+                    <span class="text-neutral-500 text-[11px] block">Physician Clinical Directives:</span>
+                    <div id="hc-raw-notes" class="bg-white p-2.5 rounded-lg border border-[var(--border)] font-mono text-[11px] text-neutral-700 leading-relaxed">
+                      Pt referred for exertional chest tightness. Schedule standard Bruce Protocol exercise stress test. NPO 4 hrs prior to test. No caffeine or theophylline products for 24h prior. May take morning beta-blocker/hypertension meds with sip of water. Patient instructed to bring comfortable running shoes and loose workout clothing.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Dispatch Button -->
+                <div>
+                  <button id="btn-hc-dispatch" onclick="triggerHealthcareDispatch()" class="btn-primary w-full">
+                    <span>Dispatch WhatsApp Checklist</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive WhatsApp Interface (7 cols) -->
+              <div class="lg:col-span-7 space-y-4 lg:border-l lg:border-[var(--border)] lg:pl-8">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <label class="caption-label font-semibold text-[var(--text)]">
+                    2. Live Patient WhatsApp Screen Preview:
+                  </label>
+                  <span class="text-emerald-700 font-semibold flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Live Patient Phone</span>
+                  </span>
+                </div>
+
+                <!-- Phone Frame Container -->
+                <div class="rounded-xl border border-[var(--border)] overflow-hidden shadow-sm bg-[#ECE5DD] flex flex-col min-h-[460px] justify-between">
+                  <!-- Phone Header -->
+                  <div class="bg-[#075E54] text-white px-4 py-3 flex items-center justify-between shadow-xs">
+                    <div class="flex items-center space-x-2.5">
+                      <div class="w-8 h-8 rounded-full bg-white text-[#075E54] flex items-center justify-center font-bold flex-shrink-0">
+                        <i data-lucide="heart-pulse" class="w-4 h-4"></i>
+                      </div>
+                      <div>
+                        <div class="font-bold text-xs flex items-center space-x-1">
+                          <span>Apollo Clinical Care</span>
+                          <i data-lucide="check" class="w-3 h-3 text-emerald-300"></i>
+                        </div>
+                        <div class="text-[10px] text-emerald-100 font-sans">Official Hospital Care Desk &bull; Online</div>
+                      </div>
+                    </div>
+                    <div class="text-white/80 text-xs font-mono">WhatsApp</div>
+                  </div>
+
+                  <!-- Chat History -->
+                  <div id="hc-chat-history" class="p-4 space-y-3.5 flex-1 overflow-y-auto max-h-[340px]">
+                    <div class="flex justify-center">
+                      <span class="text-[10px] font-medium bg-white/90 text-neutral-500 px-3 py-0.5 rounded-full shadow-2xs">Today</span>
+                    </div>
+                    <div class="flex flex-col items-start max-w-[90%] space-y-1">
+                      <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs border border-black/5 text-xs text-neutral-800 space-y-2">
+                        <p id="hc-msg" class="leading-relaxed">
+                          Dear Rahul Sharma, your <strong>Cardiology Treadmill Stress Test</strong> is scheduled for Tomorrow at 09:30 AM at Apollo Hospital.
+                        </p>
+                        <div id="hc-prep-card" class="bg-amber-50 p-2.5 rounded-lg border border-amber-200 text-amber-950 space-y-1 text-[11px]">
+                          <div class="font-bold">Preparation Instructions:</div>
+                          <ul id="hc-prep-list" class="list-disc pl-4 space-y-1">
+                            <li><strong>Fasting:</strong> Fast for 4 hours prior. Small sips of plain water are permitted.</li>
+                            <li><strong>No Caffeine:</strong> Strictly avoid coffee, tea, chocolate, or colas for 24 hours.</li>
+                            <li><strong>Medications:</strong> Take morning blood pressure meds with a sip of water.</li>
+                            <li><strong>Attire:</strong> Bring comfortable running shoes and workout clothing.</li>
+                          </ul>
+                        </div>
+                        <span class="text-[10px] text-neutral-400 block text-right">10:15 AM &bull; Delivered</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Quick Reply Chips & Input -->
+                  <div class="p-3 bg-[#F0F2F5] border-t border-neutral-300 space-y-2">
+                    <div id="hc-quick-chips" class="flex items-center space-x-1.5 overflow-x-auto pb-1 scrollbar-none text-[11px]">
+                      <button onclick="sendHCChip('I confirm fasting rules and will arrive on time.')" class="px-2.5 py-1 rounded-full bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-100 whitespace-nowrap">
+                        I Confirm
+                      </button>
+                      <button onclick="sendHCChip('Can I drink water before the test?')" class="px-2.5 py-1 rounded-full bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-100 whitespace-nowrap">
+                        Can I drink water?
+                      </button>
+                      <button onclick="sendHCChip('Can I take my morning medicines?')" class="px-2.5 py-1 rounded-full bg-white border border-neutral-300 text-neutral-700 hover:bg-neutral-100 whitespace-nowrap">
+                        Take morning meds?
+                      </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <input id="hc-user-input" type="text" placeholder="Type a message (e.g. Can I drink tea?)..." class="flex-1 text-xs px-3.5 py-2 rounded-full border border-neutral-300 bg-white focus:outline-none focus:border-[var(--accent)] text-neutral-800" onkeydown="if(event.key==='Enter') sendHCPatientMessage()">
+                      <button onclick="sendHCPatientMessage()" id="btn-hc-send" class="w-8 h-8 rounded-full bg-[#075E54] hover:bg-[#128C7E] text-white flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Bottom Navigation -->
-      <div class="border-t border-[#E8EAF0] pt-5 flex items-center justify-between">
-        <button onclick="openView('devops')" class="inline-flex items-center space-x-2 text-xs font-bold text-[#0A0F1E]/70 hover:text-[#0A0F1E] transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Previous: DevOps Safety Engine</span>
-        </button>
-        <button onclick="openView('ecommerce')" class="inline-flex items-center space-x-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition">
-          <span>Next: Retail &amp; D2C Support Agent</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
+      <!-- SECTION 7: THREE CLEAR BENEFITS (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-10">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What You Get</span>
+            <h2 class="section-heading">Three clear benefits for your hospital or clinic</h2>
+            <p class="body-text">
+              Measurable operational improvements hospital administrators and head nurses notice immediately.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Benefit 1 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
+                  <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Fewer morning cancellations</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  Patients arrive correctly fasted with transportation pre-arranged, preventing expensive scanner downtime and wasted surgical slots.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Without automation:</span>
+                  <span class="text-rose-600 font-medium">10-15% morning cancellations</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With WhatsApp Prep:</span>
+                  <span class="text-emerald-700">Zero empty procedure suites</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[var(--accent)]">
+                  <i data-lucide="clock" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Hours saved for nursing staff</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  Eliminates tedious manual phone reminder calls. Nurses review prep confirmations on an automated live status dashboard.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Manual calls:</span>
+                  <span class="text-rose-600 font-medium">3-4 hours per nursing shift</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With WhatsApp Prep:</span>
+                  <span class="text-emerald-700">100% automated delivery</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700">
+                  <i data-lucide="smile" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Calmer, prepared patients</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  Patients read instructions on their preferred app and can instantly ask routine prep questions anytime before their arrival.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Paper brochures:</span>
+                  <span class="text-rose-600 font-medium">Lost or misunderstood</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With WhatsApp Prep:</span>
+                  <span class="text-emerald-700">Instant answers 24/7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Healthcare Integration Strip -->
+          <div class="surface-card bg-white p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-[var(--border)]">
+            <div class="space-y-0.5 text-center sm:text-left">
+              <div class="text-xs font-semibold text-[var(--text)]">Compatible with major hospital EHR &amp; clinical systems</div>
+              <div class="caption-label text-neutral-500 text-[12px]">Direct integration via HL7/FHIR feeds and WhatsApp Business Cloud API.</div>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="database" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Epic Systems</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="server" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Cerner / Oracle Health</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="hospital" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Apollo Clinical EHR</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>WhatsApp Business</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 8: NAVIGATION (White Background) -->
+      <section class="section-white py-12">
+        <div class="container-notion flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button type="button" onclick="openView('devops')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Previous: DevOps</span>
+          </button>
+          <button type="button" onclick="openView('ecommerce')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <span>Next: E-Commerce</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </section>
 
     </div>
-
     <!-- ======================================================= -->
     <!-- VIEW 4: E-COMMERCE (CUSTOMER SUPPORT CONCIERGE)         -->
     <!-- ======================================================= -->
-    <div id="view-ecommerce" class="hidden space-y-6">
-      
-      <!-- Top Navigation -->
-      <div class="flex items-center justify-between">
-        <button onclick="openView('hub')" class="inline-flex items-center space-x-2 text-xs font-bold text-indigo-700 hover:text-indigo-800 bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-200 shadow-2xs transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Back to All Industries</span>
-        </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 3 of 3 &bull; Retail &amp; D2C</span>
-      </div>
+    <div id="view-ecommerce" class="hidden w-full font-sans">
 
-      <!-- Clean Header Block -->
-      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-2">
-        <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 inline-block">
-          Retail &amp; D2C E-Commerce
-        </span>
-        <h1 class="text-2xl sm:text-4xl font-extrabold text-[#0A0F1E] font-display">
-          AI Customer Support Concierge &amp; Slack Escalation
-        </h1>
-        <p class="text-sm text-[#0A0F1E]/70 leading-relaxed max-w-3xl">
-          Connects directly to your Shopify store to resolve order tracking, catalog sizing, and delivery questions in 2 seconds, while immediately routing critical or damaged item complaints to live human agents on Slack.
-        </p>
-      </div>
+      <!-- SECTION 1: HERO (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <!-- Left Hero Text (7 cols) -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Breadcrumb navigation -->
+              <nav aria-label="Breadcrumb" class="flex items-center space-x-2 caption-label">
+                <a href="#hub" onclick="openView('hub')" class="hover:text-[var(--text)] transition">All Industries</a>
+                <span class="text-neutral-400">/</span>
+                <span class="text-[var(--text)] font-semibold">E-Commerce</span>
+              </nav>
 
-      <!-- Down-by-Down Story: Problem / Solution / Result in 3 Clean Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
-            <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-            <span>The Problem</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            Support desks spend all day answering 'Where is my order?' and 'How much did I pay?'. Meanwhile, upset customers with damaged items wait hours for a reply.
-          </p>
-        </div>
+              <div class="space-y-4">
+                <span class="tag-label">Retail &amp; D2C E-Commerce</span>
+                <h1 class="hero-title">
+                  Answer order questions instantly and route real complaints to your team
+                </h1>
+                <p class="body-lead">
+                  Most support messages ask the same questions like "Where is my order?" Our assistant answers them in seconds using live Shopify data, while sending damaged item reports straight to Slack.
+                </p>
+              </div>
 
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-indigo-700 flex items-center space-x-1.5">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>The Solution</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            An AI assistant connected directly to Shopify resolves tracking and order questions in 2 seconds. When an issue is sensitive or urgent, it pings a human on Slack immediately.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-5 space-y-1.5">
-          <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
-            <i data-lucide="zap" class="w-4 h-4"></i>
-            <span>The Result</span>
-          </div>
-          <p class="text-xs sm:text-sm text-[#0A0F1E]/75 leading-relaxed">
-            85% of customer questions are answered instantly 24/7. Your human support team only steps in for high-priority escalations with full context already logged.
-          </p>
-        </div>
-      </div>
-
-      <!-- High-Fidelity UI Screenshot Window -->
-      <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden window-shadow bg-white">
-        <div class="bg-[#F8F9FC] px-5 py-3 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-          <div class="flex items-center space-x-2.5">
-            <div class="flex items-center space-x-1.5">
-              <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              <!-- Action buttons with in-page smooth scrolling -->
+              <div class="pt-2 flex flex-wrap items-center gap-3">
+                <button type="button" onclick="scrollToSection('ecom-demo')" class="btn-primary">
+                  <span>Try the demo</span>
+                </button>
+                <button type="button" onclick="scrollToSection('ecom-video-walkthrough')" class="btn-secondary flex items-center space-x-2">
+                  <i data-lucide="play" class="w-4 h-4 text-[var(--accent)]"></i>
+                  <span>Watch Video</span>
+                </button>
+                <button type="button" onclick="scrollToSection('ecom-how-it-works')" class="btn-secondary">
+                  <span>See how it works</span>
+                </button>
+              </div>
             </div>
-            <span class="text-[#0A0F1E]/30 font-mono">|</span>
-            <span class="font-mono text-xs text-[#0A0F1E]/70 flex items-center space-x-1.5">
-              <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-indigo-600"></i>
-              <span>admin.shopify.com/store/orders/ORD-77998 &bull; Real-Time Order &amp; Slack Bridge</span>
-            </span>
-          </div>
-          <span class="text-xs font-mono text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-md border border-indigo-200 font-semibold">Live Store &amp; Slack Bridge Active</span>
-        </div>
-        
-        <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 bg-[#FBFBFC]">
-          <!-- Live Shopify Order -->
-          <div class="md:col-span-6 bg-white rounded-xl p-5 text-xs space-y-3 border border-[#E8EAF0]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-              <div class="flex items-center space-x-2">
-                <span class="font-bold text-[#0A0F1E] text-sm">Shopify Order #ORD-77998</span>
-                <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold border border-emerald-200">Paid &bull; In Transit</span>
-              </div>
-              <span class="text-xs font-mono text-slate-500 font-medium">John Doe</span>
-            </div>
-            <div class="space-y-1.5 font-mono text-xs">
-              <div class="flex justify-between text-[#0A0F1E]/75">
-                <span>Item: Nike Soaring High (Size M)</span>
-                <span class="font-semibold text-[#0A0F1E]">$180.00</span>
-              </div>
-              <div class="flex justify-between text-[#0A0F1E]/75">
-                <span>Carrier: BlueDart Express</span>
-                <span class="text-indigo-600 underline">trk/77998495886</span>
-              </div>
-              <div class="flex justify-between text-emerald-700 font-semibold pt-1 border-t border-slate-100">
-                <span>Delivery Estimate:</span>
-                <span>Tomorrow by 4:00 PM</span>
+
+            <!-- Right Hero Preview Card (5 cols) -->
+            <div class="lg:col-span-5">
+              <div class="surface-card bg-neutral-900 text-neutral-100 p-5 space-y-3 shadow-sm border-neutral-800">
+                <div class="flex items-center justify-between pb-2 border-b border-neutral-800 text-xs">
+                  <div class="flex items-center space-x-2 font-mono text-neutral-300 text-[11px]">
+                    <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-blue-400"></i>
+                    <span>Shopify Order #ORD-77998</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">In Transit &bull; On Schedule</span>
+                </div>
+                <div class="space-y-1.5 font-mono text-xs">
+                  <div class="text-neutral-500">Customer: John Doe &bull; Courier: FedEx Express</div>
+                  <div class="bg-black/60 text-neutral-200 p-2.5 rounded border border-neutral-800 text-[11px] leading-relaxed">
+                    Status: Out for delivery today by 4:00 PM<br/>
+                    Tracking: FDX-99214-US &bull; Signature required<br/>
+                    Action: Automated resolution reply sent in 1.4s
+                  </div>
+                </div>
+                <div class="pt-2 border-t border-neutral-800 text-[12px] text-neutral-400 flex items-center justify-between font-sans">
+                  <span class="flex items-center space-x-1.5 text-neutral-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Shopify live sync active</span>
+                  </span>
+                  <button type="button" onclick="scrollToSection('ecom-video-walkthrough')" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1">
+                    <span>Watch video</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: THE PROBLEM (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion">
+          <div class="space-y-4 max-w-[65ch]">
+            <span class="caption-label">The Problem</span>
+            <h2 class="section-heading">
+              Repetitive order questions bury urgent customer issues
+            </h2>
+            <p class="body-text">
+              Over 70% of support tickets ask simple things like tracking updates and return steps. Customers with urgent issues, like damaged packages, wait in the same long line—leading to negative reviews and lost repeat sales.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: HOW IT WORKS (White Background) -->
+      <section id="ecom-how-it-works" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">How It Works</span>
+            <h2 class="section-heading">
+              Instant answers for tracking, instant escalation for problems
+            </h2>
+            <p class="body-text">
+              The system evaluates every customer message with two clear resolution paths:
+            </p>
+          </div>
+
+          <!-- 3-Step Visual Diagram -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <!-- Step 1 Card -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <div class="caption-label text-neutral-400">Step 1</div>
+                <h3 class="card-title">Customer sends a message</h3>
+                <p class="caption-label leading-relaxed">
+                  Inquiries arrive via live chat or email asking about an order or returning a product.
+                </p>
+              </div>
+              <div class="bg-neutral-50 border border-[var(--border)] p-3 rounded-lg space-y-1.5 font-mono text-xs text-neutral-700">
+                <div class="flex items-center space-x-1.5 text-neutral-500 text-[11px]">
+                  <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                  <span>Customer Message</span>
+                </div>
+                <div class="font-semibold text-[var(--text)]">"Where is order #ORD-77998?"</div>
+                <div class="text-[11px] text-neutral-400">Received via store live chat</div>
+              </div>
+            </div>
+
+            <!-- Step 2 Card -->
+            <div class="lg:col-span-4 surface-card flex flex-col justify-between space-y-4">
+              <div class="space-y-3">
+                <div class="caption-label text-neutral-400">Step 2</div>
+                <h3 class="card-title">Assistant checks Shopify &amp; courier</h3>
+                <p class="caption-label leading-relaxed">
+                  Live order status, FedEx/DHL tracking, and delivery windows are fetched in 1.4 seconds.
+                </p>
+              </div>
+              <div class="bg-neutral-50 border border-[var(--border)] p-3 rounded-lg space-y-1 text-xs text-neutral-700">
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Shopify order verified</span>
+                </div>
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Courier tracking pulled</span>
+                </div>
+                <div class="flex items-center space-x-2 text-emerald-700">
+                  <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                  <span>Sentiment &amp; urgency analyzed</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Fork Outcomes -->
+            <div class="lg:col-span-4 flex flex-col gap-4 justify-between">
+              <div class="surface-card flex-1 flex flex-col justify-center space-y-1.5 bg-[#ECFDF3] border-[#A6F4C5]">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-[var(--ok)]"></i>
+                  <h4 class="text-sm font-semibold text-[var(--ok)]">Tracking: Auto-Resolved</h4>
+                </div>
+                <p class="caption-label text-emerald-950 leading-relaxed">
+                  Friendly, accurate answer sent directly to customer in 2 seconds.
+                </p>
+              </div>
+              <div class="surface-card flex-1 flex flex-col justify-center space-y-1.5 bg-[#FEF3F2] border-[#FECDCA]">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="alert-octagon" class="w-4 h-4 text-[var(--danger)]"></i>
+                  <h4 class="text-sm font-semibold text-[var(--danger)]">Complaints: Escalated to Slack</h4>
+                </div>
+                <p class="caption-label text-rose-950 leading-relaxed">
+                  Damaged items or angry customers routed straight to support team on Slack.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ANIMATED VIDEO WALKTHROUGH (Soft Background) -->
+      <section id="ecom-video-walkthrough" class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
           
-          <!-- Slack Escalation Ticket -->
-          <div class="md:col-span-6 bg-[#1A1D21] p-5 rounded-xl border border-slate-800 space-y-2.5 text-xs text-white">
-            <div class="flex items-center justify-between text-xs text-slate-400 pb-1.5 border-b border-slate-700/60">
-              <span class="flex items-center space-x-1.5 font-bold">
-                <i data-lucide="message-square" class="w-4 h-4 text-rose-400"></i>
-                <span class="text-slate-200">Slack #customer-support</span>
-              </span>
-              <span class="text-rose-400 font-mono font-semibold bg-rose-950/80 px-2 py-0.5 rounded border border-rose-800 text-[10px]">Priority: CRITICAL</span>
-            </div>
-            <div class="border-l-4 border-rose-500 pl-3 space-y-1">
-              <div class="flex items-center justify-between">
-                <strong class="text-rose-400 text-xs">Ticket #ESC-CRIT-9104: Damaged Item</strong>
-                <span class="text-[10px] text-slate-400 font-mono">SLA &lt; 15m</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed">
-                Customer reported torn shoe on delivery (#ORD-77998). Sent instant empathy message &amp; escalated to live agent queue with replacement voucher authorized.
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div class="space-y-3 max-w-[65ch]">
+              <span class="caption-label">Automated Pipeline Animation</span>
+              <h2 class="section-heading">
+                Watch the customer support flow in action
+              </h2>
+              <p class="body-text">
+                See how routine questions are answered instantly, while damaged item reports get routed straight to Slack.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Interactive Working Prototype Console -->
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Customer Support Working Prototype</h2>
-          <span class="text-xs font-mono text-emerald-600 font-semibold">Active Production Agent</span>
-        </div>
-
-        <!-- Quick Scenarios -->
-        <div class="flex flex-wrap gap-2 items-center">
-          <span class="text-xs font-semibold text-[#0A0F1E]/60 mr-1">Quick Scenarios:</span>
-          <button onclick="setB2CScenario('order')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
-            <i data-lucide="package" class="w-3.5 h-3.5"></i>
-            <span>Where is my order?</span>
-          </button>
-          <button onclick="setB2CScenario('order_cost')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
-            <i data-lucide="receipt" class="w-3.5 h-3.5"></i>
-            <span>Cost of my order?</span>
-          </button>
-          <button onclick="setB2CScenario('products')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition flex items-center space-x-1.5">
-            <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-            <span>Best sellers products</span>
-          </button>
-          <button onclick="setB2CScenario('buy_soaring')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition flex items-center space-x-1.5">
-            <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-            <span>Buy Nike Soaring High</span>
-          </button>
-          <button onclick="setB2CScenario('complaint')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
-            <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
-            <span>Negative/Damaged Item</span>
-          </button>
-          <button onclick="setB2CScenario('escalate')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
-            <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
-            <span>Escalate to Slack Support</span>
-          </button>
-        </div>
-
-        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC] card-shadow">
-          <!-- Topbar -->
-          <div class="bg-[#EEF1F8] px-5 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
-            <div class="flex items-center space-x-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
-              <span class="text-[#0A0F1E]/40">&bull;</span>
-              <span class="text-[#0A0F1E]/60">Target: Shopify Store + Slack #customer-support</span>
-            </div>
-            <div id="b2c-active-agent-badge" class="font-mono text-xs font-semibold text-indigo-600">
-              Agent: Standby
+            <!-- Scenario Pills (Tracking vs Damaged) -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="caption-label font-medium text-neutral-500">Scenario:</span>
+              <div class="inline-flex rounded-lg border border-[var(--border)] bg-white p-1 text-xs shadow-2xs">
+                <button type="button" id="ecom-v-tab-tracking" onclick="setEcomVideoScenario('tracking')" class="px-3 py-1.5 rounded-md font-semibold text-[var(--accent)] bg-[var(--accent-soft)] transition">
+                  Order Tracking (Resolved)
+                </button>
+                <button type="button" id="ecom-v-tab-damaged" onclick="setEcomVideoScenario('damaged')" class="px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition">
+                  Damaged Item (Escalated)
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Progress -->
-          <div id="b2c-pipeline-bar" class="hidden bg-white px-5 py-2 border-b border-[#E8EAF0] text-xs">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <span class="inline-block animate-spin text-indigo-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
-                <span id="b2c-step-text" class="font-mono font-medium text-indigo-600">Syncing customer profile...</span>
-              </div>
-              <span id="b2c-step-count" class="font-mono text-xs text-[#0A0F1E]/50">Step 1/3</span>
-            </div>
-          </div>
+          <!-- Video Animation Frame -->
+          <div class="surface-card p-4 sm:p-6 space-y-4 bg-white border-[var(--border)] shadow-sm">
+            <div id="ecom-v-canvas-stage" class="relative min-h-[360px] sm:min-h-[400px] p-6 sm:p-8 rounded-xl flex flex-col justify-between overflow-hidden bg-neutral-900 border border-neutral-800 text-neutral-100">
+              <div id="ecom-v-scan-beam" class="devops-scan-line hidden pointer-events-none"></div>
 
-          <!-- Split Console Grid -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 bg-white">
-            <!-- Left Shopify Record (4 cols) -->
-            <div class="lg:col-span-4 p-5 border-b lg:border-b-0 lg:border-r border-[#E8EAF0] space-y-4 bg-slate-50/60">
-              <div class="bg-white rounded-xl p-4 border border-[#E8EAF0] space-y-2 text-xs">
-                <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
-                  <strong class="text-[#0A0F1E]">John Doe</strong>
-                  <span class="text-[10px] font-mono bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-semibold border border-emerald-200">VIP Shopper</span>
+              <!-- Top Scene Header Bar -->
+              <div class="flex items-center justify-between pb-3 border-b border-neutral-800 text-xs">
+                <div class="flex items-center space-x-2.5">
+                  <span id="ecom-v-scene-num-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                    Step 1 of 4
+                  </span>
+                  <span id="ecom-v-scene-title" class="font-semibold text-neutral-200">
+                    Customer inquires about delivery status for Order #ORD-77998
+                  </span>
                 </div>
-                <div class="space-y-1 text-xs font-mono">
-                  <div class="flex justify-between text-[#0A0F1E]/70">
-                    <span>Order:</span>
-                    <strong class="text-[#0A0F1E]">#ORD-77998</strong>
-                  </div>
-                  <div class="flex justify-between text-[#0A0F1E]/70">
-                    <span>Item:</span>
-                    <span>Nike Soaring High (M)</span>
-                  </div>
-                  <div class="flex justify-between text-[#0A0F1E]/70">
-                    <span>Status:</span>
-                    <span class="text-indigo-600 font-semibold">In Transit</span>
-                  </div>
-                  <div class="flex justify-between text-[#0A0F1E]/70">
-                    <span>Carrier:</span>
-                    <span class="text-slate-700">BlueDart (trk/77998495886)</span>
-                  </div>
+                <div class="flex items-center space-x-1.5 text-xs text-neutral-400 font-sans">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Continuous live flow</span>
                 </div>
               </div>
 
-              <!-- Inventory Status -->
-              <div class="bg-white rounded-xl p-3.5 border border-[#E8EAF0] space-y-1.5 text-xs">
-                <div class="font-bold text-[#0A0F1E] flex items-center justify-between pb-1 border-b border-slate-100">
-                  <span>Shopify Catalog Stream</span>
-                  <span class="text-[10px] font-mono text-emerald-600 font-semibold">Live 140ms</span>
-                </div>
-                <div class="space-y-1 font-mono text-[11px]">
-                  <div class="flex justify-between p-1.5 rounded bg-slate-50 border border-slate-200">
-                    <span>NIKE SOARING HIGH</span>
-                    <span class="font-semibold text-emerald-600">In Stock (87)</span>
-                  </div>
-                  <div class="flex justify-between p-1.5 rounded bg-slate-50 border border-slate-200">
-                    <span>NIKE CHRYSAOR</span>
-                    <span class="font-semibold text-emerald-600">In Stock (7)</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Slack Note -->
-              <div class="p-3 rounded-xl bg-indigo-50/70 border border-indigo-200 text-xs text-indigo-900/80 leading-normal">
-                Sentiment analysis automatically alerts <code class="font-mono font-semibold text-indigo-900">#customer-support</code> upon detecting damaged products or refund requests.
+              <!-- Central Stage Content -->
+              <div id="ecom-v-stage-content" class="my-auto py-4">
+                <!-- Dynamically rendered scene HTML -->
               </div>
             </div>
 
-            <!-- Right Live Chat (8 cols) -->
-            <div class="lg:col-span-8 flex flex-col justify-between bg-white min-h-[460px]">
-              <div id="b2c-chat-history" class="p-5 space-y-4 max-h-[380px] overflow-y-auto bg-white flex-1">
-                <div class="flex items-start space-x-3 text-xs">
-                  <div class="w-8 h-8 rounded-lg bg-indigo-100 border border-indigo-200 flex items-center justify-center text-indigo-600 flex-shrink-0 mt-0.5">
-                    <i data-lucide="bot" class="w-4 h-4"></i>
-                  </div>
-                  <div class="space-y-1 max-w-[85%]">
-                    <div class="flex items-center space-x-2">
-                      <span class="font-bold text-[#0A0F1E] text-xs">Shopify Concierge AI</span>
-                      <span class="text-[10px] text-[#0A0F1E]/40 font-mono">12:28 PM</span>
-                    </div>
-                    <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3 rounded-2xl rounded-tl-none text-[#0A0F1E]/80 leading-relaxed text-xs sm:text-sm">
-                      Hello! I am your automated customer support assistant. You can ask me to track your order, explore in-stock best sellers, or escalate directly to our live support team on Slack.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Input bar -->
-              <div class="p-3 bg-white border-t border-[#E8EAF0] flex flex-col sm:flex-row items-center gap-2">
-                <input id="b2c-user-input" type="text" placeholder="Type a message (e.g. Where is my order?)..." class="w-full text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] focus:bg-white focus:outline-none focus:border-indigo-500 font-medium text-[#0A0F1E]" onkeydown="if(event.key==='Enter') sendB2CMessage()">
-                <button onclick="sendB2CMessage()" id="btn-b2c-send" class="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition flex items-center justify-center space-x-1.5 flex-shrink-0">
-                  <i data-lucide="send" class="w-4 h-4"></i>
-                  <span>Send Query</span>
+            <!-- Under that: 4 Step Indicator Pills -->
+            <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[var(--border)]">
+              <span class="caption-label text-neutral-500 text-xs hidden sm:inline">Pipeline stages:</span>
+              <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-end w-full sm:w-auto">
+                <button type="button" id="ecom-v-chap-1" onclick="seekEcomVideo(0)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition">
+                  1. Customer Ticket
+                </button>
+                <button type="button" id="ecom-v-chap-2" onclick="seekEcomVideo(3)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  2. Shopify Lookup
+                </button>
+                <button type="button" id="ecom-v-chap-3" onclick="seekEcomVideo(6)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  3. Smart Resolution
+                </button>
+                <button type="button" id="ecom-v-chap-4" onclick="seekEcomVideo(9)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  4. Slack Alert
                 </button>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Webhook bar -->
-        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="network" class="w-4 h-4 text-indigo-600 flex-shrink-0"></i>
-            <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
-            <code class="font-mono text-xs bg-white px-2.5 py-0.5 rounded border border-[#E8EAF0] text-indigo-700">/webhook/b2c-support-agent</code>
+      <!-- SECTION 5: WHAT YOUR TEAM SEES (White Background) -->
+      <section class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What Your Team Sees</span>
+            <h2 class="section-heading">
+              Real outputs: the store order status and the Slack escalation alert
+            </h2>
+            <p class="body-text">
+              Customers get immediate answers in live chat, while your team gets actionable escalation cards on Slack.
+            </p>
           </div>
-          <div class="flex items-center space-x-2 text-xs text-[#0A0F1E]/60">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Slack Escalation Target: <strong>#customer-support</strong></span>
+
+          <!-- Side-by-Side Dual Outputs -->
+          <div class="surface-card p-0 overflow-hidden shadow-sm bg-white border-[var(--border)]">
+            <div class="bg-neutral-50 px-5 py-3 border-b border-[var(--border)] flex items-center justify-between text-xs text-neutral-600">
+              <div class="flex items-center space-x-2 font-mono text-neutral-700">
+                <i data-lucide="shopping-bag" class="w-4 h-4 text-blue-600"></i>
+                <span class="font-semibold text-[var(--text)]">Shopify Store Admin</span>
+                <span class="text-neutral-400">/</span>
+                <span class="text-neutral-600">Order #ORD-77998 (John Doe)</span>
+                <span class="ml-2 px-2 py-0.5 rounded text-[11px] font-sans font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Paid &bull; Shipped</span>
+              </div>
+              <span class="caption-label text-neutral-500 font-sans hidden sm:inline">Store &bull; Courier &bull; Slack Sync</span>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white">
+              <!-- Left: Customer Live Chat -->
+              <div class="lg:col-span-6 space-y-3">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <span class="font-semibold text-[var(--text)]">Customer Live Chat Widget</span>
+                  <span class="font-mono text-neutral-500 text-[11px]">store-checkout-support</span>
+                </div>
+                <div class="bg-neutral-900 text-neutral-100 p-4 rounded-lg font-mono text-xs space-y-2 leading-relaxed">
+                  <div class="text-neutral-400">Customer: "Hi, where is my order #ORD-77998?"</div>
+                  <div class="bg-emerald-950/70 text-emerald-200 p-2.5 rounded border border-emerald-800/60 space-y-1">
+                    <div class="font-bold">Assistant &bull; 2 seconds ago</div>
+                    <div>Your package is out for delivery with FedEx Express today by 4:00 PM! Tracking: FDX-99214-US.</div>
+                  </div>
+                </div>
+                <div class="caption-label text-neutral-500 text-xs">Routine inquiry resolved automatically with zero human effort.</div>
+              </div>
+
+              <!-- Right: Slack Escalation Card -->
+              <div class="lg:col-span-6 space-y-3">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <span class="font-semibold text-[var(--text)]">Escalated Slack Notification</span>
+                  <span class="font-mono text-neutral-400 text-[11px]">#support-escalations</span>
+                </div>
+                <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 space-y-2.5 font-sans shadow-sm">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-6 h-6 rounded-lg bg-[var(--accent)] text-white flex items-center justify-center font-bold text-[10px]">
+                      <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+                    </div>
+                    <span class="font-semibold text-neutral-200 text-xs">Automation Bot</span>
+                    <span class="text-neutral-500 text-[11px]">in #support-escalations</span>
+                  </div>
+                  <div class="border-l-3 border-[var(--danger)] pl-3.5 py-1 space-y-1 bg-neutral-950/60 p-2 rounded-r">
+                    <div class="font-semibold text-rose-400 text-xs">Priority Escalation: Damaged Item Reported</div>
+                    <p class="text-neutral-300 text-[11px]">Customer Sarah Miller reported damaged mug on Order #ORD-66219. Photo verified. One-click refund ready.</p>
+                  </div>
+                  <div class="pt-1 flex gap-2">
+                    <span class="px-2.5 py-1 rounded bg-emerald-700 text-white font-medium text-[11px]">Approve Refund ($38)</span>
+                    <span class="px-2.5 py-1 rounded bg-neutral-800 text-neutral-300 font-medium text-[11px]">Reply on Zendesk</span>
+                  </div>
+                </div>
+                <div class="caption-label text-neutral-500 text-xs">Critical complaints reach your human team with complete context.</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Bottom Navigation -->
-      <div class="border-t border-[#E8EAF0] pt-5 flex items-center justify-between">
-        <button onclick="openView('healthcare')" class="inline-flex items-center space-x-2 text-xs font-bold text-[#0A0F1E]/70 hover:text-[#0A0F1E] transition">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i>
-          <span>Previous: Clinical Healthcare</span>
-        </button>
-        <button onclick="openView('hub')" class="inline-flex items-center space-x-2 text-xs font-bold text-[#1A6BFF] hover:text-[#0A4ECC] transition">
-          <span>Back to All Industries</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </button>
-      </div>
+      <!-- SECTION 6: INTERACTIVE DEMO (White Background) -->
+      <section id="ecom-demo" class="section-white section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">Interactive Demo</span>
+            <h2 class="section-heading">Try it yourself</h2>
+            <p class="body-text">Select an inquiry scenario, test the autonomous response, and simulate customer chat.</p>
+          </div>
+
+          <!-- Demo Surface Panel -->
+          <div class="demo-surface p-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              
+              <!-- Left Column: Controls (5 cols) -->
+              <div class="lg:col-span-5 space-y-5">
+                <div class="space-y-2">
+                  <label class="caption-label font-semibold text-[var(--text)] block">
+                    1. Select a customer scenario:
+                  </label>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" role="radiogroup">
+                    <div id="ecom-card-tracking" onclick="setEcomScenario('tracking')" class="surface-card-interactive selected">
+                      <div class="flex items-center justify-between mb-1.5">
+                        <h3 class="card-title text-sm">Where is my order?</h3>
+                        <i data-lucide="package" class="w-4 h-4 text-emerald-500"></i>
+                      </div>
+                      <p class="caption-label text-xs leading-normal">Routine order tracking &bull; Auto-resolved in 2s</p>
+                    </div>
+                    <div id="ecom-card-damaged" onclick="setEcomScenario('damaged')" class="surface-card-interactive">
+                      <div class="flex items-center justify-between mb-1.5">
+                        <h3 class="card-title text-sm">Damaged item report</h3>
+                        <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-500"></i>
+                      </div>
+                      <p class="caption-label text-xs leading-normal">Broken product &bull; Escalated to Slack team</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shopify Order Card -->
+                <div class="bg-neutral-50 border border-[var(--border)] p-4 rounded-xl space-y-3 text-xs">
+                  <div class="flex items-center justify-between pb-2 border-b border-[var(--border)]">
+                    <span class="font-semibold text-[var(--text)]">Live Shopify Order Record</span>
+                    <span id="ecom-order-id" class="font-mono text-neutral-500 text-[11px]">#ORD-77998</span>
+                  </div>
+                  <div class="grid grid-cols-2 gap-2 text-xs">
+                    <div><span class="text-neutral-500 block text-[11px]">Customer:</span><strong id="ecom-customer-name" class="text-[var(--text)]">John Doe</strong></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Order Total:</span><strong id="ecom-order-total" class="text-[var(--text)]">$148.50 (Paid)</strong></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Fulfillment:</span><span id="ecom-order-status" class="text-emerald-700 font-semibold">In Transit (FedEx)</span></div>
+                    <div><span class="text-neutral-500 block text-[11px]">Items:</span><span id="ecom-order-items" class="text-neutral-700">Nike Soaring High (M)</span></div>
+                  </div>
+                  <div class="pt-2 border-t border-[var(--border)] space-y-1">
+                    <span class="text-neutral-500 text-[11px] block">Customer Inquiry Text:</span>
+                    <div id="ecom-inquiry-text" class="bg-white p-2.5 rounded-lg border border-[var(--border)] font-mono text-[11px] text-neutral-700 leading-relaxed">
+                      "Hi there, where is my order #ORD-77998? I ordered it 3 days ago and needed it for my trip this weekend."
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Process Button -->
+                <div>
+                  <button id="btn-ecom-dispatch" onclick="triggerEcommerceInquiry()" class="btn-primary w-full">
+                    <span>Process Customer Message</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Chat Interface (7 cols) -->
+              <div class="lg:col-span-7 space-y-4 lg:border-l lg:border-[var(--border)] lg:pl-8">
+                <div class="flex items-center justify-between pb-1 text-xs">
+                  <label class="caption-label font-semibold text-[var(--text)]">
+                    2. Live Store Support Chat Window:
+                  </label>
+                  <span class="text-emerald-700 font-semibold flex items-center space-x-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Store Live Chat Connected</span>
+                  </span>
+                </div>
+
+                <!-- Chat Frame -->
+                <div class="rounded-xl border border-[var(--border)] overflow-hidden shadow-sm bg-white flex flex-col min-h-[460px] justify-between">
+                  <!-- Chat Header -->
+                  <div class="bg-[var(--accent)] text-white px-4 py-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-2.5">
+                      <div class="w-8 h-8 rounded-full bg-white text-[var(--accent)] flex items-center justify-center font-bold">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                      </div>
+                      <div>
+                        <div class="font-bold text-xs flex items-center space-x-1">
+                          <span>Store Support Concierge</span>
+                        </div>
+                        <div class="text-[10px] text-blue-100 font-sans">Powered by Autonomous Shopify Agent &bull; Instant</div>
+                      </div>
+                    </div>
+                    <span class="text-xs font-mono bg-blue-700 px-2 py-0.5 rounded text-blue-100">Live</span>
+                  </div>
+
+                  <!-- Chat History -->
+                  <div id="ecom-chat-history" class="p-4 space-y-3.5 flex-1 overflow-y-auto max-h-[340px] bg-neutral-50/50">
+                    <div class="flex justify-center">
+                      <span class="text-[10px] font-medium bg-neutral-100 text-neutral-500 px-3 py-0.5 rounded-full">Today</span>
+                    </div>
+                    <div class="flex flex-col items-end max-w-[90%] ml-auto space-y-1">
+                      <div class="bg-[var(--accent)] text-white p-3 rounded-2xl rounded-tr-none text-xs leading-relaxed">
+                        Hi there, where is my order #ORD-77998?
+                      </div>
+                      <span class="text-[10px] text-neutral-400">10:14 AM &bull; Sent</span>
+                    </div>
+                    <div class="flex flex-col items-start max-w-[90%] space-y-1">
+                      <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs border border-[var(--border)] text-xs text-neutral-800 space-y-2">
+                        <p id="ecom-agent-reply" class="leading-relaxed">
+                          Hello John! Your order <strong>#ORD-77998</strong> (Nike Soaring High) is currently out for delivery with FedEx Express. It is scheduled to arrive today by 4:00 PM.
+                        </p>
+                        <div class="p-2.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-[11px] text-neutral-700 flex items-center justify-between">
+                          <span>Tracking: <strong>FDX-99214-US</strong></span>
+                          <span class="text-blue-600 font-medium">Track on FedEx &rarr;</span>
+                        </div>
+                        <span class="text-[10px] text-neutral-400 block text-right">10:14 AM &bull; Delivered</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Quick Reply Chips & Input -->
+                  <div class="p-3 bg-white border-t border-[var(--border)] space-y-2">
+                    <div id="ecom-quick-chips" class="flex items-center space-x-1.5 overflow-x-auto pb-1 scrollbar-none text-[11px]">
+                      <button onclick="sendEcomChip('Can I change my delivery address?')" class="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:bg-neutral-200 whitespace-nowrap">
+                        Change address?
+                      </button>
+                      <button onclick="sendEcomChip('How do I return this item?')" class="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:bg-neutral-200 whitespace-nowrap">
+                        Return item?
+                      </button>
+                      <button onclick="sendEcomChip('I received a damaged product.')" class="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 hover:bg-neutral-200 whitespace-nowrap">
+                        Item is damaged
+                      </button>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <input id="ecom-user-input" type="text" placeholder="Type a message to the assistant..." class="flex-1 text-xs px-3.5 py-2 rounded-full border border-[var(--border)] bg-neutral-50 focus:outline-none focus:border-[var(--accent)] text-neutral-800" onkeydown="if(event.key==='Enter') sendEcomChat()">
+                      <button onclick="sendEcomChat()" id="btn-ecom-send" class="w-8 h-8 rounded-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: THREE CLEAR BENEFITS (Soft Background) -->
+      <section class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-10">
+          <div class="space-y-3 max-w-[65ch]">
+            <span class="caption-label">What You Get</span>
+            <h2 class="section-heading">Three clear benefits for your store &amp; team</h2>
+            <p class="body-text">
+              Proven improvements e-commerce brands and customer support managers notice from the first week.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Benefit 1 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
+                  <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Instant 2-second answers</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  Customers get live order status, tracking links, and return policies answered immediately 24/7 without waiting in queues.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Without automation:</span>
+                  <span class="text-rose-600 font-medium">4-6 hour wait times</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With Support AI:</span>
+                  <span class="text-emerald-700">Under 2 seconds resolution</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[var(--accent)]">
+                  <i data-lucide="heart" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Zero support agent burnout</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  80% of repetitive order lookups are answered autonomously, freeing your support team from answering the same questions every day.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Manual workload:</span>
+                  <span class="text-rose-600 font-medium">Repetitive copy-paste</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With Support AI:</span>
+                  <span class="text-emerald-700">80% automatic containment</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div class="surface-card flex flex-col justify-between space-y-5 bg-white">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-700">
+                  <i data-lucide="bell-ring" class="w-5 h-5"></i>
+                </div>
+                <h3 class="card-title">Instant Slack escalation</h3>
+                <p class="caption-label leading-relaxed text-neutral-600">
+                  When an item is damaged or a customer is upset, the ticket is instantly routed to Slack with one-click refund actions.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-[var(--border)] space-y-2 text-xs">
+                <div class="flex items-center justify-between text-neutral-500">
+                  <span>Escalations:</span>
+                  <span class="text-rose-600 font-medium">Buried in ticket queues</span>
+                </div>
+                <div class="flex items-center justify-between text-neutral-700 font-semibold">
+                  <span>With Support AI:</span>
+                  <span class="text-emerald-700">Real-time team Slack alerts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-Commerce Integration Strip -->
+          <div class="surface-card bg-white p-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-[var(--border)]">
+            <div class="space-y-0.5 text-center sm:text-left">
+              <div class="text-xs font-semibold text-[var(--text)]">Plugs directly into your existing e-commerce stack</div>
+              <div class="caption-label text-neutral-500 text-[12px]">Compatible with modern store platforms, help desks, and team chat.</div>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Shopify &bull; Shopify Plus</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="box" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>WooCommerce</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="life-buoy" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Zendesk &bull; Gorgias</span>
+              </span>
+              <span class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-xs font-medium text-neutral-700">
+                <i data-lucide="message-square" class="w-3.5 h-3.5 text-neutral-500"></i>
+                <span>Slack</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 8: NAVIGATION (White Background) -->
+      <section class="section-white py-12">
+        <div class="container-notion flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button type="button" onclick="openView('healthcare')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Previous: Healthcare</span>
+          </button>
+          <button type="button" onclick="openView('hub')" class="btn-secondary w-full sm:w-auto flex items-center justify-center space-x-2">
+            <span>Back to all industries</span>
+            <i data-lucide="grid" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </section>
 
     </div>
-
   </main>
 
   <!-- Footer -->
@@ -2194,6 +2765,1014 @@
         if (tabRisky) tabRisky.className = "px-3 py-1.5 rounded-md font-semibold text-[var(--danger)] bg-[#FEF3F2] transition";
         if (tabSafe) tabSafe.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
       } else {
+    // =========================================================
+    // HEALTHCARE INTERACTIVE VIDEO / ANIMATED WALKTHROUGH PLAYER
+    // =========================================================
+    const hcVideoState = {
+      isPlaying: false,
+      currentTime: 0,
+      duration: 12,
+      speed: 1,
+      timer: null,
+      scenario: 'cardio', // 'cardio' or 'endo'
+      currentScene: -1
+    };
+
+    const hcVideoScenes = {
+      cardio: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Hospital EHR creates procedure order #EHR-99214",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center justify-between">
+                <span class="text-rose-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="heart-pulse" class="w-4 h-4"></i>
+                  <span>Hospital Clinical Intake &bull; Cardiology Suite 3B</span>
+                </span>
+                <span class="text-neutral-500 text-[11px]">HL7 / FHIR Ingestion &bull; 09:15 AM</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                <div class="text-neutral-400">PATIENT: <strong class="text-white">Rahul Sharma (48M)</strong> &bull; MRN: #EHR-99214</div>
+                <div class="text-neutral-400">PROCEDURE: <span class="text-blue-300 font-semibold">Cardiology Exercise Stress Test (Bruce Protocol)</span></div>
+                <div class="text-neutral-400">ATTENDING: <span class="text-neutral-200">Dr. A. K. Singhal, MD</span></div>
+                <div class="p-2.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 space-y-1">
+                  <div class="text-[10px] uppercase font-bold text-neutral-500">Physician Directives in Clinical Notes:</div>
+                  <div class="text-neutral-200">"Pt scheduled for treadmill test. NPO 4 hrs prior. Strictly zero caffeine 24h prior. Morning BP meds allowed with water sip."</div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                <span>EHR webhook dispatched &bull; Clinical parsing agent initiated...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "AI extracts preparation rules and verifies contraindications",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+                <span class="text-blue-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="scan" class="w-3.5 h-3.5"></i>
+                  <span>Autonomous Clinical Rule Extraction</span>
+                </span>
+                <span class="text-emerald-400 font-semibold">Validation: 100% Verified</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">1. Fasting Requirement:</span>
+                  <span class="text-emerald-400 font-semibold">4 hours NPO (Water permitted)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">2. Adenosine Antagonist Check:</span>
+                  <span class="text-emerald-400 font-semibold">Strict zero caffeine (24h prior)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">3. Morning Hypertension Meds:</span>
+                  <span class="text-emerald-400 font-semibold">Permitted with small sip of water</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1">
+                <span class="flex items-center space-x-1.5 text-neutral-300">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span>Zero contraindications found &bull; WhatsApp template synthesized</span>
+                </span>
+                <span class="font-bold text-neutral-200">Confidence: 99.8%</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "Automated WhatsApp checklist dispatched to patient",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-md mx-auto">
+              <div class="bg-[#075E54] text-white p-2.5 rounded-t-lg flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-white text-[#075E54] flex items-center justify-center font-bold text-[11px]">
+                    <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-[11px]">Apollo Hospital Clinical Care</div>
+                    <div class="text-[9px] text-emerald-100">Official Healthcare Account &bull; Delivered</div>
+                  </div>
+                </div>
+                <span class="text-[10px] text-emerald-200 font-mono">10:15 AM</span>
+              </div>
+              <div class="bg-[#ECE5DD] p-3.5 rounded-b-lg text-neutral-800 space-y-2">
+                <div class="bg-white p-3 rounded-xl shadow-xs space-y-2 text-xs leading-relaxed">
+                  <p class="font-semibold text-neutral-900">Dear Rahul Sharma, your Cardiology Stress Test is tomorrow at 09:30 AM.</p>
+                  <div class="bg-amber-50 p-2 rounded border border-amber-200 text-amber-950 text-[11px] space-y-1">
+                    <div class="font-bold">Required preparation checklist:</div>
+                    <ul class="list-disc pl-4 space-y-0.5">
+                      <li>Fast for 4 hours prior (water permitted)</li>
+                      <li>Strictly no coffee, tea, or chocolate for 24 hours</li>
+                      <li>Take morning BP pills with a sip of water</li>
+                      <li>Wear athletic sneakers and comfortable clothing</li>
+                    </ul>
+                  </div>
+                  <div class="flex items-center justify-between pt-1 border-t border-neutral-100 text-[10px] text-neutral-500 font-mono">
+                    <span>Delivered via WhatsApp API</span>
+                    <span class="text-blue-500 font-bold flex items-center space-x-0.5">
+                      <i data-lucide="check-check" class="w-3 h-3 text-blue-500"></i>
+                      <span>Read</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "Patient confirms preparation and clinic schedule is protected",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-800/80 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-emerald-800/60">
+                  <div class="flex items-center space-x-2 text-emerald-300 font-bold">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    <span>PATIENT CONFIRMED &bull; PROCEDURE PREP SECURED</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-900 text-emerald-200">100% Ready</span>
+                </div>
+                <div class="space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                  <div>Patient Reply: <span class="text-white italic">"I confirm fasting rules and will arrive with my running shoes at 09:15 AM."</span></div>
+                  <div>Hospital EHR Status: <span class="text-emerald-400 font-semibold font-mono">READY_FOR_ADMISSION (No-show risk eliminated)</span></div>
+                  <div>Nursing Hours Saved: <span class="text-white font-semibold">15 minutes manual call time completely automated</span></div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-center text-[11px] flex items-center justify-center space-x-2 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Appointment protected &bull; Loop restarts automatically</span>
+              </div>
+            </div>
+          `
+        }
+      ],
+      endo: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Hospital EHR creates procedure order #EHR-77291 (Endoscopy)",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center justify-between">
+                <span class="text-purple-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="activity" class="w-4 h-4"></i>
+                  <span>Endoscopy Center &bull; Procedure Suite 4</span>
+                </span>
+                <span class="text-neutral-500 text-[11px]">EHR HL7 Stream &bull; 08:30 AM</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                <div class="text-neutral-400">PATIENT: <strong class="text-white">Priya Nair (39F)</strong> &bull; MRN: #EHR-77291</div>
+                <div class="text-neutral-400">PROCEDURE: <span class="text-purple-300 font-semibold">Upper GI Endoscopy with Conscious Sedation</span></div>
+                <div class="text-neutral-400">ATTENDING: <span class="text-neutral-200">Dr. Rajesh Varma, MD</span></div>
+                <div class="p-2.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 space-y-1">
+                  <div class="text-[10px] uppercase font-bold text-neutral-500">Physician Directives in Clinical Notes:</div>
+                  <div class="text-neutral-200">"Sedation procedure. Strict NPO 6 hrs prior (no food or liquids). Must arrange adult driver for discharge home. Cannot drive."</div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                <span>EHR order captured &bull; Extracting sedation compliance guidelines...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "AI detects sedation requirement and enforces strict NPO rules",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+                <span class="text-purple-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="scan" class="w-3.5 h-3.5"></i>
+                  <span>Sedation Safety Protocol Synthesis</span>
+                </span>
+                <span class="text-emerald-400 font-semibold">Compliance: Strict High-Risk Gate</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">1. Anesthesia Fasting Directive:</span>
+                  <span class="text-rose-400 font-semibold">Strict NPO 6h (Zero liquids or food)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">2. Legal Escort Requirement:</span>
+                  <span class="text-rose-400 font-semibold">Responsible adult companion mandatory</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">3. Driving Prohibition:</span>
+                  <span class="text-rose-400 font-semibold">No driving or taxi alone for 24h</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1">
+                <span class="flex items-center space-x-1.5 text-neutral-300">
+                  <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>High-risk sedation rules formatted into simple patient language</span>
+                </span>
+                <span class="font-bold text-neutral-200">Protocol ID: #NPO-PROP</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "Personalized WhatsApp reminder sent with driver confirmation",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-md mx-auto">
+              <div class="bg-[#075E54] text-white p-2.5 rounded-t-lg flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-white text-[#075E54] flex items-center justify-center font-bold text-[11px]">
+                    <i data-lucide="heart-pulse" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-[11px]">Apollo Hospital Clinical Care</div>
+                    <div class="text-[9px] text-emerald-100">Official Healthcare Account &bull; Delivered</div>
+                  </div>
+                </div>
+                <span class="text-[10px] text-emerald-200 font-mono">10:15 AM</span>
+              </div>
+              <div class="bg-[#ECE5DD] p-3.5 rounded-b-lg text-neutral-800 space-y-2">
+                <div class="bg-white p-3 rounded-xl shadow-xs space-y-2 text-xs leading-relaxed">
+                  <p class="font-semibold text-neutral-900">Dear Priya Nair, your Endoscopy procedure is tomorrow at 08:00 AM.</p>
+                  <div class="bg-rose-50 p-2 rounded border border-rose-200 text-rose-950 text-[11px] space-y-1">
+                    <div class="font-bold text-rose-900">Mandatory Anesthesia Preparation:</div>
+                    <ul class="list-disc pl-4 space-y-0.5 text-rose-900">
+                      <li>Strictly NO food or liquids for 6 hours prior</li>
+                      <li>Because sedation is given, you cannot drive home</li>
+                      <li>An adult friend or family member must escort you</li>
+                    </ul>
+                  </div>
+                  <div class="flex items-center justify-between pt-1 border-t border-neutral-100 text-[10px] text-neutral-500 font-mono">
+                    <span>Delivered via WhatsApp API</span>
+                    <span class="text-blue-500 font-bold flex items-center space-x-0.5">
+                      <i data-lucide="check-check" class="w-3 h-3 text-blue-500"></i>
+                      <span>Read</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "Patient confirms driver arranged & procedure proceeds safely",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="p-4 rounded-xl bg-purple-950/60 border border-purple-800/80 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-purple-800/60">
+                  <div class="flex items-center space-x-2 text-purple-300 font-bold">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span>SEDATION CLEARANCE CONFIRMED</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-purple-900 text-purple-200">Admission Ready</span>
+                </div>
+                <div class="space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                  <div>Patient WhatsApp Reply: <span class="text-white italic">"Confirmed. My husband is driving me to the hospital and taking me home."</span></div>
+                  <div>Sedation Compliance Status: <span class="text-emerald-400 font-semibold font-mono">CLEARED_BY_ANESTHESIA</span></div>
+                  <div>Result: <span class="text-white font-semibold">Endoscopy suite slot utilized without last-minute cancellation</span></div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-center text-[11px] flex items-center justify-center space-x-2 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                <span>Loop completes &bull; Continuous patient monitoring active</span>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    function renderHCVideoScene(force) {
+      const scenes = hcVideoScenes[hcVideoState.scenario];
+      if (!scenes) return;
+      const t = hcVideoState.currentTime;
+      let sceneIdx = scenes.findIndex(s => t >= s.start && t < s.end);
+      if (sceneIdx === -1 && t >= 12) sceneIdx = 3;
+      if (sceneIdx === -1) sceneIdx = 0;
+
+      if (force || hcVideoState.currentScene !== sceneIdx) {
+        hcVideoState.currentScene = sceneIdx;
+        const scene = scenes[sceneIdx];
+        
+        const numBadge = document.getElementById('hc-v-scene-num-badge');
+        const titleEl = document.getElementById('hc-v-scene-title');
+        const stageContent = document.getElementById('hc-v-stage-content');
+        const scanBeam = document.getElementById('hc-v-scan-beam');
+
+        if (numBadge) numBadge.innerText = scene.num;
+        if (titleEl) titleEl.innerText = scene.title;
+        if (stageContent) stageContent.innerHTML = scene.html;
+        if (scanBeam) {
+          if (scene.scanBeam) scanBeam.classList.remove('hidden');
+          else scanBeam.classList.add('hidden');
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const chapBtn = document.getElementById('hc-v-chap-' + i);
+        if (chapBtn) {
+          if (i === (sceneIdx + 1)) {
+            chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition";
+          } else {
+            chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition";
+          }
+        }
+      }
+    }
+
+    function updateHCVideoUI() {
+      renderHCVideoScene(false);
+    }
+
+    function playHCVideo() {
+      hcVideoState.isPlaying = true;
+      if (hcVideoState.timer) clearInterval(hcVideoState.timer);
+      hcVideoState.timer = setInterval(() => {
+        hcVideoState.currentTime += 0.1;
+        if (hcVideoState.currentTime >= hcVideoState.duration) {
+          hcVideoState.currentTime = 0;
+        }
+        updateHCVideoUI();
+      }, 100);
+    }
+
+    function pauseHCVideo() {
+      hcVideoState.isPlaying = false;
+      if (hcVideoState.timer) {
+        clearInterval(hcVideoState.timer);
+        hcVideoState.timer = null;
+      }
+    }
+
+    function seekHCVideo(targetSeconds) {
+      hcVideoState.currentTime = Math.max(0, Math.min(targetSeconds, hcVideoState.duration));
+      hcVideoState.currentScene = -1;
+      renderHCVideoScene(true);
+      playHCVideo();
+    }
+
+    function setHCVideoScenario(scenario) {
+      hcVideoState.scenario = scenario;
+      const tabCardio = document.getElementById('hc-v-tab-cardio');
+      const tabEndo = document.getElementById('hc-v-tab-endo');
+
+      if (scenario === 'cardio') {
+        if (tabCardio) tabCardio.className = "px-3 py-1.5 rounded-md font-semibold text-[var(--accent)] bg-[var(--accent-soft)] transition";
+        if (tabEndo) tabEndo.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      } else {
+        if (tabEndo) tabEndo.className = "px-3 py-1.5 rounded-md font-semibold text-purple-700 bg-purple-50 transition";
+        if (tabCardio) tabCardio.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      }
+      hcVideoState.currentTime = 0;
+      hcVideoState.currentScene = -1;
+      renderHCVideoScene(true);
+      playHCVideo();
+    }
+
+    function sendHCChip(text) {
+      const input = document.getElementById('hc-user-input');
+      if (input) input.value = text;
+      sendHCPatientMessage();
+    }
+    // =========================================================
+    // E-COMMERCE INTERACTIVE VIDEO / ANIMATED WALKTHROUGH PLAYER
+    // =========================================================
+    const ecomVideoState = {
+      isPlaying: false,
+      currentTime: 0,
+      duration: 12,
+      speed: 1,
+      timer: null,
+      scenario: 'tracking', // 'tracking' or 'damaged'
+      currentScene: -1
+    };
+
+    const ecomVideoScenes = {
+      tracking: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Customer inquires about delivery status for Order #ORD-77998",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center justify-between">
+                <span class="text-blue-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                  <span>Store Live Chat Intake &bull; Web Visitor</span>
+                </span>
+                <span class="text-neutral-500 text-[11px]">Inquiry Received &bull; 10:14 AM</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                <div class="text-neutral-400">CUSTOMER: <strong class="text-white">John Doe</strong> &bull; Verified Shopper</div>
+                <div class="text-neutral-400">CHANNEL: <span class="text-neutral-200">Shopify Storefront Live Chat</span></div>
+                <div class="p-2.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 space-y-1">
+                  <div class="text-[10px] uppercase font-bold text-neutral-500">Incoming Customer Message:</div>
+                  <div class="text-neutral-200">"Hi there, where is my order #ORD-77998? I ordered it 3 days ago and need it before this weekend."</div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                <span>Chat webhook dispatched &bull; Autonomous support engine initiating lookup...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "AI queries Shopify API and syncs live courier tracking",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+                <span class="text-blue-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="scan" class="w-3.5 h-3.5"></i>
+                  <span>Shopify Store &amp; Carrier API Query</span>
+                </span>
+                <span class="text-emerald-400 font-semibold">Status: In Transit (On Delivery Vehicle)</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Order Record:</span>
+                  <span class="text-neutral-200 font-semibold">#ORD-77998 &bull; Nike Soaring High (M) &bull; $148.50 Paid</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Carrier Partner:</span>
+                  <span class="text-blue-400 font-semibold">FedEx Express &bull; Tracking #FDX-99214-US</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Live GPS Scan:</span>
+                  <span class="text-emerald-400 font-semibold">Out for Delivery today by 4:00 PM</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1">
+                <span class="flex items-center space-x-1.5 text-neutral-300">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span>Data gathered in 180ms &bull; Formulating friendly response</span>
+                </span>
+                <span class="font-bold text-neutral-200">Shopify API: 200 OK</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "Instant personalized reply generated with live tracking link",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-md mx-auto">
+              <div class="bg-[var(--accent)] text-white p-2.5 rounded-t-lg flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <div class="w-6 h-6 rounded-full bg-white text-[var(--accent)] flex items-center justify-center font-bold text-[11px]">
+                    <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-[11px]">Store Support Concierge</div>
+                    <div class="text-[9px] text-blue-100">Live Assistant &bull; 1.8s Response</div>
+                  </div>
+                </div>
+                <span class="text-[10px] text-blue-200 font-mono">10:14 AM</span>
+              </div>
+              <div class="bg-neutral-100 p-3.5 rounded-b-lg text-neutral-800 space-y-2">
+                <div class="bg-white p-3 rounded-xl shadow-xs space-y-2 text-xs leading-relaxed">
+                  <p class="font-semibold text-neutral-900">Hello John! Your order #ORD-77998 (Nike Soaring High) is out for delivery with FedEx Express.</p>
+                  <div class="p-2.5 rounded bg-blue-50 border border-blue-200 text-blue-900 text-[11px] flex items-center justify-between">
+                    <div>
+                      <div class="font-bold">FedEx Express Tracking:</div>
+                      <div class="font-mono text-[10px] text-blue-700">#FDX-99214-US</div>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Today, 4:00 PM</span>
+                  </div>
+                  <div class="flex items-center justify-between pt-1 border-t border-neutral-100 text-[10px] text-neutral-500 font-mono">
+                    <span>Resolved autonomously</span>
+                    <span class="text-emerald-600 font-bold">100% Contained</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "Ticket resolved in seconds with zero support agent effort",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-800/80 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-emerald-800/60">
+                  <div class="flex items-center space-x-2 text-emerald-300 font-bold">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    <span>TICKET RESOLVED AUTONOMOUSLY</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-900 text-emerald-200">5/5 Star Rating</span>
+                </div>
+                <div class="space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                  <div>Customer Feedback: <span class="text-white italic">"Wow, answered in 2 seconds with exact tracking. Thank you!"</span></div>
+                  <div>Human Agent Hours Saved: <span class="text-emerald-400 font-semibold font-mono">Zero queue backlog created</span></div>
+                  <div>Resolution SLA: <span class="text-white font-semibold">1.8s end-to-end (Standard queue: 4-6 hours)</span></div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-center text-[11px] flex items-center justify-center space-x-2 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>Support desk clear &bull; Next scenario ready</span>
+              </div>
+            </div>
+          `
+        }
+      ],
+      damaged: [
+        {
+          start: 0,
+          end: 3,
+          num: "Step 1 of 4",
+          title: "Customer reports damaged package for Order #ORD-77412",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="text-neutral-400 flex items-center justify-between">
+                <span class="text-rose-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                  <span>Urgent Customer Escalation</span>
+                </span>
+                <span class="text-neutral-500 text-[11px]">Chat Message &bull; 02:45 PM</span>
+              </div>
+              <div class="bg-black/60 p-4 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                <div class="text-neutral-400">CUSTOMER: <strong class="text-white">Sarah Miller</strong> &bull; Order #ORD-77412</div>
+                <div class="text-neutral-400">ITEM: <span class="text-neutral-200">Nike Air Zoom (Size 8.5) &bull; $189.00</span></div>
+                <div class="p-2.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300 space-y-1">
+                  <div class="text-[10px] uppercase font-bold text-neutral-500">Customer Complaint:</div>
+                  <div class="text-neutral-200">"I opened the package today and the shoe sole is completely detached and box crushed in shipping. Need an urgent replacement."</div>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1">
+                <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                <span>Damage claim detected &bull; Triggering high-priority escalation...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3,
+          end: 6,
+          num: "Step 2 of 4",
+          title: "AI verifies return policy and initiates instant Slack escalation",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px]">
+                <span class="text-rose-400 flex items-center space-x-1.5 font-semibold">
+                  <i data-lucide="scan" class="w-3.5 h-3.5"></i>
+                  <span>Automated Warranty &amp; Replacement Audit</span>
+                </span>
+                <span class="text-rose-400 font-semibold">Action: Immediate Slack Escalation</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Policy Eligibility:</span>
+                  <span class="text-emerald-400 font-semibold">Within 30-day transit damage window</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Replacement Stock:</span>
+                  <span class="text-blue-400 font-semibold">In stock in warehouse (3 units available)</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded bg-neutral-900/80 border border-neutral-800">
+                  <span class="text-neutral-300">Destination Channel:</span>
+                  <span class="text-purple-400 font-semibold">Slack #customer-support</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1">
+                <span class="flex items-center space-x-1.5 text-neutral-300">
+                  <i data-lucide="bell" class="w-3.5 h-3.5 text-rose-400"></i>
+                  <span>Slack notification payload generated with one-click actions</span>
+                </span>
+                <span class="font-bold text-neutral-200">Priority: P1 Urgent</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6,
+          end: 9,
+          num: "Step 3 of 4",
+          title: "AI dispatches instant alert to team Slack #customer-support",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-lg mx-auto">
+              <div class="bg-[#1A1D21] text-white p-3 rounded-t-lg flex items-center justify-between text-xs border border-neutral-700">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-neutral-300 font-mono">#customer-support</span>
+                  <span class="text-[10px] text-neutral-400">Slack Notification</span>
+                </div>
+                <span class="text-[10px] text-neutral-400">Today at 2:45 PM</span>
+              </div>
+              <div class="bg-[#222529] p-3.5 rounded-b-lg text-neutral-200 space-y-2 border-x border-b border-neutral-700">
+                <div class="flex items-start space-x-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-neutral-800 text-rose-400 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                    <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                  </div>
+                  <div class="space-y-1.5 flex-1">
+                    <div class="flex items-center space-x-2">
+                      <span class="font-bold text-white text-xs">Automation Bot</span>
+                      <span class="text-[10px] bg-neutral-700 px-1.5 py-0.2 rounded text-neutral-300 font-mono">APP</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-neutral-900 border-l-4 border-rose-500 text-xs space-y-1 text-neutral-300">
+                      <div class="font-semibold text-rose-300">Damaged Shipment Alert: Order #ORD-77412</div>
+                      <div class="text-[11px]">Customer: Sarah Miller &bull; Item: Nike Air Zoom (8.5)</div>
+                      <div class="text-[11px] text-neutral-400">"Shoe sole completely detached and box crushed in transit."</div>
+                    </div>
+                    <div class="flex items-center gap-2 pt-1 text-[11px]">
+                      <span class="px-2.5 py-1 rounded bg-emerald-600 font-semibold text-white">Approve Replacement</span>
+                      <span class="px-2.5 py-1 rounded bg-neutral-700 font-semibold text-neutral-200">Refund $189.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9,
+          end: 12,
+          num: "Step 4 of 4",
+          title: "One-click resolution in Slack & customer delighted",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="p-4 rounded-xl bg-purple-950/60 border border-purple-800/80 space-y-3">
+                <div class="flex items-center justify-between pb-2 border-b border-purple-800/60">
+                  <div class="flex items-center space-x-2 text-purple-300 font-bold">
+                    <i data-lucide="check-check" class="w-4 h-4"></i>
+                    <span>ESCALATION RESOLVED IN 45 SECONDS</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-purple-900 text-purple-200">Customer Saved</span>
+                </div>
+                <div class="space-y-2 text-neutral-300 text-[11px] leading-relaxed">
+                  <div>Slack Action: <span class="text-emerald-400 font-semibold">Support lead clicked "Approve Replacement"</span></div>
+                  <div>Fulfillment: <span class="text-white">Shopify replacement order created with FedEx Priority Air</span></div>
+                  <div>Retention Impact: <span class="text-white font-semibold">Customer retained &bull; Zero negative review</span></div>
+                </div>
+              </div>
+              <div class="text-neutral-400 text-center text-[11px] flex items-center justify-center space-x-2 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                <span>Continuous loop &bull; Restarting walkthrough</span>
+              </div>
+            </div>
+          `
+        }
+      ]
+    };
+
+    function renderEcomVideoScene(force) {
+      const scenes = ecomVideoScenes[ecomVideoState.scenario];
+      if (!scenes) return;
+      const t = ecomVideoState.currentTime;
+      let sceneIdx = scenes.findIndex(s => t >= s.start && t < s.end);
+      if (sceneIdx === -1 && t >= 12) sceneIdx = 3;
+      if (sceneIdx === -1) sceneIdx = 0;
+
+      if (force || ecomVideoState.currentScene !== sceneIdx) {
+        ecomVideoState.currentScene = sceneIdx;
+        const scene = scenes[sceneIdx];
+        
+        const numBadge = document.getElementById('ecom-v-scene-num-badge');
+        const titleEl = document.getElementById('ecom-v-scene-title');
+        const stageContent = document.getElementById('ecom-v-stage-content');
+        const scanBeam = document.getElementById('ecom-v-scan-beam');
+
+        if (numBadge) numBadge.innerText = scene.num;
+        if (titleEl) titleEl.innerText = scene.title;
+        if (stageContent) stageContent.innerHTML = scene.html;
+        if (scanBeam) {
+          if (scene.scanBeam) scanBeam.classList.remove('hidden');
+          else scanBeam.classList.add('hidden');
+        }
+        if (window.lucide) lucide.createIcons();
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const chapBtn = document.getElementById('ecom-v-chap-' + i);
+        if (chapBtn) {
+          if (i === (sceneIdx + 1)) {
+            chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition";
+          } else {
+            chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition";
+          }
+        }
+      }
+    }
+
+    function updateEcomVideoUI() {
+      renderEcomVideoScene(false);
+    }
+
+    function playEcomVideo() {
+      ecomVideoState.isPlaying = true;
+      if (ecomVideoState.timer) clearInterval(ecomVideoState.timer);
+      ecomVideoState.timer = setInterval(() => {
+        ecomVideoState.currentTime += 0.1;
+        if (ecomVideoState.currentTime >= ecomVideoState.duration) {
+          ecomVideoState.currentTime = 0;
+        }
+        updateEcomVideoUI();
+      }, 100);
+    }
+
+    function pauseEcomVideo() {
+      ecomVideoState.isPlaying = false;
+      if (ecomVideoState.timer) {
+        clearInterval(ecomVideoState.timer);
+        ecomVideoState.timer = null;
+      }
+    }
+
+    function seekEcomVideo(targetSeconds) {
+      ecomVideoState.currentTime = Math.max(0, Math.min(targetSeconds, ecomVideoState.duration));
+      ecomVideoState.currentScene = -1;
+      renderEcomVideoScene(true);
+      playEcomVideo();
+    }
+
+    function setEcomVideoScenario(scenario) {
+      ecomVideoState.scenario = scenario;
+      const tabTracking = document.getElementById('ecom-v-tab-tracking');
+      const tabDamaged = document.getElementById('ecom-v-tab-damaged');
+
+      if (scenario === 'tracking') {
+        if (tabTracking) tabTracking.className = "px-3 py-1.5 rounded-md font-semibold text-[var(--accent)] bg-[var(--accent-soft)] transition";
+        if (tabDamaged) tabDamaged.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      } else {
+        if (tabDamaged) tabDamaged.className = "px-3 py-1.5 rounded-md font-semibold text-rose-700 bg-rose-50 transition";
+        if (tabTracking) tabTracking.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
+      }
+      ecomVideoState.currentTime = 0;
+      ecomVideoState.currentScene = -1;
+      renderEcomVideoScene(true);
+      playEcomVideo();
+    }
+
+    // =========================================================
+    // E-COMMERCE INTERACTIVE DEMO HANDLERS
+    // =========================================================
+    let ecomCurrentScenario = 'tracking';
+
+    function setEcomScenario(scenario) {
+      ecomCurrentScenario = scenario;
+      const cardTracking = document.getElementById('ecom-card-tracking');
+      const cardDamaged = document.getElementById('ecom-card-damaged');
+      if (cardTracking && cardDamaged) {
+        if (scenario === 'tracking') {
+          cardTracking.classList.add('selected');
+          cardDamaged.classList.remove('selected');
+        } else {
+          cardDamaged.classList.add('selected');
+          cardTracking.classList.remove('selected');
+        }
+      }
+
+      const orderIdEl = document.getElementById('ecom-order-id');
+      const customerNameEl = document.getElementById('ecom-customer-name');
+      const orderTotalEl = document.getElementById('ecom-order-total');
+      const orderStatusEl = document.getElementById('ecom-order-status');
+      const orderItemsEl = document.getElementById('ecom-order-items');
+      const inquiryTextEl = document.getElementById('ecom-inquiry-text');
+
+      if (scenario === 'tracking') {
+        if (orderIdEl) orderIdEl.innerText = '#ORD-77998';
+        if (customerNameEl) customerNameEl.innerText = 'John Doe';
+        if (orderTotalEl) orderTotalEl.innerText = '$148.50 (Paid)';
+        if (orderStatusEl) {
+          orderStatusEl.className = 'text-emerald-700 font-semibold';
+          orderStatusEl.innerText = 'In Transit (FedEx)';
+        }
+        if (orderItemsEl) orderItemsEl.innerText = 'Nike Soaring High (M)';
+        if (inquiryTextEl) inquiryTextEl.innerText = '"Hi there, where is my order #ORD-77998? I ordered it 3 days ago and needed it for my trip this weekend."';
+      } else {
+        if (orderIdEl) orderIdEl.innerText = '#ORD-77412';
+        if (customerNameEl) customerNameEl.innerText = 'Sarah Miller';
+        if (orderTotalEl) orderTotalEl.innerText = '$189.00 (Paid)';
+        if (orderStatusEl) {
+          orderStatusEl.className = 'text-rose-700 font-semibold';
+          orderStatusEl.innerText = 'Delivered (Damage Claim)';
+        }
+        if (orderItemsEl) orderItemsEl.innerText = 'Nike Air Zoom (Size 8.5)';
+        if (inquiryTextEl) inquiryTextEl.innerText = '"I opened my package today and the shoe sole is detached and the box was crushed during transit. I need an urgent replacement."';
+      }
+    }
+
+    function triggerEcommerceInquiry() {
+      const btn = document.getElementById('btn-ecom-dispatch');
+      if (!btn) return;
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Processing Shopify Query...</span>`;
+      if (window.lucide) lucide.createIcons();
+
+      const chatHistory = document.getElementById('ecom-chat-history');
+
+      // Fire real webhook in background
+      try {
+        fetch("https://enlightlab-n8n.duckdns.org/webhook/b2c-support-agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: ecomCurrentScenario === 'tracking' ? "Where is my order #ORD-77998?" : "I received a damaged item with detached sole in order #ORD-77412.",
+            customer_name: ecomCurrentScenario === 'tracking' ? "John Doe" : "Sarah Miller",
+            customer_email: ecomCurrentScenario === 'tracking' ? "johndoe@example.com" : "sarah.m@example.com",
+            customer_phone: "+1-555-0199",
+            operator: "dhananjay",
+            scenario: ecomCurrentScenario,
+            timestamp: new Date().toISOString()
+          })
+        }).catch(err => console.log("[Shopify Gateway] Safe fallback:", err));
+      } catch (e) {}
+
+      setTimeout(() => {
+        if (chatHistory) {
+          const isTracking = (ecomCurrentScenario === 'tracking');
+          const replyHtml = isTracking ? `
+            <div class="flex flex-col items-end max-w-[90%] ml-auto space-y-1">
+              <div class="bg-[var(--accent)] text-white p-3 rounded-2xl rounded-tr-none text-xs leading-relaxed">
+                Hi there, where is my order #ORD-77998?
+              </div>
+              <span class="text-[10px] text-neutral-400">Just now &bull; Sent</span>
+            </div>
+            <div class="flex flex-col items-start max-w-[90%] space-y-1">
+              <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs border border-[var(--border)] text-xs text-neutral-800 space-y-2">
+                <p class="leading-relaxed">
+                  Hello John! Your order <strong>#ORD-77998</strong> (Nike Soaring High) is currently out for delivery with FedEx Express. It is scheduled to arrive today by 4:00 PM.
+                </p>
+                <div class="p-2.5 rounded-lg bg-neutral-50 border border-[var(--border)] text-[11px] text-neutral-700 flex items-center justify-between">
+                  <span>Tracking: <strong>FDX-99214-US</strong></span>
+                  <span class="text-blue-600 font-medium">Track on FedEx &rarr;</span>
+                </div>
+                <span class="text-[10px] text-neutral-400 block text-right">Just now &bull; Delivered</span>
+              </div>
+            </div>
+          ` : `
+            <div class="flex flex-col items-end max-w-[90%] ml-auto space-y-1">
+              <div class="bg-[var(--accent)] text-white p-3 rounded-2xl rounded-tr-none text-xs leading-relaxed">
+                I received a damaged item with detached sole in order #ORD-77412.
+              </div>
+              <span class="text-[10px] text-neutral-400">Just now &bull; Sent</span>
+            </div>
+            <div class="flex flex-col items-start max-w-[90%] space-y-1">
+              <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs border border-[var(--border)] text-xs text-neutral-800 space-y-2">
+                <p class="leading-relaxed text-rose-900 bg-rose-50 p-2.5 rounded-lg border border-rose-200">
+                  I am so sorry to hear about that Sarah! I have flagged your order <strong>#ORD-77412</strong> directly to our team on Slack <strong>#customer-support</strong>.
+                </p>
+                <p class="text-[11px] leading-relaxed text-neutral-700">
+                  A replacement pair of <strong>Nike Air Zoom (Size 8.5)</strong> has been reserved for you with free priority express dispatch. A support lead will confirm your tracking within 15 minutes.
+                </p>
+                <span class="text-[10px] text-neutral-400 block text-right">Just now &bull; Escalated to Slack</span>
+              </div>
+            </div>
+          `;
+          chatHistory.innerHTML = replyHtml;
+          chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400 mr-1"></i> <span>Message Processed Successfully</span>`;
+        if (window.lucide) lucide.createIcons();
+      }, 1200);
+    }
+
+    function sendEcomChip(text) {
+      const input = document.getElementById('ecom-user-input');
+      if (input) input.value = text;
+      sendEcomChat();
+    }
+
+    function sendEcomChat() {
+      const input = document.getElementById('ecom-user-input');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      const chatHistory = document.getElementById('ecom-chat-history');
+      if (!chatHistory) return;
+
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex flex-col items-end max-w-[90%] ml-auto space-y-1";
+      userBubble.innerHTML = `
+        <div class="bg-[var(--accent)] text-white p-3 rounded-2xl rounded-tr-none text-xs leading-relaxed">
+          ${escapeHtml(text)}
+        </div>
+        <span class="text-[10px] text-neutral-400">Just now &bull; Sent</span>
+      `;
+      chatHistory.appendChild(userBubble);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      // Real webhook dispatch
+      try {
+        fetch("https://enlightlab-n8n.duckdns.org/webhook/b2c-support-agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: text,
+            customer_name: "John Doe",
+            customer_email: "johndoe@example.com",
+            customer_phone: "+1-555-0199",
+            operator: "dhananjay",
+            timestamp: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (e) {}
+
+      // Formulate realistic response
+      setTimeout(() => {
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex flex-col items-start max-w-[90%] space-y-1";
+
+        const lower = text.toLowerCase();
+        let replyHtml = '';
+
+        if (lower.includes('address') || lower.includes('change')) {
+          replyHtml = `
+            <p class="leading-relaxed">
+              To update your delivery address for <strong>#ORD-77998</strong>, our warehouse holds shipments for 1 hour after order placement. Because your order is already <em>out for delivery</em> with FedEx, we can instruct the courier to hold it at your local FedEx pickup point or request redirection.
+            </p>
+            <div class="p-2 rounded bg-neutral-50 border border-[var(--border)] text-[11px] text-neutral-700">
+              FedEx Delivery Redirection: <strong>Available via tracking link</strong>
+            </div>
+          `;
+        } else if (lower.includes('return') || lower.includes('refund')) {
+          replyHtml = `
+            <p class="leading-relaxed">
+              We offer a hassle-free <strong>30-day return policy</strong> on all unworn items. Once your package arrives, you can generate a prepaid return shipping label with one tap in your account portal.
+            </p>
+            <div class="p-2 rounded bg-neutral-50 border border-[var(--border)] text-[11px] text-neutral-700">
+              Return window: 30 days &bull; Full refund to original payment method
+            </div>
+          `;
+        } else if (lower.includes('damaged') || lower.includes('broken')) {
+          replyHtml = `
+            <p class="leading-relaxed text-rose-900 bg-rose-50 p-2.5 rounded-lg border border-rose-200">
+              I am so sorry! I have escalated this directly to our team on Slack <strong>#customer-support</strong> with priority replacement status.
+            </p>
+            <p class="text-[11px] text-neutral-700">
+              You do not need to send the damaged piece back. A support team member will follow up via email within 15 minutes.
+            </p>
+          `;
+        } else {
+          replyHtml = `
+            <p class="leading-relaxed">
+              Thank you for reaching out! Regarding <strong>#ORD-77998</strong>, our automated assistant is tracking your shipment and monitoring warehouse updates.
+            </p>
+            <div class="p-2 rounded bg-neutral-50 border border-[var(--border)] text-[11px] text-neutral-700">
+              Need to speak with our support staff directly? We can page a live representative on Slack immediately.
+            </div>
+          `;
+        }
+
+        botBubble.innerHTML = `
+          <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-2xs border border-[var(--border)] text-xs text-neutral-800 space-y-2">
+            ${replyHtml}
+            <span class="text-[10px] text-neutral-400 block text-right">Just now &bull; Verified by AI Support</span>
+          </div>
+        `;
+        chatHistory.appendChild(botBubble);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+        if (window.lucide) lucide.createIcons();
+      }, 800);
+    }
         if (tabSafe) tabSafe.className = "px-3 py-1.5 rounded-md font-semibold text-[var(--ok)] bg-[#ECFDF3] transition";
         if (tabRisky) tabRisky.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
       }
@@ -2441,6 +4020,11 @@
         target.classList.remove('hidden');
         window.location.hash = viewName === 'hub' ? 'industries' : viewName;
         
+            // Pause all video walkthrough loops
+      pauseDevopsVideo();
+      pauseHCVideo();
+      pauseEcomVideo();
+
       if (viewName === 'devops') {
         document.title = "DevOps Code Safety Check | Enlight Lab";
         const descEl = document.querySelector('meta[name="description"]');
@@ -2449,15 +4033,24 @@
           renderDevopsVideoScene(true);
           playDevopsVideo();
         }, 50);
+      } else if (viewName === 'healthcare') {
+        document.title = "Healthcare Patient Preparation | Enlight Lab";
+        const descEl = document.querySelector('meta[name="description"]');
+        if (descEl) descEl.setAttribute('content', "Help patients prepare for procedures so appointments are never cancelled with automated WhatsApp instructions.");
+        setTimeout(() => {
+          renderHCVideoScene(true);
+          playHCVideo();
+        }, 50);
+      } else if (viewName === 'ecommerce') {
+        document.title = "E-Commerce Customer Support | Enlight Lab";
+        const descEl = document.querySelector('meta[name="description"]');
+        if (descEl) descEl.setAttribute('content', "Answer customer questions instantly and escalate problems to Slack with autonomous Shopify support.");
+        setTimeout(() => {
+          renderEcomVideoScene(true);
+          playEcomVideo();
+        }, 50);
       } else {
-        pauseDevopsVideo();
-        if (viewName === 'healthcare') {
-          document.title = "Healthcare Patient Preparation | Enlight Lab";
-        } else if (viewName === 'ecommerce') {
-          document.title = "E-Commerce Customer Support | Enlight Lab";
-        } else {
-          document.title = "Enlight Lab | Enterprise AI Automation & Workflow Platform";
-        }
+        document.title = "Enlight Lab | Enterprise AI Automation & Workflow Platform";
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -2783,6 +4376,17 @@
       if (!hcProcedures[key]) return;
       currentHCProcedure = key;
       const proc = hcProcedures[key];
+      const cardioCard = document.getElementById('hc-card-cardio');
+      const endoCard = document.getElementById('hc-card-endo');
+      if (cardioCard && endoCard) {
+        if (key === 'cardio') {
+          cardioCard.classList.add('selected');
+          endoCard.classList.remove('selected');
+        } else {
+          endoCard.classList.add('selected');
+          cardioCard.classList.remove('selected');
+        }
+      }
 
       const mrnEl = document.getElementById('hc-ehr-mrn');
       if (mrnEl) mrnEl.innerText = `MRN: ${proc.mrn}`;
