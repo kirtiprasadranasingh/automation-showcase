@@ -109,12 +109,14 @@
       </a>
 
       <!-- Navigation & Status -->
-      <div class="flex items-center space-x-1 sm:space-x-2">
-        <button onclick="openView('hub')" id="nav-hub" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition">All Industries</button>
-        <button onclick="openView('devops')" id="nav-devops" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">DevOps</button>
-        <button onclick="openView('healthcare')" id="nav-healthcare" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">Healthcare</button>
-        <button onclick="openView('ecommerce')" id="nav-ecommerce" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline">E-Commerce</button>
-        <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+      <div class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto py-1">
+        <button onclick="openView('hub')" id="nav-hub" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition flex-shrink-0">All Industries</button>
+        <button onclick="openView('devops')" id="nav-devops" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline flex-shrink-0">DevOps</button>
+        <button onclick="openView('healthcare')" id="nav-healthcare" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline flex-shrink-0">Healthcare</button>
+        <button onclick="openView('ecommerce')" id="nav-ecommerce" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden sm:inline flex-shrink-0">E-Commerce</button>
+        <button onclick="openView('finance')" id="nav-finance" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden md:inline flex-shrink-0">Finance</button>
+        <button onclick="openView('marketing')" id="nav-marketing" class="text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#0A0F1E]/70 hover:text-[#1A6BFF] transition hidden md:inline flex-shrink-0">Marketing</button>
+        <span class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex-shrink-0">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
           <span>Live Core</span>
         </span>
@@ -280,7 +282,7 @@
         </div>
 
         <!-- Card 4: Finance (FinOps) -->
-        <div onclick="openView('devops')" data-industry="finance" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-emerald-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
+        <div onclick="openView('finance')" data-industry="finance" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-emerald-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 group-hover:scale-110 transition">
@@ -309,13 +311,13 @@
             </div>
           </div>
           <div class="pt-3 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-semibold text-emerald-700">
-            <span>Explore Architecture &amp; Flow</span>
+            <span>Explore Use Case &amp; Live Demo</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
         <!-- Card 5: Marketing -->
-        <div onclick="openView('ecommerce')" data-industry="marketing" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-amber-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
+        <div onclick="openView('marketing')" data-industry="marketing" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-amber-500 card-shadow p-6 transition duration-200 flex flex-col justify-between space-y-5 hover:-translate-y-1">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 group-hover:scale-110 transition">
@@ -364,7 +366,7 @@
           <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
           <span>Back to All Industries</span>
         </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 1 of 3</span>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 1 of 5</span>
       </div>
 
       <!-- Full Page Explanation Card -->
@@ -444,6 +446,99 @@
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
               Zero unexpected downtime. Releases ship with confidence, and the engineering team gets instant Slack alerts with the exact code fix only when something is genuinely broken.
             </p>
+          </div>
+        </div>
+
+        <!-- Notion-Style UI Screenshot Window Frame -->
+        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden shadow-sm bg-white">
+          <div class="bg-[#F8F9FC] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              </div>
+              <span class="text-[#0A0F1E]/30 font-mono">|</span>
+              <span class="font-mono text-[11px] text-[#0A0F1E]/60 flex items-center space-x-1">
+                <i data-lucide="lock" class="w-3 h-3 text-[#1A6BFF]"></i>
+                <span>github.com/enlightlab/payment-service • PR #142 (AI Safety Check)</span>
+              </span>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Live Production Guardrail</span>
+          </div>
+          <!-- Screenshot Preview Content -->
+          <div class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4 bg-[#FBFBFC]">
+            <!-- Code Diff Panel -->
+            <div class="md:col-span-7 bg-[#0A0F1E] rounded-xl p-3.5 text-[11px] font-mono text-slate-300 space-y-2 border border-slate-800 shadow-inner">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-800 text-[10px] text-slate-400">
+                <span>controllers/authController.ts</span>
+                <span class="text-rose-400 font-bold">Blocked Line 48</span>
+              </div>
+              <div class="space-y-1">
+                <div class="text-slate-500">46 &nbsp; async function verifyUserToken(req, res) {</div>
+                <div class="text-slate-500">47 &nbsp; &nbsp; const token = req.headers['x-auth'];</div>
+                <div class="bg-rose-950/80 text-rose-200 px-2 py-0.5 rounded border border-rose-800/80 flex items-center justify-between">
+                  <span>48 - &nbsp; const sql = `SELECT * FROM users WHERE token = '${token}'`;</span>
+                  <span class="text-[9px] bg-rose-900 text-rose-200 px-1 rounded uppercase font-bold">SQL Injection CVE-2026</span>
+                </div>
+                <div class="bg-emerald-950/80 text-emerald-200 px-2 py-0.5 rounded border border-emerald-800/80">
+                  <span>49 + &nbsp; const sql = `SELECT * FROM users WHERE token = $1`; [token]</span>
+                </div>
+                <div class="text-slate-500">50 &nbsp; &nbsp; return db.query(sql);</div>
+              </div>
+            </div>
+            <!-- Automated Security Verdict & Slack Alert Panel -->
+            <div class="md:col-span-5 flex flex-col justify-between space-y-3">
+              <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] space-y-2 text-xs">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-[#0A0F1E] flex items-center space-x-1">
+                    <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-600"></i>
+                    <span>SonarQube AST Verdict</span>
+                  </span>
+                  <span class="text-[10px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">Score 38/100</span>
+                </div>
+                <p class="text-[11px] text-[#0A0F1E]/70 leading-relaxed">
+                  Critical vulnerability detected in pull request. Release automatically locked before hitting the Kubernetes production cluster.
+                </p>
+              </div>
+              <!-- Slack Alert Preview -->
+              <div class="bg-white p-3 rounded-xl border border-[#E8EAF0] space-y-1.5 text-xs">
+                <div class="flex items-center space-x-1.5 text-[10px] font-bold text-slate-500">
+                  <i data-lucide="message-square" class="w-3 h-3 text-indigo-600"></i>
+                  <span>Slack #devops-alerts</span>
+                  <span class="text-slate-400 font-normal">Just now</span>
+                </div>
+                <div class="border-l-2 border-rose-500 pl-2.5 text-[11px] text-[#0A0F1E] space-y-0.5">
+                  <strong class="text-rose-700 block font-semibold">Deploy Blocked: SQL Injection Alert</strong>
+                  <span class="text-[#0A0F1E]/75 block text-[10px]">PR #142 by @developer halted. Fix suggested on Line 49.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manager's 60-Second Client Pitch Guide (Notion Style Callout) -->
+        <div class="bg-[#FFFDF5] border border-[#F2E8C9] p-4 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-[#7A5B04] flex items-center space-x-1.5">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-[#D97706]"></i>
+              <span>Manager's 60-Second Client Pitch Guide</span>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-[#A17409] bg-[#FEF3C7] px-2 py-0.5 rounded">Meeting Cheat-Sheet</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[#5A4103] pt-1">
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">1. The Hook Question:</strong>
+              <span>&quot;When was the last time an unexpected bug or bad database change caused a service outage or delayed a launch?&quot;</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">2. What to Click:</strong>
+              <span>Select <em>Scenario B: Destructive Migration</em> below, then hit <em>Run Automation Test</em>. Show how the safety score drops to 38 and blocks the release.</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">3. The Closing Punchline:</strong>
+              <span>&quot;This acts as 24/7 automated insurance for your production code. Your engineers ship faster, and customers never see downtime.&quot;</span>
+            </div>
           </div>
         </div>
 
@@ -552,7 +647,7 @@
           <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
           <span>Back to All Industries</span>
         </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 2 of 3</span>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 2 of 5</span>
       </div>
 
       <!-- Full Page Explanation Card -->
@@ -632,6 +727,83 @@
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
               Morning cancellations drop drastically. Clinics protect thousands in daily scan revenue, while nurses spend zero time making repetitive reminder calls.
             </p>
+          </div>
+        </div>
+
+        <!-- Notion-Style UI Screenshot Window Frame -->
+        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden shadow-sm bg-white">
+          <div class="bg-[#F8F9FC] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              </div>
+              <span class="text-[#0A0F1E]/30 font-mono">|</span>
+              <span class="font-mono text-[11px] text-[#0A0F1E]/60 flex items-center space-x-1">
+                <i data-lucide="cross" class="w-3 h-3 text-cyan-600"></i>
+                <span>apollo-clinical-ehr.internal / patient-dispatch / Rahul Sharma (#EHR-99214)</span>
+              </span>
+            </div>
+            <span class="text-[10px] font-mono text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded border border-cyan-200 font-semibold">Automated WhatsApp Bridge Active</span>
+          </div>
+          <!-- Screenshot Preview Content -->
+          <div class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4 bg-[#FBFBFC]">
+            <!-- EHR Note Panel -->
+            <div class="md:col-span-6 bg-white rounded-xl p-3.5 text-xs space-y-2 border border-[#E8EAF0]">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <span class="font-bold text-[#0A0F1E]">Doctor's Raw Clinical Order</span>
+                <span class="text-[10px] font-mono text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded">Dr. A. K. Singhal, MD</span>
+              </div>
+              <p class="font-mono text-[11px] text-[#0A0F1E]/80 bg-slate-50 p-2.5 rounded-lg border border-slate-200 leading-relaxed">
+                &quot;Pt referred for exertional chest tightness. Schedule Bruce Protocol stress test. NPO 4h prior. Zero caffeine 24h. Take morning BP meds with water. Bring sneakers.&quot;
+              </p>
+              <div class="text-[10px] text-[#0A0F1E]/50 flex items-center space-x-1">
+                <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i>
+                <span>Vector Protocol Store: Cosine Match 0.94 (&quot;Cardiology Stress Test&quot;)</span>
+              </div>
+            </div>
+            <!-- Delivered WhatsApp Preview -->
+            <div class="md:col-span-6 bg-[#EFEAE2] p-3.5 rounded-xl border border-[#E8EAF0] space-y-2 text-xs">
+              <div class="flex items-center justify-between text-[10px] font-bold text-slate-500 pb-1 border-b border-black/5">
+                <span class="flex items-center space-x-1">
+                  <i data-lucide="phone" class="w-3 h-3 text-emerald-600"></i>
+                  <span>Patient WhatsApp (Delivered 24h Prior)</span>
+                </span>
+                <span class="text-emerald-700 font-semibold bg-emerald-100 px-1.5 py-0.5 rounded">Delivered</span>
+              </div>
+              <div class="bg-white p-3 rounded-xl shadow-xs space-y-1.5 border border-black/5">
+                <strong class="text-cyan-950 block text-[11px]">Apollo Care: Appointment Tomorrow at 09:30 AM</strong>
+                <p class="text-[10px] text-[#0A0F1E]/80 leading-normal">
+                  Fast for 4 hours prior. Zero coffee or tea for 24h. Wear running sneakers. Tap below to confirm arrival.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manager's 60-Second Client Pitch Guide (Notion Style Callout) -->
+        <div class="bg-[#FFFDF5] border border-[#F2E8C9] p-4 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-[#7A5B04] flex items-center space-x-1.5">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-[#D97706]"></i>
+              <span>Manager's 60-Second Client Pitch Guide</span>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-[#A17409] bg-[#FEF3C7] px-2 py-0.5 rounded">Meeting Cheat-Sheet</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[#5A4103] pt-1">
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">1. The Hook Question:</strong>
+              <span>&quot;How many morning MRI or endoscopy slots get cancelled each month because patients drank coffee or forgot their driver?&quot;</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">2. What to Click:</strong>
+              <span>Click <em>Cardiology</em> $\rightarrow$ <em>Can I drink water?</em>. Then switch to <em>Endoscopy</em> $\rightarrow$ <em>Can I drink water?</em> to show medical intelligence.</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">3. The Closing Punchline:</strong>
+              <span>&quot;If this saves just 2 cancelled scanner slots a week, it protects over $45,000 every month in hospital revenue.&quot;</span>
+            </div>
           </div>
         </div>
 
@@ -947,7 +1119,7 @@
           <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
           <span>Back to All Industries</span>
         </button>
-        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 3 of 3</span>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 3 of 5</span>
       </div>
 
       <!-- Full Page Explanation Card -->
@@ -1027,6 +1199,104 @@
             <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
               85% of customer questions are answered instantly 24/7. Your human support team only steps in for high-priority escalations with full context already logged.
             </p>
+          </div>
+        </div>
+
+        <!-- Notion-Style UI Screenshot Window Frame -->
+        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden shadow-sm bg-white">
+          <div class="bg-[#F8F9FC] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              </div>
+              <span class="text-[#0A0F1E]/30 font-mono">|</span>
+              <span class="font-mono text-[11px] text-[#0A0F1E]/60 flex items-center space-x-1">
+                <i data-lucide="shopping-bag" class="w-3 h-3 text-indigo-600"></i>
+                <span>shopify.internal/orders/ORD-77998 • Customer Care Live View</span>
+              </span>
+            </div>
+            <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 font-semibold">Live Store &amp; Slack Bridge</span>
+          </div>
+          <!-- Screenshot Preview Content -->
+          <div class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4 bg-[#FBFBFC]">
+            <!-- Live Shopify Order Record -->
+            <div class="md:col-span-6 bg-white rounded-xl p-3.5 text-xs space-y-2.5 border border-[#E8EAF0]">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-[#0A0F1E]">Shopify Order #ORD-77998</span>
+                  <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-semibold">Paid • In Transit</span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-500">John Doe</span>
+              </div>
+              <div class="space-y-1.5 font-mono text-[11px]">
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Item: Nike Soaring High (Size M)</span>
+                  <span class="font-semibold text-[#0A0F1E]">$180.00</span>
+                </div>
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Carrier: BlueDart Express</span>
+                  <span class="text-indigo-600 underline">trk/77998495886</span>
+                </div>
+                <div class="flex justify-between text-emerald-700 font-semibold pt-1 border-t border-slate-100">
+                  <span>Delivery Estimate:</span>
+                  <span>Tomorrow by 4:00 PM</span>
+                </div>
+              </div>
+              <div class="text-[10px] text-[#0A0F1E]/50 flex items-center space-x-1 pt-1">
+                <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i>
+                <span>Shopify Admin API: Real-Time Sync (Latency: 140ms)</span>
+              </div>
+            </div>
+            <!-- Slack Critical Escalation Panel -->
+            <div class="md:col-span-6 bg-[#1A1D21] p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs text-white">
+              <div class="flex items-center justify-between text-[10px] text-slate-400 pb-1.5 border-b border-slate-700/60">
+                <span class="flex items-center space-x-1.5 font-bold">
+                  <i data-lucide="message-square" class="w-3.5 h-3.5 text-rose-400"></i>
+                  <span>Slack #customer-support</span>
+                </span>
+                <span class="text-rose-400 font-mono font-semibold bg-rose-950/80 px-1.5 py-0.5 rounded border border-rose-800">Priority: CRITICAL</span>
+              </div>
+              <div class="border-l-2 border-rose-500 pl-2.5 space-y-1">
+                <div class="flex items-center justify-between">
+                  <strong class="text-rose-400 text-[11px]">Ticket #ESC-CRIT-9104: Damaged Item</strong>
+                  <span class="text-[9px] text-slate-400 font-mono">SLA &lt; 15m</span>
+                </div>
+                <p class="text-[10px] text-slate-300 leading-normal">
+                  Customer reported torn shoe on delivery (#ORD-77998). Sent instant empathy message &amp; escalated to live agent queue with replacement authorization ready.
+                </p>
+              </div>
+              <div class="pt-1 flex items-center justify-between text-[9px] text-slate-400 font-mono">
+                <span>Assigned: Senior Support Desk</span>
+                <span class="text-emerald-400">Status: Dispatched &lt; 2s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manager's 60-Second Client Pitch Guide (Notion Style Callout) -->
+        <div class="bg-[#FFFDF5] border border-[#F2E8C9] p-4 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-[#7A5B04] flex items-center space-x-1.5">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-[#D97706]"></i>
+              <span>Manager's 60-Second Client Pitch Guide</span>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-[#A17409] bg-[#FEF3C7] px-2 py-0.5 rounded">Meeting Cheat-Sheet</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[#5A4103] pt-1">
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">1. The Hook Question:</strong>
+              <span>&quot;How many hours do your support agents lose every day answering 'Where is my order?' instead of driving repeat sales?&quot;</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">2. What to Click:</strong>
+              <span>Click <em>Where is my order?</em> to show instant 2-second tracking lookup, then click <em>Negative/Damaged Item</em> to demonstrate immediate Slack escalation with full context.</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">3. The Closing Punchline:</strong>
+              <span>&quot;85% of repetitive tickets vanish from your queue, while upset shoppers get live human attention in seconds before leaving a negative review.&quot;</span>
+            </div>
           </div>
         </div>
 
@@ -1149,6 +1419,624 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Previous: Clinical Healthcare</span>
           </button>
+          <button onclick="openView('finance')" class="text-xs font-bold text-emerald-700 hover:underline flex items-center space-x-1">
+            <span>Next: FinOps &amp; Accounting</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- VIEW 5: FINANCE FULL PAGE EXPLANATION + LIVE DEMO        -->
+    <!-- ======================================================= -->
+    <div id="view-finance" class="hidden space-y-6">
+      
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="flex items-center justify-between">
+        <button onclick="openView('hub')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 transition">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Back to All Industries</span>
+        </button>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 4 of 5</span>
+      </div>
+
+      <!-- Full Page Explanation Card -->
+      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+            Industry: FinOps &amp; Accounting
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
+            Automated Invoice &amp; Payment Matching Agent
+          </h1>
+          <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
+            Match 500 vendor invoices to your bank feed without opening Excel.
+          </p>
+        </div>
+
+        <!-- Notion-Style Visual Workflow Diagram Strip -->
+        <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3.5 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between text-[11px] font-bold text-[#0A0F1E]/60 uppercase tracking-wider">
+            <span class="flex items-center space-x-1.5">
+              <i data-lucide="git-merge" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Reconciliation Architecture</span>
+            </span>
+            <span class="font-mono text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Bank &amp; ERP Synced</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono text-[11px]">
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 1</span>
+              <strong class="text-[#0A0F1E] block font-semibold">1. Invoice Ingestion</strong>
+              <span class="text-[10px] text-[#0A0F1E]/60 block leading-tight">AP emails &amp; PDFs pulled</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 2</span>
+              <strong class="text-[#0A0F1E] block font-semibold">2. Line-Item Extract</strong>
+              <span class="text-[10px] text-[#0A0F1E]/60 block leading-tight">PO, VAT/GST &amp; line items</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 3</span>
+              <strong class="text-[#0A0F1E] block font-semibold">3. Two-Way Bank Match</strong>
+              <span class="text-[10px] text-emerald-700 block font-semibold leading-tight">Instant ledger sync</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 4</span>
+              <strong class="text-[#0A0F1E] block font-semibold">4. Auto-Settlement</strong>
+              <span class="text-[10px] text-emerald-700 block font-semibold leading-tight">Cleared or discrepancy flagged</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Plain English Breakdown (Notion Style) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>The Problem</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Finance teams spend days matching vendor PDFs to bank statements line by line. Discrepancies and duplicate invoices slip through undetected until month-end.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>How It Works</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              AI extracts line items from vendor invoices, cross-references transaction IDs against live bank and payment payouts, and auto-clears matching entries in real time.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+              <span>What You Gain</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Month-end close in 2 hours instead of 7 days. 98% automated reconciliation accuracy, and instant alerts whenever a vendor overbills or double-charges.
+            </p>
+          </div>
+        </div>
+
+        <!-- Notion-Style UI Screenshot Window Frame -->
+        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden shadow-sm bg-white">
+          <div class="bg-[#F8F9FC] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              </div>
+              <span class="text-[#0A0F1E]/30 font-mono">|</span>
+              <span class="font-mono text-[11px] text-[#0A0F1E]/60 flex items-center space-x-1">
+                <i data-lucide="receipt" class="w-3 h-3 text-emerald-600"></i>
+                <span>finops.internal/reconciliation • Batch #RECON-2026-08 (AWS Cloud &amp; Payment Ledger)</span>
+              </span>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Live General Ledger Match</span>
+          </div>
+          <!-- Screenshot Preview Content -->
+          <div class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4 bg-[#FBFBFC]">
+            <!-- Extracted Invoice Panel -->
+            <div class="md:col-span-6 bg-white rounded-xl p-3.5 text-xs space-y-2.5 border border-[#E8EAF0]">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-[#0A0F1E]">Vendor Invoice: AWS Cloud</span>
+                  <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-semibold">OCR Verified</span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-500">INV-88412</span>
+              </div>
+              <div class="space-y-1.5 font-mono text-[11px]">
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Vendor EIN: 91-1646860 (Amazon Web Services)</span>
+                  <span class="font-semibold text-[#0A0F1E]">PO #PO-9411</span>
+                </div>
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Line Items: EC2 Compute + S3 Storage</span>
+                  <span class="font-bold text-[#0A0F1E]">$4,820.50</span>
+                </div>
+                <div class="flex justify-between text-emerald-700 font-semibold pt-1 border-t border-slate-100">
+                  <span>Tax &amp; VAT Calculation:</span>
+                  <span>100% Tax Compliant ($867.69)</span>
+                </div>
+              </div>
+              <div class="text-[10px] text-[#0A0F1E]/50 flex items-center space-x-1 pt-1">
+                <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i>
+                <span>Document Extraction Confidence: 99.8% (Matched with PO #PO-9411)</span>
+              </div>
+            </div>
+            <!-- Live Bank Match Ledger Panel -->
+            <div class="md:col-span-6 bg-[#0A0F1E] p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs text-white font-mono">
+              <div class="flex items-center justify-between text-[10px] text-slate-400 pb-1.5 border-b border-slate-800">
+                <span class="flex items-center space-x-1.5 font-bold text-slate-200">
+                  <i data-lucide="landmark" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span>Corporate Bank Feed • Chase Operating</span>
+                </span>
+                <span class="text-emerald-400 font-mono font-semibold bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-800">TXN-9912048</span>
+              </div>
+              <div class="space-y-1.5 text-[11px]">
+                <div class="flex justify-between text-slate-300">
+                  <span>Bank Debit: ACH AMAZON WEB SERVICES</span>
+                  <span class="text-rose-400 font-bold">-$4,820.50</span>
+                </div>
+                <div class="flex justify-between text-slate-400 text-[10px]">
+                  <span>Value Date: Oct 12, 2026 • 09:14 AM</span>
+                  <span class="text-emerald-400 font-semibold">Matched: 100%</span>
+                </div>
+                <div class="p-2 rounded bg-slate-900 border border-slate-800 text-[10px] text-slate-300">
+                  <code>Journal Entry #JE-49102: DR Software Hosting 6010 / CR Cash Operating 1010 ($4,820.50)</code>
+                </div>
+              </div>
+              <div class="pt-1 flex items-center justify-between text-[9px] text-slate-400">
+                <span>ERP Auto-Sync: QuickBooks Online</span>
+                <span class="text-emerald-400">Status: Reconciled &amp; Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manager's 60-Second Client Pitch Guide (Notion Style Callout) -->
+        <div class="bg-[#FFFDF5] border border-[#F2E8C9] p-4 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-[#7A5B04] flex items-center space-x-1.5">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-[#D97706]"></i>
+              <span>Manager's 60-Second Client Pitch Guide</span>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-[#A17409] bg-[#FEF3C7] px-2 py-0.5 rounded">Meeting Cheat-Sheet</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[#5A4103] pt-1">
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">1. The Hook Question:</strong>
+              <span>&quot;How many days does your accounting team lose at the end of every month cross-referencing vendor invoices against your bank feed?&quot;</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">2. What to Click:</strong>
+              <span>Select <em>AWS Invoice Exact Match</em> to show instant automated clearing, then click <em>Vendor Tax Overcharge</em> to show how the system detects and blocks a $620 billing error.</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">3. The Closing Punchline:</strong>
+              <span>&quot;You compress a 7-day month-end scramble into 2 hours, with zero human data entry and 100% audit-proof reconciliation records.&quot;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive FinOps Console Sub-section -->
+        <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive FinOps Reconciliation Console</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select an accounting scenario below and execute live reconciliation.</p>
+            </div>
+            <span class="text-[11px] font-mono text-emerald-600 font-semibold hidden sm:inline">Active Production Agent</span>
+          </div>
+
+          <!-- Quick Scenario Selector Pills -->
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-[11px] font-semibold text-[#0A0F1E]/60">Scenarios:</span>
+            <button onclick="setFinanceScenario('aws')" id="btn-fin-aws" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition flex items-center space-x-1.5">
+              <i data-lucide="cloud" class="w-3.5 h-3.5"></i>
+              <span>AWS Cloud ($4,820.50 Exact Match)</span>
+            </button>
+            <button onclick="setFinanceScenario('stripe')" id="btn-fin-stripe" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition flex items-center space-x-1.5">
+              <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+              <span>Stripe Payout Batch ($12,450.00 Sync)</span>
+            </button>
+            <button onclick="setFinanceScenario('discrepancy')" id="btn-fin-disc" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>Vendor Tax Overcharge ($620 Discrepancy)</span>
+            </button>
+          </div>
+
+          <!-- Terminal / Execution Box -->
+          <div class="rounded-xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC]">
+            <!-- Topbar -->
+            <div class="bg-[#EEF1F8] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
+                <span class="text-[#0A0F1E]/40">•</span>
+                <span class="text-[#0A0F1E]/60">Target: QuickBooks Online + Corporate Bank Feed</span>
+              </div>
+              <div id="fin-active-agent-badge" class="font-mono text-[11px] font-semibold text-emerald-600">
+                Agent: Standby
+              </div>
+            </div>
+
+            <!-- Pipeline Status Bar -->
+            <div id="fin-pipeline-bar" class="hidden bg-white px-4 py-2 border-b border-[#E8EAF0] text-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="inline-block animate-spin text-emerald-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
+                  <span id="fin-step-text" class="font-mono font-medium text-emerald-600">Ingesting vendor invoice PDF...</span>
+                </div>
+                <span id="fin-step-count" class="font-mono text-[11px] text-[#0A0F1E]/50">Step 1/3</span>
+              </div>
+            </div>
+
+            <!-- Result Card Area -->
+            <div class="p-4 sm:p-5 bg-white space-y-4">
+              <div id="fin-result-card" class="rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] p-4 transition space-y-3">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <div class="flex items-center space-x-2">
+                    <span id="fin-badge-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]">
+                      STANDBY • AWAITING RECONCILIATION
+                    </span>
+                    <span id="fin-badge-confidence" class="text-xs font-mono font-bold text-[#0A0F1E]/50">
+                      Match Confidence: --
+                    </span>
+                  </div>
+                  <span id="fin-latency" class="text-xs font-mono text-[#0A0F1E]/50">Latency: --</span>
+                </div>
+                <div id="fin-details" class="text-xs text-[#0A0F1E]/75 leading-relaxed font-mono bg-white p-3 rounded-lg border border-[#E8EAF0]">
+                  Select an accounting scenario above and click 'Run Reconciliation' to test live invoice extraction and two-way ledger matching.
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Row -->
+            <div class="p-3 bg-white border-t border-[#E8EAF0] flex items-center justify-between">
+              <span class="text-xs text-[#0A0F1E]/60 font-mono text-[11px]">Audit Engine: Real-Time General Ledger Sync</span>
+              <button onclick="runFinanceReconciliation()" id="btn-fin-run" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                <span>Run Reconciliation</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Live Endpoint Integration Note -->
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="network" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i>
+              <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
+              <code class="font-mono text-[11px] bg-white px-2 py-0.5 rounded border border-[#E8EAF0] text-emerald-700">/webhook/finance-reconciliation</code>
+            </div>
+            <div class="flex items-center space-x-2 text-[11px] text-[#0A0F1E]/60">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>General Ledger API: <strong>Connected</strong></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Next Navigation -->
+        <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
+          <button onclick="openView('ecommerce')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Previous: Retail &amp; D2C Support</span>
+          </button>
+          <button onclick="openView('marketing')" class="text-xs font-bold text-amber-700 hover:underline flex items-center space-x-1">
+            <span>Next: B2B Growth &amp; Revenue Ops</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- VIEW 6: MARKETING FULL PAGE EXPLANATION + LIVE DEMO      -->
+    <!-- ======================================================= -->
+    <div id="view-marketing" class="hidden space-y-6">
+      
+      <!-- Back Navigation & Breadcrumb -->
+      <div class="flex items-center justify-between">
+        <button onclick="openView('hub')" class="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-800 hover:text-amber-900 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200 transition">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <span>Back to All Industries</span>
+        </button>
+        <span class="text-xs font-mono text-[#0A0F1E]/50">Use Case 5 of 5</span>
+      </div>
+
+      <!-- Full Page Explanation Card -->
+      <div class="bg-white rounded-2xl border border-[#E8EAF0] card-shadow p-6 sm:p-8 space-y-6">
+        <div>
+          <span class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200">
+            Industry: B2B Growth &amp; Revenue Ops
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] font-display mt-2">
+            Inbound Lead Enrichment &amp; Hyper-Personalized Outreach
+          </h1>
+          <p class="text-sm text-[#0A0F1E]/70 mt-1 leading-relaxed">
+            Reach high-value inbound leads in 60 seconds before they go cold.
+          </p>
+        </div>
+
+        <!-- Notion-Style Visual Workflow Diagram Strip -->
+        <div class="bg-[#F8F9FC] border border-[#E8EAF0] p-3.5 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between text-[11px] font-bold text-[#0A0F1E]/60 uppercase tracking-wider">
+            <span class="flex items-center space-x-1.5">
+              <i data-lucide="git-merge" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span>Growth Pipeline Architecture</span>
+            </span>
+            <span class="font-mono text-[10px] text-amber-800 font-semibold bg-amber-50 px-2 py-0.5 rounded border border-amber-200">CRM &amp; Slack Linked</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono text-[11px]">
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 1</span>
+              <strong class="text-[#0A0F1E] block font-semibold">1. Form Submission</strong>
+              <span class="text-[10px] text-[#0A0F1E]/60 block leading-tight">Inbound sign-up ingested</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 2</span>
+              <strong class="text-[#0A0F1E] block font-semibold">2. Live Enrichment</strong>
+              <span class="text-[10px] text-[#0A0F1E]/60 block leading-tight">Headcount, tech &amp; funding</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 3</span>
+              <strong class="text-[#0A0F1E] block font-semibold">3. Intent Scoring</strong>
+              <span class="text-[10px] text-amber-800 block font-semibold leading-tight">Enterprise tier routing</span>
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#E8EAF0] space-y-1">
+              <span class="text-[10px] text-[#0A0F1E]/50 block">Step 4</span>
+              <strong class="text-[#0A0F1E] block font-semibold">4. Tailored Pitch</strong>
+              <span class="text-[10px] text-amber-800 block font-semibold leading-tight">Personalized CRM email draft</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Plain English Breakdown (Notion Style) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-rose-700 flex items-center space-x-1.5">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i>
+              <span>The Problem</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Inbound leads sit untouched for 24 to 48 hours. By the time an SDR looks up the company on LinkedIn and crafts an email, the buyer has already booked a demo with a competitor.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-amber-800 flex items-center space-x-1.5">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>How It Works</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              Within 60 seconds of a form submission, AI researches the company's tech stack, employee count, and recent growth signals, scores the lead, and drafts a personalized email directly in your CRM.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#F8F9FC] border border-[#E8EAF0] space-y-1.5">
+            <div class="text-xs font-bold text-emerald-700 flex items-center space-x-1.5">
+              <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+              <span>What You Gain</span>
+            </div>
+            <p class="text-xs text-[#0A0F1E]/75 leading-relaxed">
+              5x faster response time, 38% higher meeting booking rate, and zero wasted SDR time on manual copy-paste research.
+            </p>
+          </div>
+        </div>
+
+        <!-- Notion-Style UI Screenshot Window Frame -->
+        <div class="rounded-2xl border border-[#E8EAF0] overflow-hidden shadow-sm bg-white">
+          <div class="bg-[#F8F9FC] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center space-x-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] border border-[#E0443E]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/50"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/50"></span>
+              </div>
+              <span class="text-[#0A0F1E]/30 font-mono">|</span>
+              <span class="font-mono text-[11px] text-[#0A0F1E]/60 flex items-center space-x-1">
+                <i data-lucide="trending-up" class="w-3 h-3 text-amber-600"></i>
+                <span>growth.internal/leads • Inbound Pipeline #LEAD-4819 (Apex Financial)</span>
+              </span>
+            </div>
+            <span class="text-[10px] font-mono text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-semibold">Tier 1 Enterprise Lead</span>
+          </div>
+          <!-- Screenshot Preview Content -->
+          <div class="p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4 bg-[#FBFBFC]">
+            <!-- Inbound Form & Dossier -->
+            <div class="md:col-span-6 bg-white rounded-xl p-3.5 text-xs space-y-2.5 border border-[#E8EAF0]">
+              <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-[#0A0F1E]">Lead Dossier: Sarah Jenkins</span>
+                  <span class="text-[10px] font-mono text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200 font-semibold">Score: 94/100</span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-500">VP Operations</span>
+              </div>
+              <div class="space-y-1.5 font-mono text-[11px]">
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Company: Apex Financial Inc.</span>
+                  <span class="font-semibold text-[#0A0F1E]">250 Employees</span>
+                </div>
+                <div class="flex justify-between text-[#0A0F1E]/75">
+                  <span>Funding: Series B ($45M)</span>
+                  <span class="text-indigo-600">Fintech Infrastructure</span>
+                </div>
+                <div class="flex justify-between text-slate-700 text-[10px] pt-1 border-t border-slate-100">
+                  <span>Detected Stack:</span>
+                  <span class="font-semibold">AWS • Kubernetes • PostgreSQL • Stripe</span>
+                </div>
+              </div>
+              <div class="text-[10px] text-[#0A0F1E]/50 flex items-center space-x-1 pt-1">
+                <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i>
+                <span>Enriched from Crunchbase, BuiltWith &amp; GitHub in 1.4s</span>
+              </div>
+            </div>
+            <!-- CRM Draft & Slack Alert Panel -->
+            <div class="md:col-span-6 bg-[#0A0F1E] p-3.5 rounded-xl border border-slate-800 space-y-2 text-xs text-white">
+              <div class="flex items-center justify-between text-[10px] text-slate-400 pb-1.5 border-b border-slate-800 font-mono">
+                <span class="flex items-center space-x-1.5 font-bold text-slate-200">
+                  <i data-lucide="message-square" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>Slack #sales-inbound</span>
+                </span>
+                <span class="text-amber-400 font-mono font-semibold bg-amber-950/80 px-1.5 py-0.5 rounded border border-amber-800">Assigned: Enterprise AE</span>
+              </div>
+              <div class="border-l-2 border-amber-500 pl-2.5 space-y-1">
+                <div class="flex items-center justify-between">
+                  <strong class="text-amber-400 text-[11px]">Generated Outreach Email (Draft Ready)</strong>
+                  <span class="text-[9px] text-slate-400 font-mono">1-Click Send</span>
+                </div>
+                <p class="text-[10px] text-slate-300 leading-normal">
+                  &quot;Hi Sarah, noticed Apex Financial recently scaled its payment transaction volume. Our autonomous platform prevents schema breaks and automates reconciliation with zero engineering downtime. Open to a 10-min walkthrough?&quot;
+                </p>
+              </div>
+              <div class="pt-1 flex items-center justify-between text-[9px] text-slate-400 font-mono">
+                <span>CRM Sync: HubSpot Deals Pipeline</span>
+                <span class="text-emerald-400">Status: Inbound Routed &lt; 60s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manager's 60-Second Client Pitch Guide (Notion Style Callout) -->
+        <div class="bg-[#FFFDF5] border border-[#F2E8C9] p-4 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-bold text-[#7A5B04] flex items-center space-x-1.5">
+              <i data-lucide="lightbulb" class="w-4 h-4 text-[#D97706]"></i>
+              <span>Manager's 60-Second Client Pitch Guide</span>
+            </div>
+            <span class="text-[10px] uppercase font-bold text-[#A17409] bg-[#FEF3C7] px-2 py-0.5 rounded">Meeting Cheat-Sheet</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[#5A4103] pt-1">
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">1. The Hook Question:</strong>
+              <span>&quot;How fast do your sales reps respond to a high-value inbound demo request? If it's more than 5 minutes, lead conversion drops by 80%.&quot;</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">2. What to Click:</strong>
+              <span>Click <em>Enterprise Fintech Lead</em> to watch the agent research company tech stack, score 94/100, and generate a tailored pitch in under 5 seconds.</span>
+            </div>
+            <div>
+              <strong class="text-[#0A0F1E] block mb-0.5 font-semibold">3. The Closing Punchline:</strong>
+              <span>&quot;Your reps walk into every discovery call with complete intelligence prepared in advance, closing deals faster with zero manual research.&quot;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Revenue Ops Console Sub-section -->
+        <div class="border-t border-[#E8EAF0] pt-6 space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-base font-bold text-[#0A0F1E]">Interactive Revenue Ops Console</h2>
+              <p class="text-xs text-[#0A0F1E]/60">Select an inbound lead profile and trigger automated enrichment and routing.</p>
+            </div>
+            <span class="text-[11px] font-mono text-amber-800 font-semibold hidden sm:inline">Active Production Agent</span>
+          </div>
+
+          <!-- Quick Scenario Selector Pills -->
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="text-[11px] font-semibold text-[#0A0F1E]/60">Lead Profiles:</span>
+            <button onclick="setMarketingScenario('enterprise')" id="btn-mkt-ent" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
+              <i data-lucide="building" class="w-3.5 h-3.5"></i>
+              <span>Enterprise Fintech (Apex Financial, 250 emp)</span>
+            </button>
+            <button onclick="setMarketingScenario('midmarket')" id="btn-mkt-mid" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 transition flex items-center space-x-1.5">
+              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+              <span>Mid-Market SaaS (CloudSync, 45 emp)</span>
+            </button>
+            <button onclick="setMarketingScenario('lowintent')" id="btn-mkt-low" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition flex items-center space-x-1.5">
+              <i data-lucide="user-minus" class="w-3.5 h-3.5"></i>
+              <span>Low-Intent Personal (Gmail lead, 1 emp)</span>
+            </button>
+          </div>
+
+          <!-- Terminal / Execution Box -->
+          <div class="rounded-xl border border-[#E8EAF0] overflow-hidden bg-[#F8F9FC]">
+            <!-- Topbar -->
+            <div class="bg-[#EEF1F8] px-4 py-2.5 border-b border-[#E8EAF0] flex items-center justify-between text-xs">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="font-mono font-medium text-[#0A0F1E]">Operator: dhananjay</span>
+                <span class="text-[#0A0F1E]/40">•</span>
+                <span class="text-[#0A0F1E]/60">Target: HubSpot CRM + Slack #sales-inbound</span>
+              </div>
+              <div id="mkt-active-agent-badge" class="font-mono text-[11px] font-semibold text-amber-800">
+                Agent: Standby
+              </div>
+            </div>
+
+            <!-- Pipeline Status Bar -->
+            <div id="mkt-pipeline-bar" class="hidden bg-white px-4 py-2 border-b border-[#E8EAF0] text-xs">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="inline-block animate-spin text-amber-600"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span>
+                  <span id="mkt-step-text" class="font-mono font-medium text-amber-800">Enriching company dossier...</span>
+                </div>
+                <span id="mkt-step-count" class="font-mono text-[11px] text-[#0A0F1E]/50">Step 1/3</span>
+              </div>
+            </div>
+
+            <!-- Result Card Area -->
+            <div class="p-4 sm:p-5 bg-white space-y-4">
+              <div id="mkt-result-card" class="rounded-xl border border-[#E8EAF0] bg-[#F8F9FC] p-4 transition space-y-3">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <div class="flex items-center space-x-2">
+                    <span id="mkt-badge-status" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]">
+                      STANDBY • AWAITING LEAD
+                    </span>
+                    <span id="mkt-badge-score" class="text-xs font-mono font-bold text-[#0A0F1E]/50">
+                      Intent Score: -- / 100
+                    </span>
+                  </div>
+                  <span id="mkt-latency" class="text-xs font-mono text-[#0A0F1E]/50">Latency: --</span>
+                </div>
+                <div id="mkt-details" class="text-xs text-[#0A0F1E]/75 leading-relaxed font-mono bg-white p-3 rounded-lg border border-[#E8EAF0]">
+                  Select a lead profile above and click 'Enrich &amp; Route Lead' to test automated company intelligence and CRM email draft generation.
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Row -->
+            <div class="p-3 bg-white border-t border-[#E8EAF0] flex items-center justify-between">
+              <span class="text-xs text-[#0A0F1E]/60 font-mono text-[11px]">Enrichment Engine: Real-Time Web &amp; Registry Lookups</span>
+              <button onclick="runMarketingLead()" id="btn-mkt-run" class="px-5 py-2.5 rounded-xl font-bold text-xs bg-amber-600 hover:bg-amber-700 text-white shadow-sm transition flex items-center space-x-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                <span>Enrich &amp; Route Lead</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Live Endpoint Integration Note -->
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="network" class="w-4 h-4 text-amber-600 flex-shrink-0"></i>
+              <span class="text-[#0A0F1E]/70">Webhook Endpoint:</span>
+              <code class="font-mono text-[11px] bg-white px-2 py-0.5 rounded border border-[#E8EAF0] text-amber-800">/webhook/lead-enrichment-outreach</code>
+            </div>
+            <div class="flex items-center space-x-2 text-[11px] text-[#0A0F1E]/60">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>CRM &amp; Slack Routing: <strong>Active</strong></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Next Navigation -->
+        <div class="border-t border-[#E8EAF0] pt-4 flex items-center justify-between">
+          <button onclick="openView('finance')" class="text-xs font-semibold text-[#0A0F1E]/60 hover:text-[#0A0F1E] flex items-center space-x-1">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Previous: FinOps &amp; Accounting</span>
+          </button>
           <button onclick="openView('hub')" class="text-xs font-bold text-[#1A6BFF] hover:underline flex items-center space-x-1">
             <span>Back to All Industries</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -1175,7 +2063,7 @@
     let currentMode = 'safe';
 
     function openView(viewName) {
-      const views = ['hub', 'devops', 'healthcare', 'ecommerce'];
+      const views = ['hub', 'devops', 'healthcare', 'ecommerce', 'finance', 'marketing'];
       views.forEach(v => {
         const el = document.getElementById(`view-${v}`);
         if (el) el.classList.add('hidden');
@@ -1201,7 +2089,7 @@
 
     function handleHashRoute() {
       const hash = window.location.hash.replace('#', '');
-      if (['devops', 'healthcare', 'ecommerce'].includes(hash)) {
+      if (['devops', 'healthcare', 'ecommerce', 'finance', 'marketing'].includes(hash)) {
         openView(hash);
       } else {
         openView('hub');
@@ -2652,6 +3540,501 @@
 
     function escapeHtml(str) {
       return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    // =======================================================
+    // VIEW 5: FINANCE & FINOPS RECONCILIATION ENGINE
+    // =======================================================
+    let currentFinanceScenario = 'aws';
+
+    const financeScenarios = {
+      aws: {
+        title: "AWS Cloud Services Invoice",
+        statusBadge: "MATCHED • 100% CONFIDENCE",
+        statusBadgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200",
+        confidence: "Match Confidence: 99.8%",
+        latency: "1.4s",
+        step1: "Ingesting PDF AWS-INV-88412 from AP inbox...",
+        step2: "AI OCR extracting PO #PO-9411, subtotal $3,952.81, tax $867.69 (Total $4,820.50)...",
+        step3: "Querying Chase Bank Feed • Matched ACH debit TXN-9912048 with zero variance...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-[#0A0F1E] flex items-center space-x-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                <span>Two-Way Reconciliation Verified (Zero Variance)</span>
+              </span>
+              <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Ready to Settle</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Invoice Record:</span>
+                <strong class="text-[#0A0F1E] block">AWS Cloud Services #AWS-INV-88412</strong>
+                <span class="text-[#0A0F1E]/70 block">Total: $4,820.50 (EC2 &amp; S3 Storage)</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Bank Statement Feed:</span>
+                <strong class="text-[#0A0F1E] block">Chase Operating • TXN-9912048</strong>
+                <span class="text-emerald-700 font-semibold block">Cleared: -$4,820.50 (Oct 12)</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] font-mono space-y-1">
+              <div class="font-bold flex items-center space-x-1">
+                <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                <span>General Ledger Auto-Entry Created:</span>
+              </div>
+              <code class="text-[10px] block text-emerald-800">DR 6010 Cloud Infrastructure ($4,820.50) / CR 1010 Operating Cash ($4,820.50)</code>
+              <span class="text-[10px] text-emerald-700 block">Status: Synced with QuickBooks Online • Zero manual human touch required.</span>
+            </div>
+          </div>
+        `
+      },
+      stripe: {
+        title: "Stripe Merchant Settlement Batch",
+        statusBadge: "RECONCILED • 99.9% CONFIDENCE",
+        statusBadgeClass: "bg-emerald-100 text-emerald-800 border-emerald-200",
+        confidence: "Match Confidence: 99.9%",
+        latency: "1.8s",
+        step1: "Ingesting daily Stripe payout settlement file #PO-20261014-99...",
+        step2: "Matching 142 customer card payments against gross revenue and processing fees...",
+        step3: "Verifying net deposit of $12,450.00 against Chase merchant bank credit...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-[#0A0F1E] flex items-center space-x-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                <span>Batch Settlement Reconciled (142 Transactions)</span>
+              </span>
+              <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">Auto-Cleared</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Payment Gateway Payout:</span>
+                <strong class="text-[#0A0F1E] block">Stripe Batch po_1N8nSettlement99</strong>
+                <span class="text-[#0A0F1E]/70 block">Gross: $12,822.00 | Fee: -$372.00</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Corporate Bank Deposit:</span>
+                <strong class="text-[#0A0F1E] block">Chase Merchant DEP-88491</strong>
+                <span class="text-emerald-700 font-semibold block">Net Deposit: +$12,450.00</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 text-[11px] font-mono space-y-1">
+              <div class="font-bold flex items-center space-x-1">
+                <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                <span>General Ledger Auto-Entry Created:</span>
+              </div>
+              <code class="text-[10px] block text-emerald-800">DR 1010 Cash $12,450.00 | DR 6040 Payment Fees $372.00 | CR 4010 E-Comm Sales $12,822.00</code>
+              <span class="text-[10px] text-emerald-700 block">Status: Daily settlement batch closed and reconciled in QuickBooks.</span>
+            </div>
+          </div>
+        `
+      },
+      discrepancy: {
+        title: "Vendor Tax Overcharge Discrepancy",
+        statusBadge: "DISCREPANCY DETECTED • PAYMENT BLOCKED",
+        statusBadgeClass: "bg-rose-100 text-rose-800 border-rose-200",
+        confidence: "Discrepancy Score: High Alert",
+        latency: "1.1s",
+        step1: "Ingesting contractor PDF invoice #INV-77319 from Global Logistics...",
+        step2: "AI tax engine recalculating line-item VAT rate vs contract PO #PO-8812...",
+        step3: "Mismatch detected: Billed $620.00 unapproved tax on freight exemption...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-rose-700 flex items-center space-x-1.5">
+                <i data-lucide="alert-octagon" class="w-4 h-4 text-rose-600"></i>
+                <span>Audit Failure: $620.00 Billing Overcharge Detected</span>
+              </span>
+              <span class="text-[10px] font-mono text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 font-semibold">Payment Locked</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+              <div class="bg-rose-50/60 p-2 rounded border border-rose-200 space-y-0.5">
+                <span class="text-rose-900/60 text-[10px] block">Vendor Submitted Invoice:</span>
+                <strong class="text-rose-900 block">Global Logistics #INV-77319</strong>
+                <span class="text-rose-700 font-semibold block">Billed: $3,820.00 ($620 Unapproved Tax)</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Approved Purchase Order:</span>
+                <strong class="text-[#0A0F1E] block">Internal PO #PO-8812</strong>
+                <span class="text-[#0A0F1E]/70 block">Contract Rate: $3,200.00 (Tax-Exempt)</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-950 text-[11px] font-mono space-y-1">
+              <div class="font-bold flex items-center space-x-1 text-rose-900">
+                <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-rose-600"></i>
+                <span>Automated Safeguard Triggered:</span>
+              </div>
+              <p class="text-[10px] leading-normal text-rose-800">
+                Automated payment lock placed on ERP schedule. Rejection notice with line-item citation dispatched to vendor accounting desk: <em>"Overcharge of $620.00 violates Section 4.2 of Master Services Agreement."</em>
+              </p>
+              <span class="text-[10px] text-rose-700 block font-semibold">Slack Alert Dispatched to #finance-ops • Financial leakage prevented.</span>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    function setFinanceScenario(key) {
+      if (!financeScenarios[key]) return;
+      currentFinanceScenario = key;
+
+      const btnAws = document.getElementById('btn-fin-aws');
+      const btnStripe = document.getElementById('btn-fin-stripe');
+      const btnDisc = document.getElementById('btn-fin-disc');
+
+      if (btnAws) btnAws.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+      if (btnStripe) btnStripe.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+      if (btnDisc) btnDisc.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+
+      if (key === 'aws' && btnAws) {
+        btnAws.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-800 border-2 border-emerald-500 shadow-xs transition flex items-center space-x-1.5";
+      } else if (key === 'stripe' && btnStripe) {
+        btnStripe.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-800 border-2 border-emerald-500 shadow-xs transition flex items-center space-x-1.5";
+      } else if (key === 'discrepancy' && btnDisc) {
+        btnDisc.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-rose-50 text-rose-700 border-2 border-rose-500 shadow-xs transition flex items-center space-x-1.5";
+      }
+
+      const badgeStatus = document.getElementById('fin-badge-status');
+      const badgeConf = document.getElementById('fin-badge-confidence');
+      const latency = document.getElementById('fin-latency');
+      const details = document.getElementById('fin-details');
+
+      if (badgeStatus) {
+        badgeStatus.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]";
+        badgeStatus.innerText = "STANDBY • AWAITING RECONCILIATION";
+      }
+      if (badgeConf) badgeConf.innerText = "Match Confidence: --";
+      if (latency) latency.innerText = "Latency: --";
+      if (details) details.innerHTML = `Selected scenario: <strong>${financeScenarios[key].title}</strong>. Click 'Run Reconciliation' to test live invoice extraction and two-way ledger matching.`;
+      lucide.createIcons();
+    }
+
+    function runFinanceReconciliation() {
+      const btn = document.getElementById('btn-fin-run');
+      const pipelineBar = document.getElementById('fin-pipeline-bar');
+      const stepText = document.getElementById('fin-step-text');
+      const stepCount = document.getElementById('fin-step-count');
+      const agentBadge = document.getElementById('fin-active-agent-badge');
+      const scenario = financeScenarios[currentFinanceScenario] || financeScenarios.aws;
+
+      if (!btn) return;
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Reconciling...</span>`;
+      if (pipelineBar) pipelineBar.classList.remove('hidden');
+      if (agentBadge) {
+        agentBadge.innerText = "Agent: Reconciling General Ledger";
+        agentBadge.className = "font-mono text-[11px] font-semibold text-emerald-600 animate-pulse";
+      }
+      lucide.createIcons();
+
+      if (stepText) stepText.innerText = `Step 1/3: ${scenario.step1}`;
+      if (stepCount) stepCount.innerText = "Step 1/3";
+
+      setTimeout(() => {
+        if (stepText) stepText.innerText = `Step 2/3: ${scenario.step2}`;
+        if (stepCount) stepCount.innerText = "Step 2/3";
+      }, 1000);
+
+      setTimeout(() => {
+        if (stepText) stepText.innerText = `Step 3/3: ${scenario.step3}`;
+        if (stepCount) stepCount.innerText = "Step 3/3";
+      }, 2000);
+
+      setTimeout(() => {
+        if (pipelineBar) pipelineBar.classList.add('hidden');
+        if (agentBadge) {
+          agentBadge.innerText = "Agent: Reconciliation Completed";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-emerald-600";
+        }
+
+        const badgeStatus = document.getElementById('fin-badge-status');
+        const badgeConf = document.getElementById('fin-badge-confidence');
+        const latency = document.getElementById('fin-latency');
+        const details = document.getElementById('fin-details');
+
+        if (badgeStatus) {
+          badgeStatus.className = `px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${scenario.statusBadgeClass}`;
+          badgeStatus.innerText = scenario.statusBadge;
+        }
+        if (badgeConf) badgeConf.innerText = scenario.confidence;
+        if (latency) latency.innerText = `Latency: ${scenario.latency}`;
+        if (details) details.innerHTML = scenario.details;
+
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> <span>Re-Run Reconciliation</span>`;
+        lucide.createIcons();
+
+        try {
+          fetch("https://enlightlab-n8n.duckdns.org/webhook/finance-reconciliation", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              scenario: currentFinanceScenario,
+              title: scenario.title,
+              operator: "dhananjay",
+              timestamp: new Date().toISOString()
+            })
+          }).catch(() => {});
+        } catch (e) {}
+      }, 3000);
+    }
+
+    // =======================================================
+    // VIEW 6: B2B MARKETING & LEAD ENRICHMENT ENGINE
+    // =======================================================
+    let currentMarketingScenario = 'enterprise';
+
+    const marketingScenarios = {
+      enterprise: {
+        title: "Enterprise Fintech Lead (Apex Financial)",
+        statusBadge: "ENRICHED • TIER 1 ENTERPRISE",
+        statusBadgeClass: "bg-amber-100 text-amber-800 border-amber-200",
+        score: "Intent Score: 94 / 100",
+        latency: "1.4s",
+        step1: "Ingesting inbound demo submission for sarah.jenkins@apexfin.io...",
+        step2: "Scanning public registries & tech detectors • 250 employees, $45M Series B, AWS + Kubernetes stack...",
+        step3: "Synthesizing custom value proposition & drafting outreach in HubSpot CRM...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-[#0A0F1E] flex items-center space-x-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-amber-600"></i>
+                <span>Enriched Dossier: Sarah Jenkins (VP Operations @ Apex Financial)</span>
+              </span>
+              <span class="text-[10px] font-mono text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-semibold">Priority: Immediate Alert</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-mono">
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Scale &amp; Funding:</span>
+                <strong class="text-[#0A0F1E] block">250 Employees</strong>
+                <span class="text-amber-800 font-semibold">$45M Series B (Fintech)</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Detected Cloud Stack:</span>
+                <strong class="text-[#0A0F1E] block">AWS &amp; Kubernetes</strong>
+                <span class="text-[#0A0F1E]/70">PostgreSQL • Stripe API</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">CRM Routing Action:</span>
+                <strong class="text-[#0A0F1E] block">HubSpot Enterprise Pipeline</strong>
+                <span class="text-emerald-700 font-semibold">Slack #sales-inbound pinged</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-amber-50/70 border border-amber-200 text-[#0A0F1E] text-[11px] space-y-1.5">
+              <div class="font-bold flex items-center justify-between text-amber-900 font-mono text-[10px]">
+                <span class="flex items-center space-x-1">
+                  <i data-lucide="mail" class="w-3.5 h-3.5 text-amber-600"></i>
+                  <span>1-Click Personalized Email Draft Created in CRM:</span>
+                </span>
+                <span class="bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">Tailored to Tech Stack</span>
+              </div>
+              <p class="leading-relaxed text-[#0A0F1E]/80 text-[11px] italic bg-white p-2.5 rounded border border-amber-200/60 font-sans">
+                &quot;Hi Sarah, noticed Apex Financial recently expanded its Kubernetes payment cluster. When transaction volume spikes, accidental schema breaks and unverified deployments often cause production downtime. Enlight Lab's autonomous safety engine scans pull requests and automates multi-system reconciliation before anything breaks in production. Open to a 10-minute walkthrough this Thursday?&quot;
+              </p>
+            </div>
+          </div>
+        `
+      },
+      midmarket: {
+        title: "Mid-Market SaaS Lead (CloudSync)",
+        statusBadge: "ENRICHED • TIER 2 MID-MARKET",
+        statusBadgeClass: "bg-indigo-100 text-indigo-800 border-indigo-200",
+        score: "Intent Score: 74 / 100",
+        latency: "1.2s",
+        step1: "Ingesting contact sales submission for marcus@cloudsync.dev...",
+        step2: "Scanning public registries • 45 employees, Seed funded ($4.2M), GCP + Docker stack...",
+        step3: "Drafting mid-market product tour invitation & routing to Growth AE...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-[#0A0F1E] flex items-center space-x-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-indigo-600"></i>
+                <span>Enriched Dossier: Marcus Vance (Head of Infrastructure @ CloudSync)</span>
+              </span>
+              <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200 font-semibold">Priority: High</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-mono">
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Scale &amp; Funding:</span>
+                <strong class="text-[#0A0F1E] block">45 Employees</strong>
+                <span class="text-indigo-700 font-semibold">$4.2M Seed (DevTools)</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Detected Cloud Stack:</span>
+                <strong class="text-[#0A0F1E] block">Google Cloud Platform</strong>
+                <span class="text-[#0A0F1E]/70">Docker • MongoDB Atlas</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0]">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">CRM Routing Action:</span>
+                <strong class="text-[#0A0F1E] block">Mid-Market Sales Track</strong>
+                <span class="text-indigo-700 font-semibold">Growth Sequence Enrolled</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-indigo-50/70 border border-indigo-200 text-[#0A0F1E] text-[11px] space-y-1.5">
+              <div class="font-bold flex items-center justify-between text-indigo-900 font-mono text-[10px]">
+                <span class="flex items-center space-x-1">
+                  <i data-lucide="mail" class="w-3.5 h-3.5 text-indigo-600"></i>
+                  <span>1-Click Personalized Email Draft Created in CRM:</span>
+                </span>
+                <span class="bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded">Tailored to Team Size</span>
+              </div>
+              <p class="leading-relaxed text-[#0A0F1E]/80 text-[11px] italic bg-white p-2.5 rounded border border-indigo-200/60 font-sans">
+                &quot;Hi Marcus, noticed CloudSync is scaling its cloud microservices on GCP. If your team is spending valuable engineering hours every sprint maintaining custom CI scripts or manual customer support routing, our autonomous workflows eliminate that overhead entirely. Here is an interactive demo link, or let me know if you'd like a quick 10-minute chat.&quot;
+              </p>
+            </div>
+          </div>
+        `
+      },
+      lowintent: {
+        title: "Low-Intent Personal Lead (Gmail Submission)",
+        statusBadge: "LOW INTENT • NURTURE ONLY",
+        statusBadgeClass: "bg-slate-100 text-slate-700 border-slate-200",
+        score: "Intent Score: 22 / 100",
+        latency: "0.8s",
+        step1: "Ingesting form submission from alex.coder99@gmail.com...",
+        step2: "Domain analysis: Free webmail provider, no registered corporate entity, single user...",
+        step3: "Routing to automated self-service email nurture sequence (No SDR alerted)...",
+        details: `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#E8EAF0]">
+              <span class="font-bold text-slate-700 flex items-center space-x-1.5">
+                <i data-lucide="user-check" class="w-4 h-4 text-slate-500"></i>
+                <span>Triage Result: Individual / Educational Sign-up</span>
+              </span>
+              <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 font-semibold">Self-Service Path</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">Lead Profile:</span>
+                <strong class="text-[#0A0F1E] block">alex.coder99@gmail.com</strong>
+                <span class="text-[#0A0F1E]/70 block">Individual Developer / Student</span>
+              </div>
+              <div class="bg-[#F8F9FC] p-2 rounded border border-[#E8EAF0] space-y-0.5">
+                <span class="text-[#0A0F1E]/50 text-[10px] block">SDR Protection Rule:</span>
+                <strong class="text-emerald-700 block">Zero SDR Time Expended</strong>
+                <span class="text-[#0A0F1E]/70 block">Enrolled in Developer Documentation Series</span>
+              </div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 text-[11px] font-mono space-y-1">
+              <div class="font-bold flex items-center space-x-1 text-slate-900">
+                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Automated Workflow Efficiency Gain:</span>
+              </div>
+              <p class="text-[10px] leading-normal text-slate-600">
+                Your sales development reps are shielded from chasing disqualified leads. The system delivered instant self-serve documentation via automated email without taking a single minute of human sales capacity.
+              </p>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    function setMarketingScenario(key) {
+      if (!marketingScenarios[key]) return;
+      currentMarketingScenario = key;
+
+      const btnEnt = document.getElementById('btn-mkt-ent');
+      const btnMid = document.getElementById('btn-mkt-mid');
+      const btnLow = document.getElementById('btn-mkt-low');
+
+      if (btnEnt) btnEnt.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+      if (btnMid) btnMid.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+      if (btnLow) btnLow.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#F8F9FC] text-[#0A0F1E]/70 border border-[#E8EAF0] hover:bg-[#EEF1F8] transition flex items-center space-x-1.5";
+
+      if (key === 'enterprise' && btnEnt) {
+        btnEnt.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 text-amber-800 border-2 border-amber-500 shadow-xs transition flex items-center space-x-1.5";
+      } else if (key === 'midmarket' && btnMid) {
+        btnMid.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-amber-50 text-amber-800 border-2 border-amber-500 shadow-xs transition flex items-center space-x-1.5";
+      } else if (key === 'lowintent' && btnLow) {
+        btnLow.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 text-slate-700 border-2 border-slate-500 shadow-xs transition flex items-center space-x-1.5";
+      }
+
+      const badgeStatus = document.getElementById('mkt-badge-status');
+      const badgeScore = document.getElementById('mkt-badge-score');
+      const latency = document.getElementById('mkt-latency');
+      const details = document.getElementById('mkt-details');
+
+      if (badgeStatus) {
+        badgeStatus.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-[#0A0F1E]/60 border border-[#E8EAF0]";
+        badgeStatus.innerText = "STANDBY • AWAITING LEAD";
+      }
+      if (badgeScore) badgeScore.innerText = "Intent Score: -- / 100";
+      if (latency) latency.innerText = "Latency: --";
+      if (details) details.innerHTML = `Selected profile: <strong>${marketingScenarios[key].title}</strong>. Click 'Enrich &amp; Route Lead' to test automated company intelligence and CRM email draft generation.`;
+      lucide.createIcons();
+    }
+
+    function runMarketingLead() {
+      const btn = document.getElementById('btn-mkt-run');
+      const pipelineBar = document.getElementById('mkt-pipeline-bar');
+      const stepText = document.getElementById('mkt-step-text');
+      const stepCount = document.getElementById('mkt-step-count');
+      const agentBadge = document.getElementById('mkt-active-agent-badge');
+      const scenario = marketingScenarios[currentMarketingScenario] || marketingScenarios.enterprise;
+
+      if (!btn) return;
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Enriching...</span>`;
+      if (pipelineBar) pipelineBar.classList.remove('hidden');
+      if (agentBadge) {
+        agentBadge.innerText = "Agent: Enriching Lead Profile";
+        agentBadge.className = "font-mono text-[11px] font-semibold text-amber-800 animate-pulse";
+      }
+      lucide.createIcons();
+
+      if (stepText) stepText.innerText = `Step 1/3: ${scenario.step1}`;
+      if (stepCount) stepCount.innerText = "Step 1/3";
+
+      setTimeout(() => {
+        if (stepText) stepText.innerText = `Step 2/3: ${scenario.step2}`;
+        if (stepCount) stepCount.innerText = "Step 2/3";
+      }, 1000);
+
+      setTimeout(() => {
+        if (stepText) stepText.innerText = `Step 3/3: ${scenario.step3}`;
+        if (stepCount) stepCount.innerText = "Step 3/3";
+      }, 2000);
+
+      setTimeout(() => {
+        if (pipelineBar) pipelineBar.classList.add('hidden');
+        if (agentBadge) {
+          agentBadge.innerText = "Agent: Lead Enriched & Routed";
+          agentBadge.className = "font-mono text-[11px] font-semibold text-emerald-600";
+        }
+
+        const badgeStatus = document.getElementById('mkt-badge-status');
+        const badgeScore = document.getElementById('mkt-badge-score');
+        const latency = document.getElementById('mkt-latency');
+        const details = document.getElementById('mkt-details');
+
+        if (badgeStatus) {
+          badgeStatus.className = `px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${scenario.statusBadgeClass}`;
+          badgeStatus.innerText = scenario.statusBadge;
+        }
+        if (badgeScore) badgeScore.innerText = scenario.score;
+        if (latency) latency.innerText = `Latency: ${scenario.latency}`;
+        if (details) details.innerHTML = scenario.details;
+
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i> <span>Re-Enrich Lead</span>`;
+        lucide.createIcons();
+
+        try {
+          fetch("https://enlightlab-n8n.duckdns.org/webhook/lead-enrichment-outreach", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              scenario: currentMarketingScenario,
+              title: scenario.title,
+              operator: "dhananjay",
+              timestamp: new Date().toISOString()
+            })
+          }).catch(() => {});
+        } catch (e) {}
+      }, 3000);
     }
   </script>
 </body>
