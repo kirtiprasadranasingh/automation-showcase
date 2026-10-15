@@ -2317,9 +2317,19 @@
 
   function scrollToSection(sectionId) {
     const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (!el) return;
+    try {
+      const header = document.querySelector('header');
+      const headerHeight = (header && typeof header.offsetHeight === 'number') ? header.offsetHeight : (header && header.clientHeight) || 0;
+      const rect = el.getBoundingClientRect();
+      const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop || 0;
+      const y = rect.top + scrollY - headerHeight - 16;
+      if (!isNaN(y)) {
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        return;
+      }
+    } catch (e) {}
+    el.scrollIntoView({ behavior: 'smooth' });
   }
 
   function toggleMobileMenu(forceState) {
@@ -3601,35 +3611,37 @@
     if (safeCard && riskyCard) {
       if (scenario === 'safe') {
         safeCard.classList.add('selected');
+        safeCard.setAttribute('aria-checked', 'true');
         riskyCard.classList.remove('selected');
+        riskyCard.setAttribute('aria-checked', 'false');
+
         if (diffStatus) {
           diffStatus.innerText = "Parameterized Safe";
           diffStatus.className = "text-xs font-semibold text-[var(--ok)]";
         }
         if (diffBox) {
           diffBox.innerHTML = `
-            <div class="text-neutral-500">// authController.ts:48</div>
-            <div class="bg-red-950/80 text-red-200 p-2 rounded border border-red-800/80">
-              - const sql = &#96;SELECT * FROM users WHERE token = '&#36;{token}'&#96;;
-            </div>
-            <div class="bg-emerald-950/80 text-emerald-200 p-2 rounded border border-emerald-800/80">
-              + db.query('SELECT * FROM users WHERE token = $1', [token]);
-            </div>
+            <div class="text-neutral-500">@@ -46,4 +46,4 @@ verifyUserToken()</div>
+            <div class="text-emerald-400 font-semibold">+ const sql = 'SELECT * FROM users WHERE token = $1';</div>
+            <div class="text-neutral-400">  const params = [userId];</div>
+            <div class="text-emerald-400 font-semibold">+ return db.query(sql, params);</div>
           `;
         }
       } else {
         riskyCard.classList.add('selected');
+        riskyCard.setAttribute('aria-checked', 'true');
         safeCard.classList.remove('selected');
+        safeCard.setAttribute('aria-checked', 'false');
+
         if (diffStatus) {
-          diffStatus.innerText = "High Risk Detected";
+          diffStatus.innerText = "Unsafe Direct Query";
           diffStatus.className = "text-xs font-semibold text-[var(--danger)]";
         }
         if (diffBox) {
           diffBox.innerHTML = `
-            <div class="text-neutral-500">// authController.ts:48</div>
-            <div class="bg-red-950/80 text-red-200 p-2 rounded border border-red-800/80">
-              + const sql = &#96;SELECT * FROM users WHERE token = '&#36;{token}'&#96;;
-            </div>
+            <div class="text-neutral-500">@@ -46,4 +46,4 @@ verifyUserToken()</div>
+            <div class="text-rose-300 font-semibold bg-rose-950/80 p-1 rounded border border-rose-800/80">- const sql = 'SELECT * FROM users WHERE token = \\'' + token + '\\'';</div>
+            <div class="text-neutral-400">  return db.query(sql);</div>
             <div class="text-rose-400 text-[11px] pt-1">
               &bull; String interpolation detected. Direct SQL injection vulnerability.
             </div>
@@ -3640,111 +3652,156 @@
 
     if (resultContainer) resultContainer.classList.add('hidden');
     if (standbyBox) standbyBox.classList.remove('hidden');
+    resetDevOpsStepIndicators();
+    appendDevOpsTechLog('Scenario switched to: ' + (scenario === 'safe' ? 'Safe Change (Parameterized)' : 'Risky Change (SQL Injection)'));
+  }
+
+  function resetDevOpsStepIndicators() {
+    for (let i = 1; i <= 3; i++) {
+      const stepEl = document.getElementById('step-devops-' + i);
+      const iconEl = document.getElementById('step-icon-' + i);
+      if (stepEl && iconEl) {
+        stepEl.className = "flex items-center space-x-2.5 caption-label text-neutral-400 p-2.5 rounded-lg border border-[var(--border)] bg-[#F7F8FA]";
+        iconEl.className = "w-5 h-5 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-bold";
+        iconEl.innerText = i.toString();
+      }
+    }
+  }
+
+  function setStepDevOpsActive(stepNum) {
+    const stepEl = document.getElementById('step-devops-' + stepNum);
+    const iconEl = document.getElementById('step-icon-' + stepNum);
+    if (stepEl && iconEl) {
+      stepEl.className = "flex items-center space-x-2.5 caption-label text-[var(--accent)] font-semibold p-2.5 rounded-lg border border-[var(--accent)] bg-[var(--accent-soft)]";
+      iconEl.className = "w-5 h-5 rounded-full bg-[var(--accent)] text-white flex items-center justify-center text-xs font-bold animate-pulse";
+      iconEl.innerText = stepNum.toString();
+    }
+  }
+
+  function setStepDevOpsCompleted(stepNum) {
+    const stepEl = document.getElementById('step-devops-' + stepNum);
+    const iconEl = document.getElementById('step-icon-' + stepNum);
+    if (stepEl && iconEl) {
+      stepEl.className = "flex items-center space-x-2.5 caption-label text-[var(--ok)] font-medium p-2.5 rounded-lg border border-[#A6F4C5] bg-[#ECFDF3]";
+      iconEl.className = "w-5 h-5 rounded-full bg-[var(--ok)] text-white flex items-center justify-center text-xs font-bold";
+      iconEl.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5"></i>';
+      lucide.createIcons();
+    }
+  }
+
+  function appendDevOpsTechLog(msg) {
+    const log = document.getElementById('devops-tech-log');
+    if (log) {
+      const time = new Date().toLocaleTimeString();
+      const line = document.createElement('div');
+      line.innerText = '[' + time + '] ' + msg;
+      log.appendChild(line);
+      log.scrollTop = log.scrollHeight;
+    }
   }
 
   function executeDevOpsCheck() {
-    const btn = document.getElementById('btn-execute-devops');
-    const resultContainer = document.getElementById('devops-result-container');
+    const btn = document.getElementById('btn-run-devops-check');
     const standbyBox = document.getElementById('devops-standby-box');
-    const slackCard = document.getElementById('devops-slack-card');
-    const checkStatus = document.getElementById('devops-check-status');
+    const resultContainer = document.getElementById('devops-result-container');
+    const resultBox = document.getElementById('devops-result-box');
+    const resultTitle = document.getElementById('devops-result-title');
+    const resultText = document.getElementById('devops-result-text');
+    const resultIcon = document.getElementById('devops-result-icon');
+    const resultFix = document.getElementById('devops-result-fix');
+    const resultSlack = document.getElementById('devops-result-slack');
+    const demoNote = document.getElementById('devops-demo-mode-note');
 
     if (!btn) return;
     btn.disabled = true;
-    btn.innerHTML = `<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Scanning Diff &amp; Running Tests...</span>`;
+    btn.innerHTML = '<span class="inline-block animate-spin mr-1"><i data-lucide="loader" class="w-3.5 h-3.5"></i></span> <span>Running the check...</span>';
     lucide.createIcons();
 
-    // Trigger webhook in background
-    try {
-      fetch("https://enlightlab-n8n.duckdns.org/webhook/github-commit-jenkins", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          repo: "enlightlab/payment-service",
-          pr_number: devopsCurrentScenario === 'safe' ? 143 : 142,
-          scenario: devopsCurrentScenario,
-          operator: "dhananjay",
-          timestamp: new Date().toISOString()
-        })
-      }).catch(err => console.log("[DevOps Gateway] Safe fallback:", err));
-    } catch (e) {}
+    if (standbyBox) standbyBox.classList.add('hidden');
+    if (resultContainer) resultContainer.classList.add('hidden');
+    resetDevOpsStepIndicators();
 
+    const prNumber = (devopsCurrentScenario === 'safe' ? 143 : 142);
+    appendDevOpsTechLog('Initiating automated check for PR #' + prNumber + ' (branch: main)...');
+    setStepDevOpsActive(1);
+
+    // Step 1: Reading change (~600ms)
     setTimeout(() => {
-      if (standbyBox) standbyBox.classList.add('hidden');
-      if (resultContainer) resultContainer.classList.remove('hidden');
+      setStepDevOpsCompleted(1);
+      setStepDevOpsActive(2);
+      appendDevOpsTechLog('Step 1 complete: Code diff parsed from authController.ts');
 
-      if (devopsCurrentScenario === 'safe') {
-        if (checkStatus) {
-          checkStatus.className = "p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs flex items-center justify-between";
-          checkStatus.innerHTML = `
-            <span class="flex items-center space-x-2">
-              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
-              <strong>Safety Score: 96/100 &bull; Deployment Approved</strong>
-            </span>
-            <span class="font-mono text-[11px] text-emerald-700">1.8s execution</span>
-          `;
-        }
-        if (slackCard) {
-          slackCard.innerHTML = `
-            <div class="flex items-start space-x-2.5">
-              <div class="w-7 h-7 rounded-lg bg-emerald-950 text-emerald-400 flex items-center justify-center font-bold text-xs flex-shrink-0 border border-emerald-800">
-                <i data-lucide="check" class="w-4 h-4"></i>
-              </div>
-              <div class="space-y-1.5 flex-1 text-xs">
-                <div class="flex items-center space-x-2">
-                  <span class="font-bold text-white">Automation Bot</span>
-                  <span class="text-[10px] bg-neutral-700 px-1.5 py-0.2 rounded text-neutral-300 font-mono">APP</span>
-                  <span class="text-[10px] text-neutral-400 font-mono">Just now</span>
-                </div>
-                <div class="p-2.5 rounded bg-neutral-900 border-l-4 border-emerald-500 text-neutral-300 space-y-1">
-                  <div class="font-semibold text-emerald-300">PR #143 Approved for Production</div>
-                  <div class="text-[11px] text-neutral-400">authController.ts &bull; Clean parameterized SQL query verified.</div>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-      } else {
-        if (checkStatus) {
-          checkStatus.className = "p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-900 text-xs flex items-center justify-between";
-          checkStatus.innerHTML = `
-            <span class="flex items-center space-x-2">
-              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600"></i>
-              <strong>Safety Score: 38/100 &bull; Release Halted</strong>
-            </span>
-            <span class="font-mono text-[11px] text-rose-700">1.8s execution</span>
-          `;
-        }
-        if (slackCard) {
-          slackCard.innerHTML = `
-            <div class="flex items-start space-x-2.5">
-              <div class="w-7 h-7 rounded-lg bg-neutral-800 text-rose-400 flex items-center justify-center font-bold text-xs flex-shrink-0">
-                <i data-lucide="shield-alert" class="w-4 h-4"></i>
-              </div>
-              <div class="space-y-1.5 flex-1 text-xs">
-                <div class="flex items-center space-x-2">
-                  <span class="font-bold text-white">Automation Bot</span>
-                  <span class="text-[10px] bg-neutral-700 px-1.5 py-0.2 rounded text-neutral-300 font-mono">APP</span>
-                  <span class="text-[10px] text-neutral-400 font-mono">Just now</span>
-                </div>
-                <div class="p-2.5 rounded bg-neutral-900 border-l-4 border-rose-500 text-neutral-300 space-y-1">
-                  <div class="font-semibold text-rose-300">PR #142 Halted: SQL Injection Risk</div>
-                  <div class="text-[11px] text-neutral-400">authController.ts:48 &bull; Direct parameter interpolation blocked.</div>
-                </div>
-                <div class="pt-1 flex gap-2">
-                  <span class="px-2.5 py-1 rounded bg-blue-600 font-semibold text-white text-[11px]">Apply Parameter Fix</span>
-                  <span class="px-2.5 py-1 rounded bg-neutral-700 text-neutral-300 text-[11px]">Review Git Diff</span>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-      }
+      // Step 2: Checking problems (~600ms)
+      setTimeout(() => {
+        setStepDevOpsCompleted(2);
+        setStepDevOpsActive(3);
+        appendDevOpsTechLog('Step 2 complete: SQL safety and schema validation rules evaluated');
 
-      btn.disabled = false;
-      btn.innerHTML = `<i data-lucide="play" class="w-4 h-4 fill-current mr-1"></i> <span>Re-run Safety Check</span>`;
-      lucide.createIcons();
-    }, 1100);
+        // Step 3: Deciding (~600ms)
+        setTimeout(() => {
+          setStepDevOpsCompleted(3);
+          appendDevOpsTechLog('Step 3 complete: Verdict reached for PR #' + prNumber);
+
+          btn.disabled = false;
+          btn.innerHTML = '<i data-lucide="play" class="w-4 h-4 fill-current mr-1"></i> <span>Re-run the check</span>';
+
+          if (resultContainer) resultContainer.classList.remove('hidden');
+
+          if (devopsCurrentScenario === 'safe') {
+            if (resultBox) resultBox.className = "p-4 rounded-lg space-y-2 bg-[#ECFDF3] border border-[#A6F4C5]";
+            if (resultTitle) {
+              resultTitle.className = "card-title text-base text-[var(--ok)]";
+              resultTitle.innerText = "Approved for Production";
+            }
+            if (resultText) resultText.innerText = "No problems found. This change uses parameterized queries and can go live safely.";
+            if (resultIcon) {
+              resultIcon.setAttribute('data-lucide', 'check-circle');
+              resultIcon.className = "w-5 h-5 text-[var(--ok)]";
+            }
+            if (resultFix) resultFix.classList.add('hidden');
+            if (resultSlack) resultSlack.classList.add('hidden');
+            appendDevOpsTechLog('Outcome: PR #143 approved for production merge.');
+          } else {
+            if (resultBox) resultBox.className = "p-4 rounded-lg space-y-2 bg-[#FEF3F2] border border-[#FECDCA]";
+            if (resultTitle) {
+              resultTitle.className = "card-title text-base text-[var(--danger)]";
+              resultTitle.innerText = "Deployment Blocked";
+            }
+            if (resultText) resultText.innerText = "This change puts raw user input directly into a database query (SQL injection risk). Suggested safe fix:";
+            if (resultIcon) {
+              resultIcon.setAttribute('data-lucide', 'alert-octagon');
+              resultIcon.className = "w-5 h-5 text-[var(--danger)]";
+            }
+            if (resultFix) resultFix.classList.remove('hidden');
+            if (resultSlack) resultSlack.classList.remove('hidden');
+            appendDevOpsTechLog('Outcome: PR #142 BLOCKED. Alert sent to Slack #devops-alerts.');
+          }
+          lucide.createIcons();
+
+          // Webhook call with demo mode fallback
+          try {
+            fetch("https://enlightlab-n8n.duckdns.org/webhook/github-commit-jenkins", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                repository: "payment-service",
+                pull_request: prNumber,
+                scenario: devopsCurrentScenario,
+                operator: "dhananjay",
+                timestamp: new Date().toISOString()
+              })
+            }).then(res => {
+              if (!res.ok && demoNote) demoNote.classList.remove('hidden');
+            }).catch(() => {
+              if (demoNote) demoNote.classList.remove('hidden');
+            });
+          } catch (e) {
+            if (demoNote) demoNote.classList.remove('hidden');
+          }
+
+        }, 600);
+      }, 600);
+    }, 600);
   }
 
   // =========================================================
