@@ -3249,6 +3249,10 @@
                 <button type="button" onclick="scrollToSection('case-demo-section')" class="btn-primary">
                   <span>Try the demo</span>
                 </button>
+                <button type="button" onclick="scrollToSection('case-video-walkthrough')" class="btn-secondary flex items-center space-x-2">
+                  <i data-lucide="play" class="w-4 h-4 text-[var(--accent)]"></i>
+                  <span>Watch Video</span>
+                </button>
                 <button type="button" onclick="scrollToSection('case-how-it-works-section')" class="btn-secondary">
                   <span>See how it works</span>
                 </button>
@@ -3280,8 +3284,8 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span id="case-preview-status">Automated resolution ready</span>
                   </span>
-                  <button type="button" onclick="scrollToSection('case-demo-section')" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1 font-sans">
-                    <span>Try demo</span>
+                  <button type="button" onclick="scrollToSection('case-video-walkthrough')" class="text-xs text-blue-400 hover:text-blue-300 flex items-center space-x-1 font-sans">
+                    <span>Watch video</span>
                     <i data-lucide="arrow-right" class="w-3 h-3"></i>
                   </button>
                 </div>
@@ -3327,6 +3331,89 @@
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      
+      <!-- SECTION: ANIMATED VIDEO WALKTHROUGH -->
+      <section id="case-video-walkthrough" class="section-soft section-sp border-b border-[var(--border)]">
+        <div class="container-notion space-y-8">
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div class="space-y-3 max-w-[65ch]">
+              <span class="caption-label">Walkthrough</span>
+              <h2 id="case-v-heading" class="section-heading">
+                Watch the automated check in action
+              </h2>
+              <p id="case-v-subhead" class="body-text">
+                See how incoming events are received, verified with AI embeddings, and executed across your tools.
+              </p>
+            </div>
+
+            <!-- Scenario Pills -->
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="caption-label font-medium text-neutral-500">Scenario:</span>
+              <div id="case-v-scenario-pills" class="inline-flex rounded-lg border border-[var(--border)] bg-white p-1 text-xs shadow-2xs">
+                <!-- Dynamically injected scenario buttons -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Animation Frame (Theme-matched surface-card) -->
+          <div class="surface-card p-4 sm:p-6 space-y-4 bg-white border-[var(--border)] shadow-sm">
+            
+            <!-- Video Animation Stage Canvas -->
+            <div id="case-v-canvas-stage" class="relative min-h-[360px] sm:min-h-[400px] p-6 sm:p-8 rounded-xl flex flex-col justify-between overflow-hidden bg-neutral-900 border border-neutral-800 text-neutral-100">
+              
+              <!-- Scanning Ray Animation (active during scan scene) -->
+              <div id="case-v-scan-beam" class="devops-scan-line hidden pointer-events-none"></div>
+
+              <!-- Top Scene Header Bar -->
+              <div class="flex items-center justify-between pb-3 border-b border-neutral-800 text-xs">
+                <div class="flex items-center space-x-2.5">
+                  <span id="case-v-scene-num-badge" class="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">
+                    Step 1 of 4
+                  </span>
+                  <span id="case-v-scene-title" class="font-semibold text-neutral-200">
+                    Event received via webhook
+                  </span>
+                </div>
+                <div class="flex items-center space-x-1.5 text-xs text-neutral-400 font-sans">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Live walkthrough</span>
+                </div>
+              </div>
+
+              <!-- Central Stage Content (Swapped per scene) -->
+              <div id="case-v-stage-content" class="my-auto py-4">
+                <!-- Dynamically rendered scene HTML -->
+              </div>
+
+            </div>
+
+            <!-- Under that: 4 Step Indicator Chapter Buttons -->
+            <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[var(--border)]">
+              <span class="caption-label text-neutral-500 text-xs hidden sm:inline">
+                Pipeline stages:
+              </span>
+              <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-end w-full sm:w-auto">
+                <button type="button" id="case-v-chap-1" onclick="seekCaseVideo(0)" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition">
+                  1. Trigger
+                </button>
+                <button type="button" id="case-v-chap-2" onclick="seekCaseVideo(3)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  2. AI Vector Scan
+                </button>
+                <button type="button" id="case-v-chap-3" onclick="seekCaseVideo(6)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  3. Decision
+                </button>
+                <button type="button" id="case-v-chap-4" onclick="seekCaseVideo(9)" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition">
+                  4. Action Dispatched
+                </button>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
 
@@ -3597,6 +3684,7 @@
     pauseDevopsVideo();
     pauseHCVideo();
     pauseEcomVideo();
+    pauseCaseVideo();
 
     if (standardViews.includes(viewName)) {
       if (caseViewEl) caseViewEl.classList.add('hidden');
@@ -5534,6 +5622,507 @@
   }
 
   
+  
+  // =========================================================
+  // 8. DYNAMIC INDUSTRY CASE VIDEO WALKTHROUGH PLAYER
+  // =========================================================
+  const caseVideoState = {
+    isPlaying: false,
+    currentTime: 0,
+    duration: 12,
+    timer: null,
+    industryId: 'manufacturing',
+    scenario: 'machine_downtime_predictor',
+    currentScene: -1
+  };
+
+  const caseIndustryScenes = {
+    manufacturing: {
+      machine_downtime_predictor: [
+        {
+          start: 0, end: 3, num: "Step 1 of 4",
+          title: "Vibration telemetry stream received from CNC Mill Spindle 2",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-amber-400 font-sans font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+                  <span>IoT Telemetry &bull; POST /webhook/machine_downtime_predictor</span>
+                </span>
+                <span class="text-neutral-500">10:14:02 AM</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px]">
+                <div>Equipment: <strong class="text-white">CNC-MILL-04 (Bay 4, Spindle 2)</strong></div>
+                <div>Sensor: <span class="text-amber-300 font-mono">#VIB-492 &bull; 48.2 Hz</span> (Baseline: &lt;30.0 Hz)</div>
+                <div>Thermal Bearing Temp: <span class="text-rose-400 font-mono">89.4&deg;C</span> (Warning threshold: 80&deg;C)</div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>Telemetry ingested &bull; Comparing against failure signatures in Weaviate...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3, end: 6, num: "Step 2 of 4",
+          title: "Weaviate vector search detects bearing wear pattern",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-amber-400 font-sans font-semibold">Weaviate Vector Cluster &bull; Model: text-embedding-3-small</span>
+                <span class="text-rose-400 font-semibold font-mono">High Risk Anomaly</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex justify-between"><span>Vector Distance:</span><span class="text-rose-400 font-bold font-mono">0.082 (91.8% similarity to mechanical failure)</span></div>
+                <div class="flex justify-between"><span>Historical Precedent:</span><span class="text-neutral-300 font-sans">Spindle race flaking (Incident #INC-204, Feb 2026)</span></div>
+                <div class="p-2 rounded bg-neutral-900 border border-neutral-800 text-amber-300 text-[11px] font-sans">
+                  &bull; Estimated remaining operational window: <strong>36 hours</strong> before seizure.
+                </div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1 font-sans">
+                <span>Confidence: <strong class="text-emerald-400 font-mono">94%</strong></span>
+                <span class="text-amber-400 font-semibold">Dispatching preventive ticket</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6, end: 9, num: "Step 3 of 4",
+          title: "Anthropic Claude agent drafts maintenance work order & checks spares",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-blue-400 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="bot" class="w-3.5 h-3.5"></i>
+                  <span>Claude 3.5 Sonnet &bull; Maintenance Agent</span>
+                </span>
+                <span class="text-emerald-400 font-mono font-semibold">Ready for Dispatch</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="text-white font-bold">Work Order #WO-9182 Created</div>
+                <div>Component Required: <strong class="text-white">SKU #BRG-7208-HD (Angular Contact Bearing)</strong></div>
+                <div>Inventory Status: <span class="text-emerald-400 font-semibold font-mono">2 units in stock (Warehouse Bin 14B)</span></div>
+                <div class="text-neutral-400 text-[11px]">Recommended Schedule: Next shift transition (18:00 today) to eliminate line stoppage.</div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9, end: 12, num: "Step 4 of 4",
+          title: "Maintenance team alerted on Slack & parts pre-allocated",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-lg mx-auto">
+              <div class="bg-[#1A1D21] text-white p-3 rounded-t-lg flex items-center justify-between text-xs border border-neutral-700">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-neutral-300 font-mono">#plant-maintenance</span>
+                  <span class="text-[10px] text-neutral-400">Slack Dispatch</span>
+                </div>
+                <span class="text-[10px] text-neutral-400 font-mono">Just now</span>
+              </div>
+              <div class="bg-[#222529] p-3.5 rounded-b-lg text-neutral-200 space-y-2 border-x border-b border-neutral-700">
+                <div class="flex items-start space-x-2.5">
+                  <div class="w-8 h-8 rounded-lg bg-amber-950 text-amber-400 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                    <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+                  </div>
+                  <div class="space-y-1.5 flex-1">
+                    <div class="font-semibold text-amber-300">Preventive Alert: CNC-MILL-04 (Spindle 2)</div>
+                    <div class="text-[11px] text-neutral-300">Bearing vibration reached 48.2 Hz. Work order #WO-9182 assigned to Shift A Lead (Marcus B.).</div>
+                    <div class="flex items-center gap-2 pt-1 text-[11px]">
+                      <span class="px-2.5 py-1 rounded bg-amber-600 font-semibold text-white">Acknowledge Work Order</span>
+                      <span class="px-2.5 py-1 rounded bg-neutral-700 text-neutral-300">View Telemetry Graph</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    },
+
+    finance: {
+      stripe_to_quickbooks: [
+        {
+          start: 0, end: 3, num: "Step 1 of 4",
+          title: "Stripe payment webhook received for customer invoice",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-emerald-400 font-sans font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
+                  <span>Stripe Webhook &bull; charge.succeeded</span>
+                </span>
+                <span class="text-neutral-500">11:20:14 AM</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px]">
+                <div>Customer: <strong class="text-white">Acme Logistics LLC</strong> &bull; Invoice #INV-8392</div>
+                <div>Gross Amount: <span class="text-emerald-400 font-mono">$1,420.00 (Paid online)</span></div>
+                <div>Processing Fee: <span class="text-neutral-400 font-mono">$41.48</span> &bull; Net: <span class="text-white font-mono">$1,378.52</span></div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Connecting to QuickBooks chart of accounts...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3, end: 6, num: "Step 2 of 4",
+          title: "Supabase vector store allocates sales tax & chart of accounts",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-blue-400 font-sans font-semibold">Supabase Vector Match &bull; Tax Jurisdiction NY-State</span>
+                <span class="text-emerald-400 font-mono">Matched (Score: 0.98)</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="flex justify-between"><span>Revenue Account:</span><span class="text-white">#4010 - Enterprise SaaS Subscriptions</span></div>
+                <div class="flex justify-between"><span>Merchant Fee Account:</span><span class="text-white">#6120 - Payment Processing Fees</span></div>
+                <div class="flex justify-between"><span>Tax Liability:</span><span class="text-emerald-400">#2100 - NY State Sales Tax ($113.60)</span></div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1 font-sans">
+                <span>Ledger Balance: <strong class="text-emerald-400 font-mono">$1,420.00 = $1,420.00</strong></span>
+                <span class="text-blue-400 font-semibold">Generating QuickBooks Entry</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6, end: 9, num: "Step 3 of 4",
+          title: "QuickBooks Online journal entry posted automatically",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-emerald-400 font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+                  <span>QuickBooks API &bull; Journal Entry #JE-492</span>
+                </span>
+                <span class="text-emerald-400 font-mono">200 OK &bull; Posted</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px] font-mono">
+                <div class="flex justify-between"><span>Debit: Stripe Clearing (#1040)</span><span class="text-white">$1,378.52</span></div>
+                <div class="flex justify-between"><span>Debit: Merchant Fee (#6120)</span><span class="text-white">$41.48</span></div>
+                <div class="flex justify-between"><span>Credit: Revenue (#4010)</span><span class="text-white">$1,306.40</span></div>
+                <div class="flex justify-between border-t border-neutral-800 pt-1"><span>Credit: Tax Payable (#2100)</span><span class="text-emerald-400">$113.60</span></div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9, end: 12, num: "Step 4 of 4",
+          title: "Invoice marked paid in CRM & notification sent to team",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-lg mx-auto">
+              <div class="p-4 rounded-xl bg-emerald-950/70 border border-emerald-800/80 space-y-2.5">
+                <div class="flex items-center justify-between pb-2 border-b border-emerald-800/60">
+                  <span class="text-emerald-300 font-bold flex items-center space-x-1.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span>RECONCILIATION COMPLETE</span>
+                  </span>
+                  <span class="text-[10px] font-mono bg-emerald-900 px-2 py-0.5 rounded text-emerald-200">Reconciled</span>
+                </div>
+                <div class="text-neutral-300 text-[11px] leading-relaxed">
+                  <div>Invoice #INV-8392 marked <strong class="text-emerald-400">Paid in Full</strong>.</div>
+                  <div>Account ledger balanced and verified with Stripe payout batch.</div>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    },
+
+    legal: {
+      nda_risk_detector: [
+        {
+          start: 0, end: 3, num: "Step 1 of 4",
+          title: "Vendor Master Services Agreement PDF uploaded for intake",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-neutral-300 font-sans font-semibold flex items-center space-x-1.5">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                  <span>Document Intake &bull; Apex Cloud Systems MSA.pdf</span>
+                </span>
+                <span class="text-neutral-500">18 Pages</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px]">
+                <div>Counterparty: <strong class="text-white">Apex Cloud Systems Inc.</strong></div>
+                <div>Agreement Type: <span class="text-blue-300">Vendor SaaS Master Services Agreement</span></div>
+                <div>Chunking: <span class="text-neutral-400">Split into 42 clause blocks</span></div>
+              </div>
+              <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1 font-sans">
+                <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                <span>Embedding clauses into Redis vector store...</span>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 3, end: 6, num: "Step 2 of 4",
+          title: "Redis vector store compares clauses against company playbook",
+          scanBeam: true,
+          html: `
+            <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-rose-400 font-sans font-semibold">Playbook Rule #14 Violation Detected</span>
+                <span class="text-rose-400 font-mono font-bold">High Risk</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px]">
+                <div class="text-neutral-400">// Section 9.2 (Indemnification)</div>
+                <div class="bg-rose-950/80 text-rose-200 p-2 rounded border border-rose-800/80">
+                  "Customer agrees to indemnify, defend, and hold harmless Vendor against any and all claims without limitation."
+                </div>
+                <div class="text-rose-300 font-sans text-[11px] pt-1">
+                  &bull; Uncapped liability for indirect damages violates standard $100k cap policy.
+                </div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 6, end: 9, num: "Step 3 of 4",
+          title: "Anthropic Claude agent drafts standardized redline revision",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-2xl mx-auto">
+              <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+                <span class="text-emerald-400 font-semibold">Suggested Redline Revision</span>
+                <span class="text-neutral-400 font-mono">Standard Playbook</span>
+              </div>
+              <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px]">
+                <div class="p-2.5 rounded bg-neutral-900 border border-neutral-800 text-emerald-400 font-mono text-[11px]">
+                  + "Neither party's total aggregate liability under this agreement shall exceed the aggregate fees paid in the preceding 12 months."
+                </div>
+                <div class="text-neutral-400 text-[11px]">Governing Law: Shift from New York to Delaware agreed per company standard.</div>
+              </div>
+            </div>
+          `
+        },
+        {
+          start: 9, end: 12, num: "Step 4 of 4",
+          title: "Redline summary delivered to Senior Counsel on Slack",
+          scanBeam: false,
+          html: `
+            <div class="space-y-3 font-sans text-xs max-w-lg mx-auto">
+              <div class="bg-[#1A1D21] text-white p-3 rounded-t-lg flex items-center justify-between text-xs border border-neutral-700">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-neutral-300 font-mono">#legal-triage</span>
+                  <span class="text-[10px] text-neutral-400">Slack Dispatch</span>
+                </div>
+                <span class="text-[10px] text-neutral-400 font-mono">Just now</span>
+              </div>
+              <div class="bg-[#222529] p-3.5 rounded-b-lg text-neutral-200 space-y-2 border-x border-b border-neutral-700">
+                <div class="font-semibold text-rose-300">Contract Review: Apex Cloud MSA (1 Flag)</div>
+                <div class="text-[11px] text-neutral-300">Uncapped indemnity flagged on Page 9. Redline clause prepared for attorney sign-off.</div>
+                <div class="flex items-center gap-2 pt-1 text-[11px]">
+                  <span class="px-2.5 py-1 rounded bg-blue-600 font-semibold text-white">Approve Redline</span>
+                  <span class="px-2.5 py-1 rounded bg-neutral-700 text-neutral-300">Download DOCX</span>
+                </div>
+              </div>
+            </div>
+          `
+        }
+      ]
+    }
+  };
+
+  // Generic fallback scene generator for remaining industries
+  function getIndustryScenes(indId, scenarioKey) {
+    if (caseIndustryScenes[indId] && caseIndustryScenes[indId][scenarioKey]) {
+      return caseIndustryScenes[indId][scenarioKey];
+    }
+    const data = industryCases[indId] || {};
+    const variety = (data.varieties || []).find(v => v.id === scenarioKey) || (data.varieties ? data.varieties[0] : null) || {};
+
+    return [
+      {
+        start: 0, end: 3, num: "Step 1 of 4",
+        title: "Event received via " + (variety.triggerName || "webhook trigger"),
+        scanBeam: false,
+        html: `
+          <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+            <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+              <span class="text-blue-400 font-sans font-semibold flex items-center space-x-1.5">
+                <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+                <span>${escapeHtml(variety.triggerName || "Webhook Trigger")}</span>
+              </span>
+              <span class="text-neutral-500">Live Intake</span>
+            </div>
+            <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-1.5 text-neutral-300 text-[11px]">
+              <div>Industry: <strong class="text-white">${escapeHtml(data.title || "Industry Case")}</strong></div>
+              <div>Workflow: <span class="text-blue-300">${escapeHtml(variety.name || "Automation")}</span></div>
+              <pre class="text-[10px] text-emerald-400 bg-neutral-900/80 p-2 rounded overflow-x-auto">${JSON.stringify(variety.sampleInput || {}, null, 2)}</pre>
+            </div>
+            <div class="flex items-center space-x-2 text-[11px] text-neutral-400 pt-1 font-sans">
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+              <span>Payload validated &bull; Vector search initiating...</span>
+            </div>
+          </div>
+        `
+      },
+      {
+        start: 3, end: 6, num: "Step 2 of 4",
+        title: "Vector database search & AI rule evaluation",
+        scanBeam: true,
+        html: `
+          <div class="space-y-3 font-mono text-xs max-w-2xl mx-auto">
+            <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+              <span class="text-blue-400 font-sans font-semibold">Vector Store Similarity &bull; Rule Evaluation</span>
+              <span class="text-emerald-400 font-mono">Matched</span>
+            </div>
+            <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-[11px] font-sans">
+              <div class="text-neutral-300">${escapeHtml(variety.step2 || "Evaluates input conditions with vector embeddings and LLM agent.")}</div>
+              <div class="p-2 rounded bg-neutral-900 border border-neutral-800 text-neutral-400 text-[11px] font-mono">
+                Model: OpenAI / Anthropic Claude &bull; Latency: 160ms
+              </div>
+            </div>
+          </div>
+        `
+      },
+      {
+        start: 6, end: 9, num: "Step 3 of 4",
+        title: "Automated decision & verification completed",
+        scanBeam: false,
+        html: `
+          <div class="space-y-3 font-sans text-xs max-w-2xl mx-auto">
+            <div class="flex items-center justify-between text-neutral-400 text-[11px] pb-1 border-b border-neutral-800">
+              <span class="text-emerald-400 font-semibold">Decision Verdict Reached</span>
+              <span class="text-emerald-400 font-mono font-bold">Approved</span>
+            </div>
+            <div class="bg-black/60 p-3.5 rounded-lg border border-neutral-800 space-y-2 text-neutral-300 text-[11px]">
+              <div class="text-white font-bold">${escapeHtml(variety.step3 || "Automated action dispatched to downstream system.")}</div>
+              <div class="text-neutral-400 text-[11px]">Policy rules verified. Dispatching payload to external tools.</div>
+            </div>
+          </div>
+        `
+      },
+      {
+        start: 9, end: 12, num: "Step 4 of 4",
+        title: "Action dispatched & logged to central database",
+        scanBeam: false,
+        html: `
+          <div class="space-y-3 font-sans text-xs max-w-lg mx-auto">
+            ${variety.outputHtml || `
+              <div class="p-4 rounded-xl bg-neutral-800 border border-neutral-700 text-neutral-200 space-y-2">
+                <div class="flex items-center space-x-2 text-emerald-400 font-bold">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  <span>WORKFLOW EXECUTED SUCCESSFULLY</span>
+                </div>
+                <div class="text-neutral-300 text-[11px]">Action dispatched to connected tools and logged.</div>
+              </div>
+            `}
+          </div>
+        `
+      }
+    ];
+  }
+
+  function renderCaseVideoScene(force) {
+    const scenes = getIndustryScenes(caseVideoState.industryId, caseVideoState.scenario);
+    if (!scenes || !scenes.length) return;
+    const t = caseVideoState.currentTime;
+    let sceneIdx = scenes.findIndex(s => t >= s.start && t < s.end);
+    if (sceneIdx === -1 && t >= 12) sceneIdx = 3;
+    if (sceneIdx === -1) sceneIdx = 0;
+
+    if (force || caseVideoState.currentScene !== sceneIdx) {
+      caseVideoState.currentScene = sceneIdx;
+      const scene = scenes[sceneIdx];
+
+      const numBadge = document.getElementById('case-v-scene-num-badge');
+      const titleEl = document.getElementById('case-v-scene-title');
+      const stageContent = document.getElementById('case-v-stage-content');
+      const scanBeam = document.getElementById('case-v-scan-beam');
+
+      if (numBadge) numBadge.innerText = scene.num;
+      if (titleEl) titleEl.innerText = scene.title;
+      if (stageContent) {
+        stageContent.innerHTML = scene.html;
+        stageContent.classList.remove('stage-fade-in');
+        void stageContent.offsetWidth;
+        stageContent.classList.add('stage-fade-in');
+      }
+      if (scanBeam) {
+        if (scene.scanBeam) scanBeam.classList.remove('hidden');
+        else scanBeam.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    for (let i = 1; i <= 4; i++) {
+      const chapBtn = document.getElementById('case-v-chap-' + i);
+      if (chapBtn) {
+        if (i === (sceneIdx + 1)) {
+          chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)] text-white shadow-xs transition";
+        } else {
+          chapBtn.className = "px-3.5 py-1.5 rounded-lg text-xs font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 hover:text-neutral-900 transition";
+        }
+      }
+    }
+  }
+
+  function updateCaseVideoUI() {
+    renderCaseVideoScene(false);
+  }
+
+  function playCaseVideo() {
+    caseVideoState.isPlaying = true;
+    if (caseVideoState.timer) clearInterval(caseVideoState.timer);
+    caseVideoState.timer = setInterval(() => {
+      caseVideoState.currentTime += 0.1;
+      if (caseVideoState.currentTime >= caseVideoState.duration) {
+        caseVideoState.currentTime = 0;
+      }
+      updateCaseVideoUI();
+    }, 100);
+  }
+
+  function pauseCaseVideo() {
+    caseVideoState.isPlaying = false;
+    if (caseVideoState.timer) {
+      clearInterval(caseVideoState.timer);
+      caseVideoState.timer = null;
+    }
+  }
+
+  function seekCaseVideo(targetSeconds) {
+    caseVideoState.currentTime = Math.max(0, Math.min(targetSeconds, caseVideoState.duration));
+    caseVideoState.currentScene = -1;
+    renderCaseVideoScene(true);
+    playCaseVideo();
+  }
+
+  function setCaseVideoScenario(scenarioKey) {
+    caseVideoState.scenario = scenarioKey;
+    const data = industryCases[caseVideoState.industryId] || {};
+    (data.varieties || []).forEach(v => {
+      const btn = document.getElementById('case-v-tab-' + v.id);
+      if (btn) {
+        if (v.id === scenarioKey) {
+          btn.className = "px-3 py-1.5 rounded-md font-semibold text-[var(--accent)] bg-[var(--accent-soft)] transition";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition";
+        }
+      }
+    });
+
+    caseVideoState.currentTime = 0;
+    caseVideoState.currentScene = -1;
+    renderCaseVideoScene(true);
+    playCaseVideo();
+  }
+
+
   // =========================================================
   // 7. INDUSTRY CASE STUDIES & DYNAMIC LIVE EXECUTION CONTROLLER
   // =========================================================
@@ -7297,6 +7886,36 @@
     if (!data) return;
     currentCaseId = indId;
     currentCaseVarietyIdx = 0;
+
+    // Initialize Video Walkthrough State
+    caseVideoState.industryId = indId;
+    caseVideoState.currentTime = 0;
+    caseVideoState.currentScene = -1;
+
+    // Update Walkthrough Headings
+    const vHeading = document.getElementById('case-v-heading');
+    const vSubhead = document.getElementById('case-v-subhead');
+    if (vHeading) vHeading.innerText = "Watch the automated " + data.title + " workflow in action";
+    if (vSubhead) vSubhead.innerText = "See how incoming " + data.badge + " events are received, verified with AI embeddings, and executed across your tools.";
+
+    // Update Video Scenario Pills
+    const vPills = document.getElementById('case-v-scenario-pills');
+    if (vPills && data.varieties) {
+      vPills.innerHTML = data.varieties.map((v, idx) => `
+        <button 
+          type="button" 
+          id="case-v-tab-${v.id}" 
+          onclick="setCaseVideoScenario('${v.id}')" 
+          class="px-3 py-1.5 rounded-md font-medium text-neutral-600 hover:text-[var(--text)] transition"
+        >
+          ${escapeHtml(v.name)}
+        </button>
+      `).join('');
+    }
+
+    if (data.varieties && data.varieties[0]) {
+      setCaseVideoScenario(data.varieties[0].id);
+    }
 
     // 1. Breadcrumb and Hero Badges
     const breadcrumbName = document.getElementById('case-breadcrumb-name');
