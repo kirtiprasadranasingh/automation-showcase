@@ -398,74 +398,181 @@
 
       
       
-      <!-- Industry Filter Bar -->
-      <div class="border-b border-[#E8EAF0] pb-3">
+      
+      <!-- Industry Search & Filter Bar -->
+      <div class="space-y-4 border-b border-[#E8EAF0] pb-4">
+        
+        <!-- Search Bar Row -->
+        <div class="flex items-center justify-between gap-4">
+          <div class="relative w-full max-w-md">
+            <i data-lucide="search" class="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input 
+              id="hub-search-input" 
+              type="text" 
+              placeholder="Search 23 industries &amp; workflows (e.g. shopify, invoice, slack, downtime)..." 
+              class="w-full text-xs pl-10 pr-4 py-2.5 rounded-xl border border-[var(--border)] bg-white focus:outline-none focus:border-[var(--accent)] text-neutral-800 shadow-2xs transition placeholder:text-neutral-400"
+              oninput="handleHubSearch(this.value)"
+            >
+          </div>
+        </div>
+
+        <!-- Horizontal Scrollable Industry Filter Tabs -->
         <div class="flex items-center space-x-1.5 overflow-x-auto py-1 scrollbar-none">
           <button onclick="filterIndustry('all')" id="filter-all" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#0A0F1E] text-white shadow-xs transition shrink-0">
             All Industries
           </button>
-          <button onclick="filterIndustry('devops')" id="filter-devops" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            DevOps &amp; Cloud
-          </button>
-          <button onclick="filterIndustry('healthcare')" id="filter-healthcare" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            Healthcare
-          </button>
-          <button onclick="filterIndustry('ecommerce')" id="filter-ecommerce" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            E-Commerce
-          </button>
-          <button onclick="filterIndustry('manufacturing')" id="filter-manufacturing" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            Manufacturing
-          </button>
-          <button onclick="filterIndustry('finance')" id="filter-finance" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            Finance &amp; Accounting
-          </button>
-          <button onclick="filterIndustry('legal')" id="filter-legal" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            Legal Tech
-          </button>
-          <button onclick="filterIndustry('hr')" id="filter-hr" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            HR &amp; People
-          </button>
-          <button onclick="filterIndustry('realestate')" id="filter-realestate" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
-            Real Estate
-          </button>
+          
+            <button onclick="filterIndustry('devops')" id="filter-devops" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              DevOps & Cloud
+            </button>
+          
+            <button onclick="filterIndustry('healthcare')" id="filter-healthcare" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Healthcare & Clinical
+            </button>
+          
+            <button onclick="filterIndustry('ecommerce')" id="filter-ecommerce" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              E-Commerce & Retail
+            </button>
+          
+            <button onclick="filterIndustry('manufacturing')" id="filter-manufacturing" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Manufacturing & Industrial
+            </button>
+          
+            <button onclick="filterIndustry('finance')" id="filter-finance" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Finance & Accounting
+            </button>
+          
+            <button onclick="filterIndustry('legal')" id="filter-legal" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Legal Tech & Compliance
+            </button>
+          
+            <button onclick="filterIndustry('hr')" id="filter-hr" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              HR & Talent Acquisition
+            </button>
+          
+            <button onclick="filterIndustry('realestate')" id="filter-realestate" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Real Estate & Property
+            </button>
+          
+            <button onclick="filterIndustry('aiml')" id="filter-aiml" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              AI & Machine Learning
+            </button>
+          
+            <button onclick="filterIndustry('automotive')" id="filter-automotive" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Automotive & Fleet
+            </button>
+          
+            <button onclick="filterIndustry('agriculture')" id="filter-agriculture" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Agriculture & AgriTech
+            </button>
+          
+            <button onclick="filterIndustry('energy')" id="filter-energy" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Energy & Utilities
+            </button>
+          
+            <button onclick="filterIndustry('iot')" id="filter-iot" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              IoT & Connected Devices
+            </button>
+          
+            <button onclick="filterIndustry('email')" id="filter-email" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Email Automation
+            </button>
+          
+            <button onclick="filterIndustry('socialmedia')" id="filter-socialmedia" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Social Media Ops
+            </button>
+          
+            <button onclick="filterIndustry('media')" id="filter-media" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Media & Publishing
+            </button>
+          
+            <button onclick="filterIndustry('education')" id="filter-education" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Education & EdTech
+            </button>
+          
+            <button onclick="filterIndustry('gaming')" id="filter-gaming" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Gaming & Esports
+            </button>
+          
+            <button onclick="filterIndustry('travel')" id="filter-travel" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Travel & Hospitality
+            </button>
+          
+            <button onclick="filterIndustry('government')" id="filter-government" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Government & NGO
+            </button>
+          
+            <button onclick="filterIndustry('analytics')" id="filter-analytics" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Data Analytics
+            </button>
+          
+            <button onclick="filterIndustry('creative')" id="filter-creative" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Creative Content
+            </button>
+          
+            <button onclick="filterIndustry('productivity')" id="filter-productivity" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0">
+              Personal Productivity
+            </button>
+          
         </div>
+
       </div>
 
 
-      <!-- Industry Cards Grid (Notion-Style 3-Column Grid) -->
+      <!-- 23 Industry Cards Grid (Notion-Style 3-Column Grid) -->
       <div id="industry-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <!-- Card: DevOps & Cloud -->
-        <div onclick="openView('devops')" data-industry="devops" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <div 
+          onclick="openView('devops')" 
+          data-industry="devops" 
+          data-keywords="devops & cloud devops github commit to jenkins ci build unchecked code changes and unescaped sql can cause preventable outages. checks every code change before it goes live and stops the risky ones within seconds."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #EEF4FF; border: 1px solid #1A6BFF30; color: #1A6BFF;">
                 <i data-lucide="git-branch" class="w-5 h-5"></i>
               </div>
               <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-blue-50 text-[#1A6BFF] border-blue-200">
-                DevOps & Cloud
+                DevOps
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                DevOps automation
+                DevOps & Cloud
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Pre-release code checks</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">GitHub Commit to Jenkins CI Build</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Unchecked code changes and unescaped SQL can cause preventable outages.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Checks every code change before it goes live and stops the risky ones within seconds.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
             <span>Open case &amp; try demo</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: Healthcare -->
-        <div onclick="openView('healthcare')" data-industry="healthcare" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: Healthcare & Clinical -->
+        <div 
+          onclick="openView('healthcare')" 
+          data-industry="healthcare" 
+          data-keywords="healthcare & clinical healthcare appointment whatsapp notification & intake patients arrive unprepared or without required drivers, forcing procedures to be delayed or cancelled. reads the doctor's notes and sends the patient a simple whatsapp checklist the day before."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #ECFEFF; border: 1px solid #0891B230; color: #0891B2;">
                 <i data-lucide="heart-pulse" class="w-5 h-5"></i>
@@ -474,26 +581,40 @@
                 Healthcare
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                Healthcare automation
+                Healthcare & Clinical
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Patient visit preparation</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Appointment WhatsApp Notification & Intake</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Patients arrive unprepared or without required drivers, forcing procedures to be delayed or cancelled.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Reads the doctor's notes and sends the patient a simple WhatsApp checklist the day before.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
             <span>Open case &amp; try demo</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: E-Commerce -->
-        <div onclick="openView('ecommerce')" data-industry="ecommerce" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: E-Commerce & Retail -->
+        <div 
+          onclick="openView('ecommerce')" 
+          data-industry="ecommerce" 
+          data-keywords="e-commerce & retail e-commerce shopify order sms inventory slack alert abandoned cart email support desks spend hours answering repetitive delivery questions while shoppers with damaged packages wait. answers common order questions in seconds, and sends serious problems like damaged items to your team on slack."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #EEF2FF; border: 1px solid #4F46E530; color: #4F46E5;">
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>
@@ -502,26 +623,40 @@
                 E-Commerce
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                E-commerce support
+                E-Commerce & Retail
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Order tracking & support escalation</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Shopify Order SMS</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Inventory Slack Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Abandoned Cart Email</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Support desks spend hours answering repetitive delivery questions while shoppers with damaged packages wait.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Answers common order questions in seconds, and sends serious problems like damaged items to your team on Slack.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
             <span>Open case &amp; try demo</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: Manufacturing -->
-        <div onclick="openWorkflowModal('manufacturing')" data-industry="manufacturing" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: Manufacturing & Industrial -->
+        <div 
+          onclick="openIndustryDetail('manufacturing')" 
+          data-industry="manufacturing" 
+          data-keywords="manufacturing & industrial manufacturing machine downtime predictor inventory restock forecast maintenance ticket router unplanned machine failures stall production lines, while raw material stockouts cause emergency supply delays. analyzes sensor telemetry to predict component failure early, and forecasts raw material reorder points automatically."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FFFBEB; border: 1px solid #D9770630; color: #D97706;">
                 <i data-lucide="factory" class="w-5 h-5"></i>
@@ -530,54 +665,82 @@
                 Manufacturing
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                Manufacturing operations
+                Manufacturing & Industrial
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Downtime prediction & automated restock (2 automations)</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Machine Downtime Predictor</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Inventory Restock Forecast</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Maintenance Ticket Router</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Unplanned machine failures stall production lines, while raw material stockouts cause emergency supply delays.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Analyzes sensor telemetry to predict component failure early, and forecasts raw material reorder points automatically.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
-            <span>Inspect workflow specs</span>
+            <span>Workflow template available</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
         <!-- Card: Finance & Accounting -->
-        <div onclick="openWorkflowModal('finance')" data-industry="finance" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <div 
+          onclick="openIndustryDetail('finance')" 
+          data-industry="finance" 
+          data-keywords="finance & accounting finance unpaid invoice reminder stripe to quickbooks sync monthly expense report ocr receipts to notion finance teams spend hours writing awkward chasing emails for past-due invoices, resulting in delayed cash flow. monitors aging receivables with polite tiered reminders, and syncs payment receipts with quickbooks."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #ECFDF5; border: 1px solid #05966930; color: #059669;">
                 <i data-lucide="receipt" class="w-5 h-5"></i>
               </div>
               <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border-emerald-200">
-                Finance & Accounting
+                Finance
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                Finance & accounting
+                Finance & Accounting
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Invoice chaser & ledger sync (2 automations)</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Unpaid Invoice Reminder</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Stripe to QuickBooks Sync</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Monthly Expense Report</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">OCR Receipts to Notion</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Finance teams spend hours writing awkward chasing emails for past-due invoices, resulting in delayed cash flow.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Monitors aging receivables with polite tiered reminders, and syncs payment receipts with QuickBooks.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
-            <span>Inspect workflow specs</span>
+            <span>Workflow template available</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: Legal Tech -->
-        <div onclick="openWorkflowModal('legal')" data-industry="legal" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: Legal Tech & Compliance -->
+        <div 
+          onclick="openIndustryDetail('legal')" 
+          data-industry="legal" 
+          data-keywords="legal tech & compliance legal tech nda risk detector contract clause extractor gdpr violation alert court date reminder legal counsel is buried under standard vendor ndas, delaying vendor onboarding and partnership discussions. scans contract text for uncapped liability, non-standard indemnities, and overly broad ip terms, outputting a redline summary in slack."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F5F3FF; border: 1px solid #7C3AED30; color: #7C3AED;">
                 <i data-lucide="scale" class="w-5 h-5"></i>
@@ -586,54 +749,82 @@
                 Legal Tech
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                Legal contract review
+                Legal Tech & Compliance
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">NDA risk detection & clause extraction (2 automations)</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">NDA Risk Detector</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Contract Clause Extractor</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">GDPR Violation Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Court Date Reminder</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Legal counsel is buried under standard vendor NDAs, delaying vendor onboarding and partnership discussions.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Scans contract text for uncapped liability, non-standard indemnities, and overly broad IP terms, outputting a redline summary in Slack.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
-            <span>Inspect workflow specs</span>
+            <span>Workflow template available</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: HR & Talent -->
-        <div onclick="openWorkflowModal('hr')" data-industry="hr" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: HR & Talent Acquisition -->
+        <div 
+          onclick="openIndustryDetail('hr')" 
+          data-industry="hr" 
+          data-keywords="hr & talent acquisition hr & talent new job application parser notion job board poster recruiters spend 20+ hours a week sifting through hundreds of mismatched resumes, slowing down key hiring pipelines. parses candidate resumes, scores skills against job requirements, and dispatches automated interview calendar invites."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FDF2F8; border: 1px solid #DB277730; color: #DB2777;">
                 <i data-lucide="users" class="w-5 h-5"></i>
               </div>
               <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-pink-50 text-pink-800 border-pink-200">
-                HR & People
+                HR & Talent
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                HR & talent acquisition
+                HR & Talent Acquisition
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Resume parsing & interview booking (2 automations)</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">New Job Application Parser</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Notion Job Board Poster</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
               <p><strong class="text-[#0A0F1E]">Problem:</strong> Recruiters spend 20+ hours a week sifting through hundreds of mismatched resumes, slowing down key hiring pipelines.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Parses candidate resumes, scores skills against job requirements, and dispatches automated interview calendar invites.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
-            <span>Inspect workflow specs</span>
+            <span>Workflow template available</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
 
-        <!-- Card: Real Estate -->
-        <div onclick="openWorkflowModal('realestate')" data-industry="realestate" class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1">
+        <!-- Card: Real Estate & Property -->
+        <div 
+          onclick="openIndustryDetail('realestate')" 
+          data-industry="realestate" 
+          data-keywords="real estate & property real estate tenant screening summary lead scoring with mls data mortgage rate alert open house reminder property managers spend hours collecting paystubs and verifying credit history, while buyer inquiries go cold. aggregates tenant application documents, checks income-to-rent ratios, and automatically scores buyer inquiries against mls listings."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
           <div class="space-y-4">
+            <!-- Icon + Category Badge -->
             <div class="flex items-center justify-between">
               <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #EFF6FF; border: 1px solid #2563EB30; color: #2563EB;">
                 <i data-lucide="building-2" class="w-5 h-5"></i>
@@ -642,19 +833,657 @@
                 Real Estate
               </span>
             </div>
+
+            <!-- Title & Actual Workflows List -->
             <div>
               <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
-                Real estate operations
+                Real Estate & Property
               </h2>
-              <span class="text-xs font-mono text-[#0A0F1E]/50">Tenant screening & MLS lead scoring (2 automations)</span>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Tenant Screening Summary</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Lead Scoring with MLS Data</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Mortgage Rate Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Open House Reminder</span>
+              </div>
             </div>
+
+            <!-- Problem & Solution -->
             <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
-              <p><strong class="text-[#0A0F1E]">Problem:</strong> Property managers spend hours collecting paystubs and verifying credit history, while buyer leads go cold.</p>
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Property managers spend hours collecting paystubs and verifying credit history, while buyer inquiries go cold.</p>
               <p><strong class="text-[#1A6BFF]">Solution:</strong> Aggregates tenant application documents, checks income-to-rent ratios, and automatically scores buyer inquiries against MLS listings.</p>
             </div>
           </div>
+
+          <!-- Action Footer -->
           <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
-            <span>Inspect workflow specs</span>
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: AI & Machine Learning -->
+        <div 
+          onclick="openIndustryDetail('aiml')" 
+          data-industry="aiml" 
+          data-keywords="ai & machine learning ai & ml customer sentiment analysis product description generator auto-tag blog posts resume screening customer feedback and incoming tickets arrive in huge volumes without sentiment categorization or prioritization. classifies inbound customer feedback sentiment, tags product copy, and auto-routes urgent tickets to managers."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FAF5FF; border: 1px solid #9333EA30; color: #9333EA;">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 border-purple-200">
+                AI & ML
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                AI & Machine Learning
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Customer Sentiment Analysis</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Product Description Generator</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Auto-Tag Blog Posts</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Resume Screening</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Customer feedback and incoming tickets arrive in huge volumes without sentiment categorization or prioritization.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Classifies inbound customer feedback sentiment, tags product copy, and auto-routes urgent tickets to managers.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Automotive & Fleet -->
+        <div 
+          onclick="openIndustryDetail('automotive')" 
+          data-industry="automotive" 
+          data-keywords="automotive & fleet automotive connected car alert dealer lead qualifier adas event annotator recall notice tracker commercial fleets experience roadside breakdowns due to unaddressed dashboard warning codes and maintenance lag. reads connected vehicle diagnostic trouble codes in real time and routes urgent service alerts to fleet supervisors."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FEF2F2; border: 1px solid #DC262630; color: #DC2626;">
+                <i data-lucide="car" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-red-50 text-red-800 border-red-200">
+                Automotive
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Automotive & Fleet
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Connected Car Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Dealer Lead Qualifier</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">ADAS Event Annotator</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Recall Notice Tracker</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Commercial fleets experience roadside breakdowns due to unaddressed dashboard warning codes and maintenance lag.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Reads connected vehicle diagnostic trouble codes in real time and routes urgent service alerts to fleet supervisors.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Agriculture & AgriTech -->
+        <div 
+          onclick="openIndustryDetail('agriculture')" 
+          data-industry="agriculture" 
+          data-keywords="agriculture & agritech agriculture crop yield predictor drone image crop health greenhouse climate controller irrigation optimizer farms fail to detect irrigation dry spots and fungal spread early, losing valuable crop yield before harvest. processes drone multispectral imagery to map stressed field zones, and automatically adjusts greenhouse misting and ventilation."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F0FDF4; border: 1px solid #16A34A30; color: #16A34A;">
+                <i data-lucide="sprout" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border-emerald-200">
+                Agriculture
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Agriculture & AgriTech
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Crop Yield Predictor</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Drone Image Crop Health</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Greenhouse Climate Controller</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Irrigation Optimizer</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Farms fail to detect irrigation dry spots and fungal spread early, losing valuable crop yield before harvest.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Processes drone multispectral imagery to map stressed field zones, and automatically adjusts greenhouse misting and ventilation.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Energy & Utilities -->
+        <div 
+          onclick="openIndustryDetail('energy')" 
+          data-industry="energy" 
+          data-keywords="energy & utilities energy energy consumption anomaly detector battery health monitor ev charging station locator industrial plants pay steep peak-demand penalty fees when heavy machinery draws sudden unexpected power surges. monitors smart meters, detects anomalous usage spikes before penalty tariffs trigger, and guides ev fleets to available chargers."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FEFCE8; border: 1px solid #CA8A0430; color: #CA8A04;">
+                <i data-lucide="zap" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-yellow-50 text-yellow-800 border-yellow-200">
+                Energy
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Energy & Utilities
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Energy Consumption Anomaly Detector</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Battery Health Monitor</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">EV Charging Station Locator</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Industrial plants pay steep peak-demand penalty fees when heavy machinery draws sudden unexpected power surges.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Monitors smart meters, detects anomalous usage spikes before penalty tariffs trigger, and guides EV fleets to available chargers.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: IoT & Connected Devices -->
+        <div 
+          onclick="openIndustryDetail('iot')" 
+          data-industry="iot" 
+          data-keywords="iot & connected devices iot predictive maintenance alert environmental data dashboard edge device log compressor mqtt monitor managing distributed hardware sensors across facilities leads to delayed fault detection and data log bottlenecks. collects mqtt sensor telemetry, compresses edge device logs, and triggers proactive maintenance before hardware failures."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F0F9FF; border: 1px solid #0284C730; color: #0284C7;">
+                <i data-lucide="cpu" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 border-sky-200">
+                IoT
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                IoT & Connected Devices
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Predictive Maintenance Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Environmental Data Dashboard</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Edge Device Log Compressor</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">MQTT Monitor</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Managing distributed hardware sensors across facilities leads to delayed fault detection and data log bottlenecks.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Collects MQTT sensor telemetry, compresses edge device logs, and triggers proactive maintenance before hardware failures.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Email Automation -->
+        <div 
+          onclick="openIndustryDetail('email')" 
+          data-industry="email" 
+          data-keywords="email automation email auto-reply to faqs follow-up emails daily email digest forward attachments to drive shared support and sales inboxes are overwhelmed with repetitive faq inquiries and scattered pdf attachments. parses incoming emails, automatically delivers answer templates with verified attachments, and logs leads in crm."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FFF7ED; border: 1px solid #EA580C30; color: #EA580C;">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-orange-50 text-orange-800 border-orange-200">
+                Email
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Email Automation
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Auto-Reply to FAQs</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Follow-Up Emails</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Daily Email Digest</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Forward Attachments to Drive</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Shared support and sales inboxes are overwhelmed with repetitive FAQ inquiries and scattered PDF attachments.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Parses incoming emails, automatically delivers answer templates with verified attachments, and logs leads in CRM.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Social Media Ops -->
+        <div 
+          onclick="openIndustryDetail('socialmedia')" 
+          data-industry="socialmedia" 
+          data-keywords="social media ops social media auto-post blogs to linkedin & x instagram competitor story alert tiktok comment auto-reply marketing teams waste hours manually re-posting and scheduling the same blog content across multiple social platforms. summarizes newly published articles into platform-optimized threads, scheduling them across linkedin and x automatically."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F0FDFA; border: 1px solid #0D948830; color: #0D9488;">
+                <i data-lucide="share-2" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border-teal-200">
+                Social Media
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Social Media Ops
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Auto-Post Blogs to LinkedIn & X</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Instagram Competitor Story Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">TikTok Comment Auto-Reply</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Marketing teams waste hours manually re-posting and scheduling the same blog content across multiple social platforms.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Summarizes newly published articles into platform-optimized threads, scheduling them across LinkedIn and X automatically.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Media & Publishing -->
+        <div 
+          onclick="openIndustryDetail('media')" 
+          data-industry="media" 
+          data-keywords="media & publishing media breaking news summarizer live stream chat moderator ad campaign performance alert content editorial desks struggle to monitor real-time wire services and moderate high-volume live stream chats. extracts breaking news highlights, flags toxic live chat spam in real time, and alerts ad leads on campaign dips."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #EEF2FF; border: 1px solid #6366F130; color: #6366F1;">
+                <i data-lucide="radio" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-800 border-indigo-200">
+                Media
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Media & Publishing
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Breaking News Summarizer</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Live Stream Chat Moderator</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Ad Campaign Performance Alert</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Content editorial desks struggle to monitor real-time wire services and moderate high-volume live stream chats.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Extracts breaking news highlights, flags toxic live chat spam in real time, and alerts ad leads on campaign dips.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Education & EdTech -->
+        <div 
+          onclick="openIndustryDetail('education')" 
+          data-industry="education" 
+          data-keywords="education & edtech education quiz auto-grader daily student motivation & check-in teachers and course creators spend hours grading repetitive quiz submissions rather than mentoring students. automatically grades student quiz answers against rubrics and sends encouraging progress updates via sms/email."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F8FAFC; border: 1px solid #47556930; color: #475569;">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border-slate-200">
+                Education
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Education & EdTech
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Quiz Auto-Grader</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Daily Student Motivation & Check-in</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Teachers and course creators spend hours grading repetitive quiz submissions rather than mentoring students.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Automatically grades student quiz answers against rubrics and sends encouraging progress updates via SMS/email.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Gaming & Esports -->
+        <div 
+          onclick="openIndustryDetail('gaming')" 
+          data-industry="gaming" 
+          data-keywords="gaming & esports gaming game bug triage discord welcome bot esports match alert player bug reports on discord and reddit are unorganized, making it difficult for game developers to prioritize fixes. extracts player crash logs, deduplicates bug submissions, and posts verified game issues directly to engineering boards."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F5F3FF; border: 1px solid #8B5CF630; color: #8B5CF6;">
+                <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-purple-50 text-purple-800 border-purple-200">
+                Gaming
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Gaming & Esports
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Game Bug Triage</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Discord Welcome Bot</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Esports Match Alert</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Player bug reports on Discord and Reddit are unorganized, making it difficult for game developers to prioritize fixes.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Extracts player crash logs, deduplicates bug submissions, and posts verified game issues directly to engineering boards.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Travel & Hospitality -->
+        <div 
+          onclick="openIndustryDetail('travel')" 
+          data-industry="travel" 
+          data-keywords="travel & hospitality travel flight price drop alert hotel review sentiment currency exchange estimator travelers miss time-sensitive airfare drops, and hotel managers receive negative reviews after guests have checked out. tracks flight route pricing changes, alerts travelers on dips, and detects guest dissatisfaction in real time."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F0F9FF; border: 1px solid #0284C730; color: #0284C7;">
+                <i data-lucide="plane" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 border-sky-200">
+                Travel
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Travel & Hospitality
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Flight Price Drop Alert</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Hotel Review Sentiment</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Currency Exchange Estimator</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Travelers miss time-sensitive airfare drops, and hotel managers receive negative reviews after guests have checked out.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Tracks flight route pricing changes, alerts travelers on dips, and detects guest dissatisfaction in real time.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Government & NGO -->
+        <div 
+          onclick="openIndustryDetail('government')" 
+          data-industry="government" 
+          data-keywords="government & ngo gov & ngo public form auto-triage public record email update public agencies have huge backlogs processing citizen service inquiries and paper applications. validates public form submissions, routes requests to the responsible department, and emails status updates to citizens."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F1F5F9; border: 1px solid #33415530; color: #334155;">
+                <i data-lucide="landmark" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border-slate-200">
+                Gov & NGO
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Government & NGO
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Public Form Auto-Triage</span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Public Record Email Update</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Public agencies have huge backlogs processing citizen service inquiries and paper applications.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Validates public form submissions, routes requests to the responsible department, and emails status updates to citizens.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Data Analytics -->
+        <div 
+          onclick="openIndustryDetail('analytics')" 
+          data-industry="analytics" 
+          data-keywords="data analytics analytics competitor price scraper & alert businesses lose sales when competitors adjust product pricing without team awareness. monitors competitor storefront pricing daily, flags price drops, and updates pricing dashboards automatically."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #ECFDF5; border: 1px solid #05966930; color: #059669;">
+                <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border-emerald-200">
+                Analytics
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Data Analytics
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Competitor Price Scraper & Alert</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Businesses lose sales when competitors adjust product pricing without team awareness.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Monitors competitor storefront pricing daily, flags price drops, and updates pricing dashboards automatically.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Creative Content -->
+        <div 
+          onclick="openIndustryDetail('creative')" 
+          data-industry="creative" 
+          data-keywords="creative content creative youtube transcript to blog post video creators spend days manually transcribing audio and rewriting videos into written articles. pulls youtube video transcripts, formats key chapters, and drafts seo-optimized blog posts for publishing."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #FFF1F2; border: 1px solid #E11D4830; color: #E11D48;">
+                <i data-lucide="video" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 border-rose-200">
+                Creative
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Creative Content
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">YouTube Transcript to Blog Post</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Video creators spend days manually transcribing audio and rewriting videos into written articles.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Pulls YouTube video transcripts, formats key chapters, and drafts SEO-optimized blog posts for publishing.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+          </div>
+        </div>
+
+        <!-- Card: Personal Productivity -->
+        <div 
+          onclick="openIndustryDetail('productivity')" 
+          data-industry="productivity" 
+          data-keywords="personal productivity productivity morning briefing email with calendar & weather professionals start their workday jumping between calendar, news, and task apps to get organized. compiles schedule, high-priority emails, and daily action items into a clean morning digest email."
+          class="industry-card group cursor-pointer bg-white rounded-2xl border border-[#E8EAF0] hover:border-[#1A6BFF] card-shadow p-7 transition duration-200 flex flex-col justify-between space-y-6 hover:-translate-y-1"
+        >
+          <div class="space-y-4">
+            <!-- Icon + Category Badge -->
+            <div class="flex items-center justify-between">
+              <div class="w-11 h-11 rounded-xl flex items-center justify-center transition group-hover:scale-105" style="background-color: #F8FAFC; border: 1px solid #64748B30; color: #64748B;">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border-slate-200">
+                Productivity
+              </span>
+            </div>
+
+            <!-- Title & Actual Workflows List -->
+            <div>
+              <h2 class="text-lg font-bold text-[#0A0F1E] font-display group-hover:text-[#1A6BFF] transition">
+                Personal Productivity
+              </h2>
+              <div class="pt-2 flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono bg-neutral-100 text-neutral-600 border border-neutral-200">Morning Briefing Email with Calendar & Weather</span>
+              </div>
+            </div>
+
+            <!-- Problem & Solution -->
+            <div class="space-y-2 text-xs leading-relaxed text-[#0A0F1E]/70">
+              <p><strong class="text-[#0A0F1E]">Problem:</strong> Professionals start their workday jumping between calendar, news, and task apps to get organized.</p>
+              <p><strong class="text-[#1A6BFF]">Solution:</strong> Compiles schedule, high-priority emails, and daily action items into a clean morning digest email.</p>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="pt-4 border-t border-[#E8EAF0] flex items-center justify-between text-xs font-bold text-[#1A6BFF]">
+            <span>Workflow template available</span>
             <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
           </div>
         </div>
@@ -2518,337 +3347,45 @@
 
   
   
+  
   // =========================================================
-  // INDUSTRY DIRECTORY DATA & WORKFLOW SPEC MODAL
+  // INDUSTRY DIRECTORY CONTROLLER (SEARCH & FILTER TABS)
   // =========================================================
-  const hubIndustriesDataset = [
-  {
-    "id": "devops",
-    "name": "DevOps & Cloud",
-    "cardTitle": "DevOps automation",
-    "category": "devops",
-    "categoryBadge": "DevOps & Cloud",
-    "icon": "git-branch",
-    "accentColor": "#1A6BFF",
-    "accentBg": "#EEF4FF",
-    "badgeClass": "bg-blue-50 text-[#1A6BFF] border-blue-200",
-    "hasFullCase": true,
-    "viewRoute": "devops",
-    "isSingle": true,
-    "subtitle": "Pre-release code checks",
-    "problem": "Unchecked code changes and unescaped SQL can cause preventable outages.",
-    "solution": "Checks every code change before it goes live and stops the risky ones within seconds.",
-    "tools": [
-      "GitHub",
-      "Jenkins CI",
-      "Slack"
-    ]
-  },
-  {
-    "id": "healthcare",
-    "name": "Healthcare",
-    "cardTitle": "Healthcare automation",
-    "category": "healthcare",
-    "categoryBadge": "Healthcare",
-    "icon": "heart-pulse",
-    "accentColor": "#0891B2",
-    "accentBg": "#ECFEFF",
-    "badgeClass": "bg-cyan-50 text-cyan-700 border-cyan-200",
-    "hasFullCase": true,
-    "viewRoute": "healthcare",
-    "isSingle": true,
-    "subtitle": "Patient visit preparation",
-    "problem": "Patients arrive unprepared or without required drivers, forcing procedures to be delayed or cancelled.",
-    "solution": "Reads the doctor's notes and sends the patient a simple WhatsApp checklist the day before.",
-    "tools": [
-      "EHR Systems",
-      "WhatsApp Business",
-      "Clinic Desk"
-    ]
-  },
-  {
-    "id": "ecommerce",
-    "name": "E-Commerce",
-    "cardTitle": "E-commerce support",
-    "category": "ecommerce",
-    "categoryBadge": "E-Commerce",
-    "icon": "shopping-bag",
-    "accentColor": "#4F46E5",
-    "accentBg": "#EEF2FF",
-    "badgeClass": "bg-indigo-50 text-indigo-700 border-indigo-200",
-    "hasFullCase": true,
-    "viewRoute": "ecommerce",
-    "isSingle": true,
-    "subtitle": "Order tracking & support escalation",
-    "problem": "Support desks spend hours answering repetitive delivery questions while shoppers with damaged packages wait.",
-    "solution": "Answers common order questions in seconds, and sends serious problems like damaged items to your team on Slack.",
-    "tools": [
-      "Shopify",
-      "FedEx Express",
-      "Slack"
-    ]
-  },
-  {
-    "id": "manufacturing",
-    "name": "Manufacturing",
-    "cardTitle": "Manufacturing operations",
-    "category": "manufacturing",
-    "categoryBadge": "Manufacturing",
-    "icon": "factory",
-    "accentColor": "#D97706",
-    "accentBg": "#FFFBEB",
-    "badgeClass": "bg-amber-50 text-amber-800 border-amber-200",
-    "hasFullCase": false,
-    "isSingle": false,
-    "subtitle": "Downtime prediction & automated restock (2 automations)",
-    "problem": "Unplanned machine failures stall production lines, while raw material stockouts cause emergency supply delays.",
-    "solution": "Analyzes sensor telemetry to predict component failure early, and forecasts raw material reorder points automatically.",
-    "tools": [
-      "Siemens IoT",
-      "PostgreSQL",
-      "Slack",
-      "ERP"
-    ],
-    "varieties": [
-      {
-        "title": "Machine Downtime & Predictive Maintenance",
-        "desc": "Monitors thermal/vibration telemetry and dispatches maintenance tickets before machine failure occurs.",
-        "trigger": "Vibration sensor spike on CNC Mill #4 exceeds threshold (>4.2 mm/s sustained for 3 minutes).",
-        "action": "Generates maintenance ticket #MNT-892, notifies shift lead on Slack #plant-ops, and reserves replacement spindle.",
-        "tools": [
-          "Siemens IoT",
-          "PostgreSQL",
-          "Slack",
-          "MES Systems"
-        ]
-      },
-      {
-        "title": "Automated Material Restock & PO Dispatch",
-        "desc": "Forecasts material run-rates and generates supplier purchase orders at safety thresholds.",
-        "trigger": "Sheet metal inventory drops below 3-day buffer threshold (85 units remaining).",
-        "action": "Generates draft PO #PO-4491, emails verified supplier, and logs scheduled delivery in ERP.",
-        "tools": [
-          "ERP / SAP",
-          "Supabase",
-          "Gmail",
-          "Slack"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "finance",
-    "name": "Finance & Accounting",
-    "cardTitle": "Finance & accounting",
-    "category": "finance",
-    "categoryBadge": "Finance & Accounting",
-    "icon": "receipt",
-    "accentColor": "#059669",
-    "accentBg": "#ECFDF5",
-    "badgeClass": "bg-emerald-50 text-emerald-800 border-emerald-200",
-    "hasFullCase": false,
-    "isSingle": false,
-    "subtitle": "Invoice chaser & ledger sync (2 automations)",
-    "problem": "Finance teams spend hours writing awkward chasing emails for past-due invoices, resulting in delayed cash flow.",
-    "solution": "Monitors aging receivables with polite tiered reminders, and syncs payment receipts with QuickBooks.",
-    "tools": [
-      "QuickBooks",
-      "Stripe",
-      "Slack",
-      "Google Sheets"
-    ],
-    "varieties": [
-      {
-        "title": "Overdue Invoice Chaser & Payment Recovery",
-        "desc": "Sends polite automated payment nudges for aging invoices and alerts finance on Slack.",
-        "trigger": "Invoice #INV-9204 ($4,250) reaches 15 days past due in QuickBooks.",
-        "action": "Sends gentle payment reminder email with Stripe payment link, notifies account executive in Slack #finance.",
-        "tools": [
-          "QuickBooks",
-          "Stripe",
-          "Slack",
-          "Gmail"
-        ]
-      },
-      {
-        "title": "Receipt OCR & Multi-Currency Ledger Sync",
-        "desc": "Extracts line items and taxes from expense receipts, creating verified ledger entries.",
-        "trigger": "Employee uploads PDF receipt for $320 hotel booking to expense folder.",
-        "action": "OCR extracts vendor and taxes, validates against expense policy, and creates approved journal entry.",
-        "tools": [
-          "Notion",
-          "QuickBooks",
-          "Stripe",
-          "Google Drive"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "legal",
-    "name": "Legal Tech",
-    "cardTitle": "Legal contract review",
-    "category": "legal",
-    "categoryBadge": "Legal Tech",
-    "icon": "scale",
-    "accentColor": "#7C3AED",
-    "accentBg": "#F5F3FF",
-    "badgeClass": "bg-violet-50 text-violet-800 border-violet-200",
-    "hasFullCase": false,
-    "isSingle": false,
-    "subtitle": "NDA risk detection & clause extraction (2 automations)",
-    "problem": "Legal counsel is buried under standard vendor NDAs, delaying vendor onboarding and partnership discussions.",
-    "solution": "Scans contract text for uncapped liability, non-standard indemnities, and overly broad IP terms, outputting a redline summary in Slack.",
-    "tools": [
-      "Google Drive",
-      "OpenAI",
-      "Slack",
-      "DocuSign"
-    ],
-    "varieties": [
-      {
-        "title": "AI Contract & NDA Risk Clause Extractor",
-        "desc": "Flags aggressive liability terms and suggests company-approved standard replacements.",
-        "trigger": "Vendor sends 12-page Master Services Agreement PDF via email.",
-        "action": "Flags 2 high-risk indemnity clauses, suggests company standard replacement text, routes summary to #legal-ops.",
-        "tools": [
-          "Google Drive",
-          "OpenAI",
-          "Slack",
-          "DocuSign"
-        ]
-      },
-      {
-        "title": "Regulatory Compliance & Court Date Monitor",
-        "desc": "Tracks statutory GDPR filing windows and court deadlines with automated countdown alerts.",
-        "trigger": "New court notice or compliance update uploaded to case repository.",
-        "action": "Schedules 14-day, 7-day, and 48-hour reminder alerts with lead counsel, logs filing checklist in Airtable.",
-        "tools": [
-          "Airtable",
-          "Google Calendar",
-          "Slack",
-          "Gmail"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "hr",
-    "name": "HR & Talent",
-    "cardTitle": "HR & talent acquisition",
-    "category": "hr",
-    "categoryBadge": "HR & People",
-    "icon": "users",
-    "accentColor": "#DB2777",
-    "accentBg": "#FDF2F8",
-    "badgeClass": "bg-pink-50 text-pink-800 border-pink-200",
-    "hasFullCase": false,
-    "isSingle": false,
-    "subtitle": "Resume parsing & interview booking (2 automations)",
-    "problem": "Recruiters spend 20+ hours a week sifting through hundreds of mismatched resumes, slowing down key hiring pipelines.",
-    "solution": "Parses candidate resumes, scores skills against job requirements, and dispatches automated interview calendar invites.",
-    "tools": [
-      "Notion",
-      "Calendly",
-      "Slack",
-      "Gmail"
-    ],
-    "varieties": [
-      {
-        "title": "Resume Parsing & Role Fit Scoring Engine",
-        "desc": "Extracts years of experience and tech stacks, ranking candidate fit in Notion/ATS.",
-        "trigger": "Candidate submits resume PDF for Senior Full-Stack Engineer opening.",
-        "action": "Extracts 6+ years React/Node experience, awards 92% role match, posts applicant profile to #hiring-team.",
-        "tools": [
-          "Greenhouse / Notion",
-          "OpenAI",
-          "Slack",
-          "Gmail"
-        ]
-      },
-      {
-        "title": "Automated Job Board Distribution & Invites",
-        "desc": "Syncs approved openings to job boards and sends Calendly booking links to top applicants.",
-        "trigger": "Hiring manager marks candidate as \"Approved for First Round\" in Notion.",
-        "action": "Dispatches personalized email with Calendly link and logs interview slot in hiring dashboard.",
-        "tools": [
-          "Notion",
-          "Calendly",
-          "Gmail",
-          "Slack"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "realestate",
-    "name": "Real Estate",
-    "cardTitle": "Real estate operations",
-    "category": "realestate",
-    "categoryBadge": "Real Estate",
-    "icon": "building-2",
-    "accentColor": "#2563EB",
-    "accentBg": "#EFF6FF",
-    "badgeClass": "bg-blue-50 text-blue-800 border-blue-200",
-    "hasFullCase": false,
-    "isSingle": false,
-    "subtitle": "Tenant screening & MLS lead scoring (2 automations)",
-    "problem": "Property managers spend hours collecting paystubs and verifying credit history, while buyer leads go cold.",
-    "solution": "Aggregates tenant application documents, checks income-to-rent ratios, and automatically scores buyer inquiries against MLS listings.",
-    "tools": [
-      "Airtable",
-      "Twilio SMS",
-      "DocuSign",
-      "Slack"
-    ],
-    "varieties": [
-      {
-        "title": "Tenant Screening & Credit Summary Generator",
-        "desc": "Verifies applicant income, checks background credentials, and outputs an approval scorecard.",
-        "trigger": "Applicant submits rental application for Apt 4B ($2,400/mo).",
-        "action": "Verifies 3.2x income ratio, verifies clean credit score, alerts leasing agent on Slack with one-click lease draft.",
-        "tools": [
-          "Airtable",
-          "DocuSign",
-          "Slack",
-          "Gmail"
-        ]
-      },
-      {
-        "title": "MLS Lead Scoring & Open House Follow-up",
-        "desc": "Matches buyer budgets with active MLS listings, triggering instant SMS open house invites.",
-        "trigger": "Buyer inquires about 3-bedroom suburban property on web portal.",
-        "action": "Matches 2 nearby active listings, dispatches tailored SMS follow-up, schedules open house reminder.",
-        "tools": [
-          "MLS API",
-          "Twilio SMS",
-          "HubSpot",
-          "Google Sheets"
-        ]
-      }
-    ]
-  }
-];
+  let hubActiveIndustry = 'all';
+  let hubSearchQuery = '';
 
-  let hubCurrentModalIndustry = null;
-  let hubCurrentModalVarietyIndex = 0;
+  function filterIndustry(indId) {
+    hubActiveIndustry = indId;
 
-  function filterIndustry(category) {
-    const cards = document.querySelectorAll('.industry-card');
     const tabs = document.querySelectorAll('.filter-tab');
-
     tabs.forEach(t => {
       t.className = "filter-tab px-3.5 py-1.5 rounded-lg text-xs font-medium text-[#0A0F1E]/70 hover:bg-[#F4F5F8] hover:text-[#0A0F1E] transition shrink-0";
     });
 
-    const activeTab = document.getElementById('filter-' + category);
+    const activeTab = document.getElementById('filter-' + indId);
     if (activeTab) {
       activeTab.className = "filter-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#0A0F1E] text-white shadow-xs transition shrink-0";
     }
 
+    applyHubFilters();
+  }
+
+  function handleHubSearch(query) {
+    hubSearchQuery = (query || '').toLowerCase().trim();
+    applyHubFilters();
+  }
+
+  function applyHubFilters() {
+    const cards = document.querySelectorAll('.industry-card');
+
     cards.forEach(card => {
       const ind = card.getAttribute('data-industry');
-      if (category === 'all' || ind === category) {
+      const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+
+      const matchesInd = (hubActiveIndustry === 'all' || ind === hubActiveIndustry);
+      const matchesSearch = (!hubSearchQuery || keywords.includes(hubSearchQuery));
+
+      if (matchesInd && matchesSearch) {
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');
@@ -2856,113 +3393,13 @@
     });
   }
 
-  function openWorkflowModal(industryId) {
-    const ind = hubIndustriesDataset.find(item => item.id === industryId);
-    if (!ind || !ind.varieties || ind.varieties.length === 0) return;
-
-    hubCurrentModalIndustry = ind;
-    hubCurrentModalVarietyIndex = 0;
-
-    // Set Header
-    const nameEl = document.getElementById('modal-industry-name');
-    const descEl = document.getElementById('modal-industry-desc');
-    const tagEl = document.getElementById('modal-category-tag');
-    const iconWrap = document.getElementById('modal-icon-wrap');
-    const iconEl = document.getElementById('modal-icon');
-
-    if (nameEl) nameEl.innerText = ind.name;
-    if (descEl) descEl.innerText = ind.subtitle;
-    if (tagEl) {
-      tagEl.innerText = ind.categoryBadge;
-      tagEl.className = `text-[10px] font-bold px-2.5 py-0.5 rounded-full ${ind.badgeClass}`;
-    }
-    if (iconWrap) {
-      iconWrap.style.backgroundColor = ind.accentBg;
-      iconWrap.style.color = ind.accentColor;
-    }
-    if (iconEl) {
-      iconEl.setAttribute('data-lucide', ind.icon);
-    }
-
-    // Set Tabs Titles
-    const tab0 = document.getElementById('modal-tab-0');
-    const tab1 = document.getElementById('modal-tab-1');
-    if (tab0 && ind.varieties[0]) tab0.innerText = `1. ${ind.varieties[0].title.split('&')[0].trim()}`;
-    if (tab1 && ind.varieties[1]) tab1.innerText = `2. ${ind.varieties[1].title.split('&')[0].trim()}`;
-
-    switchModalVariety(0);
-
-    const modal = document.getElementById('workflow-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-    }
-    if (window.lucide) lucide.createIcons();
-  }
-
-  function switchModalVariety(index) {
-    if (!hubCurrentModalIndustry || !hubCurrentModalIndustry.varieties || !hubCurrentModalIndustry.varieties[index]) return;
-    hubCurrentModalVarietyIndex = index;
-    const v = hubCurrentModalIndustry.varieties[index];
-
-    // Tab styling
-    const tab0 = document.getElementById('modal-tab-0');
-    const tab1 = document.getElementById('modal-tab-1');
-    if (tab0) {
-      tab0.className = index === 0 
-        ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1A6BFF] text-white shadow-2xs transition"
-        : "px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-600 hover:bg-neutral-100 transition";
-    }
-    if (tab1) {
-      tab1.className = index === 1 
-        ? "px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1A6BFF] text-white shadow-2xs transition"
-        : "px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-600 hover:bg-neutral-100 transition";
-    }
-
-    // Update Content
-    const vTag = document.getElementById('modal-variety-tag');
-    const vTitle = document.getElementById('modal-variety-title');
-    const vDesc = document.getElementById('modal-variety-desc');
-    const probEl = document.getElementById('modal-problem');
-    const solEl = document.getElementById('modal-solution');
-    const trigEl = document.getElementById('modal-trigger');
-    const actEl = document.getElementById('modal-action');
-    const toolsWrap = document.getElementById('modal-tools');
-
-    if (vTag) vTag.innerText = `Automation ${index + 1}`;
-    if (vTitle) vTitle.innerText = v.title;
-    if (vDesc) vDesc.innerText = v.desc;
-    if (probEl) probEl.innerText = hubCurrentModalIndustry.problem;
-    if (solEl) solEl.innerText = hubCurrentModalIndustry.solution;
-    if (trigEl) trigEl.innerText = v.trigger;
-    if (actEl) actEl.innerText = v.action;
-
-    if (toolsWrap) {
-      toolsWrap.innerHTML = v.tools.map(t => `
-        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-neutral-100 text-neutral-700 border border-neutral-200">
-          ${t}
-        </span>
-      `).join('');
-    }
-
-    if (window.lucide) lucide.createIcons();
-  }
-
-  function closeWorkflowModal() {
-    const modal = document.getElementById('workflow-modal');
-    if (modal) {
-      modal.classList.add('hidden');
+  function openIndustryDetail(indId) {
+    // Scrolls to the card and gently highlights it
+    const card = document.querySelector(`[data-industry="${indId}"]`);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
-
-  // Close modal on click outside
-  document.addEventListener('click', (e) => {
-    const modal = document.getElementById('workflow-modal');
-    if (modal && !modal.classList.contains('hidden')) {
-      if (e.target === modal) {
-        closeWorkflowModal();
-      }
-    }
-  });
 
 
   // =========================================================
@@ -4814,214 +5251,6 @@
     mobileBtn.addEventListener('click', () => toggleMobileMenu());
   }
 </script>
-
-  <!-- ======================================================= -->
-  <!-- INTERACTIVE WORKFLOW MODAL (Notion-Grade Preview)       -->
-  <!-- ======================================================= -->
-  <div id="workflow-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-200">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border border-[var(--border)] overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-150">
-      
-      <!-- Modal Header -->
-      <div class="p-6 border-b border-[var(--border)] flex items-start justify-between bg-neutral-50/50">
-        <div class="flex items-center space-x-3">
-          <div id="modal-icon-wrap" class="w-12 h-12 rounded-xl flex items-center justify-center bg-blue-50 text-[#1A6BFF]">
-            <i id="modal-icon" data-lucide="layers" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <div class="flex items-center space-x-2">
-              <h3 id="modal-industry-name" class="text-lg font-bold text-[#0A0F1E] font-display">Industry Name</h3>
-              <span id="modal-category-tag" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#1A6BFF] border border-blue-200">Category</span>
-            </div>
-            <p id="modal-industry-desc" class="text-xs text-neutral-500 mt-0.5">Industry automation overview</p>
-          </div>
-        </div>
-        <button type="button" onclick="closeWorkflowModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-800 hover:bg-neutral-200/60 transition">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Variety Selector Tabs -->
-      <div class="px-6 pt-4 pb-2 border-b border-[var(--border)] bg-white flex items-center space-x-2">
-        <span class="text-xs font-semibold text-neutral-500">Automation:</span>
-        <button id="modal-tab-0" onclick="switchModalVariety(0)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1A6BFF] text-white shadow-2xs transition">
-          Automation 1
-        </button>
-        <button id="modal-tab-1" onclick="switchModalVariety(1)" class="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-600 hover:bg-neutral-100 transition">
-          Automation 2
-        </button>
-      </div>
-
-      <!-- Modal Body (Scrollable) -->
-      <div class="p-6 overflow-y-auto space-y-5 text-xs text-neutral-700 leading-relaxed font-sans">
-        
-        <!-- Variety Title & Tag -->
-        <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-1">
-          <div class="flex items-center justify-between">
-            <span id="modal-variety-tag" class="text-[10px] font-bold uppercase tracking-wider text-blue-700">Automation Focus</span>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white border border-blue-200 text-blue-800">Sample data</span>
-          </div>
-          <h4 id="modal-variety-title" class="text-sm font-bold text-[#0A0F1E]">Automation Title</h4>
-          <p id="modal-variety-desc" class="text-xs text-neutral-600">Brief explanation of what this automation executes.</p>
-        </div>
-
-        <!-- Problem & Solution Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-3.5 rounded-xl border border-rose-100 bg-rose-50/40 space-y-1.5">
-            <div class="flex items-center space-x-1.5 text-rose-700 font-semibold text-xs">
-              <i data-lucide="alert-circle" class="w-4 h-4"></i>
-              <span>The Problem</span>
-            </div>
-            <p id="modal-problem" class="text-neutral-600 leading-relaxed text-xs">The problem statement goes here.</p>
-          </div>
-          <div class="p-3.5 rounded-xl border border-emerald-100 bg-emerald-50/40 space-y-1.5">
-            <div class="flex items-center space-x-1.5 text-emerald-700 font-semibold text-xs">
-              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-              <span>Automated Solution</span>
-            </div>
-            <p id="modal-solution" class="text-neutral-600 leading-relaxed text-xs">The automation solution goes here.</p>
-          </div>
-        </div>
-
-        <!-- Workflow Execution Simulation -->
-        <div class="space-y-2">
-          <div class="text-xs font-bold text-neutral-800 flex items-center justify-between">
-            <span>Workflow Execution Flow (n8n Engine):</span>
-            <span class="text-[10px] font-mono text-emerald-700 font-semibold">Status: Ready to deploy</span>
-          </div>
-          <div class="p-4 rounded-xl bg-neutral-900 text-neutral-200 font-mono text-[11px] space-y-3 border border-neutral-800">
-            <div class="space-y-1">
-              <span class="text-neutral-400 block text-[10px] uppercase">1. Trigger Event (Input):</span>
-              <div id="modal-trigger" class="p-2.5 rounded bg-black/50 border border-neutral-800 text-emerald-400">
-                Trigger details here.
-              </div>
-            </div>
-            <div class="space-y-1">
-              <span class="text-neutral-400 block text-[10px] uppercase">2. Automated Execution (Actions Taken):</span>
-              <div id="modal-action" class="p-2.5 rounded bg-black/50 border border-neutral-800 text-blue-300">
-                Action output here.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Connected Tools Strip -->
-        <div class="pt-2 flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-neutral-700">Connected Tools:</span>
-            <div id="modal-tools" class="flex items-center gap-1.5 flex-wrap">
-              <!-- Tools pills injected via JS -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="p-4 border-t border-[var(--border)] bg-neutral-50/70 flex items-center justify-between gap-3">
-        <span class="text-[11px] text-neutral-500 font-sans">Sample blueprint based on EnlightLab n8n templates.</span>
-        <button type="button" onclick="closeWorkflowModal()" class="btn-primary text-xs py-2 px-4 flex items-center space-x-1.5">
-          <span>Close</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-        <button type="button" onclick="closeWorkflowModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-800 hover:bg-neutral-200/60 transition">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Variety Selector Tabs -->
-      <div class="px-6 pt-4 pb-2 border-b border-[var(--border)] bg-white flex items-center space-x-2">
-        <span class="text-xs font-semibold text-neutral-500">Automation:</span>
-        <button id="modal-tab-0" onclick="switchModalVariety(0)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1A6BFF] text-white shadow-2xs transition">
-          Variety 1
-        </button>
-        <button id="modal-tab-1" onclick="switchModalVariety(1)" class="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-600 hover:bg-neutral-100 transition">
-          Variety 2
-        </button>
-      </div>
-
-      <!-- Modal Body (Scrollable) -->
-      <div class="p-6 overflow-y-auto space-y-5 text-xs text-neutral-700 leading-relaxed font-sans">
-        
-        <!-- Variety Title & Tag -->
-        <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-1">
-          <div class="flex items-center justify-between">
-            <span id="modal-variety-tag" class="text-[10px] font-bold uppercase tracking-wider text-blue-700">Sub-Industry Automation</span>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white border border-blue-200 text-blue-800">Sample data</span>
-          </div>
-          <h4 id="modal-variety-title" class="text-sm font-bold text-[#0A0F1E]">Automation Variety Title</h4>
-          <p id="modal-variety-desc" class="text-xs text-neutral-600">Brief explanation of what this automation executes.</p>
-        </div>
-
-        <!-- Problem & Solution Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-3.5 rounded-xl border border-rose-100 bg-rose-50/40 space-y-1.5">
-            <div class="flex items-center space-x-1.5 text-rose-700 font-semibold text-xs">
-              <i data-lucide="alert-circle" class="w-4 h-4"></i>
-              <span>The Manual Problem</span>
-            </div>
-            <p id="modal-problem" class="text-neutral-600 leading-relaxed text-xs">The problem statement goes here.</p>
-          </div>
-          <div class="p-3.5 rounded-xl border border-emerald-100 bg-emerald-50/40 space-y-1.5">
-            <div class="flex items-center space-x-1.5 text-emerald-700 font-semibold text-xs">
-              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-              <span>Automated Solution</span>
-            </div>
-            <p id="modal-solution" class="text-neutral-600 leading-relaxed text-xs">The automation solution goes here.</p>
-          </div>
-        </div>
-
-        <!-- Workflow Execution Simulation -->
-        <div class="space-y-2">
-          <div class="text-xs font-bold text-neutral-800 flex items-center justify-between">
-            <span>Workflow Execution Flow (n8n Engine):</span>
-            <span class="text-[10px] font-mono text-emerald-700 font-semibold">Status: Ready to deploy</span>
-          </div>
-          <div class="p-4 rounded-xl bg-neutral-900 text-neutral-200 font-mono text-[11px] space-y-3 border border-neutral-800">
-            <div class="space-y-1">
-              <span class="text-neutral-400 block text-[10px] uppercase">1. Trigger Event (Input):</span>
-              <div id="modal-trigger" class="p-2.5 rounded bg-black/50 border border-neutral-800 text-emerald-400">
-                Trigger details here.
-              </div>
-            </div>
-            <div class="space-y-1">
-              <span class="text-neutral-400 block text-[10px] uppercase">2. Automated Execution (Actions Taken):</span>
-              <div id="modal-action" class="p-2.5 rounded bg-black/50 border border-neutral-800 text-blue-300">
-                Action output here.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Connected Tools Strip -->
-        <div class="pt-2 flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-neutral-700">Connected Tools:</span>
-            <div id="modal-tools" class="flex items-center gap-1.5 flex-wrap">
-              <!-- Tools pills injected via JS -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="p-4 border-t border-[var(--border)] bg-neutral-50/70 flex items-center justify-between gap-3">
-        <span class="text-[11px] text-neutral-500 font-sans">Sample blueprint based on EnlightLab n8n templates.</span>
-        <div class="flex items-center space-x-2">
-          <button type="button" onclick="closeWorkflowModal()" class="btn-secondary text-xs py-2 px-3.5">
-            Close
-          </button>
-          <button type="button" onclick="closeWorkflowModal()" class="btn-primary text-xs py-2 px-4 flex items-center space-x-1.5">
-            <span>Got it</span>
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 </body>
 </html>
+
