@@ -5726,10 +5726,15 @@
         sampleInput: {
           event: 'charge.succeeded',
           customer: 'Acme Logistics LLC',
+          customer_name: 'Acme Logistics LLC',
+          company: 'Acme Logistics LLC',
           amount_usd: 1420.00,
+          amount: 142000,
           fee_usd: 41.48,
+          fee: 4148,
           tax_usd: 113.60,
-          invoice_ref: 'INV-8392'
+          invoice_ref: 'INV-8392',
+          invoice_number: 'INV-8392'
         },
         step1: 'Stripe payment event received via secure webhook trigger',
         step2: 'Gemini AI balances debit clearing, merchant fees, revenue, and tax liabilities',
