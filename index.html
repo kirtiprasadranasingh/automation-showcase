@@ -3300,6 +3300,13 @@
       if (activeNav) {
         activeNav.className = "text-xs font-semibold px-2.5 py-1.5 rounded-lg text-[#1A6BFF] bg-[#EEF4FF] transition" + (viewName === 'hub' ? '' : ' hidden sm:inline');
       }
+      if (viewName === 'devops') {
+        if (typeof setDevopsVideoScenario === 'function') setDevopsVideoScenario('risky');
+      } else if (viewName === 'healthcare') {
+        if (typeof setHCVideoScenario === 'function') setHCVideoScenario('cardio');
+      } else if (viewName === 'ecommerce') {
+        if (typeof setEcomVideoScenario === 'function') setEcomVideoScenario('tracking');
+      }
     } else if (typeof industryCases !== 'undefined' && industryCases[viewName]) {
       // It is one of the 20 industry cases
       if (caseViewEl) {
@@ -8225,15 +8232,16 @@
   }
 
   function playCaseVideo() {
+    if (typeof caseVideoState === 'undefined') return;
     caseVideoState.isPlaying = true;
     if (caseVideoState.timer) clearInterval(caseVideoState.timer);
     caseVideoState.timer = setInterval(() => {
-      caseVideoState.currentTime += 0.5;
+      caseVideoState.currentTime += 0.1;
       if (caseVideoState.currentTime >= caseVideoState.duration) {
         caseVideoState.currentTime = 0;
       }
       updateCaseVideoUI();
-    }, 500);
+    }, 100);
   }
 
   function pauseCaseVideo() {
@@ -8247,13 +8255,17 @@
 
   function seekCaseVideo(seconds) {
     if (typeof caseVideoState === 'undefined') return;
-    caseVideoState.currentTime = seconds;
+    caseVideoState.currentTime = Math.max(0, Math.min(seconds, caseVideoState.duration));
+    caseVideoState.currentScene = -1;
     renderCaseVideoScene(true);
+    playCaseVideo();
   }
 
   function setCaseVideoScenario(scenarioId) {
     if (typeof caseVideoState === 'undefined') return;
     caseVideoState.scenario = scenarioId;
+    caseVideoState.currentTime = 0;
+    caseVideoState.currentScene = -1;
     const data = (typeof industryCases !== 'undefined' && industryCases[currentCaseId]) || (typeof caseIndustryScenes !== 'undefined' && caseIndustryScenes[currentCaseId]);
     if (data && data.varieties) {
       data.varieties.forEach(v => {
@@ -8267,7 +8279,8 @@
         }
       });
     }
-    seekCaseVideo(0);
+    renderCaseVideoScene(true);
+    playCaseVideo();
   }
 
   function loadIndustryCase(indId) {
@@ -8407,6 +8420,11 @@
         btn.innerHTML = '<span class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded ' + (i === idx ? 'bg-white/20 text-white' : 'bg-neutral-100 text-neutral-500') + '">' + (i + 1) + '</span><span>' + escapeHtml(varietyItem.name) + '</span>';
       }
     });
+
+    // Sync Video Walkthrough with selected variety
+    if (typeof setCaseVideoScenario === 'function' && v.id) {
+      setCaseVideoScenario(v.id);
+    }
 
     // Update Variety Header
     const varBadge = document.getElementById('case-active-variety-badge');
