@@ -597,11 +597,68 @@
       </nav>
 
       <!-- Action Button -->
-      <div class="flex items-center space-x-3">
-        <button type="button" onclick="handleTryDemoClick()" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-semibold bg-[#0A4ECC] text-white hover:bg-[#073BA0] transition shadow-2xs cursor-pointer">
+      <div class="relative flex items-center space-x-3" id="try-demo-dropdown-container">
+        <button type="button" id="try-demo-toggle-btn" onclick="toggleTryDemoMenu(event)" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-semibold bg-[#0A4ECC] text-white hover:bg-[#073BA0] transition shadow-2xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0A4ECC]/40">
           <span>Try demo</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          <i data-lucide="chevron-down" id="try-demo-chevron" class="w-3.5 h-3.5 transition-transform duration-200"></i>
         </button>
+
+        <!-- Dropdown Menu: Select Industry / Automation to Try Demo -->
+        <div id="try-demo-menu" class="hidden absolute right-0 top-full mt-2 w-72 bg-white rounded-2xl border border-[#E2E8F0] shadow-xl p-2 z-50 text-left transition-all">
+          <div class="px-3 py-2 text-[11px] font-bold text-neutral-400 uppercase tracking-wider border-b border-neutral-100 mb-1">
+            Select a live demo
+          </div>
+          
+          <button type="button" onclick="selectDemoIndustry('sql', 'sql-demo')" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] transition text-left group">
+            <div class="w-8 h-8 rounded-lg bg-[#EEF4FF] text-[#0A4ECC] flex items-center justify-center shrink-0">
+              <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-[#0A0F1E] group-hover:text-[#0A4ECC] transition">Data and reporting</div>
+              <div class="text-[11px] text-neutral-500 truncate">Ask plain English questions & charts</div>
+            </div>
+          </button>
+
+          <button type="button" onclick="selectDemoIndustry('dossier', 'dossier-demo')" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] transition text-left group">
+            <div class="w-8 h-8 rounded-lg bg-[#EEF4FF] text-[#0A4ECC] flex items-center justify-center shrink-0">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-[#0A0F1E] group-hover:text-[#0A4ECC] transition">Sales briefings</div>
+              <div class="text-[11px] text-neutral-500 truncate">Generate executive pre-meeting briefs</div>
+            </div>
+          </button>
+
+          <button type="button" onclick="selectDemoIndustry('video', 'video-demo')" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] transition text-left group">
+            <div class="w-8 h-8 rounded-lg bg-[#EEF4FF] text-[#0A4ECC] flex items-center justify-center shrink-0">
+              <i data-lucide="video" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-[#0A0F1E] group-hover:text-[#0A4ECC] transition">Video production</div>
+              <div class="text-[11px] text-neutral-500 truncate">Turn brief concepts into 1080p clips</div>
+            </div>
+          </button>
+
+          <button type="button" onclick="selectDemoIndustry('devops', 'devops-demo')" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] transition text-left group">
+            <div class="w-8 h-8 rounded-lg bg-[#EEF4FF] text-[#0A4ECC] flex items-center justify-center shrink-0">
+              <i data-lucide="git-pull-request" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-[#0A0F1E] group-hover:text-[#0A4ECC] transition">Code deployment</div>
+              <div class="text-[11px] text-neutral-500 truncate">Automated code review & testing</div>
+            </div>
+          </button>
+
+          <button type="button" onclick="selectDemoIndustry('ecommerce', 'ecom-demo')" class="w-full flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] transition text-left group">
+            <div class="w-8 h-8 rounded-lg bg-[#EEF4FF] text-[#0A4ECC] flex items-center justify-center shrink-0">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-xs font-bold text-[#0A0F1E] group-hover:text-[#0A4ECC] transition">Customer support</div>
+              <div class="text-[11px] text-neutral-500 truncate">WhatsApp order tracking & answers</div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -3188,25 +3245,53 @@
             </div>
           </div>
 
-          <!-- Video Player Display Container -->
+          <!-- Video Player & Pipeline Execution Container -->
           <div class="surface-card p-6 border border-[#E8EAF0] shadow-sm space-y-4">
+            
+            <!-- Live Status & Stage Indicator Bar -->
             <div class="flex items-center justify-between pb-3 border-b border-neutral-100">
               <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                <span id="video-player-status" class="text-xs font-semibold text-[#0A0F1E]">Video preview ready</span>
+                <span id="video-player-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span id="video-player-status" class="text-xs font-semibold text-[#0A0F1E]">Ready for video creation</span>
               </div>
-              <span class="text-xs text-neutral-500" id="video-render-timer">3.5s render time</span>
+              <span class="text-xs text-neutral-500" id="video-render-timer">24fps &bull; 1080p MP4</span>
             </div>
 
+            <!-- Pipeline Execution Step Tracker (Appears when rendering) -->
+            <div id="video-pipeline-tracker" class="hidden p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0] space-y-2.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-[#0A0F1E] flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#0A4ECC] animate-pulse"></span>
+                  <span id="video-pipeline-phase">Initializing pipeline...</span>
+                </span>
+                <span id="video-pipeline-pct" class="font-mono text-neutral-500 text-[11px]">0%</span>
+              </div>
+              
+              <!-- Progress Track -->
+              <div class="w-full h-2 rounded-full bg-neutral-200 overflow-hidden">
+                <div id="video-pipeline-progress" class="h-full bg-[#0A4ECC] rounded-full transition-all duration-300 w-0"></div>
+              </div>
+
+              <!-- 4 Real-world Pipeline Stages -->
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 text-[11px]">
+                <div id="vstage-1" class="p-2 rounded-lg bg-white border border-neutral-200 text-neutral-500 text-center font-medium">1. Brief Ingestion</div>
+                <div id="vstage-2" class="p-2 rounded-lg bg-white border border-neutral-200 text-neutral-500 text-center font-medium">2. Scene Direction</div>
+                <div id="vstage-3" class="p-2 rounded-lg bg-white border border-neutral-200 text-neutral-500 text-center font-medium">3. Cloud Render</div>
+                <div id="vstage-4" class="p-2 rounded-lg bg-white border border-neutral-200 text-neutral-500 text-center font-medium">4. Cloud Sync</div>
+              </div>
+            </div>
+
+            <!-- Video Player -->
             <div class="relative rounded-2xl overflow-hidden bg-black aspect-video max-w-3xl mx-auto shadow-md">
               <video id="veo-main-video" class="w-full h-full object-cover" controls playsinline preload="metadata">
+                <source src="veo_video.mp4" type="video/mp4">
                 <source src="generated-video.mp4" type="video/mp4">
                 Your browser does not support video playback.
               </video>
             </div>
 
             <div class="flex items-center justify-between pt-2 text-xs text-neutral-500">
-              <span>Ready for campaign review</span>
+              <span id="video-footer-info">Select a prompt or type your concept above to run the pipeline</span>
               <button type="button" onclick="openWorkflowModal('video')" class="text-[#0A4ECC] hover:underline font-semibold flex items-center gap-1">
                 <span>View the workflow</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -3689,10 +3774,7 @@
                 Ask about orders, revenue, shipments or sales. This demo uses sample data.
               </p>
             </div>
-            <button type="button" onclick="openWorkflowModal('sql')" class="btn-secondary text-xs h-9 px-3 flex items-center gap-1.5 shrink-0">
-              <i data-lucide="play-circle" class="w-3.5 h-3.5 text-[#0A4ECC]"></i>
-              <span>View the workflow</span>
-            </button>
+
           </div>
 
           <!-- Suggested Prompt Chips Row -->
@@ -5558,63 +5640,150 @@
   // =========================================================
   // =========================================================
   
-function executeVideoRender() {
+  // =========================================================
+  // TRY DEMO DROPDOWN & INDUSTRY SELECTOR
+  // =========================================================
+  function toggleTryDemoMenu(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('try-demo-menu');
+    const chevron = document.getElementById('try-demo-chevron');
+    if (!menu) return;
+    const isHidden = menu.classList.contains('hidden');
+    if (isHidden) {
+      menu.classList.remove('hidden');
+      if (chevron) chevron.classList.add('rotate-180');
+    } else {
+      menu.classList.add('hidden');
+      if (chevron) chevron.classList.remove('rotate-180');
+    }
+  }
+
+  function selectDemoIndustry(viewName, sectionId) {
+    const menu = document.getElementById('try-demo-menu');
+    const chevron = document.getElementById('try-demo-chevron');
+    if (menu) menu.classList.add('hidden');
+    if (chevron) chevron.classList.remove('rotate-180');
+    
+    openView(viewName);
+    setTimeout(() => {
+      scrollToSection(sectionId);
+    }, 150);
+  }
+
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('try-demo-menu');
+    const btn = document.getElementById('try-demo-toggle-btn');
+    if (menu && !menu.classList.contains('hidden')) {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.add('hidden');
+        const chevron = document.getElementById('try-demo-chevron');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+  });
+
+  // =========================================================
+  // VIDEO GENERATION PIPELINE CONTROLLER
+  // =========================================================
+  function setPromptAndRun(promptText) {
+    const input = document.getElementById('video-prompt-input');
+    if (input) input.value = promptText;
+    executeVideoRender();
+  }
+
+  function executeVideoRender() {
     const btn = document.getElementById('video-execute-btn');
-    const timerBadge = document.getElementById('video-timer-badge');
-    const statusText = document.getElementById('video-telemetry-status');
-    const dot = document.getElementById('video-telemetry-dot');
-    const overlay = document.getElementById('video-rendering-overlay');
-    const stepText = document.getElementById('video-rendering-step-text');
+    const input = document.getElementById('video-prompt-input');
+    const player = document.getElementById('veo-main-video');
+    const dot = document.getElementById('video-player-dot');
+    const statusText = document.getElementById('video-player-status');
+    const timerBadge = document.getElementById('video-render-timer');
+    const tracker = document.getElementById('video-pipeline-tracker');
+    const progress = document.getElementById('video-pipeline-progress');
+    const phaseText = document.getElementById('video-pipeline-phase');
+    const pctText = document.getElementById('video-pipeline-pct');
+    const footerInfo = document.getElementById('video-footer-info');
+
+    const promptVal = input ? input.value.trim() : "Custom video brief";
 
     if (btn) btn.disabled = true;
-    if (dot) dot.className = 'telemetry-dot bg-rose-500 animate-pulse';
-    if (statusText) statusText.textContent = 'Production Pipeline Running...';
-    if (overlay) overlay.classList.remove('hidden');
+    if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse';
+    if (statusText) statusText.textContent = 'Pipeline executing in the cloud...';
+    if (tracker) tracker.classList.remove('hidden');
 
-    const s1 = document.getElementById('video-stage-1');
-    const s2 = document.getElementById('video-stage-2');
-    const s3 = document.getElementById('video-stage-3');
-    const s4 = document.getElementById('video-stage-4');
+    // Reset stages
+    for (let s = 1; s <= 4; s++) {
+      const el = document.getElementById('vstage-' + s);
+      if (el) {
+        el.className = 'p-2 rounded-lg bg-white border border-neutral-200 text-neutral-500 text-center font-medium';
+      }
+    }
 
-    if (s1) s1.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-blue-600"></i> Parsing';
-    if (s2) s2.innerHTML = '<span class="text-neutral-400 font-mono">Waiting</span>';
-    if (s3) s3.innerHTML = '<span class="text-neutral-400 font-mono">Waiting</span>';
-    if (s4) s4.innerHTML = '<span class="text-neutral-400 font-mono">Waiting</span>';
-    if (window.lucide) lucide.createIcons();
+    // Stage 1: Ingestion
+    const stage1 = document.getElementById('vstage-1');
+    if (stage1) stage1.className = 'p-2 rounded-lg bg-[#EEF4FF] border border-[#0A4ECC] text-[#0A4ECC] text-center font-bold';
+    if (phaseText) phaseText.textContent = `Stage 1/4: Ingesting creative brief: "${promptVal.slice(0, 32)}..."`;
+    if (progress) progress.style.width = '25%';
+    if (pctText) pctText.textContent = '25%';
+    if (timerBadge) timerBadge.textContent = '0.8s';
 
+    // Attempt webhook dispatch to live server in background if configured
+    try {
+      fetch('/api/trigger-webhook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ webhookPath: 'video-render', payload: { prompt: promptVal } })
+      }).catch(() => {});
+    } catch (e) {}
+
+    // Stage 2: Scene direction & lighting
     setTimeout(() => {
-      if (s1) s1.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Ingested';
-      if (s2) s2.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-purple-600"></i> Directing';
-      if (timerBadge) timerBadge.textContent = '0.85s';
-      if (stepText) stepText.textContent = 'Choreographing camera directives & lighting...';
-      if (window.lucide) lucide.createIcons();
-    }, 800);
+      if (stage1) stage1.className = 'p-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-center font-medium';
+      const stage2 = document.getElementById('vstage-2');
+      if (stage2) stage2.className = 'p-2 rounded-lg bg-[#EEF4FF] border border-[#0A4ECC] text-[#0A4ECC] text-center font-bold';
+      if (phaseText) phaseText.textContent = 'Stage 2/4: Choreographing camera motion, 35mm lens & lighting...';
+      if (progress) progress.style.width = '50%';
+      if (pctText) pctText.textContent = '50%';
+      if (timerBadge) timerBadge.textContent = '1.8s';
+    }, 1000);
 
+    // Stage 3: Vertex AI Render
     setTimeout(() => {
-      if (s2) s2.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Calibrated';
-      if (s3) s3.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-rose-600"></i> Rendering';
-      if (timerBadge) timerBadge.textContent = '1.80s';
-      if (stepText) stepText.textContent = 'Rendering 1080p broadcast media (24fps)...';
-      if (window.lucide) lucide.createIcons();
-    }, 1800);
+      const stage2 = document.getElementById('vstage-2');
+      if (stage2) stage2.className = 'p-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-center font-medium';
+      const stage3 = document.getElementById('vstage-3');
+      if (stage3) stage3.className = 'p-2 rounded-lg bg-[#EEF4FF] border border-[#0A4ECC] text-[#0A4ECC] text-center font-bold';
+      if (phaseText) phaseText.textContent = 'Stage 3/4: Rendering 1080p MP4 broadcast clip (24fps)...';
+      if (progress) progress.style.width = '75%';
+      if (pctText) pctText.textContent = '75%';
+      if (timerBadge) timerBadge.textContent = '2.6s';
+    }, 2000);
 
+    // Stage 4: Sync to cloud storage
     setTimeout(() => {
-      if (s3) s3.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> 1080p Done';
-      if (s4) s4.innerHTML = '<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin text-blue-600"></i> Syncing';
-      if (timerBadge) timerBadge.textContent = '2.80s';
-      if (stepText) stepText.textContent = 'Synchronizing finished video to cloud storage...';
-      if (window.lucide) lucide.createIcons();
+      const stage3 = document.getElementById('vstage-3');
+      if (stage3) stage3.className = 'p-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-center font-medium';
+      const stage4 = document.getElementById('vstage-4');
+      if (stage4) stage4.className = 'p-2 rounded-lg bg-[#EEF4FF] border border-[#0A4ECC] text-[#0A4ECC] text-center font-bold';
+      if (phaseText) phaseText.textContent = 'Stage 4/4: Synchronizing video asset to team drive...';
+      if (progress) progress.style.width = '95%';
+      if (pctText) pctText.textContent = '95%';
+      if (timerBadge) timerBadge.textContent = '3.2s';
     }, 2800);
 
+    // Completion: Asset ready and video playback starts
     setTimeout(() => {
-      if (s4) s4.innerHTML = '<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Synchronized';
+      const stage4 = document.getElementById('vstage-4');
+      if (stage4) stage4.className = 'p-2 rounded-lg bg-emerald-50 border border-emerald-300 text-emerald-800 text-center font-medium';
+      if (progress) progress.style.width = '100%';
+      if (pctText) pctText.textContent = '100%';
+      if (phaseText) phaseText.textContent = 'Video creation pipeline completed successfully.';
+      if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+      if (statusText) statusText.textContent = '1080p video clip ready';
+      if (timerBadge) timerBadge.textContent = '3.5s total';
+      if (footerInfo) footerInfo.textContent = `Generated video for: "${promptVal.slice(0, 48)}"`;
       if (btn) btn.disabled = false;
-      if (dot) dot.className = 'telemetry-dot bg-emerald-600';
-      if (statusText) statusText.textContent = 'Production Asset Ready';
-      if (timerBadge) timerBadge.textContent = '3.50s total';
-      if (overlay) overlay.classList.add('hidden');
 
-      const player = document.getElementById('veo-video-player');
       if (player) {
         player.currentTime = 0;
         player.play().catch(() => {});
